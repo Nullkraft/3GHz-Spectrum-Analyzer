@@ -1,0 +1,35 @@
+unnamed_net27	J602-6 
+unnamed_net26	J601-5 
+unnamed_net25	J601-1 
+unnamed_net24	J600-17 
+unnamed_net23	J600-18 
+unnamed_net22	J600-19 
+unnamed_net21	J600-16 
+unnamed_net20	J600-14 
+unnamed_net19	J600-20 
+unnamed_net18	J600-13 
+unnamed_net17	J600-21 
+unnamed_net16	J600-12 
+unnamed_net15	J600-22 
+unnamed_net14	J600-11 
+unnamed_net13	J600-23 
+unnamed_net12	J600-26 
+unnamed_net11	J600-6 
+unnamed_net10	J600-5 
+unnamed_net9	J600-4 
+unnamed_net8	J600-3 
+unnamed_net7	J600-2 
+unnamed_net6	J600-1 
+ANA_Din	J600-7 R604-1 
+ANA_Dout	J600-8 R603-1 
+ANA_Sclk	J600-9 R602-1 
+\_ANA_CS	J600-10 R601-1 
++5VDC	J601-3 R600-2 C600-1 
+LogAmp_45MHz	J602-4 U600-5 
+unnamed_net5	R604-2 U600-6 
+unnamed_net4	R603-2 U600-7 
+unnamed_net3	R602-2 U600-8 
+unnamed_net2	R601-2 U600-1 
+unnamed_net1	R600-1 C601-1 U600-2 
+GND	J602-5 J602-3 J602-1 J601-6 J601-4 J601-2 J600-15 J600-24 J600-25 C600-2 C601-2 U600-3 
+LogAmp_315MHz	J602-2 U600-4 

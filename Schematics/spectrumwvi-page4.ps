@@ -1,0 +1,1550 @@
+%!PS-Adobe-3.0
+%%Creator: gEDA gschem 1.8.1-20121123-13-g875406c
+%%CreationDate: Wed Mar 25 20:17:55 2020
+%%Title: /home/mark/projects/Vapor Ware Inc./Spectrum_Analyzer_VWI_-_Latest/Schematics/spectrumwvi-page4.sch
+%%Author: (null)
+%%BoundingBox: 0 0 612 792
+%%Orientation: Landscape
+%%Pages: 1
+%%EndComments
+%%BeginProlog
+% Prolog for gEDA, define all the functions needed for rendering
+% schematics on Postscript devices
+
+
+% Draw a line from the second coordinate to the first
+% x2 y2 x1 y1 width line -
+/line {
+    setlinewidth
+    % pop off first element and moveto
+    moveto
+    % pop off remaining elements and draw a line segment
+    lineto
+    % draw it
+    stroke
+} bind def
+
+
+% Draw a dot
+% x y r dot -
+/dot {
+    0 360 arc fill
+} bind def
+
+% Draw a dot-dashed line, a bunch of lined segments,
+% if the array element only has length two, draw a dot.
+% [ [x2 y2 x1 y1] [x4 y4 x3 y3] [x5 y5] ... ] width dashed -
+/width 0 def
+/dashed {
+    dup 2.0 div /width exch def
+    setlinewidth
+    % pop off each line segment and draw it as a dot or as a line
+    {
+	aload length 2 gt
+	{ moveto lineto stroke}
+	{ width dot } ifelse
+    } forall
+} bind def
+
+% Draw an arc segment
+% x y r ang1 ang2 width darc -
+/darc {
+    setlinewidth
+    arc stroke
+} bind def
+
+% Draw a series of arc segment bits, if the array element only has a single
+% element in it, draw a dot.
+% [ [sa1 ea1] [sa2 ea2] ... ] x y r width dashedarc -
+/x 0 def
+/y 0 def
+/dashedarc {
+    dup /width exch def
+    setlinewidth
+    /r exch def  
+    /y exch def
+    /x exch def
+    { aload length 1 gt
+	{
+	    % this element had two angles in it
+	    % extract start and stop angles
+	    x y r   % drop x y and r onto stack
+		    % at this point we have: sa ea x y r
+		    % we need                      x y r sa ea
+		    % so..
+	    5 -2 roll
+	    % and add it to the current path, and draw it
+	    arc stroke
+	} {
+	    % this element only had one angle in it, place a
+	    % filled dot at the appropriate place
+	    % compute center point of the arc using the angle
+	    % that is on the top of the stack
+	    dup   		% angle angle
+	    cos r mul x add 	% angle x
+	    exch		% x angle
+	    sin r mul y add	% x y
+	    width		% x y width/2
+	    dot			% draw the dot
+	} ifelse
+    } forall
+
+    % Now draw it
+    stroke
+} bind def
+
+% Draw a box
+% width height x y linethickness box -
+/box {
+    setlinewidth
+    moveto
+    exch dup 0 rlineto	 % w h, h w w 0      -- Draw bottom line
+    exch 0 exch rlineto	 % h w, w h 0, w 0 h -- Draw right line 
+    neg 0 rlineto	 % w, -w 0           -- Draw Top line
+    closepath		 % finish and draw it
+    stroke
+} bind def			     
+
+% Draw a filled box
+% width height x y fbox -
+/fbox {
+    moveto
+    exch dup 0 rlineto	
+    exch 0 exch rlineto	
+    neg 0 rlineto		
+    closepath			
+    fill			
+} bind def
+
+% Font reincoding utilities
+
+% ISOLatin1Encoding, extended with remaining uncoded glyphs
+/ISOLatin1Extended [
+    /.notdef /Lslash /lslash /OE /oe /Scaron /scaron /Zcaron /zcaron
+    /Ydieresis /trademark /bullet /dagger /daggerdbl /ellipsis /emdash
+    /endash /fi /fl /florin /fraction /guilsinglleft /guilsinglright
+    /perthousand /quotedblbase /quotedblleft /quotedblright
+    /quotesinglbase /quotesingle /.notdef /.notdef /.notdef /space
+    /exclam /quotedbl /numbersign /dollar /percent /ampersand
+    /quoteright /parenleft /parenright /asterisk /plus /comma /minus
+    /period /slash /zero /one /two /three /four /five /six /seven /eight
+    /nine /colon /semicolon /less /equal /greater /question /at /A /B /C
+    /D /E /F /G /H /I /J /K /L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z
+    /bracketleft /backslash /bracketright /asciicircum /underscore
+    /quoteleft /a /b /c /d /e /f /g /h /i /j /k /l /m /n /o /p /q /r /s
+    /t /u /v /w /x /y /z /braceleft /bar /braceright /asciitilde
+    /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+    /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+    /.notdef /.notdef /.notdef /dotlessi /grave /acute /circumflex
+    /tilde /macron /breve /dotaccent /dieresis /.notdef /ring /cedilla
+    /.notdef /hungarumlaut /ogonek /caron /space /exclamdown /cent
+    /sterling /currency /yen /brokenbar /section /dieresis /copyright
+    /ordfeminine /guillemotleft /logicalnot /hyphen /registered /macron
+    /degree /plusminus /twosuperior /threesuperior /acute /mu /paragraph
+    /periodcentered /cedilla /onesuperior /ordmasculine /guillemotright
+    /onequarter /onehalf /threequarters /questiondown /Agrave /Aacute
+    /Acircumflex /Atilde /Adieresis /Aring /AE /Ccedilla /Egrave /Eacute
+    /Ecircumflex /Edieresis /Igrave /Iacute /Icircumflex /Idieresis /Eth
+    /Ntilde /Ograve /Oacute /Ocircumflex /Otilde /Odieresis /multiply
+    /Oslash /Ugrave /Uacute /Ucircumflex /Udieresis /Yacute /Thorn
+    /germandbls /agrave /aacute /acircumflex /atilde /adieresis /aring
+    /ae /ccedilla /egrave /eacute /ecircumflex /edieresis /igrave
+    /iacute /icircumflex /idieresis /eth /ntilde /ograve /oacute
+    /ocircumflex /otilde /odieresis /divide /oslash /ugrave /uacute
+    /ucircumflex /udieresis /yacute /thorn /ydieresis
+] def
+
+% `new-font-name' `encoding-vector' `old-font-name' RE -
+/RE {
+    findfont
+    dup maxlength dict begin {
+        1 index /FID ne { def } { pop pop } ifelse
+    } forall
+    /Encoding exch def
+    dup /FontName exch def
+    currentdict end definefont pop
+} bind def
+
+% Text handling functions, select the font and scale it, then we need
+% only to apply the appropriate transformations to get the text
+% justified into the right spots.  The bad thing here is that we don't
+% do any kerning, so the output may look a bit strange.
+
+% compute the height of one character and return lly and ury
+% (char) charheight lly ury
+/charheight {
+    gsave			% push graphics state
+	newpath			% clear current path
+	0 0 moveto		% Set current point
+	false charpath		% get path
+	flattenpath		% flatten path
+	pathbbox		% stack = llx lly urx ury
+	exch pop		% stack = llx lly ury
+	3 -1 roll pop		% stack = lly ury
+    grestore			% pop graphics state
+} bind def
+
+% compute the height of a string, one character at a time
+% (string) stringheight lly ury
+/lly 0.0 def
+/ury 0.0 def
+
+/stringheight {
+    /lly 0.0 def			% initial value of heightmin
+    /ury 0.0 def			% initial value of heightmax
+    {				% work through string
+	( ) dup 0 4 -1 roll put	% create one character string
+	charheight		% measure it's height
+	dup ury gt {		% if ury gt heightmax
+	    /ury exch def	% update with new value
+	} {
+	    pop			% else discard ury
+	} ifelse
+	dup lly lt {		% if lly lt heightmin
+	    /lly exch def	% update with new value
+	} {
+	    pop			% else discard lly
+	} ifelse
+    } forall
+    lly ury			% Return the results
+} bind def
+
+% calculate the string width taking into account the escapes.
+/mystrx 0.0 def
+/mystry 0.0 def
+/mystresc false def
+
+/mystringwidth {
+    /mystrx 0.0 def
+    /mystry 0.0 def
+    /mystresc false def
+    {				% work through string
+	% did we process the escape character last?
+	mystresc {
+	    % last character was escape
+	    % handle the escape
+	    % is it an _ = 95?
+	    dup 95 eq {
+		pop  % we don't need the character anymore
+		% toggle drawing overbars
+		0.0 0.0 % make it like it never happened...
+	    } {
+		% otherwise measure the character 
+		(\\ ) dup 1 4 -1 roll put % count a \ and the character
+		stringwidth
+	    } ifelse
+	    % and reset the flag
+	    /mystresc false def
+	} {
+	    % last character was not escape
+	    % is this escape
+	    dup 92 eq {
+		% yes, escape character, set flag
+		/mystresc true def
+		pop % drop character
+		0.0 0.0 % make like this character has no width and height
+	    } {
+		( ) dup 0 4 -1 roll put	% create one character string
+		stringwidth		% measure it's height/width
+	    } ifelse
+	} ifelse
+	% accumulate x and y movements
+	mystry add /mystry exch def
+	mystrx add /mystrx exch def
+    } forall
+    mystrx mystry % drop results on stack
+} bind def
+
+% Render a string with overbars
+%
+/escaped false def
+/drawoverbar false def
+/fontsize 0.0 def
+
+%string1 string2 append -
+/append {
+    2 copy length exch length add % find new length
+    string dup % string1 string2 string string
+    4 2 roll % string string string1 string2
+    2 index 0 3 index
+    % string string string1 string2 string 0 string1
+    putinterval % string string string1 string2
+    exch length exch putinterval
+} bind def
+
+% If drawoverbar is set, draw a line of the same length as the given string
+% string overbarshowline -
+/overbarshowline {
+    % print overbar if necessary
+    stringwidth pop 0
+    drawoverbar {
+        rlineto
+        gsave stroke grestore
+    } {
+        rmoveto
+    } ifelse
+} bind def
+
+% Draws overbars for the given string, then shows the string itself
+% string overbarshow
+/overbarshow {
+    /overbarshowacc () def
+    /overbarshowtxt () def
+
+    gsave
+    fontsize 10.0 div setlinewidth
+    0 fontsize rmoveto  % move to (0,overbarheight)
+
+    {				% work through string
+	escaped {
+	    % the last character was the escape
+	    % handle the escape
+	    % is it an _ = 95?
+	    dup 95 eq {
+		pop  % we don't need the character anymore
+                overbarshowacc overbarshowline
+                % toggle drawing overbars
+		/drawoverbar drawoverbar not def
+
+                % Append the contents off the accumulator to the text
+                % string we're eventually going to show
+                /overbarshowtxt overbarshowtxt overbarshowacc append def
+
+                % clear accumulator
+                /overbarshowacc () def
+	    } {
+                % add to accumulator
+                (\\ ) dup 1 4 -1 roll put
+                overbarshowacc exch append
+                /overbarshowacc exch def
+	    } ifelse
+	    % and reset the flag
+	    /escaped false def
+	} {
+	    % check for escape character \ = 92
+	    dup 92 eq {
+		% yes, escape character, set flag
+		/escaped true def
+		pop % drop character
+	    } {
+                % add to accumulator
+                ( ) dup 0 4 -1 roll put
+                overbarshowacc exch append
+                /overbarshowacc exch def
+	    } ifelse
+	} ifelse
+    } forall
+    % Catch any leftovers
+    overbarshowacc overbarshowline
+    overbarshowtxt overbarshowacc append
+
+    grestore
+    show
+} bind def
+
+% 
+% hcenter rjustify vcenter vjustify spacing [(line1) (line2) ... ] rot x y size text -
+/stringw 0.0 def
+/stringh 0.0 def
+/spacing 0.0 def
+/strings [ ] def
+/stringtxt ( ) def
+/stringcount 0 def
+/rot 0.0 def
+
+/text {
+    gsave	        % save state for later
+    /drawoverbar false def      % start by not drawing overbars
+
+    dup /fontsize exch def  % save font size for corrections later
+    % do font selection 
+    /gEDAFont findfont
+    exch scalefont
+    setfont
+
+    % set up coordinates
+    translate           % move origin to given point
+    rotate		% rotate so that text is drawn
+    0 0 moveto
+    dup length /stringcount exch def			% Get number of strings
+    /strings exch def     				% save strings
+    /spacing exch def
+    % do we have more than 1 string to render?
+    stringcount 1 eq {
+	/stringtxt strings aload pop def		% get the string 
+	/stringw stringtxt mystringwidth pop neg def	% get the -width
+	/stringh stringtxt stringheight exch pop neg def% get the -height
+
+	% First do vertical calculations
+	% hcenter rjustify vcenter vjustify 
+	% vertical justification
+	{ 0 stringh rmoveto } if 
+	% vertical center
+	{ 0 stringh 0.3571425 mul rmoveto } if  % not 0.5, so that
+						% it looks nicer
+	% Then do horizontal calculations
+	% right justify
+	{ stringw 0 rmoveto } if
+	% center
+	{ stringw 2.0 div 0 rmoveto } if
+	% Draw the text
+	stringtxt overbarshow
+    } {
+	% More than one line, compute bounding box for the text
+
+	% vertical height, don't use the actual hieght of the characters
+	% assume that the user wants to make the baselines line up with two
+	% text boxes placed side by side
+	/stringh stringcount spacing mul neg def
+	% Now figure out horizontal size, this amounts to keeping track
+	% of the longest string
+	/stringw 0.0 def
+	strings {
+	    mystringwidth pop
+	    dup stringw gt {
+		/stringw exch def
+	    } {
+		pop
+	    } ifelse
+	} forall
+	/stringw stringw neg def 	% get the -width
+	
+	% First do vertical calculations
+	% hcenter rjustify vcenter vjustify 
+	% vertical justification
+	{ 0 stringh fontsize add rmoveto } if 
+	% vertical center
+	{ 0 stringh 0.5 mul rmoveto } if 
+	% Then do horizontal calculations
+	% right justify
+	{ stringw 0 rmoveto } if
+	% center
+	{ stringw 2.0 div 0 rmoveto } if
+	% now move up to the first line and begin rendering
+	0 stringcount 1 sub spacing mul rmoveto
+	strings {
+	    gsave		% Save starting point
+	    overbarshow		% render the text
+	    grestore
+	    0 spacing neg rmoveto
+	} forall
+    } ifelse
+    grestore 	% Restore old state
+} bind def
+
+
+%%EndProlog
+%%Page: 1 1
+/gEDAFont ISOLatin1Extended /Helvetica RE
+2 setlinecap
+0.072000 0.072000 scale
+1.000 1.000 1.000 setrgbcolor
+8500 11000 0 0 fbox
+7464 500 translate 90 rotate
+0.649351 0.649351 scale
+-16800 -50562 translate
+0.000 0.000 1.000 setrgbcolor
+23000 56800 24500 56800 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(DATA_LO1) ] 0 23000 56900 180.555557 text
+grestore
+25900 59600 27400 59600 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(REF_EN1) ] 0 26600 59700 180.555557 text
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+25600 55200 25900 55200 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(Rx  0) ] 0 25750 55250 144.444443 text
+grestore
+25600 55600 25900 55600 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(Tx  1) ] 0 25750 55650 144.444443 text
+grestore
+25600 56000 25900 56000 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(I/O 2) ] 0 25750 56050 144.444443 text
+grestore
+25600 56400 25900 56400 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(I/O 3) ] 0 25750 56450 144.444443 text
+grestore
+25600 56800 25900 56800 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(I/O 4) ] 0 25750 56850 144.444443 text
+grestore
+25600 57200 25900 57200 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(I/O 5) ] 0 25750 57250 144.444443 text
+grestore
+25600 57600 25900 57600 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(I/O 6) ] 0 25750 57650 144.444443 text
+grestore
+24500 55200 24800 55200 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false false 161.777776 [(+5 Vout) ] 0 24600 55250 144.444443 text
+grestore
+25600 58000 25900 58000 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(I/O 7) ] 0 25750 58050 144.444443 text
+grestore
+24500 55600 24800 55600 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false false 161.777776 [(GND) ] 0 24600 55650 144.444443 text
+grestore
+25600 58400 25900 58400 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(I/O 8) ] 0 25750 58450 144.444443 text
+grestore
+24500 56000 24800 56000 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false false 161.777776 [(GND) ] 0 24600 56050 144.444443 text
+grestore
+25600 58800 25900 58800 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(I/O 9) ] 0 25750 58850 144.444443 text
+grestore
+24500 56400 24800 56400 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false false 161.777776 [(Vin) ] 0 24500 56450 144.444443 text
+grestore
+25600 59200 25900 59200 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(I/O 10) ] 0 25750 59250 144.444443 text
+grestore
+24500 56800 24800 56800 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false false 161.777776 [(AN 0) ] 0 24600 56850 144.444443 text
+grestore
+25600 59600 25900 59600 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(I/O 11) ] 0 25750 59650 144.444443 text
+grestore
+24500 57200 24800 57200 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false false 161.777776 [(AN 1) ] 0 24600 57250 144.444443 text
+grestore
+25600 60000 25900 60000 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(I/O 12) ] 0 25750 60050 144.444443 text
+grestore
+24500 57600 24800 57600 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false false 161.777776 [(AN 2) ] 0 24600 57650 144.444443 text
+grestore
+0.000 0.545 0.000 setrgbcolor
+24800 55000 25600 55000 10 line
+25600 55000 25600 60200 10 line
+25600 60200 24800 60200 10 line
+24800 60200 24800 55000 10 line
+24800 57400 25600 57400 10 line
+25200 60200 25200 55000 10 line
+24800 55400 25600 55400 10 line
+24800 56600 25600 56600 10 line
+24800 56200 25600 56200 10 line
+24800 57000 25600 57000 10 line
+24800 55800 25600 55800 10 line
+24800 58600 25600 58600 10 line
+24800 58200 25600 58200 10 line
+24800 59000 25600 59000 10 line
+24800 59800 25600 59800 10 line
+24800 59400 25600 59400 10 line
+24800 57800 25600 57800 10 line
+0.000 0.000 0.000 setrgbcolor
+24800 60000 24500 60000 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(I/O 13) ] 0 24255 60095 144.444443 text
+grestore
+24800 59600 24500 59600 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(GND) ] 0 24255 59695 144.444443 text
+grestore
+24800 59200 24500 59200 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false false 161.777776 [(AREF) ] 0 24600 59250 144.444443 text
+grestore
+24500 58000 24800 58000 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false false 161.777776 [(AN 3) ] 0 24600 58050 144.444443 text
+grestore
+24500 58400 24800 58400 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false false 161.777776 [(AN 4) ] 0 24600 58450 144.444443 text
+grestore
+24500 58800 24800 58800 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false false 161.777776 [(AN 5) ] 0 24600 58850 144.444443 text
+grestore
+0.000 0.545 0.000 setrgbcolor
+24800 60200 25600 60200 10 line
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(J400) ] 0 25000 60300 180.555557 text
+grestore
+24000 60000 24500 60000 10 line
+23000 58400 24500 58400 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(CLK__ATTEN) ] 0 23000 58500 180.555557 text
+grestore
+23000 58800 24500 58800 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(DATA_ATTEN) ] 0 23000 58900 180.555557 text
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+24200 59600 24400 59600 10 line
+0.000 0.545 0.000 setrgbcolor
+24200 59700 24200 59500 10 line
+24150 59645 24150 59555 10 line
+24110 59620 24110 59580 10 line
+grestore
+27400 56400 25900 56400 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(DATA_LO3) ] 0 26400 56500 180.555557 text
+grestore
+27400 56800 25900 56800 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(DATA_LO2) ] 0 26400 56900 180.555557 text
+grestore
+27400 60000 25900 60000 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(REF_EN2) ] 0 26400 60100 180.555557 text
+grestore
+25900 56000 27400 56000 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(LOAD_LO3) ] 0 26400 56100 180.555557 text
+grestore
+25900 59200 29300 59200 10 line
+23000 58000 24500 58000 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(LOAD_ATTEN) ] 0 23000 58100 180.555557 text
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+24200 56000 24400 56000 10 line
+0.000 0.545 0.000 setrgbcolor
+24200 56100 24200 55900 10 line
+24150 56045 24150 55955 10 line
+24110 56020 24110 55980 10 line
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+24200 55600 24400 55600 10 line
+0.000 0.545 0.000 setrgbcolor
+24200 55700 24200 55500 10 line
+24150 55645 24150 55555 10 line
+24110 55620 24110 55580 10 line
+grestore
+24000 55200 24500 55200 10 line
+23000 57200 24500 57200 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(LOAD_LO1) ] 0 23000 57300 180.555557 text
+grestore
+30700 52800 29200 52800 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(LogAmp_315MHz) ] 0 29200 52900 180.555557 text
+grestore
+27400 58000 25900 58000 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(DOUT_ANA) ] 0 26400 58100 180.555557 text
+grestore
+27400 58400 25900 58400 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(SCLK_ANA) ] 0 26400 58500 180.555557 text
+grestore
+27400 58800 25900 58800 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(DIN_ANA) ] 0 26400 58900 180.555557 text
+grestore
+30700 52000 29200 52000 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(LogAmp_45MHz) ] 0 29200 52100 180.555557 text
+grestore
+24500 57600 23000 57600 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(PLL_MUX) ] 0 23000 57700 180.555557 text
+grestore
+0.000 0.545 0.000 setrgbcolor
+27700 58200 27700 57600 10 line
+27600 59100 27500 59100 10 line
+27800 58300 28100 58300 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 202.222224 [(To Digitizer board) ] 0 28200 58200 180.555557 text
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+24000 59200 23800 59200 10 line
+0.000 0.545 0.000 setrgbcolor
+23800 59300 23800 59100 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false true true false 202.222224 [(NC) ] 0 23750 59200 180.555557 text
+grestore
+grestore
+0.000 0.000 1.000 setrgbcolor
+24000 59200 24500 59200 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+26500 55200 26700 55200 10 line
+0.000 0.545 0.000 setrgbcolor
+26700 55100 26700 55300 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false true false 202.222224 [(NC) ] 0 26750 55200 180.555557 text
+grestore
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+26500 55600 26700 55600 10 line
+0.000 0.545 0.000 setrgbcolor
+26700 55500 26700 55700 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false true false 202.222224 [(NC) ] 0 26750 55600 180.555557 text
+grestore
+grestore
+26500 55200 25900 55200 10 line
+26500 55600 25900 55600 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+24700 53200 25000 53200 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(1) ] 0 24800 53250 144.444443 text
+grestore
+25000 52800 24700 52800 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false false 161.777776 [(2) ] 0 24905 52845 144.444443 text
+grestore
+24700 52400 25000 52400 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(3) ] 0 24800 52450 144.444443 text
+grestore
+25000 52000 24700 52000 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false false 161.777776 [(4) ] 0 24905 52045 144.444443 text
+grestore
+24700 51600 25000 51600 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(5) ] 0 24800 51650 144.444443 text
+grestore
+25000 51200 24700 51200 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false false 161.777776 [(6) ] 0 24905 51245 144.444443 text
+grestore
+0.000 0.545 0.000 setrgbcolor
+25000 52600 25400 52600 10 line
+25000 52200 25400 52200 10 line
+25000 53000 25400 53000 10 line
+25000 51000 25400 51000 10 line
+25400 51000 25400 53400 10 line
+25400 53400 25000 53400 10 line
+25000 53400 25000 51000 10 line
+25000 51400 25400 51400 10 line
+25000 51800 25400 51800 10 line
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(J401) ] 0 25000 53450 180.555557 text
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+23500 52400 23500 52600 10 line
+0.000 0.545 0.000 setrgbcolor
+23350 52600 23650 52600 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 161.777776 [(+5V) ] 0 23375 52650 144.444443 text
+grestore
+grestore
+23500 52400 24700 52400 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+23500 51600 23500 51800 10 line
+0.000 0.545 0.000 setrgbcolor
+23350 51800 23650 51800 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 161.777776 [(+3.3V) ] 0 23375 51850 144.444443 text
+grestore
+grestore
+23500 51600 24700 51600 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+23500 53200 23500 53400 10 line
+0.000 0.545 0.000 setrgbcolor
+23350 53400 23650 53400 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 161.777776 [(+7.5V) ] 0 23275 53450 144.444443 text
+grestore
+grestore
+23500 53200 24700 53200 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+24500 52800 24700 52800 10 line
+0.000 0.545 0.000 setrgbcolor
+24500 52900 24500 52700 10 line
+24450 52845 24450 52755 10 line
+24410 52820 24410 52780 10 line
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+24500 52000 24700 52000 10 line
+0.000 0.545 0.000 setrgbcolor
+24500 52100 24500 51900 10 line
+24450 52045 24450 51955 10 line
+24410 52020 24410 51980 10 line
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+24500 51200 24700 51200 10 line
+0.000 0.545 0.000 setrgbcolor
+24500 51300 24500 51100 10 line
+24450 51245 24450 51155 10 line
+24410 51220 24410 51180 10 line
+grestore
+0.000 0.545 0.000 setrgbcolor
+27500 57500 27600 57500 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+24000 55200 23800 55200 10 line
+0.000 0.545 0.000 setrgbcolor
+23800 55300 23800 55100 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false true true false 202.222224 [(NC) ] 0 23750 55200 180.555557 text
+grestore
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+24000 56400 23800 56400 10 line
+0.000 0.545 0.000 setrgbcolor
+23800 56500 23800 56300 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false true true false 202.222224 [(NC) ] 0 23750 56400 180.555557 text
+grestore
+grestore
+0.000 0.000 1.000 setrgbcolor
+24000 56400 24500 56400 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 202.222224 [(Arduino Header \(Signal Bus\)) ] 0 24200 54500 180.555557 text
+grestore
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 202.222224 [(Power Supply Header) ] 0 24300 50600 180.555557 text
+grestore
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 202.222224 [(Digitizer Header \(pg. 3\)) ] 0 30200 50600 180.555557 text
+grestore
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 202.222224 [(Reserved for) (Serial Comms) ] 0 27700 55200 180.555557 text
+grestore
+gsave
+0.000 0.545 0.000 setrgbcolor
+30900 58400 30700 58500 10 line
+30700 58500 30900 58600 10 line
+30900 58600 30700 58700 10 line
+30700 58700 30900 58800 10 line
+30900 58400 30700 58300 10 line
+30700 58300 30800 58250 10 line
+0.000 0.000 0.000 setrgbcolor
+30800 58100 30800 58250 10 line
+30800 59000 30800 58848 10 line
+0.000 0.545 0.000 setrgbcolor
+30900 58799 30800 58850 10 line
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false true 202.222224 [(R400) ] 0 30600 58400 180.555557 text
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false true 202.222224 [(1.5 K) ] 0 30600 58800 180.555557 text
+grestore
+gsave
+0.000 0.545 0.000 setrgbcolor
+29900 59300 29800 59100 10 line
+29800 59100 29700 59300 10 line
+29700 59300 29600 59100 10 line
+29600 59100 29500 59300 10 line
+29900 59300 30000 59100 10 line
+30000 59100 30050 59200 10 line
+0.000 0.000 0.000 setrgbcolor
+30200 59200 30050 59200 10 line
+29300 59200 29452 59200 10 line
+0.000 0.545 0.000 setrgbcolor
+29501 59300 29450 59200 10 line
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(R401) ] 0 29500 59400 180.555557 text
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(1 K) ] 0 29600 58900 180.555557 text
+grestore
+27400 57200 25900 57200 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(LOAD_LO2) ] 0 26400 57300 180.555557 text
+grestore
+27400 57600 25900 57600 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(\\_CS_ANA) ] 0 26400 57700 180.555557 text
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+30500 53200 30700 53200 10 line
+0.000 0.545 0.000 setrgbcolor
+30500 53300 30500 53100 10 line
+30450 53245 30450 53155 10 line
+30410 53220 30410 53180 10 line
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+30500 52400 30700 52400 10 line
+0.000 0.545 0.000 setrgbcolor
+30500 52500 30500 52300 10 line
+30450 52445 30450 52355 10 line
+30410 52420 30410 52380 10 line
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+30700 53200 31000 53200 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(1) ] 0 30800 53250 144.444443 text
+grestore
+31000 52800 30700 52800 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false false 161.777776 [(2) ] 0 30905 52845 144.444443 text
+grestore
+30700 52400 31000 52400 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(3) ] 0 30800 52450 144.444443 text
+grestore
+31000 52000 30700 52000 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false false 161.777776 [(4) ] 0 30905 52045 144.444443 text
+grestore
+30700 51600 31000 51600 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 161.777776 [(5) ] 0 30800 51650 144.444443 text
+grestore
+31000 51200 30700 51200 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false false 161.777776 [(6) ] 0 30905 51245 144.444443 text
+grestore
+0.000 0.545 0.000 setrgbcolor
+31000 52600 31400 52600 10 line
+31000 52200 31400 52200 10 line
+31000 53000 31400 53000 10 line
+31000 51000 31400 51000 10 line
+31400 51000 31400 53400 10 line
+31400 53400 31000 53400 10 line
+31000 53400 31000 51000 10 line
+31000 51400 31400 51400 10 line
+31000 51800 31400 51800 10 line
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(J402) ] 0 31000 53450 180.555557 text
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+30500 51600 30700 51600 10 line
+0.000 0.545 0.000 setrgbcolor
+30500 51700 30500 51500 10 line
+30450 51645 30450 51555 10 line
+30410 51620 30410 51580 10 line
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+29700 51200 29500 51200 10 line
+0.000 0.545 0.000 setrgbcolor
+29500 51300 29500 51100 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false true true false 202.222224 [(NC) ] 0 29450 51200 180.555557 text
+grestore
+grestore
+29700 51200 30700 51200 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+24000 60000 23800 60000 10 line
+0.000 0.545 0.000 setrgbcolor
+23800 60100 23800 59900 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false true true false 202.222224 [(NC) ] 0 23750 60000 180.555557 text
+grestore
+grestore
+31400 59200 30200 59200 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+false true false true 202.222224 [(CLK_PLL) ] 0 31300 59500 180.555557 text
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+30800 57800 30800 58000 10 line
+0.000 0.545 0.000 setrgbcolor
+30700 57800 30900 57800 10 line
+30755 57750 30845 57750 10 line
+30780 57710 30820 57710 10 line
+grestore
+gsave
+0.000 0.545 0.000 setrgbcolor
+false true false true 202.222224 [(C) ] 0 28100 59800 180.555557 text
+grestore
+gsave
+0.000 0.545 0.000 setrgbcolor
+false true false true 202.222224 [(A) ] 0 32000 59300 180.555557 text
+grestore
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 202.222224 [(CC) ] 0 28000 57000 180.555557 text
+grestore
+0.000 0.545 0.000 setrgbcolor
+27700 57400 27700 57200 10 line
+27800 57100 27900 57100 10 line
+27700 57000 27700 56800 10 line
+27600 56700 27700 56800 10 line
+27700 57000 27800 57100 10 line
+27800 57100 27700 57200 10 line
+27700 57400 27600 57500 10 line
+27600 57500 27700 57600 10 line
+27700 58200 27800 58300 10 line
+27700 58400 27800 58300 10 line
+27700 58400 27700 59000 10 line
+27700 59000 27600 59100 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 202.222224 [(B) ] 0 22300 57600 180.555557 text
+grestore
+0.000 0.000 1.000 setrgbcolor
+30800 58000 30800 58100 10 line
+30800 59000 30800 59200 10 line
+0.000 0.545 0.000 setrgbcolor
+31800 59200 31400 59200 10 line
+22500 57700 22900 57700 10 line
+27500 56700 27600 56700 10 line
+27700 56600 27700 56400 10 line
+27800 56300 27900 56300 10 line
+27700 56200 27700 56000 10 line
+27600 55900 27700 56000 10 line
+27700 56200 27800 56300 10 line
+27800 56300 27700 56400 10 line
+27700 56600 27600 56700 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 202.222224 [(DD) ] 0 28000 56200 180.555557 text
+grestore
+27000 55800 27100 55800 10 line
+27000 55800 27100 55800 10 line
+27200 55700 27200 55500 10 line
+27300 55400 27600 55400 10 line
+27000 55000 27100 55000 10 line
+27200 55300 27200 55100 10 line
+27100 55000 27200 55100 10 line
+27200 55300 27300 55400 10 line
+27300 55400 27200 55500 10 line
+27200 55700 27100 55800 10 line
+27500 59700 27900 59700 10 line
+27500 60100 27900 60100 10 line
+28100 58300 27900 58400 10 line
+28100 58300 27900 58200 10 line
+22700 58000 22700 58400 10 line
+22600 58500 22500 58500 10 line
+22900 59100 22800 59100 10 line
+22700 58600 22700 59000 10 line
+22800 59100 22700 59000 10 line
+22700 58600 22600 58500 10 line
+22600 58500 22700 58400 10 line
+22700 58000 22800 57900 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 202.222224 [(AA) ] 0 22200 58400 180.555557 text
+grestore
+27500 55900 27600 55900 10 line
+22300 58500 200 0 360 10 darc
+32000 59200 200 0 360 10 darc
+22300 57700 200 0 360 10 darc
+28100 59700 200 0 360 10 darc
+28100 60100 200 0 360 10 darc
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 202.222224 [(D) ] 0 28000 60000 180.555557 text
+grestore
+28100 57100 200 0 360 10 darc
+28100 56300 200 0 360 10 darc
+29100 52200 28700 52200 10 line
+28500 52200 200 0 360 10 darc
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 202.222224 [(E) ] 0 28500 52100 180.555557 text
+grestore
+29100 53000 28700 53000 10 line
+28500 53000 200 0 360 10 darc
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 202.222224 [(F) ] 0 28500 52900 180.555557 text
+grestore
+22900 57900 22800 57900 10 line
+0.000 0.000 1.000 setrgbcolor
+24400 59600 24500 59600 10 line
+24400 56000 24500 56000 10 line
+24400 55600 24500 55600 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+20800 53300 20800 53500 10 line
+0.000 0.545 0.000 setrgbcolor
+20700 53300 20900 53300 10 line
+20755 53250 20845 53250 10 line
+20780 53210 20820 53210 10 line
+grestore
+20800 53500 17000 53500 10 line
+gsave
+0.000 0.000 0.000 setrgbcolor
+18500 53500 18500 53300 10 line
+0.000 0.545 0.000 setrgbcolor
+18300 53300 18700 53300 10 line
+18400 53200 18600 53200 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 202.222224 [(F) ] 0 18450 53000 180.555557 text
+grestore
+0.627 0.125 0.941 setrgbcolor
+newpath
+18500 53500
+25
+0 360 arc
+fill
+newpath
+18500 53500
+25
+0 360 arc
+fill
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(Sh403) ] 0 18300 53600 180.555557 text
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+19300 53500 19300 53300 10 line
+0.000 0.545 0.000 setrgbcolor
+19100 53300 19500 53300 10 line
+19200 53200 19400 53200 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 202.222224 [(F) ] 0 19250 53000 180.555557 text
+grestore
+0.627 0.125 0.941 setrgbcolor
+newpath
+19300 53500
+25
+0 360 arc
+fill
+newpath
+19300 53500
+25
+0 360 arc
+fill
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(Sh404) ] 0 19100 53600 180.555557 text
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+20000 53500 20000 53300 10 line
+0.000 0.545 0.000 setrgbcolor
+19800 53300 20200 53300 10 line
+19900 53200 20100 53200 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 202.222224 [(F) ] 0 19950 53000 180.555557 text
+grestore
+0.627 0.125 0.941 setrgbcolor
+newpath
+20000 53500
+25
+0 360 arc
+fill
+newpath
+20000 53500
+25
+0 360 arc
+fill
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(Sh405) ] 0 19800 53600 180.555557 text
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+17800 53500 17800 53300 10 line
+0.000 0.545 0.000 setrgbcolor
+17600 53300 18000 53300 10 line
+17700 53200 17900 53200 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 202.222224 [(F) ] 0 17750 53000 180.555557 text
+grestore
+0.627 0.125 0.941 setrgbcolor
+newpath
+17800 53500
+25
+0 360 arc
+fill
+newpath
+17800 53500
+25
+0 360 arc
+fill
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(Sh402) ] 0 17600 53600 180.555557 text
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+17000 53500 17000 53300 10 line
+0.000 0.545 0.000 setrgbcolor
+16800 53300 17200 53300 10 line
+16900 53200 17100 53200 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false false false false 202.222224 [(F) ] 0 16950 53000 180.555557 text
+grestore
+grestore
+gsave
+0.000 0.000 0.000 setrgbcolor
+false false false false 202.222224 [(Sh401) ] 0 16800 53600 180.555557 text
+grestore
+0.000 0.545 0.000 setrgbcolor
+22800 57500 22900 57500 10 line
+22300 57100 200 0 360 10 darc
+22900 56700 22800 56700 10 line
+22700 56800 22700 57000 10 line
+22600 57100 22500 57100 10 line
+22700 57200 22700 57400 10 line
+22800 57500 22700 57400 10 line
+22700 57200 22600 57100 10 line
+22600 57100 22700 57000 10 line
+22700 56800 22800 56700 10 line
+gsave
+0.000 0.545 0.000 setrgbcolor
+false true false true 202.222224 [(BB) ] 0 22400 57200 180.555557 text
+grestore
+0.627 0.125 0.941 setrgbcolor
+gsave
+[ -1.00 -0.00 0.00 -1.00 23000 56800 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+gsave
+[ 1.00 -0.00 0.00 1.00 27400 59600 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+gsave
+[ -1.00 -0.00 0.00 -1.00 23000 58400 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+gsave
+[ -1.00 -0.00 0.00 -1.00 23000 58800 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+gsave
+[ 1.00 -0.00 0.00 1.00 27400 56400 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+gsave
+[ 1.00 -0.00 0.00 1.00 27400 56800 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+gsave
+[ 1.00 -0.00 0.00 1.00 27400 60000 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+gsave
+[ 1.00 -0.00 0.00 1.00 27400 56000 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+gsave
+[ -1.00 -0.00 0.00 -1.00 23000 58000 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+gsave
+[ -1.00 -0.00 0.00 -1.00 23000 57200 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+gsave
+[ -1.00 -0.00 0.00 -1.00 29200 52800 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+gsave
+[ 1.00 -0.00 0.00 1.00 27400 58000 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+gsave
+[ 1.00 -0.00 0.00 1.00 27400 58400 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+gsave
+[ 1.00 -0.00 0.00 1.00 27400 58800 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+gsave
+[ -1.00 -0.00 0.00 -1.00 29200 52000 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+gsave
+[ -1.00 -0.00 0.00 -1.00 23000 57600 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+gsave
+[ 1.00 -0.00 0.00 1.00 27400 57200 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+gsave
+[ 1.00 -0.00 0.00 1.00 27400 57600 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+gsave
+[ 1.00 -0.00 0.00 1.00 31400 59200 ] concat
+newpath
+-30 -30 moveto
+-30 30 lineto
+30 0 lineto
+closepath
+fill
+grestore
+newpath
+30800 59200
+25
+0 360 arc
+fill
+newpath
+30800 59200
+25
+0 360 arc
+fill
+newpath
+30800 59200
+25
+0 360 arc
+fill
+newpath
+18500 53500
+25
+0 360 arc
+fill
+newpath
+19300 53500
+25
+0 360 arc
+fill
+newpath
+20000 53500
+25
+0 360 arc
+fill
+newpath
+17800 53500
+25
+0 360 arc
+fill
+newpath
+18500 53500
+25
+0 360 arc
+fill
+newpath
+18500 53500
+25
+0 360 arc
+fill
+newpath
+19300 53500
+25
+0 360 arc
+fill
+newpath
+19300 53500
+25
+0 360 arc
+fill
+newpath
+20000 53500
+25
+0 360 arc
+fill
+newpath
+20000 53500
+25
+0 360 arc
+fill
+newpath
+17800 53500
+25
+0 360 arc
+fill
+newpath
+17800 53500
+25
+0 360 arc
+fill
+showpage
+%%End

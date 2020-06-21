@@ -1,0 +1,7 @@
+From the Article: Visual diffs with gEDA, git, and GitHub
+http://blog.benbergman.ca/2012/05/17/visual-diffs-with-geda-git-and-github/
+
+Edit: Of course not 20 minutes after I publish this post I discover schdiff, a tool bundled with gEDA since the start of 2012 that is designed to hook into git-difftool to provide a visual diff of gschem .sch files. One format down, some more to go.
+
+Edit 2: Less than a day later and I discover there is also a pcbdiff tool on my computer that came with gEDA pcb. In Arch Linux, it installs to /usr/share/pcb/tools/pcbdiff, but it is not in the path, so in my .bashrc I just added 'export PATH="$PATH:/usr/share/pcb/tools"' at the end.  I feel pcbdiff outputs images that are too low a resolution, plus it can't handle when the .pcb files change in physical size, so I might submit a patch or two. Long story short, now I just need to make a script that auto-calls these diff tools based on the file type.
+
