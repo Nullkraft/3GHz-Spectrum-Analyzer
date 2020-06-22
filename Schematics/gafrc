@@ -1,0 +1,4 @@
+(component-library "../Components/spectrum_analyzer_symbol_files/")
+(component-library "../Board files/spectrum_analyzer_footprints/")
+(component-library-search "../Board files/spectrum_analyzer_footprints/")
+(source-library ".")

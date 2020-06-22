@@ -1,0 +1,3 @@
+schematics pwrsupvwi-page1.sch
+elements-dir /home/mark/apps/share/pcb/pcblib-newlib
+output-name pwrsupvwi

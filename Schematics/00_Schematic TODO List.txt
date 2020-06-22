@@ -1,0 +1,4 @@
+1. Verify line widths can carry current to each component.
+2. Do not connect external dc supplies to Arduino power pins.
+3. Verify through hole Arduino header pin sizes.
+4. 

@@ -1,0 +1,51 @@
+Elements may contain pins, pads, element lines, element arcs,
+attributes, and (for older elements) an optional mark.  Note that
+element definitions that have the mark coordinates in the element
+line, only support pins and pads which use relative coordinates.  The
+pin and pad coordinates are relative to the mark.  Element definitions
+which do not include the mark coordinates in the element line, may
+have a Mark definition in their contents, and only use pin and pad
+definitions which use absolute coordinates.
+
+Element [SFlags "Desc" "Name" "Value" MX MY TX TY TDir TScale TSFlags]
+
+  --> SFlags  : Symbolic or numeric flags, for the element as a whole.
+  --> NFlags  : Numeric flags, for the element as a whole.
+  --> Desc	  : The description of the element.  This is one of the three strings which can be displayed on the screen.
+  --> Name	  : The name of the element, usually the reference designator.
+  --> Value	  : The value of the element.
+  --> MX MY	  : The location of the element's mark.  This is the reference point for placing the element and its pins and pads.
+  --> TX TY	  : The upper left corner of the text (one of the three strings).
+  --> TDir	  : The relative direction of the text.  0 means left to right for an unrotated element, 1 means up, 2 left, 3 down.
+  --> TScale  : Size of the text, as a percentage of the "default" (100 or ~40 mils) size of of the font.
+  --> TSFlags : Symbolic or numeric flags, for the text.
+  --> TNFlags : Numeric flags, for the text.
+
+
+Pad [rX1 rY1 rX2 rY2 Thickness Clearance Mask "Name" "Number" SFlags]
+
+  --> rX1 rY1 rX2 rY2 : Coordinates of the endpoints of the pad relative to the element's mark.
+						Note that the copper extends beyond these coordinates by half the thickness.
+						To make a square or round pad, specify the same coordinate twice.
+  --> aX1 aY1 aX2 aY2 : Same, but absolute coordinates of the endpoints of the pad.
+  --> Thickness		  : width of the pad.
+  --> Clearance		  : add to thickness to get clearance width.
+  --> Mask  		  : width of solder mask opening.
+  --> Name  		  : name of pin
+  --> Number		  : number of pin
+  --> SFlags		  : symbolic or numerical flags
+  --> NFlags		  : numerical flags only
+
+
+
+************************************** EXAMPLE ******************************************************
+
+Element["" "0402" "R103" "1500_R" 69.5772mm 550.00mil -31.50mil -35.54mil 1 80 "selected"]
+(
+	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 12.50mil 25.68mil "1" "1" "selected,square"]
+	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 12.50mil 25.68mil "2" "2" "selected,square"]
+
+	)
+*****************************************************************************************************
+
+
