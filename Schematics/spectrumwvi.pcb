@@ -958,7 +958,7 @@ Element["lock" "JUMPER6" "J401" "unknown" 39.1175mm 15.1145mm 575.00mil 40.00mil
 	Pin[100.00mil 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "2" "2" "lock,edge2,thermal(0X,1X,2X,3X)"]
 	Pin[200.00mil 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "3" "3" "lock,edge2"]
 	Pin[300.00mil 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "4" "4" "lock,edge2,thermal(0X,1X,2X,3X)"]
-	Pin[400.00mil 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "5" "5" "lock,edge2"]
+	Pin[400.00mil 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "5" "5" "warn,lock,edge2"]
 	Pin[500.00mil 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "6" "6" "lock,edge2,thermal(0X,1X,2X,3X)"]
 	ElementLine [-50.00mil 50.00mil 550.00mil 50.00mil 10.00mil]
 	ElementLine [550.00mil -50.00mil 550.00mil 50.00mil 10.00mil]
