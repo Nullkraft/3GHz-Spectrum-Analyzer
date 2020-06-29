@@ -1,4 +1,4 @@
-(component-library "../Components/wn2a_symbol_files/")
-(component-library "../Board_files/wn2a_footprint_files/")
-(component-library-search "../Board_files/wn2a_footprint_files/")
+(component-library "/home/mark/projects/Vapor Ware Inc./Project #1 Spectrum Analyzer/00-Latest/Components/wn2a_symbol_files/")
+(component-library "/home/mark/projects/Vapor Ware Inc./Project #1 Spectrum Analyzer/00-Latest/Board_files/wn2a_footprint_files/")
+(component-library-search "/home/mark/projects/Vapor Ware Inc./Project #1 Spectrum Analyzer/00-Latest/Board_files/wn2a_footprint_files/")
 (source-library ".")
