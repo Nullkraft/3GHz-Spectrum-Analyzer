@@ -934,6 +934,8 @@ Via[70.4705mm 65.1075mm 23.80mil 12.00mil 0.0000 11.81mil "" "thermal(0S,1S,2S,3
 Via[70.4705mm 66.6315mm 23.80mil 12.00mil 0.0000 11.81mil "" "thermal(0S,1S,2S,3S)"]
 Via[68.9465mm 66.6315mm 23.80mil 12.00mil 0.0000 11.81mil "" "thermal(0S,1S,2S,3S)"]
 Via[68.9465mm 65.1075mm 23.80mil 12.00mil 0.0000 11.81mil "" "thermal(0S,1S,2S,3S)"]
+Via[93.4735mm 16.7655mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
+Via[95.2515mm 16.7655mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 
 Element["lock" "JUMPER6" "J401" "unknown" 39.1175mm 15.1145mm 575.00mil 40.00mil 1 80 ""]
 (
@@ -1820,7 +1822,7 @@ Element["onsolder" "0402" "C320" "SAT" 50.9285mm 30.8625mm -2.9904mm -0.6664mm 0
 
 	)
 
-Element["onsolder" "0402" "R317" "1_K" 18.7975mm 60.3265mm -1.6510mm -1.3970mm 1 80 "auto"]
+Element["onsolder" "0402" "R317" "1_K" 18.7975mm 60.3265mm -65.00mil -55.00mil 1 80 "auto"]
 (
 	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 13.00mil 21.18mil "1" "1" "onsolder,square"]
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 13.00mil 21.18mil "2" "2" "onsolder,square"]
@@ -2834,7 +2836,7 @@ Element["" "0603" "C223" "1.0_uF" 2415.00mil 310.00mil -61.50mil 23.50mil 0 100 
 
 	)
 
-Element["" "0603" "C228" "0.01_uF" 2815.00mil 310.00mil -86.50mil 28.50mil 0 100 ""]
+Element["" "0603" "C228" "0.01_uF" 83.3135mm 6.7325mm -86.50mil 28.50mil 0 100 ""]
 (
 	Pad[-25.59mil -4.92mil -25.59mil 4.92mil 29.52mil 20.00mil 35.52mil "1" "1" "square"]
 	Pad[25.59mil -4.92mil 25.59mil 4.92mil 29.52mil 20.00mil 35.52mil "2" "2" "square"]
@@ -3201,7 +3203,7 @@ Element["" "0603" "C233" "1.0_uF" 85.00mil 40.00mil -66.50mil 23.50mil 0 100 ""]
 
 	)
 
-Element["" "AP7353" "U204" "unknown" 94.3640mm 15.8780mm 20.00mil 15.00mil 0 100 ""]
+Element["" "AP7353" "U204" "unknown" 94.3640mm 15.8780mm 0.0000 -90.00mil 0 100 ""]
 (
 	Pad[-6.90mil -6.90mil -6.90mil -6.90mil 7.10mil 4.00mil 11.10mil "Vin" "1" ""]
 	Pad[-6.90mil 6.90mil -6.90mil 6.90mil 7.10mil 4.00mil 11.10mil "EN" "2" ""]
@@ -3263,8 +3265,8 @@ Element["onsolder" "ECS75SMF" "FL300" "45_MHz" 42.3135mm 45.7215mm 80.00mil -110
 	Pad[2.5000mm 50.00mil 3.3000mm 50.00mil 1.4000mm 20.00mil 1.9080mm "out/in" "3" "onsolder,square,edge2"]
 	Pad[-3.3000mm -50.00mil -2.5000mm -50.00mil 1.4000mm 20.00mil 1.9080mm "in/out" "6" "onsolder,square"]
 	Pad[-3.3000mm 50.00mil -2.5000mm 50.00mil 1.4000mm 20.00mil 1.9080mm "gnd" "1" "onsolder,square"]
-	Pad[0.0000 0.0000 0.0000 -93.00mil 1.4000mm 20.00mil 1.9080mm "Zc" "5" "onsolder,square"]
-	Pad[0.0000 2.3500mm 0.0000 0.0000 1.4000mm 20.00mil 1.9080mm "Zc" "2" "onsolder,square,edge2"]
+	Pad[0.0000 -93.00mil 0.0000 0.0000 1.4000mm 20.00mil 1.9080mm "Zc" "5" "onsolder,square"]
+	Pad[0.0000 0.0000 0.0000 2.3500mm 1.4000mm 20.00mil 1.9080mm "Zc" "2" "onsolder,square,edge2"]
 	ElementLine [-3.5000mm 2.6000mm -3.5000mm 2.1400mm 6.00mil]
 	ElementLine [-3.5000mm 2.6000mm -0.8700mm 2.6000mm 6.00mil]
 	ElementLine [-3.5000mm -2.6000mm -3.5000mm -2.1400mm 6.00mil]
@@ -3372,9 +3374,9 @@ Rat[66.8925mm 64.1195mm 0 67.9625mm 63.0495mm 0  ""]
 Rat[66.8925mm 64.1195mm 0 68.4565mm 70.6747mm 0  ""]
 Rat[68.4565mm 70.6747mm 0 71.2249mm 70.9249mm 0  ""]
 Rat[71.2249mm 70.9249mm 0 106.1735mm 59.9727mm 0  ""]
-Rat[106.1735mm 59.9727mm 0 94.5393mm 15.7027mm 0  ""]
-Rat[94.5393mm 15.7027mm 0 70.8510mm 305.08mil 0  ""]
-Rat[70.8510mm 305.08mil 0 59.6806mm 2.4417mm 0  ""]
+Rat[106.1735mm 59.9727mm 0 95.2515mm 16.7655mm 3  ""]
+Rat[94.5393mm 15.7027mm 0 82.6635mm 6.6075mm 0  ""]
+Rat[82.6635mm 6.6075mm 0 59.6806mm 2.4417mm 0  ""]
 Rat[59.6806mm 2.4417mm 0 110.59mil 285.08mil 0  ""]
 Rat[60.3077mm 43.7167mm 3 61.8655mm 48.2635mm 3  ""]
 Rat[61.8655mm 48.2635mm 3 67.9185mm 44.8585mm 3  ""]
@@ -3395,7 +3397,7 @@ Rat[1438.10mil 388.10mil 0 1438.10mil 401.90mil 0  ""]
 Rat[1438.10mil 388.10mil 0 32.0205mm 8.8935mm 0  ""]
 Rat[27.3065mm 18.5435mm 2 21.8590mm 10.0350mm 0  ""]
 Rat[21.8590mm 10.0350mm 0 20.7160mm 100.08mil 0  ""]
-Rat[82.9325mm 18.5435mm 3 94.1887mm 16.0533mm 0  ""]
+Rat[82.9325mm 18.5435mm 3 93.4735mm 16.7655mm 3  ""]
 Rat[94.1887mm 16.0533mm 0 94.1887mm 15.7027mm 0  ""]
 Rat[20.7160mm 100.08mil 0 110.59mil 35.08mil 0  ""]
 Rat[75.3125mm 68.2005mm 3 72.5325mm 67.6195mm 0  ""]
@@ -3455,8 +3457,8 @@ Rat[25.0040mm 365.08mil 0 30.7205mm 8.8935mm 0  ""]
 Rat[51.8175mm 15.1145mm 3 51.8310mm 305.08mil 0  ""]
 Rat[51.8310mm 305.08mil 0 55.6110mm 305.08mil 0  ""]
 Rat[55.6110mm 305.08mil 0 60.6910mm 305.08mil 0  ""]
-Rat[70.6135mm 15.2415mm 3 72.1510mm 305.08mil 0  ""]
-Rat[72.1510mm 305.08mil 0 67.7098mm 116.07mil 0  ""]
+Rat[70.6135mm 15.2415mm 3 83.9635mm 6.6075mm 0  ""]
+Rat[83.9635mm 6.6075mm 0 67.7098mm 116.07mil 0  ""]
 Rat[26.4175mm 76.0745mm 3 32.9118mm 80.5452mm 0  ""]
 Rat[71.8327mm 72.0679mm 0 71.5198mm 80.2912mm 0  ""]
 Rat[71.5198mm 80.2912mm 0 2640.80mil 80.2927mm 0  ""]
@@ -3975,7 +3977,12 @@ Layer(1 "top")
 	Line[90.5525mm 71.7565mm 90.6795mm 71.7565mm 8.00mil 12.00mil ""]
 	Line[90.4255mm 72.1375mm 90.6795mm 72.3915mm 8.00mil 12.00mil ""]
 	Line[89.9175mm 72.1375mm 89.6635mm 72.3915mm 8.00mil 12.00mil ""]
-	Line[94.5393mm 632.02mil 3738.10mil 632.02mil 8.00mil 12.00mil ""]
+	Line[94.5393mm 632.02mil 94.7435mm 16.2575mm 8.00mil 12.00mil ""]
+	Line[94.1887mm 16.0533mm 3708.10mil 16.0533mm 8.00mil 12.00mil "clearline"]
+	Line[3708.10mil 16.0533mm 93.4735mm 16.7655mm 8.00mil 12.00mil "clearline"]
+	Line[94.5393mm 15.7027mm 95.0777mm 15.7027mm 8.00mil 12.00mil "clearline"]
+	Line[95.0777mm 15.7027mm 95.2515mm 15.8765mm 8.00mil 12.00mil "clearline"]
+	Line[95.2515mm 15.8765mm 95.2515mm 16.7655mm 8.00mil 12.00mil "clearline"]
 	Polygon("clearpoly,fullpoly")
 	(
 		[4.4465mm 12.7015mm] [105.0305mm 12.7015mm] [105.0305mm 78.4875mm] [4.4465mm 78.4875mm] 
