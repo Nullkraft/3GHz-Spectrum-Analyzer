@@ -27,14 +27,14 @@ C 30600 53300 1 0 0 ASV_Series_Oscillator.sym
 {
 T 31200 54600 5 10 1 1 0 6 1
 refdes=U500
-T 30600 53300 5 10 0 0 0 0 1
-footprint=ASV_Series_Oscillator
 T 30600 52800 5 10 1 1 0 0 1
 man-part-num=ASE-60.000MHZ-LC-T
 T 30600 53300 5 10 0 1 0 0 1
 device=OSCILLATOR
 T 30900 53100 5 10 1 1 0 0 1
 value=60 MHz
+T 30600 53300 5 10 0 0 0 0 1
+footprint=ASx_Series_Oscillator
 }
 N 28300 54300 28000 54300 4
 {
@@ -68,14 +68,14 @@ C 30600 50600 1 0 0 ASV_Series_Oscillator.sym
 {
 T 31200 51900 5 10 1 1 0 6 1
 refdes=U501
-T 30600 50600 5 10 0 0 0 0 1
-footprint=ASV_Series_Oscillator
 T 30500 50100 5 10 1 1 0 0 1
 man-part-num=ASEM1-100.000MHZ-L-C-T
 T 30600 50600 5 10 0 1 0 0 1
 device=OSCILLATOR
 T 30900 50400 5 10 1 1 0 0 1
 value=100 MHz
+T 30600 50600 5 10 0 0 0 0 1
+footprint=ASx_Series_Oscillator
 }
 N 28300 51600 28000 51600 4
 {
