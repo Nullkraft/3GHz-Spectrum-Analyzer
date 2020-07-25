@@ -1,3 +1,2 @@
 schematics spectrumwvi-page1.sch spectrumwvi-page2.sch spectrumwvi-page3.sch spectrumwvi-page4.sch spectrumwvi-page5.sch
-elements-dir /home/mark/apps/share/pcb/pcblib-newlib
 output-name spectrumwvi
