@@ -137,7 +137,7 @@ value=1.5 K
 T 20600 44800 5 10 0 1 0 0 1
 footprint=0402
 T 20600 44800 5 10 0 1 0 0 1
-man-part-num=CRCW04021K00FKEDC
+man-part-num=CRCW04021K50FKEDC
 }
 C 19400 46200 1 180 0 resistor-1.sym
 {
@@ -164,7 +164,7 @@ value=1.5 K
 T 21400 44800 5 10 0 1 0 0 1
 footprint=0402
 T 21400 44800 5 10 0 1 0 0 1
-man-part-num=CRCW04021K00FKEDC
+man-part-num=CRCW04021K50FKEDC
 }
 C 20000 46700 1 180 0 resistor-1.sym
 {
