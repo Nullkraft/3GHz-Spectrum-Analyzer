@@ -302,153 +302,6 @@ External Supply to Arduino
 T 39700 42800 9 10 1 0 0 0 1
 2.5 A
 N 44600 39500 44600 44900 4
-C 45250 42950 1 0 0 reserved-left-1.sym
-{
-T 45600 43300 5 10 0 0 0 0 1
-value=NoConnection
-T 45600 43500 5 10 0 0 0 0 1
-device=DRC_Directive
-}
-C 45250 42150 1 0 0 reserved-left-1.sym
-{
-T 45600 42500 5 10 0 0 0 0 1
-value=NoConnection
-T 45600 42700 5 10 0 0 0 0 1
-device=DRC_Directive
-}
-C 45250 41750 1 0 0 reserved-left-1.sym
-{
-T 45600 42100 5 10 0 0 0 0 1
-value=NoConnection
-T 45600 42300 5 10 0 0 0 0 1
-device=DRC_Directive
-}
-C 45250 41350 1 0 0 reserved-left-1.sym
-{
-T 45600 41700 5 10 0 0 0 0 1
-value=NoConnection
-T 45600 41900 5 10 0 0 0 0 1
-device=DRC_Directive
-}
-C 45250 40950 1 0 0 reserved-left-1.sym
-{
-T 45600 41300 5 10 0 0 0 0 1
-value=NoConnection
-T 45600 41500 5 10 0 0 0 0 1
-device=DRC_Directive
-}
-C 45250 40550 1 0 0 reserved-left-1.sym
-{
-T 45600 40900 5 10 0 0 0 0 1
-value=NoConnection
-T 45600 41100 5 10 0 0 0 0 1
-device=DRC_Directive
-}
-C 45250 40150 1 0 0 reserved-left-1.sym
-{
-T 45600 40500 5 10 0 0 0 0 1
-value=NoConnection
-T 45600 40700 5 10 0 0 0 0 1
-device=DRC_Directive
-}
-C 45250 39750 1 0 0 reserved-left-1.sym
-{
-T 45600 40100 5 10 0 0 0 0 1
-value=NoConnection
-T 45600 40300 5 10 0 0 0 0 1
-device=DRC_Directive
-}
-C 49450 43250 1 180 0 reserved-left-1.sym
-{
-T 49100 42900 5 10 0 0 180 0 1
-value=NoConnection
-T 49100 42700 5 10 0 0 180 0 1
-device=DRC_Directive
-}
-C 49450 42850 1 180 0 reserved-left-1.sym
-{
-T 49100 42500 5 10 0 0 180 0 1
-value=NoConnection
-T 49100 42300 5 10 0 0 180 0 1
-device=DRC_Directive
-}
-C 49450 42450 1 180 0 reserved-left-1.sym
-{
-T 49100 42100 5 10 0 0 180 0 1
-value=NoConnection
-T 49100 41900 5 10 0 0 180 0 1
-device=DRC_Directive
-}
-C 49450 42050 1 180 0 reserved-left-1.sym
-{
-T 49100 41700 5 10 0 0 180 0 1
-value=NoConnection
-T 49100 41500 5 10 0 0 180 0 1
-device=DRC_Directive
-}
-C 49450 41650 1 180 0 reserved-left-1.sym
-{
-T 49100 41300 5 10 0 0 180 0 1
-value=NoConnection
-T 49100 41100 5 10 0 0 180 0 1
-device=DRC_Directive
-}
-C 49450 41250 1 180 0 reserved-left-1.sym
-{
-T 49100 40900 5 10 0 0 180 0 1
-value=NoConnection
-T 49100 40700 5 10 0 0 180 0 1
-device=DRC_Directive
-}
-C 49450 40850 1 180 0 reserved-left-1.sym
-{
-T 49100 40500 5 10 0 0 180 0 1
-value=NoConnection
-T 49100 40300 5 10 0 0 180 0 1
-device=DRC_Directive
-}
-C 49450 38450 1 180 0 reserved-left-1.sym
-{
-T 49100 38100 5 10 0 0 180 0 1
-value=NoConnection
-T 49100 37900 5 10 0 0 180 0 1
-device=DRC_Directive
-}
-C 49450 38850 1 180 0 reserved-left-1.sym
-{
-T 49100 38500 5 10 0 0 180 0 1
-value=NoConnection
-T 49100 38300 5 10 0 0 180 0 1
-device=DRC_Directive
-}
-C 49450 39250 1 180 0 reserved-left-1.sym
-{
-T 49100 38900 5 10 0 0 180 0 1
-value=NoConnection
-T 49100 38700 5 10 0 0 180 0 1
-device=DRC_Directive
-}
-C 49450 39650 1 180 0 reserved-left-1.sym
-{
-T 49100 39300 5 10 0 0 180 0 1
-value=NoConnection
-T 49100 39100 5 10 0 0 180 0 1
-device=DRC_Directive
-}
-C 49450 40050 1 180 0 reserved-left-1.sym
-{
-T 49100 39700 5 10 0 0 180 0 1
-value=NoConnection
-T 49100 39500 5 10 0 0 180 0 1
-device=DRC_Directive
-}
-C 49450 40450 1 180 0 reserved-left-1.sym
-{
-T 49100 40100 5 10 0 0 180 0 1
-value=NoConnection
-T 49100 39900 5 10 0 0 180 0 1
-device=DRC_Directive
-}
 N 46000 43100 46800 43100 4
 N 46000 42300 46800 42300 4
 N 46000 41900 46800 41900 4
@@ -470,13 +323,6 @@ N 48700 39100 48200 39100 4
 N 48700 39500 48200 39500 4
 N 48700 39900 48200 39900 4
 N 48700 40300 48200 40300 4
-C 45250 38150 1 0 0 reserved-left-1.sym
-{
-T 45600 38500 5 10 0 0 0 0 1
-value=NoConnection
-T 45600 38700 5 10 0 0 0 0 1
-device=DRC_Directive
-}
 N 46000 38300 46800 38300 4
 N 53200 45900 53200 45700 4
 N 53200 41900 53200 42100 4
@@ -484,3 +330,157 @@ N 53200 38900 53200 38700 4
 N 54800 45900 54800 44900 4
 N 55400 42100 55400 41100 4
 N 55400 38900 55400 37900 4
+C 45500 43000 1 0 0 nc-left-1.sym
+{
+T 45500 43400 5 10 0 0 0 0 1
+value=NoConnection
+T 45500 43800 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 45500 42200 1 0 0 nc-left-1.sym
+{
+T 45500 42600 5 10 0 0 0 0 1
+value=NoConnection
+T 45500 43000 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 45500 41800 1 0 0 nc-left-1.sym
+{
+T 45500 42200 5 10 0 0 0 0 1
+value=NoConnection
+T 45500 42600 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 45500 41400 1 0 0 nc-left-1.sym
+{
+T 45500 41800 5 10 0 0 0 0 1
+value=NoConnection
+T 45500 42200 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 45500 41000 1 0 0 nc-left-1.sym
+{
+T 45500 41400 5 10 0 0 0 0 1
+value=NoConnection
+T 45500 41800 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 45500 40600 1 0 0 nc-left-1.sym
+{
+T 45500 41000 5 10 0 0 0 0 1
+value=NoConnection
+T 45500 41400 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 45500 40200 1 0 0 nc-left-1.sym
+{
+T 45500 40600 5 10 0 0 0 0 1
+value=NoConnection
+T 45500 41000 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 45500 39800 1 0 0 nc-left-1.sym
+{
+T 45500 40200 5 10 0 0 0 0 1
+value=NoConnection
+T 45500 40600 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 45500 38200 1 0 0 nc-left-1.sym
+{
+T 45500 38600 5 10 0 0 0 0 1
+value=NoConnection
+T 45500 39000 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 48700 38200 1 0 0 nc-right-1.sym
+{
+T 48800 38700 5 10 0 0 0 0 1
+value=NoConnection
+T 48800 38900 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 48700 38600 1 0 0 nc-right-1.sym
+{
+T 48800 39100 5 10 0 0 0 0 1
+value=NoConnection
+T 48800 39300 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 48700 39000 1 0 0 nc-right-1.sym
+{
+T 48800 39500 5 10 0 0 0 0 1
+value=NoConnection
+T 48800 39700 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 48700 39400 1 0 0 nc-right-1.sym
+{
+T 48800 39900 5 10 0 0 0 0 1
+value=NoConnection
+T 48800 40100 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 48700 39800 1 0 0 nc-right-1.sym
+{
+T 48800 40300 5 10 0 0 0 0 1
+value=NoConnection
+T 48800 40500 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 48700 40200 1 0 0 nc-right-1.sym
+{
+T 48800 40700 5 10 0 0 0 0 1
+value=NoConnection
+T 48800 40900 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 48700 40600 1 0 0 nc-right-1.sym
+{
+T 48800 41100 5 10 0 0 0 0 1
+value=NoConnection
+T 48800 41300 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 48700 41000 1 0 0 nc-right-1.sym
+{
+T 48800 41500 5 10 0 0 0 0 1
+value=NoConnection
+T 48800 41700 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 48700 41400 1 0 0 nc-right-1.sym
+{
+T 48800 41900 5 10 0 0 0 0 1
+value=NoConnection
+T 48800 42100 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 48700 41800 1 0 0 nc-right-1.sym
+{
+T 48800 42300 5 10 0 0 0 0 1
+value=NoConnection
+T 48800 42500 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 48700 42200 1 0 0 nc-right-1.sym
+{
+T 48800 42700 5 10 0 0 0 0 1
+value=NoConnection
+T 48800 42900 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 48700 42600 1 0 0 nc-right-1.sym
+{
+T 48800 43100 5 10 0 0 0 0 1
+value=NoConnection
+T 48800 43300 5 10 0 0 0 0 1
+device=DRC_Directive
+}
+C 48700 43000 1 0 0 nc-right-1.sym
+{
+T 48800 43500 5 10 0 0 0 0 1
+value=NoConnection
+T 48800 43700 5 10 0 0 0 0 1
+device=DRC_Directive
+}

@@ -1086,11 +1086,11 @@ Layer(1 "top")
 	Line[1490.00mil 400.00mil 1490.00mil 280.00mil 25.00mil 20.00mil "clearline"]
 	Line[1450.00mil 440.00mil 1490.00mil 400.00mil 25.00mil 20.00mil "clearline"]
 	Line[2300.00mil 900.00mil 60.0560mm 900.00mil 25.00mil 20.00mil "clearline"]
-	Line[2390.00mil 1186.00mil 2390.00mil 1060.00mil 25.00mil 20.00mil "clearline"]
-	Line[2510.00mil 940.00mil 2510.00mil 900.00mil 25.00mil 20.00mil "clearline"]
+	Line[2390.00mil 1186.00mil 2390.00mil 1100.00mil 25.00mil 20.00mil "clearline"]
+	Line[2510.00mil 980.00mil 2510.00mil 900.00mil 25.00mil 20.00mil "clearline"]
 	Line[3420.00mil 636.00mil 3420.00mil 530.00mil 25.00mil 20.00mil "clearline"]
 	Line[3520.00mil 430.00mil 3520.00mil 390.00mil 25.00mil 20.00mil "clearline"]
-	Line[2390.00mil 1060.00mil 2510.00mil 940.00mil 25.00mil 20.00mil "clearline"]
+	Line[2390.00mil 1100.00mil 2510.00mil 980.00mil 25.00mil 20.00mil "clearline"]
 	Line[3420.00mil 530.00mil 3520.00mil 430.00mil 25.00mil 20.00mil "clearline"]
 	Polygon("clearpoly")
 	(
