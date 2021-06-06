@@ -3397,28 +3397,6 @@ Element["onsolder" "0402" "R400" "1_K" 45.7215mm 66.4225mm -132.78mil 30.00mil 0
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 13.00mil 21.18mil "2" "2" "onsolder,square"]
 
 	)
-Rat[28.9847mm 53.0499mm 0 23.6195mm 37.2165mm 0  ""]
-Rat[45.6217mm 68.8919mm 3 4.4465mm 12.7015mm 0  "via"]
-Rat[41.0398mm 57.3042mm 0 4.4465mm 12.7015mm 0  "via"]
-Rat[23.7777mm 24.9829mm 0 4.4465mm 12.7015mm 0  "via"]
-Rat[28.9575mm 63.3745mm 3 35.3075mm 73.6615mm 2  ""]
-Rat[33.0215mm 63.3745mm 3 40.6415mm 76.3285mm 1  ""]
-Rat[35.5615mm 63.3745mm 3 43.1815mm 75.0585mm 1  ""]
-Rat[26.4175mm 63.3745mm 3 28.9847mm 53.8495mm 0  ""]
-Rat[21.3375mm 63.3745mm 3 21.2377mm 25.0017mm 0  ""]
-Rat[18.7975mm 63.3745mm 3 20.7213mm 60.3537mm 0  ""]
-Rat[16.2575mm 63.3745mm 3 16.0035mm 61.2155mm 3  ""]
-Rat[45.6217mm 2630.80mil 3 45.6217mm 2680.80mil 3  ""]
-Rat[45.6217mm 2680.80mil 3 51.9445mm 68.4545mm 3  ""]
-Rat[53.2145mm 47.1185mm 2 24.5125mm 35.6885mm 0  ""]
-Rat[44.6563mm 57.0517mm 0 40.2402mm 57.3042mm 0  ""]
-Rat[27.4335mm 24.1587mm 0 26.4175mm 1015.80mil 0  ""]
-Rat[25.5285mm 27.3065mm 0 23.7505mm 35.8155mm 0  ""]
-Rat[22.9835mm 36.2165mm 0 21.5915mm 45.0865mm 1  ""]
-Rat[21.5915mm 45.0865mm 1 26.7985mm 58.6755mm 0  ""]
-Rat[45.7215mm 63.3745mm 3 45.6217mm 66.0227mm 3  ""]
-Rat[40.6415mm 63.3745mm 3 26.6339mm 24.1587mm 0  ""]
-Rat[43.1815mm 63.3745mm 3 43.8567mm 57.0517mm 0  ""]
 Layer(1 "top")
 (
 	Line[46.1025mm 41.2765mm 46.1025mm 42.8005mm 13.30mil 80.00mil "clearline"]
@@ -4721,6 +4699,9 @@ Layer(7 "top silk")
 	Text[47.4995mm 16.7655mm 3 80 "Gnd" "clearline"]
 	Text[43.0545mm 70.2325mm 0 80 "LD_LO3" "clearline"]
 	Text[42.9275mm 73.4075mm 0 80 "LD_LO2" "clearline"]
+	Text[5.9705mm 2.0335mm 0 100 "1. Open the menu File -> Prefrences... -> Library" "clearline"]
+	Text[5.7165mm 3.8115mm 0 100 "2. Copy-&-Paste \"../Components/WN2A_PCB_Footprints\" into the colon separated list of Element Directories" "clearline"]
+	Text[5.8435mm 5.5895mm 0 100 "3. Close and restart PCB" "clearline"]
 )
 Layer(8 "bottom soldermask")
 (
