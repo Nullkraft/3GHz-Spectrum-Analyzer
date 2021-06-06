@@ -1,4 +1,2 @@
-(component-library "../Components/wn2a_symbol_files/")
-(component-library "../Board_files/wn2a_footprint_files/")
-(component-library-search "../Board_files/wn2a_footprint_files/")
+(component-library-search "../Components/WN2A_Schem_symbols" "WN2A Symbols")
 (source-library ".")
