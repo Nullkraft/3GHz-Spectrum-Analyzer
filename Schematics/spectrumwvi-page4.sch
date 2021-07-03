@@ -342,10 +342,10 @@ C 23200 55000 1 0 0 Arduino_Uno_header.sym
 {
 T 23700 60200 5 10 1 1 0 0 1
 refdes=J400
-T 23200 55000 5 10 0 0 0 0 1
-footprint=Header_Arduino
 T 24500 62700 5 10 0 0 0 0 1
 device=ARDUINO_UNO_HEADER32
+T 23200 55000 5 10 0 0 0 0 1
+footprint=Header_Arduino
 }
 C 31000 58900 1 0 0 resistor-1.sym
 {
