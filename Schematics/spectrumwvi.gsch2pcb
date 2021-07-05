@@ -1,3 +1,3 @@
 schematics spectrumwvi-page1.sch spectrumwvi-page2.sch spectrumwvi-page3.sch spectrumwvi-page4.sch spectrumwvi-page5.sch
 output-name spectrumwvi
-elements-dir "../Components/WN2A_PCB_Footprints"
+elements-dir ../Components/WN2A_PCB_Footprints
