@@ -14,6 +14,7 @@ ADI_PLL_Sim/
 *.backup
 *page[45]A.sch
 *png
+*pdf
 *zip
 Supplier BOM's
 Schematics/Gerbers
