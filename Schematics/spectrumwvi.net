@@ -31,7 +31,7 @@ unnamed_net121	R323-1 R306-2 U301-4
 unnamed_net120	U307-13 
 unnamed_net119	U307-12 
 unnamed_net118	R312-2 U307-30 
-LO3_Lock_Detect_TP	TP300-1 U307-25 
+LO3_Lock_Detect_TP	U307-25 
 unnamed_net117	R310-1 U307-29 
 unnamed_net116	U305-8 L307-1 C318-1 
 unnamed_net115	U301-8 L300-1 C306-1 
@@ -109,7 +109,7 @@ unnamed_net49	U200-8 C207-1
 unnamed_net48	U203-13 
 unnamed_net47	U203-12 
 unnamed_net46	R220-1 U203-30 
-LO2_Lock_Detect_TP	TP200-1 U203-25 
+LO2_Lock_Detect_TP	U203-25 
 unnamed_net45	R215-1 U203-29 
 unnamed_net44	U203-19 C222-1 
 unnamed_net43	U203-24 C225-2 
