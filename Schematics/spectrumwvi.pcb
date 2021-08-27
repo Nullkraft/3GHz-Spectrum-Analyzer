@@ -9,7 +9,7 @@ Grid[500.000000 0.0015mm 0.0015mm 0]
 PolyArea[3100.006200]
 Thermal[0.500000]
 DRC[3.50mil 4.00mil 3.50mil 6.00mil 7.87mil 3.50mil]
-Flags("showdrc,rubberband,nameonpcb,clearnew,newfullpoly,thindrawpoly")
+Flags("showdrc,rubberband,nameonpcb,clearnew,newfullpoly,snappin,thindrawpoly")
 Groups("1,c:2:3:4,s:5")
 Styles["Signal,8.00mil,20.00mil,10.00mil,6.00mil:Power,15.00mil,60.00mil,35.00mil,6.00mil:RF Line,13.33mil,60.00mil,35.00mil,40.00mil:Skinny,5.00mil,24.00mil,12.00mil,5.00mil"]
 
@@ -924,7 +924,6 @@ Via[94.1085mm 55.7545mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[95.1245mm 55.7545mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[96.1405mm 55.7545mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[91.0605mm 48.5155mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
-Via[96.2675mm 49.8135mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[45.3405mm 53.0875mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
 Via[42.5465mm 38.6095mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
 Via[67.1845mm 27.8145mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
@@ -1087,7 +1086,6 @@ Via[25.7952mm 40.5158mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3
 Via[25.7952mm 41.0238mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
 Via[26.3032mm 40.5158mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
 Via[26.3032mm 41.0238mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
-Via[29.2115mm 38.3555mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[22.9885mm 40.6415mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[68.7085mm 24.8935mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[69.7245mm 22.0995mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
@@ -4170,8 +4168,6 @@ Layer(1 "top")
 	Line[27.5605mm 38.3555mm 28.0685mm 38.3555mm 8.00mil 12.00mil "clearline"]
 	Line[28.3025mm 39.2895mm 28.3025mm 38.5895mm 8.00mil 12.00mil "clearline"]
 	Line[28.0685mm 38.3555mm 28.3025mm 38.5895mm 8.00mil 12.00mil "clearline"]
-	Line[28.8025mm 39.2895mm 28.8025mm 38.5105mm 8.00mil 12.00mil "clearline"]
-	Line[28.8025mm 38.5105mm 29.2115mm 38.3555mm 8.00mil 12.00mil "clearline"]
 	Line[27.8145mm 38.3555mm 27.8145mm 1480.80mil 8.00mil 12.00mil "clearline"]
 	Line[26.8025mm 39.2895mm 26.8025mm 38.2325mm 8.00mil 12.00mil "clearline"]
 	Line[26.8025mm 38.2325mm 26.5445mm 37.9745mm 8.00mil 12.00mil "clearline"]
@@ -4461,6 +4457,11 @@ Layer(1 "top")
 	Line[82.6785mm 23.8775mm 82.6785mm 32.3865mm 8.00mil 12.00mil "clearline"]
 	Line[18.9295mm 28.0725mm 18.5355mm 28.0725mm 8.00mil 12.00mil "clearline"]
 	Line[18.5355mm 28.0725mm 18.0355mm 27.5725mm 8.00mil 12.00mil "clearline"]
+	Line[29.3385mm 38.1015mm 28.8305mm 38.1015mm 15.00mil 12.00mil "clearline"]
+	Line[28.8305mm 38.1015mm 28.8305mm 37.7205mm 15.00mil 12.00mil "clearline"]
+	Line[28.8305mm 37.7205mm 29.3385mm 37.7205mm 15.00mil 12.00mil "clearline"]
+	Line[29.3385mm 37.7205mm 29.3385mm 38.1015mm 15.00mil 12.00mil "clearline"]
+	Line[28.8025mm 39.2895mm 28.8025mm 38.1295mm 8.00mil 12.00mil "clearline"]
 	Polygon("clearpoly,fullpoly")
 	(
 		[4.4465mm 12.7015mm] [105.0305mm 12.7015mm] [105.0305mm 78.4875mm] [4.4465mm 78.4875mm] 
@@ -4854,7 +4855,6 @@ Layer(4 "bottom")
 	Line[93.5885mm 48.4005mm 94.1085mm 47.8805mm 8.00mil 12.00mil "clearline"]
 	Line[94.1085mm 47.8805mm 95.6325mm 47.0599mm 8.00mil 12.00mil "clearline"]
 	Line[94.0885mm 49.3225mm 94.0885mm 48.7895mm 8.00mil 12.00mil "clearline"]
-	Line[95.3335mm 50.0675mm 96.2395mm 49.8415mm 8.00mil 12.00mil "clearline"]
 	Line[95.3335mm 51.5675mm 3829.90mil 51.5675mm 8.00mil 12.00mil "clearline"]
 	Line[92.5885mm 54.3125mm 92.5885mm 55.1235mm 8.00mil 12.00mil "clearline"]
 	Line[92.5845mm 56.2625mm 93.2195mm 56.5165mm 8.00mil 12.00mil "clearline"]
@@ -5103,6 +5103,11 @@ Layer(4 "bottom")
 	Line[77.8834mm 51.0246mm 77.2175mm 51.6905mm 8.00mil 12.00mil "clearline"]
 	Line[77.2175mm 51.6905mm 77.2175mm 54.9925mm 8.00mil 12.00mil "clearline"]
 	Line[78.8685mm 51.7987mm 78.8685mm 51.0246mm 8.00mil 12.00mil "clearline"]
+	Line[96.1405mm 50.0395mm 96.1405mm 49.5315mm 15.00mil 12.00mil "clearline"]
+	Line[96.1405mm 49.5315mm 96.5215mm 49.5315mm 15.00mil 12.00mil "clearline"]
+	Line[96.5215mm 49.5315mm 96.5215mm 50.0395mm 15.00mil 12.00mil "clearline"]
+	Line[96.5215mm 50.0395mm 96.1405mm 50.0395mm 15.00mil 12.00mil "clearline"]
+	Line[95.3335mm 50.0675mm 96.1125mm 50.0675mm 8.00mil 12.00mil "clearline"]
 	Polygon("clearpoly,fullpoly")
 	(
 		[105.0305mm 78.4875mm] [4.4465mm 78.4875mm] [4.4465mm 12.7015mm] [105.0305mm 12.7015mm] 
