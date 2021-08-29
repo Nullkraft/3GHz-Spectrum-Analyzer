@@ -6464,32 +6464,60 @@ NetList()
 	)
 	Net("unnamed_net139" "(unknown)")
 	(
-		Connect("J400-26")
+		Connect("J400-3")
 	)
 	Net("unnamed_net140" "(unknown)")
 	(
-		Connect("J400-23")
+		Connect("J400-5")
 	)
 	Net("unnamed_net141" "(unknown)")
+	(
+		Connect("J400-7")
+	)
+	Net("unnamed_net142" "(unknown)")
+	(
+		Connect("J400-26")
+	)
+	Net("unnamed_net143" "(unknown)")
+	(
+		Connect("J400-8")
+	)
+	Net("unnamed_net144" "(unknown)")
+	(
+		Connect("J400-23")
+	)
+	Net("unnamed_net145" "(unknown)")
+	(
+		Connect("J400-11")
+	)
+	Net("unnamed_net146" "(unknown)")
+	(
+		Connect("J400-22")
+	)
+	Net("unnamed_net147" "(unknown)")
 	(
 		Connect("J400-12")
 		Connect("R404-1")
 	)
-	Net("unnamed_net142" "(unknown)")
+	Net("unnamed_net148" "(unknown)")
+	(
+		Connect("J400-21")
+	)
+	Net("unnamed_net149" "(unknown)")
 	(
 		Connect("J400-13")
 	)
-	Net("unnamed_net143" "(unknown)")
+	Net("unnamed_net150" "(unknown)")
 	(
 		Connect("J400-16")
 	)
-	Net("unnamed_net144" "(unknown)")
+	Net("unnamed_net151" "(unknown)")
 	(
 		Connect("R500-1")
 		Connect("R501-2")
 		Connect("U500-1")
 	)
-	Net("unnamed_net145" "(unknown)")
+	Net("unnamed_net152" "(unknown)")
 	(
 		Connect("R502-1")
 		Connect("R503-2")
