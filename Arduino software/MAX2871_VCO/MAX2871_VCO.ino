@@ -51,7 +51,7 @@ byte numChunks = 0;
 byte numBlocks;
 byte chunk[szChunk];
 
-char commandChar;
+byte commandByte;
 
 unsigned int chunkIndex = 0;  // Track which chunk is being used
 byte frequencyInHz[3];
@@ -75,32 +75,38 @@ void setup() {
 
 
 void loop() {
-  int addr;
+  int hwAddr;
   if (Serial.available() > 0) {
-    commandChar = Serial.read();
-    switch(commandChar) {
+    commandByte = Serial.read();
+    switch(commandByte) {
+      case 128:
+        digitalWrite(LED_BUILTIN, LOW);    // Turn off built-in LED
+        break;
+      case 192:
+        digitalWrite(LED_BUILTIN, HIGH);   // Turn on built-in LED
+        break;
       case '1': case '2': case '3': case '4': case '5':  case '6':
-        numBlocks = commandChar - '0';       // Same as: atoi(commandChar);
+        numBlocks = commandByte - '0';       // Convert commandByte from char to byte
         numChunks = numBlocks * 512/szChunk;
         chunkIndex = numChunks;
         break;
       case 'r':    // Program MAX2871 to a new output frequency
         Serial.readBytes(bytePtrSpiBuff, numBytesInReg); // Get and buffer 4 bytes from the PC.
         spiWrite(bytePtrSpiBuff, numBytesInReg);       // Write 4 bytes to a register in the MAX2871.
-        addr = spiBuff & 0x7;              // Return the register address from the 32 bit word.
-        currentRegisters[addr] = spiBuff;  // Always remember the state of the chip's registers.
+        hwAddr = spiBuff & 0x7;              // Return the register address from the 32 bit word.
+        currentRegisters[hwAddr] = spiBuff;  // Always remember the state of the chip's registers.
         break;
-      case 'l':                   // Turn off built-in LED
-        digitalWrite(LED_BUILTIN, LOW);
+      case 'l':
+        digitalWrite(LED_BUILTIN, LOW);    // Turn off built-in LED
         break;
-      case 'L':                   // Turn on built-in LED
-        digitalWrite(LED_BUILTIN, HIGH);
+      case 'L':
+        digitalWrite(LED_BUILTIN, HIGH);   // Turn on built-in LED
         break;
-      case 'e':                   // Disable RF output
-        digitalWrite(RF_En, LOW);
+      case 'e':
+        digitalWrite(RF_En, LOW);          // Disable RF output
         break;
-      case 'E':                   // Enable RF output
-        digitalWrite(RF_En, HIGH);
+      case 'E':
+        digitalWrite(RF_En, HIGH);         // Enable RF output
         break;
       case 'F':
         // Get target frequency in Hz because it makes conversion to binary much easier.
@@ -131,6 +137,7 @@ void loop() {
    */
   if (chunkIndex) {
     simRF();          // Create some simulated RF noise and signals
+    chunkIndex--;     // This MUST come before hostWrite() and after simRF()
     hostWrite();      // Send the simulated data to the PC for plotting
   }
 }
@@ -269,7 +276,7 @@ void simRF() {
   unsigned int index;
   unsigned int spur = (numChunks * szChunk) / 2;
 
-  chunkIndex--;
+//  chunkIndex--;
   
   // Fill a buffer with szChunk number of bytes.
   for(int j=0; j<szChunk; j+=2) {
