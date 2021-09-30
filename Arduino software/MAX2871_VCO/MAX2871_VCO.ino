@@ -46,7 +46,7 @@ byte* bytePtrSpiBuff = (byte *) &spiBuff;   // Buffered serial data to write to 
 uint32_t currentRegisters[numRegisters];    // Current copies of programmed registers.
 
 
-const int szChunk = 32;
+const int szChunk = 32;  // Must be 8, 16, 32, 64 or 128
 byte numChunks = 0;
 byte numBlocks;
 byte chunk[szChunk];

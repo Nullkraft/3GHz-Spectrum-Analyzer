@@ -22,7 +22,10 @@ byte frequencyInHz[3];
 
 #define EOS          0xFF  // 0xFF is reserved for End Of Serial transmission (EOS)
 
-
+unsigned int i;
+unsigned int garbage;
+#define sz_garbage 1124
+byte reallyBigArray[sz_garbage];
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
@@ -36,6 +39,15 @@ void setup() {
 
 void loop() {
   int hwAddr;
+
+  for (i=0; i<sz_garbage; i++) {
+    reallyBigArray[i] = 42;
+  }
+  reallyBigArray[sz_garbage - 1] += 1;
+//  for (i=0; i<sz_garbage; i++) {
+//    garbage = reallyBigArray[i] + 1;
+//  }
+  
   if (Serial.available() > 0) {
     
     commandByte = Serial.read();
