@@ -26,17 +26,17 @@ SPISettings LO_SPI_Config(SPISettings(20000000, MSBFIRST, SPI_MODE0));
 */
 #define numBytesInSerialWord 4
 uint32_t serialWord;                         // Serial Word as 32 bits
-byte* serialWordBytes = (byte*)&serialWord;  // Serial Word as a byte array
+byte* serialWordAsBytes = (byte*)&serialWord;  // Serial Word as a byte array
 
 
 /* Several of the LO2/3 commands have an extra 6 bits of Embedded Data <21:16>
    that tells the Arduino how many 32 bit Words are to follow. */
 int16_t wordCount;  // See 'case LO2:' below for masking of Data & LOx_Bits
-int16_t wordIndex;
+int16_t NthWord;
 
 /* Max block size is 128 bytes and because each Data Word
    contains 4 bytes the maximum number of Data Words is 32. */
-const byte szArrayWordBuff = 8;
+const byte szArrayWordBuff = 4;
 uint32_t dataWordBuf[szArrayWordBuff];
 uint16_t* dataWordBufInts = (uint16_t*)&dataWordBuf;
 
@@ -136,41 +136,40 @@ void loop() {
 
   while (Serial.available())
   {
-    Serial.readBytes(serialWordBytes, numBytesInSerialWord);
+    Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);
     // If a General Command is received, then...
-    if (serialWordBytes[0] != CommandFlag)
+    if (serialWordAsBytes[0] != CommandFlag)
     {
       /* If a request for buffering data is received, then... */
-      if (wordIndex < wordCount) {
-        idx = wordIndex % szArrayWordBuff;
-//        dataWordBuf[idx] = serialWord;
+      if (NthWord < wordCount) {
+        idx = NthWord % szArrayWordBuff;
+        dataWordBuf[idx] = serialWord;
 //        Serial.print(" Buf[");
-        Serial.println(wordIndex++);
+//        Serial.print(NthWord);
 //        Serial.print("] = ");
 //        Serial.println(dataWordBuf[idx], HEX);
+        NthWord++;
 
-//        wordIndex++;
-
-//        if ((wordIndex % szArrayWordBuff) == 0) {
-//          for (int i = 0; i < szArrayWordBuff; i++) {
-//            spi_write(dataWordBuf[i]);
-//            delay(1);   // bullshit delay between programming a register and readAnalog
-//            dataWordBufInts[i] = analogRead(A0);      // if this were the 315 LogAmp
-//          }
-//          for (int i = 0; i < szArrayWordBuff; i++) {
-//            Serial.print("Analog 16 bit value = ");
-//            Serial.println(dataWordBufInts[i]);
-//          }
-//          wordIndex = 0;
-//        }
+        if ((NthWord % szArrayWordBuff) == 0) {
+          for (int i = 0; i < szArrayWordBuff; i++) {
+            spi_write(dataWordBuf[i]);
+            delay(1);   // bullshit delay between programming a register and readAnalog
+            dataWordBufInts[i] = analogRead(A0);      // if this were the 315 LogAmp
+          }
+          for (int i = 0; i < szArrayWordBuff; i++) {
+            Serial.print("Analog 16 bit value = ");
+            Serial.println(dataWordBufInts[i]);
+          }
+          NthWord = 0;
+        }
       }
     }
     /* If a Command Word is found then parse into Data, Command and Address */
     else
     {
       Data = (uint16_t)(serialWord >> 16);
-      Command = (serialWordBytes[1] & CommandBits) >> 3;
-      Address = serialWordBytes[1] & AddressBits;
+      Command = (serialWordAsBytes[1] & CommandBits) >> 3;
+      Address = serialWordAsBytes[1] & AddressBits;
       newCommandReceived = true;
     }
   }  // End While
