@@ -107,7 +107,6 @@ MAX2871_LO* LO;  // Allows me to write one set of code for LO2 and LO3
 // Decide if one of the LO's received a command to update a register
 bool writeToSPI;
 
-bool displayVersionInfo = true;
 
 
 void setup() {
@@ -116,6 +115,8 @@ void setup() {
   pinMode(mosi_pin, INPUT);
   pinMode(spi_clock, OUTPUT);
   pinMode(spi_select, OUTPUT);
+
+  digitalWrite(LED_BUILTIN, HIGH);
 
   Serial.setTimeout(200);
   Serial.begin(2000000);
@@ -129,11 +130,7 @@ uint16_t idx;
 uint16_t analog;
 
 void loop() {
-  if (displayVersionInfo) {
-    Serial.println("\n Welcome to WN2A Spectrum Analyzer CmdProcessor \n 10/10/2021 2Mbaud");
-    displayVersionInfo = false;
-  }
-
+  // TODO: while (Serial.available() > 0 && newData == false) {
   while (Serial.available())
   {
     Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);
@@ -150,6 +147,9 @@ void loop() {
 //        Serial.println(dataWordBuf[idx], HEX);
         NthWord++;
 
+        // TODO: Move this outside of while(Serial.abvailable()) and
+        // only run each through these blocks one each loop().
+        // SEE Example 3 BELOW
         if ((NthWord % szArrayWordBuff) == 0) {
           for (int i = 0; i < szArrayWordBuff; i++) {
             spi_write(dataWordBuf[i]);
@@ -292,7 +292,7 @@ void loop() {
           spi_write(spiWord);
         }
         writeToSPI = true;  // Reset for next incoming serial command
-        getLOstatus(*LO);
+//        getLOstatus(*LO);
         break;
 
       case RefClock:
@@ -321,7 +321,7 @@ void loop() {
             digitalWrite(LED_BUILTIN, HIGH);
             break;
           case MSG_REQ:
-            displayVersionInfo = true;
+            Serial.print("Welcome to WN2A Spectrum Analyzer CmdProcessor 10/10/2021 2Mbaud");
             break;
           default:
             break;
@@ -373,3 +373,63 @@ void getLOstatus(ADF4356_LO LO) {
     Serial.println(LO.Curr.R[i], HEX);
   }
 }
+
+
+/*
+// Example 3 - Receive with start- and end-markers
+
+const byte numChars = 32;
+char receivedChars[numChars];
+
+boolean newData = false;
+
+void setup() {
+    Serial.begin(9600);
+    Serial.println("<Arduino is ready>");
+}
+
+void loop() {
+    recvWithStartEndMarkers();
+    showNewData();
+}
+
+void recvWithStartEndMarkers() {
+    static boolean recvInProgress = false;
+    static byte ndx = 0;
+    char startMarker = '<';
+    char endMarker = '>';
+    char rc;
+ 
+    while (Serial.available() > 0 && newData == false) {
+        rc = Serial.read();
+
+        if (recvInProgress == true) {
+            if (rc != endMarker) {
+                receivedChars[ndx] = rc;
+                ndx++;
+                if (ndx >= numChars) {
+                    ndx = numChars - 1;
+                }
+            }
+            else {
+                receivedChars[ndx] = '\0'; // terminate the string
+                recvInProgress = false;
+                ndx = 0;
+                newData = true;
+            }
+        }
+
+        else if (rc == startMarker) {
+            recvInProgress = true;
+        }
+    }
+}
+
+void showNewData() {
+    if (newData == true) {
+        Serial.print("This just in ... ");
+        Serial.println(receivedChars);
+        newData = false;
+    }
+}
+*/
