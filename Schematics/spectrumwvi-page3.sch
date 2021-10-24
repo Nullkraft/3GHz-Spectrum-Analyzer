@@ -1890,7 +1890,7 @@ footprint=SOT25-RJ5
 T 55500 74100 5 10 0 1 0 0 1
 model=OPAMP
 T 55500 74100 5 10 0 1 0 0 1
-man-part-num=AD8605ARTZ-R2
+man-part-num=MCP6L71T-E/OT
 }
 C 55500 64700 1 180 1 AD8605ARTZ.sym
 {
@@ -1903,7 +1903,7 @@ footprint=SOT25-RJ5
 T 55500 64700 5 10 0 1 0 0 1
 model=OPAMP
 T 55500 64700 5 10 0 1 0 0 1
-man-part-num=AD8605ARTZ-R2
+man-part-num=MCP6L71T-E/OT
 }
 C 55800 72700 1 270 0 capacitor-2.sym
 {
