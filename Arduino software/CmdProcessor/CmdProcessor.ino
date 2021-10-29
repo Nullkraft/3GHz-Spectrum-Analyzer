@@ -121,6 +121,10 @@ void setup() {
   Serial.setTimeout(200);
   Serial.begin(2000000);
 
+  Serial.print("SERIAL_RX_BUFFER_SIZE = ");
+  Serial.print(SERIAL_RX_BUFFER_SIZE);
+  Serial.println(" bytes.");
+
   writeToSPI = true;  // This goes false for commands that don't program a chip
 
 }
