@@ -20,11 +20,10 @@ const int sel_ref2 = 2;
 // Command names for operating the PLL Mux
 const int all_tristate = 0;
 
-
-
-// Command names for operating the Arduino builtin LED
+// Command names for controlling and reporting Arduino state
 const int LED_off = 0;
 const int LED_on  = 1;
 const int MSG_REQ = 2;
+const int RTS     = 3;  // PC Application requests serial buffer status
 
 #endif

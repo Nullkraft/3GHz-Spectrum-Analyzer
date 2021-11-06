@@ -15,8 +15,8 @@ typedef struct {
                                   0x80400005,
                                   0x00000006
                              };
+  uint16_t* R_as_int = (uint16_t*)R;
 } max2871registers;
-
 
 
 
@@ -25,9 +25,24 @@ class MAX2871_LO {
     void begin(float initial_frequency);
     max2871registers Curr;
 
-    /* 6 bit Mask of Embedded Data from serial Specific Command */
+    /* 6 bit mask of Embedded Data from serial Specific Command */
     const short Data_Mask = 0x3F;
 
+    /* 12 bit mask, R[1] bits [14:3], for Fractional Modulus Value, M */
+    const uint32_t M_mask = 0x7FF8;
+
+    /* 12 bit mask, R[0] bits [14:3], for Frequency Division Value, F */
+    const uint32_t F_mask = 0x7FF8;
+
+    /* 8 bit mask, R[0] bits [22:15], for Integer Counter, N */
+    const uint32_t N_mask = 0x7F8000;
+
+    /* 20 bit mask, R[0] bits [22:3], for N and F */
+    const uint32_t NF_mask = 0x7FFFF8;
+
+    
+    
+    
     /* R4<8> and R4<5> disable RFoutB and RFoutA */
     const uint32_t RFpower_off = 0xFFFFFE07;
 

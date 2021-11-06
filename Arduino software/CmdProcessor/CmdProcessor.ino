@@ -1,5 +1,23 @@
 /* Process incoming serial commands and device data registers
     for the LO's.
+
+    All incoming serial data must be formed into 4 byte instruc-
+    tions or data packets.  There  are  2  distinct  instruction
+    types and one Data packet type. They are defined as follows:
+
+    1. Specific Instruction - It consists of 16 bits of Embedded
+       Data, 5 bits of Instruction, 3 bits of Address and 6 bits
+       of a fixed value, 0xFF, Command Flag.
+
+    2. Direct LO Instruction -  These consist of the values used
+       to directly program the chip registers as defined  within
+       the manufacturer's specification sheet.
+
+    3. LO Data Packet -     These consist of a 12 bit Fractional
+       Counter (F), a 12 bit Modulus Counter (M)  and  an  8 bit
+       Integer Counter (N). A number of these will be sent based
+       on the number sent in the Embedded Data section of an LO2
+       or LO3 Specific Command.
 */
 
 /************* PREMPTIVE STRIKE for Ver3 board *************/
@@ -26,22 +44,24 @@ SPISettings LO_SPI_Config(SPISettings(20000000, MSBFIRST, SPI_MODE0));
 */
 #define numBytesInSerialWord 4
 uint32_t serialWord;                         // Serial Word as 32 bits
-byte* serialWordAsBytes = (byte*)&serialWord;  // Serial Word as a byte array
+uint8_t* serialWordAsBytes = (byte*)&serialWord;  // Serial Word as a byte array
+uint16_t* serialWordAsInts = (int*)&serialWord;  // Serial Word as a byte array
 
 
 /* Several of the LO2/3 commands have an extra 6 bits of Embedded Data <21:16>
    that tells the Arduino how many 32 bit Words are to follow. */
-int16_t wordCount;  // See 'case LO2:' below for masking of Data & LOx_Bits
-int16_t NthWord;
+uint16_t num_data_points;  // If this is >0 it means we are sweeping frequencies
+uint16_t num_points_processed;
+
 
 /* Max block size is 128 bytes and because each Data Word
    contains 4 bytes the maximum number of Data Words is 32. */
-const byte szArrayWordBuff = 4;
-uint32_t dataWordBuf[szArrayWordBuff];
-uint16_t* dataWordBufInts = (uint16_t*)&dataWordBuf;
+const byte size_data_buf = 8;
+uint32_t data_buf_as_word[size_data_buf];
+uint16_t* data_buf_as_int = (uint16_t*)&data_buf_as_word;
 
 // Command Flag 0xFF indicates that a new instruction was received by the Arduino
-bool newCommandReceived = false;
+bool new_instruction_received = false;
 
 /* Move this into a struct
    All the values required by the spi_write() command */
@@ -78,6 +98,11 @@ const int LO3_MOSI      =  3;
 const int PLL_MUX_MISO  = A2;
 const int SPI_CLOCK_PIN = 10;  // Common SPI clock for LO's and Attenuator
 
+// When using the Arduino ADC's for testing
+// NOTE: On the Ver2 Spectrum Analyzer you will need a separate Arduino
+int adc_pin;    // Set this to match the currently selected LO2 or LO3
+int LO2_ADC_sel = A4;
+int LO3_ADC_sel = A5;
 
 // Addresses for selecting the various hardware ICs
 const int Attenuator = 0;
@@ -98,15 +123,19 @@ const short ATTEN_Data_Mask = 0x7F;  // 7 bits of Embedded Data
 /*********** HARDWARE DEFINITIONS END *******/
 
 
+// Assign reference designators from the schematic to the LO ojbect of choice
 ADF4356_LO LO1 = ADF4356_LO();
 MAX2871_LO LO2 = MAX2871_LO();
 MAX2871_LO LO3 = MAX2871_LO();
-MAX2871_LO* LO;  // Allows me to write one set of code for LO2 and LO3
+MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
 
 
 // Decide if one of the LO's received a command to update a register
-bool writeToSPI;
+bool spi_write_to_LO;
 
+enum STATE{WAIT, SEND, RECEIVE, PROCESS};
+
+static STATE state;
 
 
 void setup() {
@@ -121,67 +150,112 @@ void setup() {
   Serial.setTimeout(200);
   Serial.begin(2000000);
 
-  Serial.print("SERIAL_RX_BUFFER_SIZE = ");
-  Serial.print(SERIAL_RX_BUFFER_SIZE);
-  Serial.println(" bytes.");
+  spi_write_to_LO = true;   // This goes false for commands that don't program a chip
+  num_data_points = 0;      // Used when sending LO2 and LO3 ADC outputs  to  the  PC
+  num_points_processed = 0;
 
-  writeToSPI = true;  // This goes false for commands that don't program a chip
-
+  state = WAIT;
 }
 
 
-uint16_t idx;
-uint16_t analog;
+byte buf_index = 0;
+uint32_t frac_div_F;
+uint32_t frac_mod_M;
+uint32_t counter_N;
+uint32_t tmp;
+uint8_t* byteTmp = (byte*)&tmp;   // Tmp as a byte array
+uint16_t* intTmp = (int*)&tmp;    // Tmp as an int array
+
+
 
 void loop() {
-  // TODO: while (Serial.available() > 0 && newData == false) {
+
   while (Serial.available())
   {
     Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);
-    // If a General Command is received, then...
+
+    // If a General LO Instruction or LO Data Packet is received, then...
     if (serialWordAsBytes[0] != CommandFlag)
     {
-      /* If a request for buffering data is received, then... */
-      if (NthWord < wordCount) {
-        idx = NthWord % szArrayWordBuff;
-        dataWordBuf[idx] = serialWord;
-//        Serial.print(" Buf[");
-//        Serial.print(NthWord);
-//        Serial.print("] = ");
-//        Serial.println(dataWordBuf[idx], HEX);
-        NthWord++;
-
-        // TODO: Move this outside of while(Serial.abvailable()) and
-        // only run each through these blocks one each loop().
-        // SEE Example 3 BELOW
-        if ((NthWord % szArrayWordBuff) == 0) {
-          for (int i = 0; i < szArrayWordBuff; i++) {
-            spi_write(dataWordBuf[i]);
-            delay(1);   // bullshit delay between programming a register and readAnalog
-            dataWordBufInts[i] = analogRead(A0);      // if this were the 315 LogAmp
-          }
-          for (int i = 0; i < szArrayWordBuff; i++) {
-            Serial.print("Analog 16 bit value = ");
-            Serial.println(dataWordBufInts[i]);
-          }
-          NthWord = 0;
+      if (state == RECEIVE) {
+        Serial.println("Received a frequency data packet");
+        data_buf_as_word[buf_index] = serialWord; //serialWord = 32bit value from serialWordAsBytes
+        buf_index++;
+        if (buf_index > size_data_buf) {
+          buf_index = 0;
+          state = PROCESS;
+        }
+        num_points_processed++;
+        // When the frequency sweep is done...
+        if (num_points_processed >= num_data_points) {
+          state = WAIT;
         }
       }
+
+      // With a full buffer we parse the serial data into F, N and M values
+      if (state == PROCESS)
+      {
+        for (buf_index = 0; buf_index < size_data_buf; buf_index++)
+        {
+          // M:  Clear R[1], bits [14:3], to accept M word
+          LO->Curr.R[1] &= (~LO->M_mask);
+          // N and F:  Clear R[0], bits [22:3], to accept N and F words
+          LO->Curr.R[0] &= (~LO->NF_mask);
+
+          // M:  Shift and mask data_buf_as_word[buf_index] to form M
+          // where data_buf_as_word[buf_index] contains the serialWord
+          LO->Curr.R[1] |= ((data_buf_as_word[buf_index] >> 5) & LO->M_mask);
+
+          // N:  Shift and mask data_buf_as_word[buf_index] to form N
+          // where data_buf_as_word[buf_index] contains the serialWord
+          LO->Curr.R[0] |= ((data_buf_as_word[buf_index] << 15) & LO->N_mask);
+
+          // F:  Shift and mask data_buf_as_word[buf_index] to form F
+          // where data_buf_as_word[buf_index] contains the serialWord
+          LO->Curr.R[0] |= ((data_buf_as_word[buf_index] >> 17) & LO->F_mask);
+
+          // Program the selected LO in descending order of register numbers
+          spi_write(LO->Curr.R[1]);
+          spi_write(LO->Curr.R[0]);
+
+          // Now we read the ADC and store it for later Serial.writing()
+          data_buf_as_int[buf_index] = analogRead(adc_pin);  // Buffer now used for analog output
+
+          Serial.print("R[1]:M = ");
+          Serial.print(LO->Curr.R[1] &= LO->M_mask, HEX);
+          Serial.print(" : R[0]:NF = ");
+          Serial.println(LO->Curr.R[0] &= LO->NF_mask, HEX);
+
+          buf_index++;
+        }
+        state = SEND;
+      }
+
+      // Send the ADC readings back to the PC
+      if (state == SEND) {
+        for(buf_index = 0; buf_index < size_data_buf; buf_index++) {
+          Serial.write(data_buf_as_int[buf_index]);
+        }
+        Serial.write(0xFFFF);   // Marker for End-of-Block (EOB) transmission
+        state = RECEIVE;
+        buf_index = 0;    // Reset buffer index for receiving next block of data packets
+      }
     }
-    /* If a Command Word is found then parse into Data, Command and Address */
+
+    // If a Command Word is found then parse it into Data, Command and Address
     else
     {
       Data = (uint16_t)(serialWord >> 16);
       Command = (serialWordAsBytes[1] & CommandBits) >> 3;
       Address = serialWordAsBytes[1] & AddressBits;
-      newCommandReceived = true;
+      new_instruction_received = true;
     }
   }  // End While
 
 
   /* Hardware selection and operations. This is where the processing of
      Specific commands occurs. */
-  if (newCommandReceived) {
+  if (new_instruction_received) {
     /* Start by selecting the device that you want to control. Then under
        each device you can select the operation that you want to perform. */
     switch (Address) {
@@ -230,13 +304,13 @@ void loop() {
             spiWord = LO1.Curr.R[4];
             break;
           default:
-            writeToSPI = false;  // Do not write to SPI. No commands were received
+            spi_write_to_LO = false;  // Do not write to SPI. No commands were received
             break;
         }
-        if (writeToSPI) {
+        if (spi_write_to_LO) {
           spi_write(spiWord);
         }
-        writeToSPI = true;  // Reset for next incoming serial command
+        spi_write_to_LO = true;  // Reset for next incoming serial command
         getLOstatus(LO1);
         break;
 
@@ -245,6 +319,7 @@ void loop() {
         LO = &LO2;
         mosi_pin = LO2_MOSI;
         spi_select = LO2_SEL;
+        adc_pin = LO2_ADC_sel;  // Selects the ADC associated with LO2 output
       // NOTE: break is missing so the code falls through to 'case LO3_addr'
       case LO3_addr:
         /* Making LO3 active */
@@ -252,12 +327,14 @@ void loop() {
           LO = &LO3;
           mosi_pin = LO3_MOSI;
           spi_select = LO3_SEL;
+          adc_pin = LO3_ADC_sel;  // Selects the ADC associated with LO3 output
         }
         // Set the remainder of the SPI pins
         spi_clock = SPI_CLOCK_PIN;
-        wordCount = Data;           // Number of frequencies points to be read
-        Serial.print("word count = ");
-        Serial.println(wordCount);
+        num_data_points = Data;    // Number of frequency points to be read
+        Serial.print("Number of requested data points = ");
+        Serial.println(num_data_points);
+        state = RECEIVE;           // Time to start sweeping frequencies
         switch (Command) {
           case RF_off:
             LO->Curr.R[4] = LO->Curr.R[4] & LO->RFpower_off;
@@ -289,14 +366,14 @@ void loop() {
             spiWord = LO->Curr.R[2];
             break;
           default:
-            writeToSPI = false;  // Do not write to SPI. No commands were received
+            spi_write_to_LO = false;  // Do not write to SPI. No commands were received
             break;
         }
-        if (writeToSPI) {
+        if (spi_write_to_LO) {
           spi_write(spiWord);
         }
-        writeToSPI = true;  // Reset for next incoming serial command
-//        getLOstatus(*LO);
+        spi_write_to_LO = true;  // Reset for next incoming serial command
+        //        getLOstatus(*LO);
         break;
 
       case RefClock:
@@ -327,6 +404,9 @@ void loop() {
           case MSG_REQ:
             Serial.print("Welcome to WN2A Spectrum Analyzer CmdProcessor 10/10/2021 2Mbaud");
             break;
+          case RTS:
+            Serial.print("PC Application is requesting to send more data.");
+            break;
           default:
             break;
         }
@@ -340,9 +420,9 @@ void loop() {
 
     } /* End switch(Address) */
 
-    newCommandReceived = false;
+    new_instruction_received = false;
 
-  } /* End newCommandReceived */
+  } /* End new_instruction_received */
 } /* End loop() */
 
 
@@ -377,63 +457,3 @@ void getLOstatus(ADF4356_LO LO) {
     Serial.println(LO.Curr.R[i], HEX);
   }
 }
-
-
-/*
-// Example 3 - Receive with start- and end-markers
-
-const byte numChars = 32;
-char receivedChars[numChars];
-
-boolean newData = false;
-
-void setup() {
-    Serial.begin(9600);
-    Serial.println("<Arduino is ready>");
-}
-
-void loop() {
-    recvWithStartEndMarkers();
-    showNewData();
-}
-
-void recvWithStartEndMarkers() {
-    static boolean recvInProgress = false;
-    static byte ndx = 0;
-    char startMarker = '<';
-    char endMarker = '>';
-    char rc;
- 
-    while (Serial.available() > 0 && newData == false) {
-        rc = Serial.read();
-
-        if (recvInProgress == true) {
-            if (rc != endMarker) {
-                receivedChars[ndx] = rc;
-                ndx++;
-                if (ndx >= numChars) {
-                    ndx = numChars - 1;
-                }
-            }
-            else {
-                receivedChars[ndx] = '\0'; // terminate the string
-                recvInProgress = false;
-                ndx = 0;
-                newData = true;
-            }
-        }
-
-        else if (rc == startMarker) {
-            recvInProgress = true;
-        }
-    }
-}
-
-void showNewData() {
-    if (newData == true) {
-        Serial.print("This just in ... ");
-        Serial.println(receivedChars);
-        newData = false;
-    }
-}
-*/
