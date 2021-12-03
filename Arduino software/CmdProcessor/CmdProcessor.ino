@@ -101,8 +101,8 @@ const int SPI_CLOCK_PIN = 10;  // Common SPI clock for LO's and Attenuator
 // When using the Arduino ADC's for testing
 // NOTE: On the Ver2 Spectrum Analyzer you will need a separate Arduino
 int adc_pin;    // Set this to match the currently selected LO2 or LO3
-int LO2_ADC_sel = A4;
-int LO3_ADC_sel = A5;
+int LO2_ADC_sel = A0;
+int LO3_ADC_sel = A1;
 
 // Addresses for selecting the various hardware ICs
 const int Attenuator = 0;
@@ -189,10 +189,11 @@ void loop() {
         // When the frequency sweep is done...
         if (num_points_processed >= num_data_points) {
           state = WAIT;
+          num_points_processed = 0;   // Reset to zero for before next use
         }
       }
 
-      // With a full buffer we parse the serial data into F, N and M values
+      // With a full buffer we parse the serial data into F, M and N values
       if (state == PROCESS)
       {
         for (buf_index = 0; buf_index < size_data_buf; buf_index++)
@@ -236,13 +237,15 @@ void loop() {
         for(buf_index = 0; buf_index < size_data_buf; buf_index++) {
           Serial.write(data_buf_as_int[buf_index]);
         }
-        Serial.write(0xFFFF);   // Marker for End-of-Block (EOB) transmission
+        Serial.write(0xFF);
+        Serial.write(0xFF);   // End-of-Block (EOB) transmission
         state = RECEIVE;
         buf_index = 0;    // Reset buffer index for receiving next block of data packets
       }
     }
 
-    // If a Command Word is found then parse it into Data, Command and Address
+    // If a Command Flag is found then parse the 32 bit word into
+    // Data, Command and Address
     else
     {
       Data = (uint16_t)(serialWord >> 16);
@@ -332,9 +335,11 @@ void loop() {
         // Set the remainder of the SPI pins
         spi_clock = SPI_CLOCK_PIN;
         num_data_points = Data;    // Number of frequency points to be read
+        if (num_data_points > 0) {
+          state = RECEIVE;           // Time to start sweeping frequencies
+        }
         Serial.print("Number of requested data points = ");
         Serial.println(num_data_points);
-        state = RECEIVE;           // Time to start sweeping frequencies
         switch (Command) {
           case RF_off:
             LO->Curr.R[4] = LO->Curr.R[4] & LO->RFpower_off;
