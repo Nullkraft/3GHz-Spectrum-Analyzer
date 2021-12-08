@@ -7,7 +7,7 @@
 /* Default register values for MAX2871 LO: Sets RFOout = 3945 MHz */
 typedef struct {
   static const byte numRegisters = 14;
-  uint32_t R[numRegisters] = {    0x002007E0, 0x0E24DD21,
+  uint32_t Reg[numRegisters] = {  0x002007E0, 0x0E24DD21,
                                   0x00000002, 0x00000003,
                                   0x02008984, 0x00800025,
                                   0x35012076, 0x060000E7,
@@ -24,9 +24,12 @@ class ADF4356_LO {
   public:
     void begin(float initial_frequency);
     adf4356registers Curr;
-
+  
     /* 16 bit Mask of Embedded Data from serial Specific Command */
     const uint32_t Data_Mask = 0x300000;
+
+    /* Clear old INT_N bits from Regist 0 */
+    const uint32_t INT_N_Mask = 0xFFF0000F;
 
     /* R6<DB9> and <DB6> disable RFoutB and RFoutA */
     const uint32_t RFpower_off = 0xFFFFFC0F;

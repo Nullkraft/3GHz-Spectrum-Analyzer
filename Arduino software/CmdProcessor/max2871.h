@@ -7,7 +7,7 @@
 /* Default register values for MAX2871 LO: Sets RFOout = 3945 MHz */
 typedef struct {
   static const byte numRegisters = 7;
-  uint32_t R[numRegisters] = {    0x00418008,
+  uint32_t Reg[numRegisters] = {  0x00418008,
                                   0x20008011,
                                   0x40009242,
                                   0xF8008003,
@@ -15,7 +15,7 @@ typedef struct {
                                   0x80400005,
                                   0x00000006
                              };
-  uint16_t* R_as_int = (uint16_t*)R;
+  uint16_t* R_as_int = (uint16_t*)Reg;
 } max2871registers;
 
 
