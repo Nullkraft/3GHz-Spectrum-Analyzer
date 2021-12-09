@@ -218,9 +218,9 @@ void loop() {
           // Now we read the ADC and store it for later Serial.writing()
           data_buf_as_int[buf_index] = analogRead(adc_pin);  // Buffer now used for analog output
 
-          Serial.print("R[1]:M = ");
+          Serial.print("Reg[1]:M = ");
           Serial.print(LO->Curr.Reg[1] &= LO->M_mask, HEX);
-          Serial.print(" : R[0]:NF = ");
+          Serial.print(" : Reg[0]:NF = ");
           Serial.println(LO->Curr.Reg[0] &= LO->NF_mask, HEX);
 
           buf_index++;
@@ -412,7 +412,7 @@ void loop() {
             digitalWrite(LED_BUILTIN, HIGH);
             break;
           case MSG_REQ:
-            Serial.print("Welcome to WN2A Spectrum Analyzer CmdProcessor 10/10/2021 2Mbaud");
+            Serial.print("Welcome to WN2A Spectrum Analyzer CmdProcessor 10/10/2021 2Mbaud\n");
             break;
           case RTS:
             Serial.print("PC Application is requesting to send more data.");
