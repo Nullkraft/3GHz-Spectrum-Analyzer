@@ -13,8 +13,7 @@ typedef struct {
                                   0x35012046, 0x060000E7,
                                   0x15596568, 0x0F09FCC9,
                                   0x00C00EBA, 0x0061200B,
-                                  0x000015FC, 0x0000000D
-                             };
+                                  0x000015FC, 0x0000000D};
 } adf4356registers;
 
 

@@ -281,7 +281,7 @@ void loop() {
             LO1.Curr.Reg[6] = LO1.Curr.Reg[6] & LO1.RFpower_off;
             spiWord = LO1.Curr.Reg[6];
             break;
-          // Set the RFoutB power level, RFoutA is not used and can be disabled.
+          // Set the RFoutB power level, RFoutA is not used and is disabled.
           case neg_4dBm:
             LO1.Curr.Reg[6] = (LO1.Curr.Reg[6] & LO1.Power_Level_Mask) | LO1.neg4dBm;
             spiWord = LO1.Curr.Reg[6];
@@ -388,15 +388,21 @@ void loop() {
 
       case RefClock:
         switch (Command) {
-          case sel_ref1:
+          // Turn 60 MHz ref_clock on and 100 MHz ref_clock off
+          case ref_60:
+            Serial.println("Enabled 60 MHz ref_clock");
             digitalWrite(REF2_SEL, LOW);
             digitalWrite(REF1_SEL, HIGH);
             break;
-          case sel_ref2:
+          // Turn 100 MHz ref_clock on and 60 MHz ref_clock off
+          case ref_100:
+            Serial.println("Enabled 100 MHz ref_clock");
             digitalWrite(REF1_SEL, LOW);
             digitalWrite(REF2_SEL, HIGH);
             break;
+          // Turn both ref_clocks off
           default:
+            Serial.println("Disabled both ref_clocks");
             digitalWrite(REF1_SEL, LOW);
             digitalWrite(REF2_SEL, LOW);
             break;

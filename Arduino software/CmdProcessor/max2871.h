@@ -12,7 +12,7 @@ typedef struct {
                                   0x40009242,
                                   0xF8008003,
                                   0x63CFF1C4,
-                                  0x80400005,
+                                  0x01400005,
                                   0x00000006
                              };
   uint16_t* R_as_int = (uint16_t*)Reg;

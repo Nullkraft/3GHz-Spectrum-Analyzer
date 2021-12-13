@@ -13,9 +13,9 @@ const int Mux_TRI   =  7;
 const int Mux_DLD   =  8;
 
 // Command names for operating the reference oscillators
-const int all_off  = 0;
-const int sel_ref1 = 1;
-const int sel_ref2 = 2;
+const int all_ref_off = 0;
+const int ref_60      = 1;
+const int ref_100     = 2;
 
 // Command names for operating the PLL Mux
 const int all_tristate = 0;
