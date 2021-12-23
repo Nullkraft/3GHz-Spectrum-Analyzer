@@ -2048,7 +2048,7 @@ Element["onsolder" "0603" "L205" "68_nH" 55.7545mm 51.5635mm -0.5251mm -3.7169mm
 
 	)
 
-Element["onsolder" "B3741SAWFilter" "FL201" "unknown" 59.8185mm 50.4205mm -2.5850mm -1.9510mm 0 80 "auto"]
+Element["onsolder" "B3741SAWFilter" "FL201" "315_MHz" 59.8185mm 50.4205mm -2.5850mm -1.9510mm 0 80 "auto"]
 (
 	Pad[-1.9500mm 47.24mil -0.3001mm 1.1999mm 0.6000mm 20.00mil 0.7016mm "Gnd" "1" "onsolder,square,edge2"]
 	Pad[-1.9499mm -1.2000mm -1.0500mm -47.25mil 0.6000mm 0.0000 0.6000mm "Gnd" "3" "onsolder,square"]
@@ -2274,7 +2274,7 @@ Element["onsolder" "0603" "L203" "68_nH" 23.3695mm 53.9765mm -45.00mil 2.1402mm 
 
 	)
 
-Element["onsolder" "B3741SAWFilter" "FL200" "unknown" 28.0685mm 52.7065mm 0.8369mm 3.2139mm 0 80 "auto"]
+Element["onsolder" "B3741SAWFilter" "FL200" "315_MHz" 28.0685mm 52.7065mm 0.8369mm 3.2139mm 0 80 "auto"]
 (
 	Pad[-1.9500mm 1.1999mm -0.3001mm 1.1999mm 0.6000mm 20.00mil 0.6000mm "Gnd" "1" "onsolder,square"]
 	Pad[-1.9499mm -1.2000mm -41.34mil -1.2000mm 0.6000mm 0.0000 0.6000mm "Gnd" "3" "onsolder,square"]
