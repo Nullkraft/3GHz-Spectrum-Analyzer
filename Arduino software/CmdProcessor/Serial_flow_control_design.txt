@@ -1,0 +1,57 @@
+
+
+1) Try the following steps in the Arduino:
+
+miso_pin;
+analog_pin;
+LO#_sel;
+num_data_points;
+static num_data_points_processed = 0;
+size_data_buf_as_word = 8;						// 8 words = 32 bytes
+
+*** ARDUINO main loop() ***
+<<< While (Serial.available)
+	- The Arduino receives the Command-Flag from the PC to select LO2 or LO3.
+	- The Arduino sets mosi_pin == [LO2 OR LO3]_SEL pin.
+	- The Arduino parses out num_data_points and copies it to num_data_points_processed.
+	- The Arduino selects the ADC, analog_pin = LO#_sel.
+
+<><><>
+  >>> While (num_data_points_processed < num_data_points) ...
+	- The Arduino checks the serial receive buffer.
+	- If the Arduino receive buffer is empty such that Serial.available()==0 ...
+	  - the Arduino will send a single byte, 0x55 (Clear-to_Send, CTS).
+
+  *** PC APP ***
+	- The PC receives the CTS byte.
+	- The PC sends 8 data words, 32 bytes, to the Arduino ...
+	- The PC stops and waits to receive 8 ADC data points from the Arduino.
+	
+  *** ARDUINO main loop() ***
+	- The Arduino copies each word to the data_word_buf[].
+	
+  *** Arduino SPI loop() ***
+	- Once the data_word_buf[] has been filled ...
+	- The Arduino loops through the data_word_buf
+	^^^ While (i < size_data_buf_as_word) ...
+		- The Arduino spi_write()'s data_word_buf[i] to the selected LO.
+		- The Arduino spi_read()'s from the LO#_ADC and stores the 16 bit result in data_word_buf[i]
+			  (Yes! It overwrites the value we just used to program the LO! Recycle/Reuse)
+		- The Arduino increments num_data_points_processed
+		- The Arduino increments the data_word_buf index, i.
+	^^^ The Arduino exits the SPI loop().
+  
+  *** Arduino analog serial data loop() ***
+	- The Arduino Serial.write()'s the least 16 bits of the data_word_buf[] contents to the PC.
+	@@@ for (int i; i < size_data_buf_as_word, i++) ...
+		- The Arduino Serial.write()'s (uint16_t)data_word_buf[i] to the PC.
+	@@@ The Arduino exits the analog serial data loop().
+		
+  *** PC APP ***
+	- The PC receives and processes the 8 ADC data points.
+	- If the PC has more data points to request ...
+	- the PC waits for the CTS byte.
+
+  *** ARDUINO main loop() ***
+	- goto <><><>
+

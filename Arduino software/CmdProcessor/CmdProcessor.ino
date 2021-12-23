@@ -163,16 +163,18 @@ uint8_t* byteTmp = (byte*)&tmp;   // Tmp as a byte array
 uint16_t* intTmp = (int*)&tmp;    // Tmp as an int array
 
 
-
 void loop() {
 
   while (Serial.available())
   {
     Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);
 
+//    Serial.println(serialWord, HEX);
+
     // If a General LO Instruction or LO Data Packet is received, then...
     if (serialWordAsBytes[0] != CommandFlag)
     {
+      // During the RECEIVE state 8 words will be buffered for LO2 programming
       if (state == RECEIVE) {
         Serial.println("Received a frequency data packet");
         data_buf_as_word[buf_index] = serialWord; //serialWord = 32bit value from serialWordAsBytes
@@ -189,7 +191,8 @@ void loop() {
         }
       }
 
-      // With a full buffer we parse the serial data into F, M and N values
+      // Here's where the 8 words get processed into F, M and N values then sent to
+      // LO2 and the associated A2D is read back.
       if (state == PROCESS)
       {
         for (buf_index = 0; buf_index < size_data_buf; buf_index++)
@@ -248,8 +251,8 @@ void loop() {
       Command = (serialWordAsBytes[1] & CommandBits) >> 3;
       Address = serialWordAsBytes[1] & AddressBits;
       NEW_INSTRUCTION_RECEIVED = true;
-      Serial.print("Serial command = ");
-      Serial.println(serialWord, HEX);
+//      Serial.print("Serial command = ");
+//      Serial.println(serialWord, HEX);
     }
   }  // End While
 
