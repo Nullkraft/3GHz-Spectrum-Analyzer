@@ -13,7 +13,8 @@ typedef struct {
                                   0x35012046, 0x060000E7,
                                   0x15596568, 0x0F09FCC9,
                                   0x00C00EBA, 0x0061200B,
-                                  0x000015FC, 0x0000000D};
+                                  0x000015FC, 0x0000000D
+                               };
 } adf4356registers;
 
 
@@ -23,7 +24,7 @@ class ADF4356_LO {
   public:
     void begin(float initial_frequency);
     adf4356registers Curr;
-  
+
     /* 16 bit Mask of Embedded Data from serial Specific Command */
     const uint32_t Data_Mask = 0x300000;
 
@@ -54,6 +55,9 @@ class ADF4356_LO {
 
     /* 'OR' Mux_Set_DLD with R4 to enable Digital Lock Detect. Affects bits <DB29:DB27> */
     const uint32_t Mux_Set_DLD = 0x30000000;
+
+  private:
+    uint32_t spiMaxSpeed = 50000000;   // 50 MHz max SPI clock
 };
 
 

@@ -14,7 +14,7 @@ typedef struct {
                                   0x63CFF1C4,
                                   0x01400005,
                                   0x00000006
-                             };
+                               };
   uint16_t* R_as_int = (uint16_t*)Reg;
 } max2871registers;
 
@@ -40,9 +40,9 @@ class MAX2871_LO {
     /* 20 bit mask, R[0] bits [22:3], for N and F */
     const uint32_t NF_mask = 0x7FFFF8;
 
-    
-    
-    
+
+
+
     /* R4<8> and R4<5> disable RFoutB and RFoutA */
     const uint32_t RFpower_off = 0xFFFFFE07;
 
@@ -67,6 +67,9 @@ class MAX2871_LO {
 
     /* 'OR' Mux_Set_DLD with R2 to enable Digital Lock Detect. Affects bits <28:26> */
     const uint32_t Mux_Set_DLD = 0x18000000;
+
+  private:
+    uint32_t spiMaxSpeed = 20000000;   // 20 MHz max SPI clock
 };
 
 

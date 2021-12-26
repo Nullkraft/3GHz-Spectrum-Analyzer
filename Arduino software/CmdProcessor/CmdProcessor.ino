@@ -65,11 +65,8 @@ bool NEW_INSTRUCTION_RECEIVED = false;
 
 /* Move this into a struct
    All the values required by the spi_write() command */
-uint8_t miso_pin;  // Read values from an external A2D chip and Mux pin of LO's
-uint8_t mosi_pin;  // Set to write register values to the LO's or the Attenuator
-uint8_t spi_clock;
-uint8_t spi_select;    // Selects the device to be written to
-uint32_t spiWord;  // Holds the register contents to be written to the selected device
+uint8_t spi_select; // Selects the device to be written to
+uint32_t spiWord;   // Holds the register contents to be written to the selected device
 
 
 /*** Parsed values from the incoming 32 bit serial word ***/
@@ -84,19 +81,15 @@ const byte CommandFlag = 0xFF;  // Byte pattern to identify a Control Word
 
 /*********** HARDWARE DEFINITIONS ***********/
 // Pin assignments, for Ver2 board, used for shiftOut() style communication
-const int REF1_SEL      = 11;
-const int REF2_SEL      = 12;
-const int ATTEN_SEL     = A3;
-const int ATTEN_MOSI    = A5;
-const int ATTEN_CLOCK   = A4;
-const int LO1_SEL       = A1;
-const int LO1_MOSI      = A0;
-const int LO2_SEL       =  5;
-const int LO2_MOSI      =  4;
-const int LO3_SEL       =  2;
-const int LO3_MOSI      =  3;
-const int PLL_MUX_MISO  = A2;
-const int SPI_CLOCK_PIN = 10;  // Common SPI clock for LO's and Attenuator
+const int REF1_SEL    =  8;
+const int REF2_SEL    =  9;
+const int ATTEN_SEL   = A5;
+const int LO1_SEL     = A3;
+const int LO2_SEL     =  3;
+const int LO3_SEL     = A4;
+//const int SPI_MOSI    = 11;  // Set to write register values to the LO's or the Attenuator
+//const int SPI_MISO    = 12;  // Read values from an external A2D chip and Mux pin of LO's
+//const int SPI_CLOCK   = 13;  // Common SPI clock for LO's and Attenuator
 
 // When using the Arduino ADC's for testing
 // NOTE: On the Ver2 Spectrum Analyzer you will need a separate Arduino
@@ -111,7 +104,6 @@ const int LO2_addr   = 2;
 const int LO3_addr   = 3;
 const int RefClock   = 4;
 const int PLL_Mux    = 5;
-// NOT_USED          = 6;
 const int LED        = 7;
 
 
@@ -135,25 +127,6 @@ bool SPI_WRITE_TO_LO;
 
 enum STATE{WAIT, SEND, RECEIVE, PROCESS} state = WAIT;  // Initial state == WAIT
 
-
-void setup() {
-  pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(miso_pin, OUTPUT);
-  pinMode(mosi_pin, INPUT);
-  pinMode(spi_clock, OUTPUT);
-  pinMode(spi_select, OUTPUT);
-
-  digitalWrite(LED_BUILTIN, HIGH);
-
-  Serial.setTimeout(200);
-  Serial.begin(2000000);
-
-  SPI_WRITE_TO_LO = true;   // This goes false for commands that don't program a chip
-  num_data_points = 0;      // Used when sending LO2 and LO3 ADC outputs  to  the  PC
-  num_points_processed = 0;
-}
-
-
 byte buf_index = 0;
 uint32_t frac_div_F;
 uint32_t frac_mod_M;
@@ -161,6 +134,42 @@ uint32_t counter_N;
 uint32_t tmp;
 uint8_t* byteTmp = (byte*)&tmp;   // Tmp as a byte array
 uint16_t* intTmp = (int*)&tmp;    // Tmp as an int array
+
+
+
+
+
+void setup() {
+  Serial.setTimeout(200);
+  Serial.begin(2000000);
+
+  pinMode(LED_BUILTIN, OUTPUT);
+
+  pinMode(REF1_SEL, OUTPUT);
+  pinMode(REF2_SEL, OUTPUT);
+  pinMode(ATTEN_SEL, OUTPUT);
+  pinMode(LO1_SEL, OUTPUT);
+  pinMode(LO2_SEL, OUTPUT);
+  pinMode(LO3_SEL, OUTPUT);
+
+  digitalWrite(REF1_SEL, HIGH);
+  digitalWrite(REF2_SEL, HIGH);
+  digitalWrite(ATTEN_SEL, HIGH);
+  digitalWrite(LO1_SEL, HIGH);
+  digitalWrite(LO2_SEL, HIGH);
+  digitalWrite(LO3_SEL, HIGH);
+
+  digitalWrite(LED_BUILTIN, HIGH);
+
+  SPI_WRITE_TO_LO = true;   // This goes false for commands that don't program a chip
+  num_data_points = 0;      // Used when sending LO2 and LO3 ADC outputs  to  the  PC
+  num_points_processed = 0;
+}
+
+
+
+
+
 
 
 void loop() {
@@ -214,9 +223,9 @@ void loop() {
           // where data_buf_as_word[buf_index] contains the serialWord
           LO->Curr.Reg[0] |= ((data_buf_as_word[buf_index] >> 17) & LO->F_mask);
 
-          // Program the selected LO in descending order of register numbers
-          spi_write(LO->Curr.Reg[1]);
-          spi_write(LO->Curr.Reg[0]);
+          // Program the selected LO starting with the higher numbered registers first
+          spi_write(LO->Curr.Reg[1], numBytesInSerialWord);
+          spi_write(LO->Curr.Reg[0], numBytesInSerialWord);
 
           // Now we read the ADC and store it for later Serial.writing()
           data_buf_as_int[buf_index] = analogRead(adc_pin);  // Buffer now used for analog output
@@ -264,17 +273,20 @@ void loop() {
        each device you can select the operation that you want to perform. */
     switch (Address) {
       case Attenuator:
-        mosi_pin = ATTEN_MOSI;
-        spi_clock = ATTEN_CLOCK;
         spi_select = ATTEN_SEL;
         Data &= ATTEN_Data_Mask;
         spiWord = ((uint32_t)Data << 16) | 0xFF;
-        spi_write(spiWord);
+        Serial.println(Data, HEX);
+        digitalWrite(ATTEN_SEL, LOW);
+        SPI.beginTransaction(SPISettings(10000000, LSBFIRST, SPI_MODE0)); // PE43711 chip
+        SPI.begin();
+        SPI.transfer(Data);
+        digitalWrite(ATTEN_SEL, HIGH);
+        digitalWrite(ATTEN_SEL, LOW);
+//        spi_write(spiWord, numBytesInSerialWord);
         break;
 
       case LO1_addr:
-        mosi_pin = LO1_MOSI;
-        spi_clock = SPI_CLOCK_PIN;
         spi_select = LO1_SEL;
         Data32 = ((uint32_t)Data << 4);    /* Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4> */
         LO1.Curr.Reg[0] &= LO1.INT_N_Mask; /* Clear old INT_N bits from Regist 0 */
@@ -314,8 +326,8 @@ void loop() {
             break;
         }
         if (SPI_WRITE_TO_LO) {
-          spi_write(spiWord);
-          spi_write(LO1.Curr.Reg[0]);
+          spi_write(spiWord, numBytesInSerialWord);
+          spi_write(LO1.Curr.Reg[0], numBytesInSerialWord);
           Serial.print("Current register 0 = ");
           Serial.println(LO1.Curr.Reg[0], HEX);
           Serial.print("Current register 6 = ");
@@ -328,20 +340,17 @@ void loop() {
       case LO2_addr:
         /* Making LO2 active */
         LO = &LO2;
-        mosi_pin = LO2_MOSI;
         spi_select = LO2_SEL;
         adc_pin = LO2_ADC_sel;  // Selects the ADC associated with LO2 output
-      // NOTE: break is missing so the code falls through to 'case LO3_addr'
+        // Now fall through
       case LO3_addr:
         /* Making LO3 active */
-        if (Address = LO3_addr) {
+        if (Address == LO3_addr) {
           LO = &LO3;
-          mosi_pin = LO3_MOSI;
           spi_select = LO3_SEL;
           adc_pin = LO3_ADC_sel;  // Selects the ADC associated with LO3 output
         }
         // Set the remainder of the SPI pins
-        spi_clock = SPI_CLOCK_PIN;
         num_data_points = Data;    // Number of frequency points to be read
         if (num_data_points > 0) {
           state = RECEIVE;           // Time to start sweeping frequencies
@@ -383,7 +392,7 @@ void loop() {
             break;
         }
         if (SPI_WRITE_TO_LO) {
-          spi_write(spiWord);
+          spi_write(spiWord, numBytesInSerialWord);
         }
         SPI_WRITE_TO_LO = true;  // Reset for next incoming serial command
         //        getLOstatus(*LO);
@@ -447,12 +456,13 @@ void loop() {
 
 // Program the selected device using shiftOut()
 /* This will be replaced by SPI.transfer() for the Ver 3 board */
-void spi_write(uint32_t spiData) {
-  for (int i = 0; i < numBytesInSerialWord; i++) {
-    shiftOut(mosi_pin, spi_clock, MSBFIRST, spiData);
-  }
-  digitalWrite(spi_select, HIGH);
+void spi_write(uint32_t dataBuffer, uint8_t numBytes) {
+  Serial.println(dataBuffer, HEX);
+  Serial.println(spi_select);
+
   digitalWrite(spi_select, LOW);
+  SPI.transfer(dataBuffer, numBytes);
+  digitalWrite(spi_select, HIGH);
 }
 
 
