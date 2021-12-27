@@ -224,8 +224,8 @@ void loop() {
           LO->Curr.Reg[0] |= ((data_buf_as_word[buf_index] >> 17) & LO->F_mask);
 
           // Program the selected LO starting with the higher numbered registers first
-          spi_write(LO->Curr.Reg[1], numBytesInSerialWord);
-          spi_write(LO->Curr.Reg[0], numBytesInSerialWord);
+//          spi_write(LO->Curr.Reg[1], numBytesInSerialWord);
+//          spi_write(LO->Curr.Reg[0], numBytesInSerialWord);
 
           // Now we read the ADC and store it for later Serial.writing()
           data_buf_as_int[buf_index] = analogRead(adc_pin);  // Buffer now used for analog output
@@ -273,21 +273,15 @@ void loop() {
        each device you can select the operation that you want to perform. */
     switch (Address) {
       case Attenuator:
-        spi_select = ATTEN_SEL;
         Data &= ATTEN_Data_Mask;
-        spiWord = ((uint32_t)Data << 16) | 0xFF;
-        Serial.println(Data, HEX);
         digitalWrite(ATTEN_SEL, LOW);
         SPI.beginTransaction(SPISettings(10000000, LSBFIRST, SPI_MODE0)); // PE43711 chip
         SPI.begin();
         SPI.transfer(Data);
         digitalWrite(ATTEN_SEL, HIGH);
-        digitalWrite(ATTEN_SEL, LOW);
-//        spi_write(spiWord, numBytesInSerialWord);
         break;
 
       case LO1_addr:
-        spi_select = LO1_SEL;
         Data32 = ((uint32_t)Data << 4);    /* Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4> */
         LO1.Curr.Reg[0] &= LO1.INT_N_Mask; /* Clear old INT_N bits from Regist 0 */
         LO1.Curr.Reg[0] |= Data32;         /* Insert new INT_N bits into Register 0*/
@@ -326,12 +320,14 @@ void loop() {
             break;
         }
         if (SPI_WRITE_TO_LO) {
-          spi_write(spiWord, numBytesInSerialWord);
-          spi_write(LO1.Curr.Reg[0], numBytesInSerialWord);
-          Serial.print("Current register 0 = ");
-          Serial.println(LO1.Curr.Reg[0], HEX);
-          Serial.print("Current register 6 = ");
-          Serial.println(LO1.Curr.Reg[6], HEX);
+          digitalWrite(LO1_SEL, LOW);
+          SPI.beginTransaction(SPISettings(LO1.spiMaxSpeed, MSBFIRST, SPI_MODE0)); // ADF4356 chip
+          SPI.begin();
+          SPI.transfer(spiWord);
+          digitalWrite(LO1_SEL, HIGH);
+          digitalWrite(LO1_SEL, LOW);
+          SPI.transfer(LO1.Curr.Reg[0]);
+          digitalWrite(LO1_SEL, HIGH);
         }
         SPI_WRITE_TO_LO = true;  // Reset for next incoming serial command
         getLOstatus(LO1);
@@ -392,7 +388,7 @@ void loop() {
             break;
         }
         if (SPI_WRITE_TO_LO) {
-          spi_write(spiWord, numBytesInSerialWord);
+//          spi_write(spiWord, numBytesInSerialWord);
         }
         SPI_WRITE_TO_LO = true;  // Reset for next incoming serial command
         //        getLOstatus(*LO);
@@ -448,22 +444,15 @@ void loop() {
 
     } /* End switch(Address) */
 
+    // Restore LED functionality because it shares it's pin with SPI_CLOCK
+//    SPI.end();
+//    pinMode(LED_BUILTIN, OUTPUT);
+
     NEW_INSTRUCTION_RECEIVED = false;
 
   } /* End NEW_INSTRUCTION_RECEIVED */
 } /* End loop() */
 
-
-// Program the selected device using shiftOut()
-/* This will be replaced by SPI.transfer() for the Ver 3 board */
-void spi_write(uint32_t dataBuffer, uint8_t numBytes) {
-  Serial.println(dataBuffer, HEX);
-  Serial.println(spi_select);
-
-  digitalWrite(spi_select, LOW);
-  SPI.transfer(dataBuffer, numBytes);
-  digitalWrite(spi_select, HIGH);
-}
 
 
 // This function is for development testing. Remove at production

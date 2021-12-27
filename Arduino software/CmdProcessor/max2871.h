@@ -68,7 +68,6 @@ class MAX2871_LO {
     /* 'OR' Mux_Set_DLD with R2 to enable Digital Lock Detect. Affects bits <28:26> */
     const uint32_t Mux_Set_DLD = 0x18000000;
 
-  private:
     uint32_t spiMaxSpeed = 20000000;   // 20 MHz max SPI clock
 };
 

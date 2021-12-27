@@ -56,7 +56,6 @@ class ADF4356_LO {
     /* 'OR' Mux_Set_DLD with R4 to enable Digital Lock Detect. Affects bits <DB29:DB27> */
     const uint32_t Mux_Set_DLD = 0x30000000;
 
-  private:
     uint32_t spiMaxSpeed = 50000000;   // 50 MHz max SPI clock
 };
 
