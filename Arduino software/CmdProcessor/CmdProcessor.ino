@@ -65,7 +65,7 @@ bool NEW_INSTRUCTION_RECEIVED = false;
 
 /* Move this into a struct
    All the values required by the spi_write() command */
-uint8_t spi_select; // Selects the device to be written to
+uint8_t spi_select; // Used when choosing between LO2 or LO3 slave select pins
 uint32_t spiWord;   // Holds the register contents to be written to the selected device
 
 
@@ -79,17 +79,16 @@ const byte AddressBits = 0x07;  // Mask to select 3 bits of Address from serialW
 const byte CommandFlag = 0xFF;  // Byte pattern to identify a Control Word
 
 
-/*********** HARDWARE DEFINITIONS ***********/
-// Pin assignments, for Ver2 board, used for shiftOut() style communication
+/*********** ARDUINO PIN DEFINITIONS ***********/
 const int REF1_SEL    =  8;
 const int REF2_SEL    =  9;
 const int ATTEN_SEL   = A5;
 const int LO1_SEL     = A3;
 const int LO2_SEL     =  3;
 const int LO3_SEL     = A4;
-//const int SPI_MOSI    = 11;  // Set to write register values to the LO's or the Attenuator
-//const int SPI_MISO    = 12;  // Read values from an external A2D chip and Mux pin of LO's
-//const int SPI_CLOCK   = 13;  // Common SPI clock for LO's and Attenuator
+//const int SPI_MOSI    = 11;
+//const int SPI_MISO    = 12;
+//const int SPI_CLOCK   = 13;
 
 // When using the Arduino ADC's for testing
 // NOTE: On the Ver2 Spectrum Analyzer you will need a separate Arduino
@@ -125,7 +124,7 @@ MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
 // Decide if one of the LO's received a command to update a register
 bool SPI_WRITE_TO_LO;
 
-enum STATE{WAIT, SEND, RECEIVE, PROCESS} state = WAIT;  // Initial state == WAIT
+enum STATE {WAIT, SEND, RECEIVE, PROCESS} state = WAIT; // Initial state == WAIT
 
 byte buf_index = 0;
 uint32_t frac_div_F;
@@ -136,30 +135,30 @@ uint8_t* byteTmp = (byte*)&tmp;   // Tmp as a byte array
 uint16_t* intTmp = (int*)&tmp;    // Tmp as an int array
 
 
-
-
-
+/******** SETUP *********************************************************************/
 void setup() {
   Serial.setTimeout(200);
   Serial.begin(2000000);
 
-  pinMode(LED_BUILTIN, OUTPUT);
+  DDRD |= B00101000;  // Set pins 3 (LO2_SEL) and 5 as outputs
+  PORTD |= B00001000;    // Faster than digitalWrite(LO2_SEL, HIGH);
 
+  pinMode(LED_BUILTIN, OUTPUT);
   pinMode(REF1_SEL, OUTPUT);
   pinMode(REF2_SEL, OUTPUT);
   pinMode(ATTEN_SEL, OUTPUT);
   pinMode(LO1_SEL, OUTPUT);
-  pinMode(LO2_SEL, OUTPUT);
+//  pinMode(LO2_SEL, OUTPUT);
   pinMode(LO3_SEL, OUTPUT);
 
   digitalWrite(REF1_SEL, HIGH);
   digitalWrite(REF2_SEL, HIGH);
   digitalWrite(ATTEN_SEL, HIGH);
   digitalWrite(LO1_SEL, HIGH);
-  digitalWrite(LO2_SEL, HIGH);
+//  digitalWrite(LO2_SEL, HIGH);
   digitalWrite(LO3_SEL, HIGH);
 
-  digitalWrite(LED_BUILTIN, HIGH);
+  digitalWrite(LED_BUILTIN, LOW);
 
   SPI_WRITE_TO_LO = true;   // This goes false for commands that don't program a chip
   num_data_points = 0;      // Used when sending LO2 and LO3 ADC outputs  to  the  PC
@@ -170,15 +169,12 @@ void setup() {
 
 
 
-
-
+/******** MAIN LOOP ******************************************************************/
 void loop() {
 
   while (Serial.available())
   {
     Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);
-
-//    Serial.println(serialWord, HEX);
 
     // If a General LO Instruction or LO Data Packet is received, then...
     if (serialWordAsBytes[0] != CommandFlag)
@@ -188,6 +184,10 @@ void loop() {
         Serial.println("Received a frequency data packet");
         data_buf_as_word[buf_index] = serialWord; //serialWord = 32bit value from serialWordAsBytes
         buf_index++;
+        Serial.print("buf_index = ");
+        Serial.print(buf_index);
+        Serial.print("  Size of data buffer = ");
+        Serial.print(size_data_buf);
         if (buf_index > size_data_buf) {
           buf_index = 0;
           state = PROCESS;
@@ -201,7 +201,7 @@ void loop() {
       }
 
       // Here's where the 8 words get processed into F, M and N values then sent to
-      // LO2 and the associated A2D is read back.
+      // LO2 or LO3 and then associated A2D is read back.
       if (state == PROCESS)
       {
         for (buf_index = 0; buf_index < size_data_buf; buf_index++)
@@ -224,8 +224,8 @@ void loop() {
           LO->Curr.Reg[0] |= ((data_buf_as_word[buf_index] >> 17) & LO->F_mask);
 
           // Program the selected LO starting with the higher numbered registers first
-//          spi_write(LO->Curr.Reg[1], numBytesInSerialWord);
-//          spi_write(LO->Curr.Reg[0], numBytesInSerialWord);
+          //          spi_write(LO->Curr.Reg[1], numBytesInSerialWord);
+          //          spi_write(LO->Curr.Reg[0], numBytesInSerialWord);
 
           // Now we read the ADC and store it for later Serial.writing()
           data_buf_as_int[buf_index] = analogRead(adc_pin);  // Buffer now used for analog output
@@ -242,7 +242,7 @@ void loop() {
 
       // Send the ADC readings back to the PC
       if (state == SEND) {
-        for(buf_index = 0; buf_index < size_data_buf; buf_index++) {
+        for (buf_index = 0; buf_index < size_data_buf; buf_index++) {
           Serial.write(data_buf_as_int[buf_index]);
         }
         Serial.write(0xFF);
@@ -252,20 +252,20 @@ void loop() {
       }
     }
 
-    // If a Command Flag is found then parse the 32 bit word into
-    // Data, Command and Address
+    /******** COMMAND FLAG **************************************************************/
+    // If a Command Flag is found then parse the 32 bits into Data, Command and Address
     else
     {
       Data = (uint16_t)(serialWord >> 16);
       Command = (serialWordAsBytes[1] & CommandBits) >> 3;
       Address = serialWordAsBytes[1] & AddressBits;
       NEW_INSTRUCTION_RECEIVED = true;
-//      Serial.print("Serial command = ");
-//      Serial.println(serialWord, HEX);
     }
   }  // End While
 
 
+
+  /******** SPECTRUM ANALYZER INSTRUCTIONS **********************************************/
   /* Hardware selection and operations. This is where the processing of
      Specific commands occurs. */
   if (NEW_INSTRUCTION_RECEIVED) {
@@ -279,12 +279,14 @@ void loop() {
         SPI.begin();
         SPI.transfer(Data);
         digitalWrite(ATTEN_SEL, HIGH);
+        SPI.end();
         break;
 
       case LO1_addr:
         Data32 = ((uint32_t)Data << 4);    /* Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4> */
         LO1.Curr.Reg[0] &= LO1.INT_N_Mask; /* Clear old INT_N bits from Regist 0 */
         LO1.Curr.Reg[0] |= Data32;         /* Insert new INT_N bits into Register 0*/
+        Serial.println(LO1.Curr.Reg[0]);
         switch (Command) {
           case RF_off:
             LO1.Curr.Reg[6] = LO1.Curr.Reg[6] & LO1.RFpower_off;
@@ -324,10 +326,9 @@ void loop() {
           SPI.beginTransaction(SPISettings(LO1.spiMaxSpeed, MSBFIRST, SPI_MODE0)); // ADF4356 chip
           SPI.begin();
           SPI.transfer(spiWord);
-          digitalWrite(LO1_SEL, HIGH);
-          digitalWrite(LO1_SEL, LOW);
           SPI.transfer(LO1.Curr.Reg[0]);
           digitalWrite(LO1_SEL, HIGH);
+          SPI.end();
         }
         SPI_WRITE_TO_LO = true;  // Reset for next incoming serial command
         getLOstatus(LO1);
@@ -388,7 +389,15 @@ void loop() {
             break;
         }
         if (SPI_WRITE_TO_LO) {
-//          spi_write(spiWord, numBytesInSerialWord);
+          SPI.beginTransaction(SPISettings(LO->spiMaxSpeed, MSBFIRST, SPI_MODE0)); // ADF4356 chip
+          SPI.begin();
+          for (int i=5; i>=0; i--) {
+            PORTD &= B11110111;                   // Faster than digitalWrite(spi_select, LOW);
+            SPI.transfer(&(LO->Curr.Reg[i]), 4);
+            PORTD |= B00001000;                   // Faster than digitalWrite(spi_select, HIGH);
+            Serial.println(LO->Curr.Reg[i]);
+          }
+          SPI.end();
         }
         SPI_WRITE_TO_LO = true;  // Reset for next incoming serial command
         //        getLOstatus(*LO);
@@ -445,8 +454,8 @@ void loop() {
     } /* End switch(Address) */
 
     // Restore LED functionality because it shares it's pin with SPI_CLOCK
-//    SPI.end();
-//    pinMode(LED_BUILTIN, OUTPUT);
+    //    SPI.end();
+    //    pinMode(LED_BUILTIN, OUTPUT);
 
     NEW_INSTRUCTION_RECEIVED = false;
 
