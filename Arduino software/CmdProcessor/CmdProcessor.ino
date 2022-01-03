@@ -80,8 +80,8 @@ const byte CommandFlag = 0xFF;  // Byte pattern to identify a Control Word
 
 
 /*********** ARDUINO PIN DEFINITIONS ***********/
-const int REF1_SEL    =  8;
-const int REF2_SEL    =  9;
+const int REF060_SEL    =  8;
+const int REF100_SEL    =  9;
 const int ATTEN_SEL   = A5;
 const int LO1_SEL     = A3;
 const int LO2_SEL     =  3;
@@ -95,6 +95,7 @@ const int LO3_SEL     = A4;
 int adc_pin;    // Set this to match the currently selected LO2 or LO3
 const int LO2_ADC_sel = A0;
 const int LO3_ADC_sel = A1;
+const int PLL_MUX     = A2;
 
 // Addresses for selecting the various hardware ICs
 const int Attenuator = 0;
@@ -141,24 +142,27 @@ void setup() {
   Serial.begin(2000000);
 
   DDRD |= B00101000;  // Set pins 3 (LO2_SEL) and 5 as outputs
-  PORTD |= B00001000;    // Faster than digitalWrite(LO2_SEL, HIGH);
+  PORTD |= B00001000;    // Faster digitalWrite();
 
   pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(REF1_SEL, OUTPUT);
-  pinMode(REF2_SEL, OUTPUT);
+  pinMode(REF060_SEL, OUTPUT);
+  pinMode(REF100_SEL, OUTPUT);
   pinMode(ATTEN_SEL, OUTPUT);
   pinMode(LO1_SEL, OUTPUT);
 //  pinMode(LO2_SEL, OUTPUT);
   pinMode(LO3_SEL, OUTPUT);
-
-  digitalWrite(REF1_SEL, HIGH);
-  digitalWrite(REF2_SEL, HIGH);
+  pinMode(PLL_MUX, INPUT);
+  
+  digitalWrite(REF060_SEL, HIGH);
+  digitalWrite(REF100_SEL, HIGH);
   digitalWrite(ATTEN_SEL, HIGH);
   digitalWrite(LO1_SEL, HIGH);
 //  digitalWrite(LO2_SEL, HIGH);
   digitalWrite(LO3_SEL, HIGH);
 
   digitalWrite(LED_BUILTIN, LOW);
+  digitalWrite(REF060_SEL, HIGH);  //Enable 60MHz
+  digitalWrite(REF100_SEL, LOW);   //Disable 100MHz
 
   SPI_WRITE_TO_LO = true;   // This goes false for commands that don't program a chip
   num_data_points = 0;      // Used when sending LO2 and LO3 ADC outputs  to  the  PC
@@ -167,15 +171,26 @@ void setup() {
 
 
 
-
+uint8_t numBytes;
 
 /******** MAIN LOOP ******************************************************************/
+
+uint8_t* Rbyte;
+
 void loop() {
 
   while (Serial.available())
   {
-    Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);
+    // Blocks until numBytesInSerialWord, 4 bytes, have been read.
+    numBytes = Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);
 
+    if (numBytes > 3) {
+      Serial.print("Bytes in serial buffer = ");
+      Serial.println(numBytes);
+    }
+    else
+      Serial.println("numBytes is less than 4");
+    
     // If a General LO Instruction or LO Data Packet is received, then...
     if (serialWordAsBytes[0] != CommandFlag)
     {
@@ -392,10 +407,23 @@ void loop() {
           SPI.beginTransaction(SPISettings(LO->spiMaxSpeed, MSBFIRST, SPI_MODE0)); // ADF4356 chip
           SPI.begin();
           for (int i=5; i>=0; i--) {
-            PORTD &= B11110111;                   // Faster than digitalWrite(spi_select, LOW);
-            SPI.transfer(&(LO->Curr.Reg[i]), 4);
-            PORTD |= B00001000;                   // Faster than digitalWrite(spi_select, HIGH);
-            Serial.println(LO->Curr.Reg[i]);
+            Rbyte = (byte*)&LO->Curr.Reg[i];      // Accessing the register as 4 separate bytes
+            PORTD &= B11110111;                   // Faster digitalWrite();
+            SPI.transfer(Rbyte[3]);
+            SPI.transfer(Rbyte[2]);
+            SPI.transfer(Rbyte[1]);
+            SPI.transfer(Rbyte[0]);
+            PORTD |= B00001000;                   // Faster digitalWrite();
+          }
+          delay(20);
+          for (int i=5; i>=0; i--) {
+            Rbyte = (byte*)&LO->Curr.Reg[i];      // Accessing the register as 4 separate bytes
+            PORTD &= B11110111;                   // Faster digitalWrite();
+            SPI.transfer(Rbyte[3]);
+            SPI.transfer(Rbyte[2]);
+            SPI.transfer(Rbyte[1]);
+            SPI.transfer(Rbyte[0]);
+            PORTD |= B00001000;                   // Faster digitalWrite();
           }
           SPI.end();
         }
@@ -408,20 +436,20 @@ void loop() {
           // Turn 60 MHz ref_clock on and 100 MHz ref_clock off
           case ref_60:
             Serial.println("Enabled 60 MHz ref_clock");
-            digitalWrite(REF2_SEL, LOW);
-            digitalWrite(REF1_SEL, HIGH);
+            digitalWrite(REF060_SEL, HIGH);
+            digitalWrite(REF100_SEL, LOW);
             break;
           // Turn 100 MHz ref_clock on and 60 MHz ref_clock off
           case ref_100:
             Serial.println("Enabled 100 MHz ref_clock");
-            digitalWrite(REF1_SEL, LOW);
-            digitalWrite(REF2_SEL, HIGH);
+            digitalWrite(REF060_SEL, LOW);
+            digitalWrite(REF100_SEL, HIGH);
             break;
           // Turn both ref_clocks off
           default:
             Serial.println("Disabled both ref_clocks");
-            digitalWrite(REF1_SEL, LOW);
-            digitalWrite(REF2_SEL, LOW);
+            digitalWrite(REF060_SEL, LOW);
+            digitalWrite(REF100_SEL, LOW);
             break;
         }
         break;
