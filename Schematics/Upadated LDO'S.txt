@@ -1,6 +1,0 @@
-Delete: "Schematic 8" and its components. This deletes the LM317 regulators.
-
-Add: "Schematic 10" (SA_Schematic_10.pdf) and its components on SA_BOM_3.ods
-Also add AZ7111E.pdf Datasheet
-
-These LDO's can all be incorporated for Local Regulation on the RF Assy, are very inexpensive, and will reduce the supply ripple by >80dB with a proper layout . The SPS Regulators (also from Diodes Inc) should be placed on a separate PCB to supply the LDO's (we had discussed this). And for EMI reasons the SPS Regulators need to be in a shielding can.

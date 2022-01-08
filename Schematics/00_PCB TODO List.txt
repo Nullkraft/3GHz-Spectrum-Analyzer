@@ -1,7 +1,0 @@
--->  Hybridize the reference oscillator footprints
-
--->  Make consistent clearance around each style of trace
-
--->  Tighten up solder mask around package pins
-
--->  
