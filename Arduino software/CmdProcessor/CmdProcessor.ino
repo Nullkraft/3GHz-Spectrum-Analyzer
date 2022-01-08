@@ -22,6 +22,7 @@
 
 /************* PREMPTIVE STRIKE for Ver3 board *************/
 #include <SPI.h>
+#include <avr/interrupt.h>
 
 /* TODO: Lookup SPI speeds for the various chips */
 SPISettings atten_SPI_Config(SPISettings(14000000, MSBFIRST, SPI_MODE0));
@@ -65,12 +66,12 @@ bool NEW_INSTRUCTION_RECEIVED = false;
 
 /* Move this into a struct
    All the values required by the spi_write() command */
-uint8_t spi_select; // Used when choosing between LO2 or LO3 slave select pins
+uint8_t spi_select; // Copy of *_SEL pin for the chip you want to program
 uint32_t spiWord;   // Holds the register contents to be written to the selected device
 
 
 /*** Parsed values from the incoming 32 bit serial word ***/
-uint16_t Data;    // 16 bits
+uint16_t Data16;    // 16 bits
 uint32_t Data32;  // Needed for bit shifting and masking with LO registers
 byte Command;
 const byte CommandBits = 0xF8;  // Mask to select 5 bits of Command from serialWord[1]
@@ -80,22 +81,21 @@ const byte CommandFlag = 0xFF;  // Byte pattern to identify a Control Word
 
 
 /*********** ARDUINO PIN DEFINITIONS ***********/
-const int REF060_SEL    =  8;
-const int REF100_SEL    =  9;
-const int ATTEN_SEL   = A5;
 const int LO1_SEL     = A3;
 const int LO2_SEL     =  3;
 const int LO3_SEL     = A4;
-//const int SPI_MOSI    = 11;
-//const int SPI_MISO    = 12;
-//const int SPI_CLOCK   = 13;
+const int REF060_SEL  =  8;
+const int REF100_SEL  =  9;
+const int ADC_SEL_315 = A0;   // ADC for LO2
+const int ADC_SEL_045 = A1;   // ADC for LO3
+const int PLL_MUX     = A2;   // Equals physical pin 16 on Port C (use PCMSK1)
+const int ATTEN_SEL   = A5;
+//const int SPI_MOSI  = 11;   // These 3 pins are controlled by the SPI Library
+//const int SPI_MISO  = 12;
+//const int SPI_CLOCK = 13;
 
-// When using the Arduino ADC's for testing
-// NOTE: On the Ver2 Spectrum Analyzer you will need a separate Arduino
-int adc_pin;    // Set this to match the currently selected LO2 or LO3
-const int LO2_ADC_sel = A0;
-const int LO3_ADC_sel = A1;
-const int PLL_MUX     = A2;
+int adc_pin;    // Set this to either ADC_SEL_### to read the ADC for LO2 or LO3
+
 
 // Addresses for selecting the various hardware ICs
 const int Attenuator = 0;
@@ -109,6 +109,8 @@ const int LED        = 7;
 
 // BitMask for programming the registers of the Attenuator IC
 const uint16_t ATTEN_Data_Mask = 0x7F;  // 7 bits of Embedded Data
+
+const uint8_t pauseMillis = 20;
 
 
 
@@ -131,33 +133,35 @@ byte buf_index = 0;
 uint32_t frac_div_F;
 uint32_t frac_mod_M;
 uint32_t counter_N;
-uint32_t tmp;
-uint8_t* byteTmp = (byte*)&tmp;   // Tmp as a byte array
-uint16_t* intTmp = (int*)&tmp;    // Tmp as an int array
+uint32_t z;
+uint8_t* byteZ = (byte*)&z;   // Tmp as a byte array
+uint16_t* intZ = (int*)&z;    // Tmp as an int array
+
+char* nameLO = "aaa";
 
 
 /******** SETUP *********************************************************************/
 void setup() {
+  PCICR |= 0b00000010;    // turn on port C pin-change interrupt(s)
+  PCMSK1 |= 0b00000100;   // PCINT10
+  
   Serial.setTimeout(200);
-  Serial.begin(2000000);
-
-  DDRD |= B00101000;  // Set pins 3 (LO2_SEL) and 5 as outputs
-  PORTD |= B00001000;    // Faster digitalWrite();
+  Serial.begin(1000000);
 
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(REF060_SEL, OUTPUT);
   pinMode(REF100_SEL, OUTPUT);
   pinMode(ATTEN_SEL, OUTPUT);
   pinMode(LO1_SEL, OUTPUT);
-//  pinMode(LO2_SEL, OUTPUT);
+  pinMode(LO2_SEL, OUTPUT);
   pinMode(LO3_SEL, OUTPUT);
   pinMode(PLL_MUX, INPUT);
-  
+
   digitalWrite(REF060_SEL, HIGH);
   digitalWrite(REF100_SEL, HIGH);
   digitalWrite(ATTEN_SEL, HIGH);
   digitalWrite(LO1_SEL, HIGH);
-//  digitalWrite(LO2_SEL, HIGH);
+  digitalWrite(LO2_SEL, HIGH);
   digitalWrite(LO3_SEL, HIGH);
 
   digitalWrite(LED_BUILTIN, LOW);
@@ -167,6 +171,24 @@ void setup() {
   SPI_WRITE_TO_LO = true;   // This goes false for commands that don't program a chip
   num_data_points = 0;      // Used when sending LO2 and LO3 ADC outputs  to  the  PC
   num_points_processed = 0;
+
+  // Initialize IC's on Spectrum Analyzer
+//  spiWriteAtten(0x7F, ATTEN_SEL);   // Maximum attenuation
+
+  /* Initialize IC's LO1, LO2 and LO3 by programming them twice IAW manufacturer's documentation */
+  nameLO = "LO1";
+  loadLO1(LO1_SEL);
+  nameLO = "LO2";
+  loadLO2(LO2_SEL, true);
+  nameLO = "LO3";
+  loadLO3(LO3_SEL, true);
+  delay(pauseMillis);
+  nameLO = "LO1";
+  loadLO1(LO1_SEL);
+  nameLO = "LO2";
+  loadLO2(LO2_SEL, false);
+  nameLO = "LO3";
+  loadLO3(LO3_SEL, false);
 }
 
 
@@ -181,16 +203,9 @@ void loop() {
 
   while (Serial.available())
   {
-    // Blocks until numBytesInSerialWord, 4 bytes, have been read.
-    numBytes = Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);
+    // Blocks until 4 bytes (numBytesInSerialWord) have been received
+    Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);
 
-    if (numBytes > 3) {
-      Serial.print("Bytes in serial buffer = ");
-      Serial.println(numBytes);
-    }
-    else
-      Serial.println("numBytes is less than 4");
-    
     // If a General LO Instruction or LO Data Packet is received, then...
     if (serialWordAsBytes[0] != CommandFlag)
     {
@@ -271,7 +286,7 @@ void loop() {
     // If a Command Flag is found then parse the 32 bits into Data, Command and Address
     else
     {
-      Data = (uint16_t)(serialWord >> 16);
+      Data16 = (uint16_t)(serialWord >> 16);
       Command = (serialWordAsBytes[1] & CommandBits) >> 3;
       Address = serialWordAsBytes[1] & AddressBits;
       NEW_INSTRUCTION_RECEIVED = true;
@@ -288,17 +303,12 @@ void loop() {
        each device you can select the operation that you want to perform. */
     switch (Address) {
       case Attenuator:
-        Data &= ATTEN_Data_Mask;
-        digitalWrite(ATTEN_SEL, LOW);
-        SPI.beginTransaction(SPISettings(10000000, LSBFIRST, SPI_MODE0)); // PE43711 chip
-        SPI.begin();
-        SPI.transfer(Data);
-        digitalWrite(ATTEN_SEL, HIGH);
-        SPI.end();
+        Data16 &= ATTEN_Data_Mask;
+        spiWriteAtten((uint8_t)Data16, ATTEN_SEL);
         break;
 
       case LO1_addr:
-        Data32 = ((uint32_t)Data << 4);    /* Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4> */
+        Data32 = ((uint32_t)Data16 << 4);  /* Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4> */
         LO1.Curr.Reg[0] &= LO1.INT_N_Mask; /* Clear old INT_N bits from Regist 0 */
         LO1.Curr.Reg[0] |= Data32;         /* Insert new INT_N bits into Register 0*/
         Serial.println(LO1.Curr.Reg[0]);
@@ -336,6 +346,7 @@ void loop() {
             SPI_WRITE_TO_LO = false;  // Do not write to SPI. No commands were received
             break;
         }
+        // *** PROGRAMMING LO1 ****************************
         if (SPI_WRITE_TO_LO) {
           digitalWrite(LO1_SEL, LOW);
           SPI.beginTransaction(SPISettings(LO1.spiMaxSpeed, MSBFIRST, SPI_MODE0)); // ADF4356 chip
@@ -353,17 +364,17 @@ void loop() {
         /* Making LO2 active */
         LO = &LO2;
         spi_select = LO2_SEL;
-        adc_pin = LO2_ADC_sel;  // Selects the ADC associated with LO2 output
-        // Now fall through
+        adc_pin = ADC_SEL_315;  // Selects the ADC associated with LO2 output
+      // Now fall through
       case LO3_addr:
         /* Making LO3 active */
         if (Address == LO3_addr) {
           LO = &LO3;
           spi_select = LO3_SEL;
-          adc_pin = LO3_ADC_sel;  // Selects the ADC associated with LO3 output
+          adc_pin = ADC_SEL_045;  // Selects the ADC associated with LO3 output
         }
         // Set the remainder of the SPI pins
-        num_data_points = Data;    // Number of frequency points to be read
+        num_data_points = Data16;    // Number of frequency points to be read
         if (num_data_points > 0) {
           state = RECEIVE;           // Time to start sweeping frequencies
         }
@@ -403,10 +414,11 @@ void loop() {
             SPI_WRITE_TO_LO = false;  // Do not write to SPI. No commands were received
             break;
         }
+        // *** PROGRAMMING LO2 or LO3 ****************************
         if (SPI_WRITE_TO_LO) {
           SPI.beginTransaction(SPISettings(LO->spiMaxSpeed, MSBFIRST, SPI_MODE0)); // ADF4356 chip
           SPI.begin();
-          for (int i=5; i>=0; i--) {
+          for (int i = 5; i >= 0; i--) {
             Rbyte = (byte*)&LO->Curr.Reg[i];      // Accessing the register as 4 separate bytes
             PORTD &= B11110111;                   // Faster digitalWrite();
             SPI.transfer(Rbyte[3]);
@@ -416,7 +428,7 @@ void loop() {
             PORTD |= B00001000;                   // Faster digitalWrite();
           }
           delay(20);
-          for (int i=5; i>=0; i--) {
+          for (int i = 5; i >= 0; i--) {
             Rbyte = (byte*)&LO->Curr.Reg[i];      // Accessing the register as 4 separate bytes
             PORTD &= B11110111;                   // Faster digitalWrite();
             SPI.transfer(Rbyte[3]);
@@ -489,6 +501,117 @@ void loop() {
 
   } /* End NEW_INSTRUCTION_RECEIVED */
 } /* End loop() */
+
+
+
+
+
+void loadLO1(uint8_t selectPin) {
+  for (int x = 13; x >= 0; x--) {
+    z = LO1.Curr.Reg[x];
+    spiWriteLO(z, selectPin);               // Program LO1=37Byte33[x]76.52 MHz with LD on Mux
+  }
+  delay(2);                                 // Short delay before reading Register 6
+  MuxTest("LO1");                           // Now read the Mux Pin
+  spiWriteLO(LO1.Curr.Reg[14], selectPin);  // Tri-stating the mux output disables LO1 lock detect
+}
+
+
+/* IAW Manufacturer's PDF document "MAX2871 - 23.5MHz to 6000MHz Fractional/Integer-N Synthesizer/VCO"
+ * pg. 13 4-Wire Serial Interface during initialization there should be a 20mS delay after programming
+ * register 5.                                                  Document Version: 19-7106; Rev 4; 6/20
+ */
+void loadLO2(uint8_t selectPin, bool initialize) {
+  spiWriteLO(LO2.Curr.Reg[5], selectPin);   // First we program LO2 Register 5
+  if (initialize) { delay(20); }            // And only if it's our first time must we wait 20 mSec
+  for (int x = 4; x >= 0; x--) {
+    z = LO2.Curr.Reg[x];                    // Program remaining registers where LO2=3915 MHz
+    spiWriteLO(z, selectPin);               // and Lock Detect is enabled on the Mux pin
+  }
+  delay(2);                                 // Short delay before reading Register 6
+  MuxTest("LO2");                           // Check if LO2 is locked by reading the Mux pin
+  spiWriteLO(LO2.Curr.Reg[6], selectPin);   // Tri-stating the mux output disables LO2 lock detect
+}
+
+
+/* IAW Manufacturer's PDF document "MAX2871 - 23.5MHz to 6000MHz Fractional/Integer-N Synthesizer/VCO"
+ * pg. 13 4-Wire Serial Interface during initialization there should be a 20mS delay after programming
+ * register 5.                                                  Document Version: 19-7106; Rev 4; 6/20
+ */
+void loadLO3(uint8_t selectPin, bool initialize) {
+  spiWriteLO(LO3.Curr.Reg[5], selectPin);   // First we program LO3 Register 5
+  if (initialize) { delay(20); }            // And only if it's our first time must we wait 20 mSec
+  for (int x = 4; x >= 0; x--) {
+    z = LO3.Curr.Reg[x];                    // Program remaining registers where LO3=270 MHz
+    spiWriteLO(LO3.Curr.Reg[x], selectPin); // and Lock Detect is enabled on the Mux pin
+  }
+  delay(2);                                 // Short delay before reading Register 6
+  MuxTest("LO3");                           // Check if LO3 is locked by reading the Mux pin
+  spiWriteLO(LO3.Curr.Reg[6], selectPin);   // Tri-stating the mux output disables LO3 lock detect
+}
+
+// Port C, PCINT8 - PCINT14 - I think I want PCINT10 for pin AN2
+ISR(PCINT1_vect) {
+  Serial.print(nameLO);
+  Serial.println(" det");
+}
+
+
+
+void spiWriteAtten(uint8_t level, uint8_t selectPin) {  //Send out 1 byte then Latch
+//  Serial.println(ByteA, HEX);
+  SPI.beginTransaction(SPISettings(16000000, LSBFIRST, SPI_MODE0));
+  SPI.begin();
+  digitalWrite(selectPin, LOW);
+  SPI.transfer(level);
+  digitalWrite(selectPin, HIGH);
+  SPI.end();
+}
+
+
+// Program the selected LO (LO1, LO2 or LO3)
+void spiWriteLO(uint32_t reg, uint8_t selectPin) {
+  SPI.beginTransaction(SPISettings(20000000, MSBFIRST, SPI_MODE0));
+  SPI.begin();
+  digitalWrite(selectPin, LOW);
+  SPI.transfer(reg >> 24);
+  SPI.transfer(reg >> 16);
+  SPI.transfer(reg >> 8);
+  SPI.transfer(reg);
+  digitalWrite(selectPin, HIGH);
+  SPI.end();
+}
+
+
+// When the mux pin is configured for Digital Lock Detect output
+// we can read the status of the pin from here.
+void MuxTest(String chipName) {
+  if (digitalRead(PLL_MUX)) {
+    Serial.print(chipName);
+    Serial.println(" LOCK   ");
+  }
+  else {
+    Serial.print(chipName);
+    Serial.println(" UNLOCK   ");
+  }
+}
+
+
+// When the mux pin is configured for Digital Lock Detect output
+// we can read the status of the pin from here.
+//void MuxTest(String chipName) {
+//  if (digitalRead(PLL_MUX)) {
+//    Serial.print(chipName);
+//    Serial.println(" LOCK   ");
+//  }
+//  else {
+//    Serial.print(chipName);
+//    Serial.println(" UNLOCK   ");
+//  }
+//}
+//
+
+
 
 
 
