@@ -24,7 +24,9 @@ typedef struct {
 class ADF4356_LO {
   public:
     void begin(float initial_frequency);
-    adf4356registers Curr;
+
+    const adf4356registers Default;   // Default read-only copy of the registers
+    adf4356registers Curr;            // Current modifiable copy of the registers
 
     /* 16 bit Mask of Embedded Data from serial Specific Command */
     const uint32_t Data_Mask = 0x300000;

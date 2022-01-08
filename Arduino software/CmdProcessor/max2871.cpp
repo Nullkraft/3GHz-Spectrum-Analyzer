@@ -1,10 +1,8 @@
 #include "max2871.h"
 
-/* Move everything from here on down into the MAX2871_registers.cpp file */
-// Constructor
+
 void MAX2871_LO::begin(float freq) {
     freq += 1.0;
-
 /* Based on the settings of the default register values the LO will be intitialized with:
   - Frequency is set to 
   - The Mux is set to tristated output (Digital Lock Detect is off)

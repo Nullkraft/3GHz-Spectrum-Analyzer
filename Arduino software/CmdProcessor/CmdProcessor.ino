@@ -20,15 +20,8 @@
        or LO3 Specific Command.
 */
 
-/************* PREMPTIVE STRIKE for Ver3 board *************/
 #include <SPI.h>
 #include <avr/interrupt.h>
-
-/* TODO: Lookup SPI speeds for the various chips */
-SPISettings atten_SPI_Config(SPISettings(14000000, MSBFIRST, SPI_MODE0));
-SPISettings LO_SPI_Config(SPISettings(20000000, MSBFIRST, SPI_MODE0));
-
-/************* END PREMPTIVE STRIKE for Ver3 board *************/
 
 #include "max2871.h"
 #include "adf4356.h"
@@ -123,10 +116,6 @@ MAX2871_LO LO2 = MAX2871_LO();
 MAX2871_LO LO3 = MAX2871_LO();
 MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
 
-
-// Decide if one of the LO's received a command to update a register
-bool SPI_WRITE_TO_LO;
-
 enum STATE {WAIT, SEND, RECEIVE, PROCESS} state = WAIT; // Initial state == WAIT
 
 byte buf_index = 0;
@@ -142,53 +131,52 @@ char* nameLO = "aaa";
 
 /******** SETUP *********************************************************************/
 void setup() {
+  // MUX pin interrupt
   PCICR |= 0b00000010;    // turn on port C pin-change interrupt(s)
   PCMSK1 |= 0b00000100;   // PCINT10
-  
+
   Serial.setTimeout(200);
-  Serial.begin(1000000);
+  Serial.begin(2000000);
 
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(REF060_SEL, OUTPUT);
   pinMode(REF100_SEL, OUTPUT);
-  pinMode(ATTEN_SEL, OUTPUT);
   pinMode(LO1_SEL, OUTPUT);
   pinMode(LO2_SEL, OUTPUT);
   pinMode(LO3_SEL, OUTPUT);
   pinMode(PLL_MUX, INPUT);
+  pinMode(ATTEN_SEL, OUTPUT);
 
-  digitalWrite(REF060_SEL, HIGH);
-  digitalWrite(REF100_SEL, HIGH);
-  digitalWrite(ATTEN_SEL, HIGH);
-  digitalWrite(LO1_SEL, HIGH);
-  digitalWrite(LO2_SEL, HIGH);
-  digitalWrite(LO3_SEL, HIGH);
-
-  digitalWrite(LED_BUILTIN, LOW);
   digitalWrite(REF060_SEL, HIGH);  //Enable 60MHz
   digitalWrite(REF100_SEL, LOW);   //Disable 100MHz
 
-  SPI_WRITE_TO_LO = true;   // This goes false for commands that don't program a chip
+//  digitalWrite(LED_BUILTIN, LOW);
+
   num_data_points = 0;      // Used when sending LO2 and LO3 ADC outputs  to  the  PC
   num_points_processed = 0;
 
-  // Initialize IC's on Spectrum Analyzer
-//  spiWriteAtten(0x7F, ATTEN_SEL);   // Maximum attenuation
+  // Initialize Hardware IC's on Spectrum Analyzer
+  spiWriteAtten(0x7F, ATTEN_SEL);   // Maximum attenuation
 
-  /* Initialize IC's LO1, LO2 and LO3 by programming them twice IAW manufacturer's documentation */
-  nameLO = "LO1";
-  loadLO1(LO1_SEL);
-  nameLO = "LO2";
-  loadLO2(LO2_SEL, true);
+ /* Starting with one of the MAX2871 chips makes initializing LO1 much more consistent.  Why?
+  *  
+  *  TODO: Investigate LO1 locking anomaly
+  *  
+  *  Initialize IC's LO1, LO2 and LO3 by programming them twice IAW manufacturer's documentation
+  */
   nameLO = "LO3";
   loadLO3(LO3_SEL, true);
-  delay(pauseMillis);
+  nameLO = "LO2";
+  loadLO2(LO2_SEL, true);
   nameLO = "LO1";
   loadLO1(LO1_SEL);
-  nameLO = "LO2";
-  loadLO2(LO2_SEL, false);
+  delay(pauseMillis);
   nameLO = "LO3";
   loadLO3(LO3_SEL, false);
+  nameLO = "LO2";
+  loadLO2(LO2_SEL, false);
+  nameLO = "LO1";
+  loadLO1(LO1_SEL);
 }
 
 
@@ -308,6 +296,7 @@ void loop() {
         break;
 
       case LO1_addr:
+        nameLO = "LO1";
         Data32 = ((uint32_t)Data16 << 4);  /* Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4> */
         LO1.Curr.Reg[0] &= LO1.INT_N_Mask; /* Clear old INT_N bits from Regist 0 */
         LO1.Curr.Reg[0] |= Data32;         /* Insert new INT_N bits into Register 0*/
@@ -339,29 +328,18 @@ void loop() {
             spiWord = LO1.Curr.Reg[4];
             break;
           case Mux_DLD:
-            LO1.Curr.Reg[4] = LO1.Curr.Reg[4] | LO1.Mux_Set_DLD;  // Set MuxOut to Dig. Lock Det.
+            LO1.Curr.Reg[4] = LO1.Curr.Reg[4] | LO1.Mux_Set_DLD;    // Set MuxOut to Dig. Lock Det.
             spiWord = LO1.Curr.Reg[4];
             break;
           default:
-            SPI_WRITE_TO_LO = false;  // Do not write to SPI. No commands were received
             break;
         }
-        // *** PROGRAMMING LO1 ****************************
-        if (SPI_WRITE_TO_LO) {
-          digitalWrite(LO1_SEL, LOW);
-          SPI.beginTransaction(SPISettings(LO1.spiMaxSpeed, MSBFIRST, SPI_MODE0)); // ADF4356 chip
-          SPI.begin();
-          SPI.transfer(spiWord);
-          SPI.transfer(LO1.Curr.Reg[0]);
-          digitalWrite(LO1_SEL, HIGH);
-          SPI.end();
-        }
-        SPI_WRITE_TO_LO = true;  // Reset for next incoming serial command
         getLOstatus(LO1);
         break;
 
       case LO2_addr:
         /* Making LO2 active */
+        nameLO = "LO2";
         LO = &LO2;
         spi_select = LO2_SEL;
         adc_pin = ADC_SEL_315;  // Selects the ADC associated with LO2 output
@@ -369,6 +347,7 @@ void loop() {
       case LO3_addr:
         /* Making LO3 active */
         if (Address == LO3_addr) {
+          nameLO = "LO3";
           LO = &LO3;
           spi_select = LO3_SEL;
           adc_pin = ADC_SEL_045;  // Selects the ADC associated with LO3 output
@@ -411,35 +390,8 @@ void loop() {
             spiWord = LO->Curr.Reg[2];
             break;
           default:
-            SPI_WRITE_TO_LO = false;  // Do not write to SPI. No commands were received
             break;
         }
-        // *** PROGRAMMING LO2 or LO3 ****************************
-        if (SPI_WRITE_TO_LO) {
-          SPI.beginTransaction(SPISettings(LO->spiMaxSpeed, MSBFIRST, SPI_MODE0)); // ADF4356 chip
-          SPI.begin();
-          for (int i = 5; i >= 0; i--) {
-            Rbyte = (byte*)&LO->Curr.Reg[i];      // Accessing the register as 4 separate bytes
-            PORTD &= B11110111;                   // Faster digitalWrite();
-            SPI.transfer(Rbyte[3]);
-            SPI.transfer(Rbyte[2]);
-            SPI.transfer(Rbyte[1]);
-            SPI.transfer(Rbyte[0]);
-            PORTD |= B00001000;                   // Faster digitalWrite();
-          }
-          delay(20);
-          for (int i = 5; i >= 0; i--) {
-            Rbyte = (byte*)&LO->Curr.Reg[i];      // Accessing the register as 4 separate bytes
-            PORTD &= B11110111;                   // Faster digitalWrite();
-            SPI.transfer(Rbyte[3]);
-            SPI.transfer(Rbyte[2]);
-            SPI.transfer(Rbyte[1]);
-            SPI.transfer(Rbyte[0]);
-            PORTD |= B00001000;                   // Faster digitalWrite();
-          }
-          SPI.end();
-        }
-        SPI_WRITE_TO_LO = true;  // Reset for next incoming serial command
         //        getLOstatus(*LO);
         break;
 
@@ -506,14 +458,21 @@ void loop() {
 
 
 
+// MUX Interrupt for tracking the LO1, LO2, and LO3 lock pins
+ISR(PCINT1_vect) {
+  Serial.print(nameLO);
+  Serial.println(" det");
+}
+
+
 void loadLO1(uint8_t selectPin) {
   for (int x = 13; x >= 0; x--) {
     z = LO1.Curr.Reg[x];
-    spiWriteLO(z, selectPin);               // Program LO1=37Byte33[x]76.52 MHz with LD on Mux
+    spiWriteLO(z, selectPin);                 // Program LO1=37Byte33[x]76.52 MHz with LD on Mux
   }
-  delay(2);                                 // Short delay before reading Register 6
-  MuxTest("LO1");                           // Now read the Mux Pin
-  spiWriteLO(LO1.Curr.Reg[14], selectPin);  // Tri-stating the mux output disables LO1 lock detect
+  delay(2);                                   // Short delay before reading Register 6
+  MuxTest("LO1");                             // Now read and report the Mux Pin status
+  spiWriteLO(LO1.Curr.Reg[14], selectPin);    // Tri-stating the mux output disables LO1 lock detect
 }
 
 
@@ -522,15 +481,15 @@ void loadLO1(uint8_t selectPin) {
  * register 5.                                                  Document Version: 19-7106; Rev 4; 6/20
  */
 void loadLO2(uint8_t selectPin, bool initialize) {
-  spiWriteLO(LO2.Curr.Reg[5], selectPin);   // First we program LO2 Register 5
-  if (initialize) { delay(20); }            // And only if it's our first time must we wait 20 mSec
+  spiWriteLO(LO2.Curr.Reg[5], selectPin);    // First we program LO2 Register 5
+  if (initialize) { delay(20); }              // And only if it's our first time must we wait 20 mSec
   for (int x = 4; x >= 0; x--) {
-    z = LO2.Curr.Reg[x];                    // Program remaining registers where LO2=3915 MHz
-    spiWriteLO(z, selectPin);               // and Lock Detect is enabled on the Mux pin
+    z = LO2.Curr.Reg[x];                     // Program remaining registers where LO2=3915 MHz
+    spiWriteLO(z, selectPin);                 // and Lock Detect is enabled on the Mux pin
   }
-  delay(2);                                 // Short delay before reading Register 6
-  MuxTest("LO2");                           // Check if LO2 is locked by reading the Mux pin
-  spiWriteLO(LO2.Curr.Reg[6], selectPin);   // Tri-stating the mux output disables LO2 lock detect
+  delay(1);                                   // Short delay before reading Register 6
+  MuxTest("LO2");                             // Check if LO2 is locked by reading the Mux pin
+  spiWriteLO(LO2.Curr.Reg[6], selectPin);    // Tri-stating the mux output disables LO2 lock detect
 }
 
 
@@ -539,27 +498,20 @@ void loadLO2(uint8_t selectPin, bool initialize) {
  * register 5.                                                  Document Version: 19-7106; Rev 4; 6/20
  */
 void loadLO3(uint8_t selectPin, bool initialize) {
-  spiWriteLO(LO3.Curr.Reg[5], selectPin);   // First we program LO3 Register 5
-  if (initialize) { delay(20); }            // And only if it's our first time must we wait 20 mSec
+  spiWriteLO(LO3.Curr.Reg[5], selectPin);    // First we program LO3 Register 5
+  if (initialize) { delay(20); }              // And only if it's our first time must we wait 20 mSec
   for (int x = 4; x >= 0; x--) {
-    z = LO3.Curr.Reg[x];                    // Program remaining registers where LO3=270 MHz
-    spiWriteLO(LO3.Curr.Reg[x], selectPin); // and Lock Detect is enabled on the Mux pin
+    z = LO3.Curr.Reg[x];                     // Program remaining registers where LO3=270 MHz
+    spiWriteLO(LO3.Curr.Reg[x], selectPin);  // and Lock Detect is enabled on the Mux pin
   }
-  delay(2);                                 // Short delay before reading Register 6
-  MuxTest("LO3");                           // Check if LO3 is locked by reading the Mux pin
-  spiWriteLO(LO3.Curr.Reg[6], selectPin);   // Tri-stating the mux output disables LO3 lock detect
-}
-
-// Port C, PCINT8 - PCINT14 - I think I want PCINT10 for pin AN2
-ISR(PCINT1_vect) {
-  Serial.print(nameLO);
-  Serial.println(" det");
+  delay(1);                                   // Short delay before reading Register 6
+  MuxTest("LO3");                             // Check if LO3 is locked by reading the Mux pin
+  spiWriteLO(LO3.Curr.Reg[6], selectPin);    // Tri-stating the mux output disables LO3 lock detect
 }
 
 
-
-void spiWriteAtten(uint8_t level, uint8_t selectPin) {  //Send out 1 byte then Latch
-//  Serial.println(ByteA, HEX);
+// Program the Digital Attenuator by sending and latching a single byte
+void spiWriteAtten(uint8_t level, uint8_t selectPin) {
   SPI.beginTransaction(SPISettings(16000000, LSBFIRST, SPI_MODE0));
   SPI.begin();
   digitalWrite(selectPin, LOW);
@@ -569,8 +521,10 @@ void spiWriteAtten(uint8_t level, uint8_t selectPin) {  //Send out 1 byte then L
 }
 
 
-// Program the selected LO (LO1, LO2 or LO3)
+// Program a single register of the selected LO by sending and latching 4 bytes
 void spiWriteLO(uint32_t reg, uint8_t selectPin) {
+//  Serial.print("Write ");
+//  Serial.println(nameLO);
   SPI.beginTransaction(SPISettings(20000000, MSBFIRST, SPI_MODE0));
   SPI.begin();
   digitalWrite(selectPin, LOW);
@@ -597,19 +551,11 @@ void MuxTest(String chipName) {
 }
 
 
-// When the mux pin is configured for Digital Lock Detect output
-// we can read the status of the pin from here.
-//void MuxTest(String chipName) {
-//  if (digitalRead(PLL_MUX)) {
-//    Serial.print(chipName);
-//    Serial.println(" LOCK   ");
-//  }
-//  else {
-//    Serial.print(chipName);
-//    Serial.println(" UNLOCK   ");
-//  }
-//}
-//
+
+
+
+
+
 
 
 

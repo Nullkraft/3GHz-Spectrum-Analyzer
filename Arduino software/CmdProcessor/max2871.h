@@ -12,20 +12,21 @@ typedef struct {
                                  0x20008031,
                                  0x58009242,
                                  0xF8008003,
-                                 0x638FF1DC,
-                                 0x80400005,
+                                 0x638FF1C4,
+                                 0x00400005,
                                  0x40009242
                                };
-  // Settings for 100 MHz LO testing
   uint16_t* R_as_int = (uint16_t*)Reg;
-} max2871registers;
-
+} max2871Registers;
 
 
 class MAX2871_LO {
   public:
+    MAX2871(char* strName);
     void begin(float initial_frequency);
-    max2871registers Curr;
+
+    const max2871Registers* Default;   // Default read-only copy of the registers
+    max2871Registers Curr;           // Modifiable copy of the registers
 
     /* 6 bit mask of Embedded Data from serial Specific Command */
     const short Data_Mask = 0x3F;
