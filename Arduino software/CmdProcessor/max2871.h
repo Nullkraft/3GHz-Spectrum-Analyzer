@@ -8,15 +8,15 @@
 typedef struct {
   static const byte numRegisters = 7;
   static const byte numProgrammableRegs = 5;
-  uint32_t Reg[numRegisters] = { 0x00418028,
-                                 0x20008031,
-                                 0x58009242,
+  uint32_t Reg[numRegisters] = { 0x00419550,
+                                 0x2000FFE9,
+                                 0x58008042,    // Digital Lock detect ON
                                  0xF8008003,
                                  0x638FF1C4,
-                                 0x00400005,
-                                 0x40009242
+                                 0x00400005,    // Bit 18 is MSB for Digital Lock detect control
+                                 0x40009242     // Digital Lock detect OFF (Tri-state output)
                                };
-  uint16_t* R_as_int = (uint16_t*)Reg;
+//  uint16_t* RLO2_as_int = (uint16_t*)RLO2;
 } max2871Registers;
 
 
@@ -25,8 +25,8 @@ class MAX2871_LO {
     MAX2871(char* strName);
     void begin(float initial_frequency);
 
-    const max2871Registers* Default;   // Default read-only copy of the registers
-    max2871Registers Curr;           // Modifiable copy of the registers
+    const max2871Registers Default;   // Default read-only copy of the registers
+    max2871Registers Curr;            // Modifiable copy of the registers for LO3
 
     /* 6 bit mask of Embedded Data from serial Specific Command */
     const short Data_Mask = 0x3F;
@@ -42,9 +42,6 @@ class MAX2871_LO {
 
     /* 20 bit mask, R[0] bits [22:3], for N and F */
     const uint32_t NF_mask = 0x7FFFF8;
-
-
-
 
     /* R4<8> and R4<5> disable RFoutB and RFoutA */
     const uint32_t RFpower_off = 0xFFFFFE07;

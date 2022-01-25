@@ -97,7 +97,7 @@ const int LO2_addr   = 2;
 const int LO3_addr   = 3;
 const int RefClock   = 4;
 const int PLL_Mux    = 5;
-const int LED        = 7;
+const int MISC_addr  = 7;
 
 
 // BitMask for programming the registers of the Attenuator IC
@@ -115,6 +115,7 @@ ADF4356_LO LO1 = ADF4356_LO();
 MAX2871_LO LO2 = MAX2871_LO();
 MAX2871_LO LO3 = MAX2871_LO();
 MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
+
 
 enum STATE {WAIT, SEND, RECEIVE, PROCESS} state = WAIT; // Initial state == WAIT
 
@@ -158,6 +159,15 @@ void setup() {
   // Initialize Hardware IC's on Spectrum Analyzer
   spiWriteAtten(0x7F, ATTEN_SEL);   // Maximum attenuation
 
+  // Presets for LO3
+  LO3.Curr.Reg[6] = 0x40008042;
+  LO3.Curr.Reg[5] = 0x00400005;
+  LO3.Curr.Reg[4] = 0x63CFF104;
+  LO3.Curr.Reg[3] = 0xF8008003;
+  LO3.Curr.Reg[2] = 0x58008042;
+  LO3.Curr.Reg[1] = 0x20008011;
+  LO3.Curr.Reg[0] = 0x00480000;
+
  /* Starting with one of the MAX2871 chips makes initializing LO1 much more consistent.  Why?
   *  
   *  TODO: Investigate LO1 locking anomaly
@@ -193,26 +203,29 @@ void loop() {
   {
     // Blocks until 4 bytes (numBytesInSerialWord) have been received
     Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);
+    Serial.print("Incoming = ");
+    Serial.println(serialWord, HEX);
 
     // If a General LO Instruction or LO Data Packet is received, then...
     if (serialWordAsBytes[0] != CommandFlag)
     {
       // During the RECEIVE state 8 words will be buffered for LO2 programming
       if (state == RECEIVE) {
-        Serial.println("Received a frequency data packet");
+        Serial.print("RECEIVE state: ");
         data_buf_as_word[buf_index] = serialWord; //serialWord = 32bit value from serialWordAsBytes
         buf_index++;
         Serial.print("buf_index = ");
         Serial.print(buf_index);
-        Serial.print("  Size of data buffer = ");
-        Serial.print(size_data_buf);
-        if (buf_index > size_data_buf) {
+        Serial.print("  szBuff = ");
+        Serial.println(size_data_buf);
+        if (buf_index >= size_data_buf) {
           buf_index = 0;
           state = PROCESS;
         }
         num_points_processed++;
         // When the frequency sweep is done...
         if (num_points_processed >= num_data_points) {
+          Serial.println("WAIT state");
           state = WAIT;
           num_points_processed = 0;   // Reset to zero for before next use
         }
@@ -222,6 +235,7 @@ void loop() {
       // LO2 or LO3 and then associated A2D is read back.
       if (state == PROCESS)
       {
+        Serial.println("PROCESS state");
         for (buf_index = 0; buf_index < size_data_buf; buf_index++)
         {
           // M:  Clear R[1], bits [14:3], to accept M word
@@ -242,8 +256,8 @@ void loop() {
           LO->Curr.Reg[0] |= ((data_buf_as_word[buf_index] >> 17) & LO->F_mask);
 
           // Program the selected LO starting with the higher numbered registers first
-          //          spi_write(LO->Curr.Reg[1], numBytesInSerialWord);
-          //          spi_write(LO->Curr.Reg[0], numBytesInSerialWord);
+          spiWriteLO(LO->Curr.Reg[1], spi_select);
+          spiWriteLO(LO->Curr.Reg[0], spi_select);
 
           // Now we read the ADC and store it for later Serial.writing()
           data_buf_as_int[buf_index] = analogRead(adc_pin);  // Buffer now used for analog output
@@ -277,6 +291,12 @@ void loop() {
       Data16 = (uint16_t)(serialWord >> 16);
       Command = (serialWordAsBytes[1] & CommandBits) >> 3;
       Address = serialWordAsBytes[1] & AddressBits;
+      Serial.print("Data16 = ");
+      Serial.print(Data16, HEX);
+      Serial.print(" : Command = ");
+      Serial.print(Command, HEX);
+      Serial.print(" : Address = ");
+      Serial.println(Address, HEX);
       NEW_INSTRUCTION_RECEIVED = true;
     }
   }  // End While
@@ -300,7 +320,6 @@ void loop() {
         Data32 = ((uint32_t)Data16 << 4);  /* Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4> */
         LO1.Curr.Reg[0] &= LO1.INT_N_Mask; /* Clear old INT_N bits from Regist 0 */
         LO1.Curr.Reg[0] |= Data32;         /* Insert new INT_N bits into Register 0*/
-        Serial.println(LO1.Curr.Reg[0]);
         switch (Command) {
           case RF_off:
             LO1.Curr.Reg[6] = LO1.Curr.Reg[6] & LO1.RFpower_off;
@@ -418,7 +437,7 @@ void loop() {
         }
         break;
 
-      case LED:
+      case MISC_addr:
         switch (Command) {
           case LED_off:
             digitalWrite(LED_BUILTIN, LOW);
@@ -468,7 +487,7 @@ ISR(PCINT1_vect) {
 void loadLO1(uint8_t selectPin) {
   for (int x = 13; x >= 0; x--) {
     z = LO1.Curr.Reg[x];
-    spiWriteLO(z, selectPin);                 // Program LO1=37Byte33[x]76.52 MHz with LD on Mux
+    spiWriteLO(z, selectPin);                 // Program LO1=3776.52 MHz with LD on Mux
   }
   delay(2);                                   // Short delay before reading Register 6
   MuxTest("LO1");                             // Now read and report the Mux Pin status
