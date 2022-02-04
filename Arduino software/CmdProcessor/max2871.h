@@ -5,7 +5,7 @@
 
 
 /* Default register values for MAX2871 LO: Sets RFOout = 3945 MHz */
-typedef struct {
+typedef struct maxRegisters {
   static const byte numRegisters = 7;
   static const byte numProgrammableRegs = 5;
   uint32_t Reg[numRegisters] = { 0x00419550,
@@ -22,7 +22,6 @@ typedef struct {
 
 class MAX2871_LO {
   public:
-    MAX2871(char* strName);
     void begin(float initial_frequency);
 
     const max2871Registers Default;   // Default read-only copy of the registers
