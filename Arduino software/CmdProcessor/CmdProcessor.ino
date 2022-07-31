@@ -194,19 +194,26 @@ void loop() {
 TopLoop:
   while (Serial.available())
   {
-    // Blocks until 4 bytes (numBytesInSerialWord) have been received
-//    Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);
-
-    // Blocks until 4 bytes (numBytesInSerialWord) have been received
+#ifdef USE_BINARY
+    // Binary Communication for normal usage:
+    // Blocks until numBytesInSerialWord==4 has been received
+    Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);
+#else
+    // ASCII Communication for testing Mike's code:
+    // Blocks until numBytesInSerialWord==4 has been received
     serialWord = Serial.parseInt();
-    Serial.println(serialWord, HEX);
     if (serialWord == 0) {
       goto TopLoop;
     }
+#endif
 
-    // If an LO2/3 Instruction is received, then...
-    if (serialWordAsBytes[0] != CommandFlag)
+    // LO2/3 Instruction arrived...
+//    if ((serialWordAsBytes[0] != CommandFlag) && BLOCK_TRANSFER)
+    if (BLOCK_TRANSFER)
     {
+      Serial.print("BLOCK (FMN) programming!\n");
+      Serial.print("\tSerial bytes = ");
+      Serial.println(serialWord, HEX);
       // M:  Clear Reg[1], bits [14:3], to accept M word
       LO->Curr.Reg[1] &= (~LO->M_mask);
       // M:  Shift and mask serialWord to form M
