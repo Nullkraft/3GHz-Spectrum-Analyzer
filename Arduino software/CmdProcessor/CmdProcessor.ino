@@ -37,9 +37,9 @@
    [ xxxx xxxx xxxx xxxx | xxxx x | xxx | 1111 1111 ]
 */
 const uint8_t numBytesInSerialWord = 4;
-uint32_t serialWord;                             // Serial Word as 32 bits
-uint8_t* serialWordAsBytes = (byte*)&serialWord; // Serial Word as a byte array
-uint16_t* serialWordAsInts = (uint16_t*)&serialWord;  // Serial Word as a byte array
+uint32_t serialWord;                                  // Serial Word as 32 bits
+uint8_t* serialWordAsBytes = (uint8_t*)&serialWord;   // Serial Word as a byte array
+uint16_t* serialWordAsInts = (uint16_t*)&serialWord;  // Serial Word as a int array
 
 
 /* Several of the LO2/3 commands have an extra 6 bits of Embedded Data <21:16>
