@@ -14,17 +14,20 @@ const int Mux_DLD   =  8;
 
 // Command names for operating the reference oscillators
 const int all_ref_off = 0;
-const int ref_60      = 1;
-const int ref_100     = 2;
+const int ref_LO      = 1;
+const int ref_HI      = 2;
 
 // Command names for operating the PLL Mux
 const int all_tristate = 0;
 
 // Command names for controlling and reporting Arduino state
-const int LED_off  = 0;
-const int LED_on   = 1;
-const int MSG_REQ  = 2;
-const int RTS      = 3;  // PC Application requests serial buffer status
-const int SWP_DONE = 6;
+const int LED_off     = 0;
+const int LED_on      = 1;
+const int MSG_REQ     = 2;
+const int RTS         = 3;  // PC Application requests serial buffer status
+const int ADC_315     = 4;  // Selects the ADC associated with LO2 output
+const int ADC_045     = 5;  // Selects the ADC associated with LO3 output
+const int SWEEP_START = 7;  // Incoming 32 bit serial words are FMN Data words
+const int SWEEP_END   = 8;  // Incoming 32 bit serial words are Direct LO Register values
 
 #endif
