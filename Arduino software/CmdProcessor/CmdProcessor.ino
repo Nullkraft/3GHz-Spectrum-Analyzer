@@ -69,25 +69,25 @@ uint32_t spiWord;   // Holds the register contents to be written to the selected
 uint16_t Data16;    // 16 bits
 uint32_t Data32;  // Needed for bit shifting and masking with LO registers
 byte Command;
-const byte CommandBits = 0xF8;  // Mask to select 5 bits of Command from serialWord[1]
+const byte CommandBits = 0xF8;  // Mask to select 5 bits of 'Command' from serialWord[1]
 byte Address;
-const byte AddressBits = 0x07;  // Mask to select 3 bits of Address from serialWord[1]
-const byte CommandFlag = 0xFF;  // Byte pattern to identify a Control Word
+const byte AddressBits = 0x07;  // Mask to select 3 bits of 'Address' from serialWord[1]
+const byte CommandFlag = 0xFF;  // Byte pattern to identify a 'Control Word'
 
 
 /*********** ARDUINO PIN DEFINITIONS ***********/
 const int LO1_SEL     = A3;
 const int LO2_SEL     =  3;
 const int LO3_SEL     = A4;
-const int REF060_SEL  =  8;
-const int REF100_SEL  =  9;
-const int ADC_SEL_315 = A0;   // ADC for LO2
-const int ADC_SEL_045 = A1;   // ADC for LO3
+const int REF_LO_SEL  =  8;
+const int REF_HI_SEL  =  9;
+const int ADC_SEL_045 = A0;   // ADC for LO2
+const int ADC_SEL_315 = A1;   // ADC for LO3
 const int PLL_MUX     = A2;   // Equals physical pin 16 on Port C (use PCMSK1)
 const int ATTEN_SEL   = A5;
-//const int SPI_MOSI  = 11;   // These 3 pins are controlled by the SPI Library
-//const int SPI_MISO  = 12;
-//const int SPI_CLOCK = 13;
+//const int SPI_MOSI  = 11;   // Reserved by the SPI Library
+//const int SPI_MISO  = 12;   // Reserved by the SPI Library
+//const int SPI_CLOCK = 13;   // Reserved by the SPI Library
 
 int adc_pin;    // Set this to either ADC_SEL_### to read the ADC for LO2 or LO3
 
@@ -128,64 +128,62 @@ uint16_t* intZ = (uint16_t*)&z;    // Tmp as an int array
 
 char const *nameLO;
 
+#define USE_BINARY  // Comment out for ASCII serial commuinication
+
 
 /******** SETUP *********************************************************************/
 void setup() {
-  // MUX pin interrupt
-  PCICR |= 0b00000010;    // turn on port C pin-change interrupt(s)
-  PCMSK1 |= 0b00000100;   // PCINT10
-
-  Serial.setTimeout(200);
-//  Serial.begin(115200);
-  Serial.begin(1000000);
-
   pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(REF060_SEL, OUTPUT);
-  pinMode(REF100_SEL, OUTPUT);
+  pinMode(REF_LO_SEL, OUTPUT);
+  pinMode(REF_HI_SEL, OUTPUT);
   pinMode(LO1_SEL, OUTPUT);
   pinMode(LO2_SEL, OUTPUT);
   pinMode(LO3_SEL, OUTPUT);
   pinMode(PLL_MUX, INPUT);
   pinMode(ATTEN_SEL, OUTPUT);
+  digitalWrite(LED_BUILTIN, LOW);   // Make sure the LED is off
 
-  digitalWrite(REF060_SEL, HIGH);  // Enable 60MHz
-  digitalWrite(REF100_SEL, LOW);   // Disable 100MHz
+  Serial.setTimeout(200);
+  Serial.begin(2000000);
+//  Serial.begin(9600);
 
-  //  digitalWrite(LED_BUILTIN, LOW);
+//  MUX pin interrupt
+//  PCICR |= 0b00000010;    // turn on port C pin-change interrupt(s)
+//  PCMSK1 |= 0b00000100;   // PCINT10
 
   num_data_points = 0;      // Used when sending LO2 and LO3 ADC outputs  to  the  PC
   num_points_processed = 0;
 
   // Presets for LO3
-  LO3.Curr.Reg[6] = 0x40008042;
+  LO3.Curr.Reg[0] = 0x002081C8; // LO3 = 270 MHz with 66 MHz ref clock
+  LO3.Curr.Reg[1] = 0x400103E9;
+  LO3.Curr.Reg[2] = 0x98005F42;
+  LO3.Curr.Reg[3] = 0x00001F23;
+  LO3.Curr.Reg[4] = 0x63CE803C;
   LO3.Curr.Reg[5] = 0x00400005;
-  LO3.Curr.Reg[4] = 0x63CFF104;
-  LO3.Curr.Reg[3] = 0xF8008003;
-  LO3.Curr.Reg[2] = 0x58008042;
-  LO3.Curr.Reg[1] = 0x20008011;
-  LO3.Curr.Reg[0] = 0x00480000;
+  LO3.Curr.Reg[6] = 0x40008042;
 
-  spiWriteAtten(0x0, ATTEN_SEL);
-
+  // Hardware Initialization for testing of early hardware builds.
+  spiWriteAtten(0x0, ATTEN_SEL);    // Set 0dB on the digital attenuator
+  digitalWrite(REF_LO_SEL, HIGH);   // Enable low frequency referenc clock
+  digitalWrite(REF_HI_SEL, LOW);    // Disable high frequency referenc clock
   /* Starting with one of the MAX2871 chips makes initializing LO1 much more consistent.  Why?
-
-      TODO: Investigate LO1 locking anomaly
-
-      Initialize IC's LO1, LO2 and LO3 by programming them twice IAW manufacturer's documentation
+     TODO: Investigate LO1 locking anomaly
+     Initialize IC's LO1, LO2 and LO3 by programming them twice IAW manufacturer's documentation
   */
   nameLO = "LO3";
-  loadLO3(LO3_SEL, true);
+  initialize_LO3(LO3_SEL, true);
   nameLO = "LO2";
-  loadLO2(LO2_SEL, true);
+  initialize_LO2(LO2_SEL, true);
   nameLO = "LO1";
-  loadLO1(LO1_SEL);
+  initialize_LO1(LO1_SEL);
   delay(pauseMillis);
   nameLO = "LO3";
-  loadLO3(LO3_SEL, false);
+  initialize_LO3(LO3_SEL, false);
   nameLO = "LO2";
-  loadLO2(LO2_SEL, false);
+  initialize_LO2(LO2_SEL, false);
   nameLO = "LO1";
-  loadLO1(LO1_SEL);
+  initialize_LO1(LO1_SEL);
 }
 
 
@@ -300,7 +298,7 @@ TopLoop:
             LO1.Curr.Reg[6] = LO1.Curr.Reg[6] & LO1.RFpower_off;
             spiWord = LO1.Curr.Reg[6];
             break;
-          // Set the RFoutB power level, RFoutA is not used and is disabled.
+          // Set the RFoutB power level and disable RFoutA.
           case neg_4dBm:
             LO1.Curr.Reg[6] = (LO1.Curr.Reg[6] & LO1.Power_Level_Mask) | LO1.neg4dBm;
             spiWord = LO1.Curr.Reg[6];
@@ -328,7 +326,7 @@ TopLoop:
           default:
             break;
         }
-        // Now program/update LO1
+        // Now program LO1 with the new settings
         spiWriteLO(spiWord, spi_select);
         spiWriteLO(LO1.Curr.Reg[1], spi_select);
         spiWriteLO(LO1.Curr.Reg[0], spi_select);
@@ -340,7 +338,6 @@ TopLoop:
         nameLO = "LO2";
         LO = &LO2;
         spi_select = LO2_SEL;
-        adc_pin = ADC_SEL_315;  // Selects the ADC associated with LO2 output
       // Now fall through
       case LO3_addr:
         /* Making LO3 active */
@@ -348,7 +345,6 @@ TopLoop:
           nameLO = "LO3";
           LO = &LO3;
           spi_select = LO3_SEL;
-          adc_pin = ADC_SEL_045;  // Selects the ADC associated with LO3 output
         }
         // Set the remainder of the SPI pins
         num_data_points = Data16;    // Number of frequency points to be read
@@ -358,7 +354,7 @@ TopLoop:
             spiWord = LO->Curr.Reg[4];
             break;
           case neg_4dBm:
-            // ' | LO->neg4dBm' does nothing and is only for documentation
+            // OR'ing with LO->neg4dBm does nothing and is only added for clarity
             LO->Curr.Reg[4] = (LO->Curr.Reg[4] & LO->Power_Level_Mask) | LO->neg4dBm;
             spiWord = LO->Curr.Reg[4];
             break;
@@ -460,13 +456,13 @@ TopLoop:
 
 
 // MUX Interrupt for tracking the LO1, LO2, and LO3 lock pins
-ISR(PCINT1_vect) {
-  Serial.print(nameLO);
-  Serial.println(" det");
-}
+//ISR(PCINT1_vect) {
+//  Serial.print(nameLO);
+//  Serial.println(" det");
+//}
 
 
-void loadLO1(uint8_t selectPin) {
+void initialize_LO1(uint8_t selectPin) {
   for (int x = 13; x >= 0; x--) {
     z = LO1.Curr.Reg[x];
     spiWriteLO(z, selectPin);                 // Program LO1=3776.52 MHz with LD on Mux
@@ -481,7 +477,7 @@ void loadLO1(uint8_t selectPin) {
    pg. 13 4-Wire Serial Interface during initialization there should be a 20mS delay after programming
    register 5.                                                  Document Version: 19-7106; Rev 4; 6/20
 */
-void loadLO2(uint8_t selectPin, bool initialize) {
+void initialize_LO2(uint8_t selectPin, bool initialize) {
   spiWriteLO(LO2.Curr.Reg[5], selectPin);    // First we program LO2 Register 5
   if (initialize) {
     delay(20);  // And only if it's our first time must we wait 20 mSec
@@ -500,7 +496,7 @@ void loadLO2(uint8_t selectPin, bool initialize) {
    pg. 13 4-Wire Serial Interface during initialization there should be a 20mS delay after programming
    register 5.                                                  Document Version: 19-7106; Rev 4; 6/20
 */
-void loadLO3(uint8_t selectPin, bool initialize) {
+void initialize_LO3(uint8_t selectPin, bool initialize) {
   spiWriteLO(LO3.Curr.Reg[5], selectPin);    // First we program LO3 Register 5
   if (initialize) {
     delay(20);  // And only if it's our first time must we wait 20 mSec
