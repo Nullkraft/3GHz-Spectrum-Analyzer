@@ -493,7 +493,7 @@ void initialize_LO2(uint8_t selectPin, bool initialize) {
   }
   delay(1);                                  // Short delay before reading Register 6
   MuxTest("LO2");                            // Check if LO2 is locked by reading the Mux pin
-  spiWriteLO(LO2.Curr.Reg[6], selectPin);    // Tri-stating the mux out3000put disables LO2 lock detect
+  spiWriteLO(LO2.Curr.Reg[6], selectPin);    // Tri-stating the mux output disables LO2 lock detect
 }
 
 
