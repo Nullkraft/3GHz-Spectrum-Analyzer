@@ -55,11 +55,13 @@ uint32_t data_buf_as_word[size_data_buf];
 uint16_t* data_buf_as_int = (uint16_t*)&data_buf_as_word;
 
 // Command Flag 0xFF indicates that a new instruction was received by the Arduino
-bool NEW_CMDFLAG_RCVD = false;
+bool COMMAND_FLAG = false;
+// Define incoming serial data as direct register programming for LO2 and LO3
+bool BLOCK_TRANSFER = false;
 
 /* Move this into a struct
    All the values required by the spi_write() command */
-uint8_t spi_select; // Copy of *_SEL pin for the chip you want to program
+uint8_t spi_select; // Currently selected LO (1, 2 or 3) that is to be programmed
 uint32_t spiWord;   // Holds the register contents to be written to the selected device
 
 
@@ -232,22 +234,45 @@ TopLoop:
       spiWriteLO(LO->Curr.Reg[0], spi_select);
 
       // Now we read the ADC
-//      serialWord = 0;   // Clear all the bits in serialWord
-      serialWordAsInts[0] = analogRead(ADC_SEL_315);  // Buffer now used for analog output
-//      Serial.write(serialWordAsBytes[0]);
-//      Serial.write(serialWordAsBytes[1]);
-      break;
+      serialWordAsInts[0] = analogRead(adc_pin);  // Buffer now used for analog output
+
+      // And send the collected data to the PC for plotting
+      Serial.write(serialWordAsBytes[0]);
+      Serial.write(serialWordAsBytes[1]);
+//      break;
     }
 
     /******** COMMAND FLAG **************************************************************/
     // If a Command Flag is found then parse the 32 bits into Data, Command and Address
-    else
+//    else if((serialWordAsBytes[0] == CommandFlag) && !BLOCK_TRANSFER)
+    else if(serialWordAsBytes[0] == CommandFlag)
     {
+      Serial.println("Command FLAG programming!\n");
+      Serial.print("\tSerial bytes: ");
+      Serial.print(serialWord, HEX);
       Data16 = serialWordAsInts[1];
       Command = (serialWordAsBytes[1] & CommandBits) >> 3;
       Address = serialWordAsBytes[1] & AddressBits;
-      NEW_CMDFLAG_RCVD = true;
+      Serial.print("\tAddress: ");
+      Serial.print(Address, HEX);
+      Serial.print("\tCommand: ");
+      Serial.println(Command, HEX);
+      Serial.println();
+      COMMAND_FLAG = true;
     }
+
+    /******* Direct programming of LO2 and LO3 **********/
+    // Set spi_select to the LO to be programmed before starting a block transfer
+    // You can do so by calling ANY of the commands for the given LO
+    else
+    {
+      Serial.println("DIRECT programming!\n");
+      Serial.print("\tSerial bytes = ");
+      Serial.println(serialWord, HEX);
+      Serial.println();
+      spiWriteLO(serialWordAsBytes, spi_select);
+    }
+    
   }  // End While
 
 
@@ -255,7 +280,7 @@ TopLoop:
   /******** SPECTRUM ANALYZER INSTRUCTIONS **********************************************/
   /* Hardware selection and operations. This is where the processing of
      Specific commands occurs. */
-  if (NEW_CMDFLAG_RCVD) {
+  if (COMMAND_FLAG) {
     /* Start by selecting the device that you want to control. Then under
        each device you can select the operation that you want to perform. */
     switch (Address) {
@@ -394,12 +419,23 @@ TopLoop:
             digitalWrite(LED_BUILTIN, HIGH);
             break;
           case MSG_REQ:
-            Serial.print("- Welcome to WN2A Spectrum Analyzer CmdProcessor 10/10/2021 2Mbaud\n");
+            Serial.print("- WN2A Spectrum Analyzer CmdProcessor Oct. 2021");
             break;
           case RTS:
             Serial.print("PC Application is requesting to send more data.");
             break;
-          case SWP_DONE:
+          case ADC_315:
+            adc_pin = ADC_SEL_315;  // Selects the ADC associated with LO2 output
+            break;
+          case ADC_045:
+            adc_pin = ADC_SEL_045;  // Selects the ADC associated with LO3 output
+            break;
+          case SWEEP_START:
+            BLOCK_TRANSFER = true;
+            break;
+          case SWEEP_END:
+            Serial.println("Sweep stop was called");
+            BLOCK_TRANSFER = false;
             Serial.write(0xFF);
             Serial.write(0xFF);
             break;
@@ -415,8 +451,8 @@ TopLoop:
         break;
 
     } /* End switch(Address) */
-    NEW_CMDFLAG_RCVD = false;
-  } /* End NEW_CMDFLAG_RCVD */
+    COMMAND_FLAG = false;
+  } /* End COMMAND_FLAG */
 } /* End loop() */
 
 
