@@ -381,27 +381,32 @@ TopLoop:
           default:
             break;
         }
-        // Now program/update the currently selected LO
+        // Now program the currently selected LO
         spiWriteLO(spiWord, spi_select);
         //getLOstatus(*LO);
         break;    // End case LO2 OR case LO3
 
       case RefClock:
         switch (Command) {
-          // Turn 60 MHz ref_clock on and 100 MHz ref_clock off
-          case ref_60:
-            digitalWrite(REF060_SEL, HIGH);
-            digitalWrite(REF100_SEL, LOW);
-            break;
-          // Turn 100 MHz ref_clock on and 60 MHz ref_clock off
-          case ref_100:
-            digitalWrite(REF060_SEL, LOW);
-            digitalWrite(REF100_SEL, HIGH);
-            break;
           // Turn both ref_clocks off
+          case all_ref_off:
+            digitalWrite(REF_LO_SEL, LOW);
+            delay(2);
+            digitalWrite(REF_HI_SEL, LOW);
+            break;
+          // Turn on 66.000 MHz ref_clock AND turn off 66.666 MHz ref_clock
+          case ref_LO:
+            digitalWrite(REF_LO_SEL, HIGH);
+            delay(2);
+            digitalWrite(REF_HI_SEL, LOW);
+            break;
+          // Turn on 66.666 MHz ref_clock AND turn off 66.000 MHz ref_clock
+          case ref_HI:
+            digitalWrite(REF_LO_SEL, LOW);
+            delay(2);
+            digitalWrite(REF_HI_SEL, HIGH);
+            break;
           default:
-            digitalWrite(REF060_SEL, LOW);
-            digitalWrite(REF100_SEL, LOW);
             break;
         }
         break;
