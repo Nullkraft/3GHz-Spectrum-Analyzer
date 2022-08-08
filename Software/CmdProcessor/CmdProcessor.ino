@@ -126,7 +126,8 @@ uint32_t z;
 uint8_t* byteZ = (byte*)&z;   // Tmp as a byte array
 uint16_t* intZ = (uint16_t*)&z;    // Tmp as an int array
 
-char const *nameLO;
+String nameLO;
+//char const *nameLO;
 
 #define USE_BINARY  // Comment out for ASCII serial commuinication
 
@@ -464,7 +465,7 @@ TopLoop:
 // MUX Interrupt for tracking the LO1, LO2, and LO3 lock pins
 ISR(PCINT1_vect) {
   Serial.print(nameLO);
-  Serial.print(" LD ");
+  Serial.print(" Lock ");
   Serial.println(micros()-t_start);
 }
 
