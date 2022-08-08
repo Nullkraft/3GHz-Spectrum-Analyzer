@@ -1,0 +1,33 @@
+
+  - Make sure you're sending FMN values to program MAX2871
+  - FMN gets converted to Register values
+  - Repair Sig-Gen if possible
+
+
+  - Remove my access from kids accounts
+  - Report changes in Milpay and Social Security
+  - Talk about creating a trust (or two)
+  - Why'd Deb get $10k?
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
