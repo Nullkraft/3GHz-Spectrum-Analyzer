@@ -476,8 +476,6 @@ void initialize_LO1(uint8_t selectPin) {
     spiWriteLO(z, selectPin);                 // Program LO1=3776.52 MHz with LD on Mux
     t_start = micros();
   }
-//  delay(3);                                   // Short delay before reading Register 6
-//  MuxTest("LO1");                             // Now read and report the Mux Pin status
   spiWriteLO(LO1.Curr.Reg[14], selectPin);    // Tri-stating the mux output disables LO1 lock detect
 }
 
@@ -496,8 +494,6 @@ void initialize_LO2(uint8_t selectPin, bool initialize) {
     spiWriteLO(z, selectPin);                // and Lock Detect is enabled on the Mux pin
     t_start = micros();
   }
-//  delay(1);                                  // Short delay before reading Register 6
-//  MuxTest("LO2");                            // Check if LO2 is locked by reading the Mux pin
   spiWriteLO(LO2.Curr.Reg[6], selectPin);    // Tri-stating the mux output disables LO2 lock detect
 }
 
@@ -516,8 +512,6 @@ void initialize_LO3(uint8_t selectPin, bool initialize) {
     spiWriteLO(LO3.Curr.Reg[x], selectPin);  // and Lock Detect is enabled on the Mux pin
     t_start = micros();
   }
-//  delay(1);                                  // Short delay before reading Register 6
-//  MuxTest("LO3");                            // Check if LO3 is locked by reading the Mux pin
   spiWriteLO(LO3.Curr.Reg[6], selectPin);    // Tri-stating the mux output disables LO3 lock detect
 }
 
