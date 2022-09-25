@@ -2,15 +2,16 @@
 #define _HW_CMD_LISTS_
 
 // Command names for operating LO1, LO2 and LO3
-const int General   =  0;
-const int RF_off    =  1;
-const int neg_4dBm  =  2;
-const int neg_1dBm  =  3;
-const int pos_2dBm  =  4;
-const int pos_5dBm  =  5;
-const int No_change =  6;
-const int Mux_TRI   =  7;
-const int Mux_DLD   =  8;
+const int General   = 0;
+const int RF_off    = 1;
+const int neg_4dBm  = 2;
+const int neg_1dBm  = 3;
+const int pos_2dBm  = 4;
+const int pos_5dBm  = 5;
+const int No_change = 6;
+const int Mux_TRI   = 7;
+const int Mux_DLD   = 8;
+const int DIV_MODE  = 9;
 
 // Command names for operating the reference oscillators
 const int all_ref_off = 0;

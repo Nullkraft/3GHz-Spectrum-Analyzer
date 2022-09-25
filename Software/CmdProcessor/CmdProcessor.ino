@@ -30,11 +30,10 @@
 
 /*           Serial Word with Command Flag:
     ________________________________________________
-   [       16 Bit        | 5 bit  | 3 b |   8 bit   ]
    [       Embedded      | Instr- |Addr.|  Command  ]  NOTE: Command Flag
    [       Data          | uction |     |   Flag    ]        always = 0xFF
    [---------------------+--------+-----+-----------]
-   [ xxxx xxxx xxxx xxxx | xxxx x | xxx | 1111 1111 ]
+   [ xxxx_xxxx_xxxx_xxxx | xxxx_x | xxx | 1111_1111 ]
 */
 const uint8_t numBytesInSerialWord = 4;
 uint32_t serialWord;                                  // Serial Word as 32 bits
@@ -56,17 +55,14 @@ uint16_t* data_buf_as_int = (uint16_t*)&data_buf_as_word;
 
 // Command Flag 0xFF indicates that a new instruction was received by the Arduino
 bool COMMAND_FLAG = false;
-// Define incoming serial data as direct register programming for LO2 and LO3
-bool BLOCK_TRANSFER = false;
 
-/* Move this into a struct
-   All the values required by the spi_write() command */
-uint8_t spi_select; // Currently selected LO (1, 2 or 3) that is to be programmed
-uint32_t spiWord;   // Holds the register contents to be written to the selected device
+/* All the values required by the spi_write() command */
+uint8_t spi_select;  // Currently selected LO (1, 2 or 3) that is to be programmed
+uint32_t spiWord;    // Holds the register contents to be written to the selected device
 
 
 /*** Parsed values from the incoming 32 bit serial word ***/
-uint16_t Data16;    // 16 bits
+uint16_t Data16;  // 16 bits
 uint32_t Data32;  // Needed for bit shifting and masking with LO registers
 byte Command;
 const byte CommandBits = 0xF8;  // Mask to select 5 bits of 'Command' from serialWord[1]
@@ -76,29 +72,29 @@ const byte CommandFlag = 0xFF;  // Byte pattern to identify a 'Control Word'
 
 
 /*********** ARDUINO PIN DEFINITIONS ***********/
-const int LO1_SEL     = A3;
-const int LO2_SEL     =  3;
-const int LO3_SEL     = A4;
-const int REF_LO_SEL  =  8;
-const int REF_HI_SEL  =  9;
-const int ADC_SEL_045 = A0;   // ADC for LO2
-const int ADC_SEL_315 = A1;   // ADC for LO3
-const int PLL_MUX     = A2;   // Equals physical pin 16 on Port C (use PCMSK1)
-const int ATTEN_SEL   = A5;
+const int LO1_SEL = A3;
+const int LO2_SEL = 3;
+const int LO3_SEL = A4;
+const int REF_LO_SEL = 8;
+const int REF_HI_SEL = 9;
+const int ADC_SEL_045 = A0;  // ADC for LO2
+const int ADC_SEL_315 = A1;  // ADC for LO3
+const int PLL_MUX = A2;      // Equals physical pin 16 on Port C (use PCMSK1)
+const int ATTEN_SEL = A5;
 //const int SPI_MOSI  = 11;   // Reserved by the SPI Library
 //const int SPI_MISO  = 12;   // Reserved by the SPI Library
 //const int SPI_CLOCK = 13;   // Reserved by the SPI Library
 
-int adc_pin;    // Set this to either ADC_SEL_### to read the ADC for LO2 or LO3
+int adc_pin;  // Set this to either ADC_SEL_### to read the ADC for LO2 or LO3
 
 
 // Addresses for selecting the various hardware ICs
 const int Attenuator = 0;
-const int LO1_addr   = 1;
-const int LO2_addr   = 2;
-const int LO3_addr   = 3;
-const int RefClock   = 4;
-const int MISC_addr  = 7;
+const int LO1_addr = 1;
+const int LO2_addr = 2;
+const int LO3_addr = 3;
+const int RefClock = 4;
+const int MISC_addr = 7;
 
 
 // BitMask for programming the registers of the Attenuator IC
@@ -115,7 +111,7 @@ const uint8_t pauseMillis = 20;
 ADF4356_LO LO1 = ADF4356_LO();
 MAX2871_LO LO2 = MAX2871_LO();
 MAX2871_LO LO3 = MAX2871_LO();
-MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
+MAX2871_LO* LO = new MAX2871_LO();  // Allows a single function to select and operate on LO2 or LO3
 
 
 byte buf_index = 0;
@@ -123,15 +119,15 @@ uint32_t frac_div_F;
 uint32_t frac_mod_M;
 uint32_t counter_N;
 uint32_t z;
-uint8_t* byteZ = (byte*)&z;   // Tmp as a byte array
-uint16_t* intZ = (uint16_t*)&z;    // Tmp as an int array
+uint8_t* byteZ = (byte*)&z;      // Tmp as a byte array
+uint16_t* intZ = (uint16_t*)&z;  // Tmp as an int array
 
-String nameLO;
-//char const *nameLO;
+static String nameLO;
 
 #define USE_BINARY  // Comment out for ASCII serial commuinication
 
-uint32_t t_start;
+
+#define DEBUG
 
 /******** SETUP *********************************************************************/
 void setup() {
@@ -143,48 +139,41 @@ void setup() {
   pinMode(LO3_SEL, OUTPUT);
   pinMode(PLL_MUX, INPUT);
   pinMode(ATTEN_SEL, OUTPUT);
-  digitalWrite(LED_BUILTIN, LOW);   // Make sure the LED is off
+  digitalWrite(LED_BUILTIN, LOW);  // Make sure the LED is off
 
   Serial.setTimeout(200);
   Serial.begin(2000000);
-//  Serial.begin(9600);
 
-//  MUX pin interrupt
-  PCICR |= 0b00000010;    // turn on port C pin-change interrupt(s)
-  PCMSK1 |= 0b00000100;   // PCINT10
+  //  MUX pin interrupt
+  PCICR |= 0b00000010;   // turn on port C pin-change interrupt(s)
+  PCMSK1 |= 0b00000100;  // PCINT10
 
-  num_data_points = 0;      // Used when sending LO2 and LO3 ADC outputs  to  the  PC
+  num_data_points = 0;  // Used when sending LO2 and LO3 ADC outputs  to  the  PC
   num_points_processed = 0;
 
   // Presets for LO3
-  LO3.Curr.Reg[0] = 0x002081C8; // LO3 = 270 MHz with 66 MHz ref clock
+  LO3.Curr.Reg[0] = 0x002081C8;  // LO3 = 270 MHz with 66 MHz ref clock
   LO3.Curr.Reg[1] = 0x400103E9;
-  LO3.Curr.Reg[2] = 0x98005F42;
+  LO3.Curr.Reg[2] = 0x98005F42;  // Digital Lock Detect ON
   LO3.Curr.Reg[3] = 0x00001F23;
   LO3.Curr.Reg[4] = 0x63CE803C;
   LO3.Curr.Reg[5] = 0x00400005;
-  LO3.Curr.Reg[6] = 0x40008042;
+  LO3.Curr.Reg[6] = 0x80005F42;  // Digital Lock Detect ON
 
   // Hardware Initialization for testing of early hardware builds.
-  spiWriteAtten(0x0, ATTEN_SEL);    // Set 0dB on the digital attenuator
-  digitalWrite(REF_LO_SEL, HIGH);   // Enable low frequency referenc clock
-  digitalWrite(REF_HI_SEL, LOW);    // Disable high frequency referenc clock
+  spiWriteAtten(0x0, ATTEN_SEL);   // Set 0dB on the digital attenuator
+  digitalWrite(REF_LO_SEL, HIGH);  // Enable low frequency referenc clock
+  digitalWrite(REF_HI_SEL, LOW);   // Disable high frequency referenc clock
   /* Starting with one of the MAX2871 chips makes initializing LO1 much more consistent.  Why?
      TODO: Investigate LO1 locking anomaly
      Initialize IC's LO1, LO2 and LO3 by programming them twice IAW manufacturer's documentation
   */
-  nameLO = "LO3";
   initialize_LO3(LO3_SEL, true);
-  nameLO = "LO2";
   initialize_LO2(LO2_SEL, true);
-  nameLO = "LO1";
   initialize_LO1(LO1_SEL);
   delay(pauseMillis);
-  nameLO = "LO3";
   initialize_LO3(LO3_SEL, false);
-  nameLO = "LO2";
   initialize_LO2(LO2_SEL, false);
-  nameLO = "LO1";
   initialize_LO1(LO1_SEL);
 }
 
@@ -193,29 +182,44 @@ void setup() {
 /******** MAIN LOOP ******************************************************************/
 
 void loop() {
-TopLoop:
-  while (Serial.available())
-  {
+LoopTop:
+  while (Serial.available()) {
 #ifdef USE_BINARY
     // Binary Communication for normal usage:
     // Blocks until numBytesInSerialWord==4 has been received
-    Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);
+    Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);  // serialWord == serialWordAsBytes
 #else
     // ASCII Communication for testing Mike's code:
     // Blocks until numBytesInSerialWord==4 has been received
     serialWord = Serial.parseInt();
     if (serialWord == 0) {
-      goto TopLoop;
+      goto LoopTop;
     }
 #endif
 
-    // LO2/3 Instruction arrived...
-//    if ((serialWordAsBytes[0] != CommandFlag) && BLOCK_TRANSFER)
-    if (BLOCK_TRANSFER)
-    {
-      Serial.print("BLOCK (FMN) programming!\n");
-      Serial.print("\tSerial bytes = ");
-      Serial.println(serialWord, HEX);
+    COMMAND_FLAG = false;
+    if (serialWordAsBytes[0] == CommandFlag) {
+      COMMAND_FLAG = true;
+    }
+
+    /******** COMMAND FLAG **************************************************************/
+    // If a Command Flag is found then parse the 32 bits into Data, Command and Address
+    if (COMMAND_FLAG) {
+      Data16 = serialWordAsInts[1];
+      Command = (serialWordAsBytes[1] & CommandBits) >> 3;
+      Address = serialWordAsBytes[1] & AddressBits;
+      #ifdef DEBUG
+      Serial.print("Data = ");
+      Serial.print(Data16, HEX);
+      Serial.print(" : Cmd = ");
+      Serial.print(Command, HEX);
+      Serial.print(" : Addr = ");
+      Serial.println(Address, HEX);
+      #endif
+    }
+
+    // LO2/3 Instruction arrived...//    if (serialWordAsBytes[0] != CommandFlag)
+    else if (!COMMAND_FLAG) {
       // M:  Clear Reg[1], bits [14:3], to accept M word
       LO->Curr.Reg[1] &= (~LO->M_mask);
       // M:  Shift and mask serialWord to form M
@@ -236,53 +240,16 @@ TopLoop:
       // Now we read the ADC
       serialWordAsInts[0] = analogRead(adc_pin);  // Buffer now used for analog output
 
-      // And send the collected data to the PC for plotting
+      // Send the amplitude data from the ADC to the PC for plotting
       Serial.write(serialWordAsBytes[0]);
       Serial.write(serialWordAsBytes[1]);
-//      break;
     }
 
-    /******** COMMAND FLAG **************************************************************/
-    // If a Command Flag is found then parse the 32 bits into Data, Command and Address
-//    else if((serialWordAsBytes[0] == CommandFlag) && !BLOCK_TRANSFER)
-    else if(serialWordAsBytes[0] == CommandFlag)
-    {
-      Serial.println("Command FLAG programming!\n");
-      Serial.print("\tSerial bytes: ");
-      Serial.print(serialWord, HEX);
-      Data16 = serialWordAsInts[1];
-      Command = (serialWordAsBytes[1] & CommandBits) >> 3;
-      Address = serialWordAsBytes[1] & AddressBits;
-      Serial.print("\tAddress: ");
-      Serial.print(Address, HEX);
-      Serial.print("\tCommand: ");
-      Serial.println(Command, HEX);
-      Serial.println();
-      COMMAND_FLAG = true;
-    }
-
-    /******* Direct programming of LO2 and LO3 **********/
-    // Set spi_select to the LO to be programmed before starting a block transfer
-    // You can do so by calling ANY of the commands for the given LO
-    else
-    {
-      Serial.println("DIRECT programming!\n");
-      Serial.print("\tSerial bytes = ");
-      Serial.println(serialWord, HEX);
-      Serial.println();
-      spiWriteLO(serialWordAsBytes, spi_select);
-    }
-    
-  }  // End While
-
-
-
-  /******** SPECTRUM ANALYZER INSTRUCTIONS **********************************************/
-  /* Hardware selection and operations. This is where the processing of
-     Specific commands occurs. */
-  if (COMMAND_FLAG) {
-    /* Start by selecting the device that you want to control. Then under
-       each device you can select the operation that you want to perform. */
+    /******** SPECTRUM ANALYZER INSTRUCTIONS **********************************************/
+    /* Hardware selection and operations. This is where the processing of
+       Specific commands occurs. */
+    // Start by selecting the device that you want to control. Then under
+    // each device you can select the operation that you want to perform.
     switch (Address) {
       case Attenuator:
         Data16 &= ATTEN_Data_Mask;
@@ -292,9 +259,9 @@ TopLoop:
       case LO1_addr:
         nameLO = "LO1";
         spi_select = LO1_SEL;
-        Data32 = ((uint32_t)Data16 << 4);  /* Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4> */
-        LO1.Curr.Reg[0] &= LO1.INT_N_Mask; /* Clear old INT_N bits from Regist 0 */
-        LO1.Curr.Reg[0] |= Data32;         /* Insert new INT_N bits into Register 0*/
+        Data32 = ((uint32_t)Data16 << 4);   // Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4>
+        LO1.Curr.Reg[0] &= LO1.INT_N_Mask;  // Clear old INT_N bits from Regist 0
+        LO1.Curr.Reg[0] |= Data32;          // Insert new INT_N bits into Register 0
         switch (Command) {
           case RF_off:
             LO1.Curr.Reg[6] = LO1.Curr.Reg[6] & LO1.RFpower_off;
@@ -322,7 +289,7 @@ TopLoop:
             spiWord = LO1.Curr.Reg[4];
             break;
           case Mux_DLD:
-            LO1.Curr.Reg[4] = LO1.Curr.Reg[4] | LO1.Mux_Set_DLD;    // Set MuxOut to Dig. Lock Det.
+            LO1.Curr.Reg[4] = LO1.Curr.Reg[4] | LO1.Mux_Set_DLD;  // Set MuxOut to Dig. Lock Det.
             spiWord = LO1.Curr.Reg[4];
             break;
           default:
@@ -336,20 +303,20 @@ TopLoop:
         break;
 
       case LO2_addr:
-        /* Making LO2 active */
+        // Making LO2 active
         nameLO = "LO2";
         LO = &LO2;
         spi_select = LO2_SEL;
-      // Now fall through
+        // Now fall through
       case LO3_addr:
-        /* Making LO3 active */
+        // Making LO3 active
         if (Address == LO3_addr) {
           nameLO = "LO3";
           LO = &LO3;
           spi_select = LO3_SEL;
         }
         // Set the remainder of the SPI pins
-        num_data_points = Data16;    // Number of frequency points to be read
+        num_data_points = Data16;  // Number of frequency points to be read
         switch (Command) {
           case RF_off:
             LO->Curr.Reg[4] = LO->Curr.Reg[4] & LO->RFpower_off;
@@ -380,13 +347,18 @@ TopLoop:
             LO->Curr.Reg[2] = LO->Curr.Reg[2] | LO->Mux_Set_DLD;  // Set MuxOut to Dig. Lock Det.
             spiWord = LO->Curr.Reg[2];
             break;
+          case DIV_MODE:
+            LO->Curr.Reg[4] &= LO->RFOUT_DIV_MASK;
+            LO->Curr.Reg[4] |= (serialWord & !LO->RFOUT_DIV_MASK);
+            spiWord = LO->Curr.Reg[4];
+            break;
           default:
             break;
         }
         // Now program the currently selected LO
         spiWriteLO(spiWord, spi_select);
         //getLOstatus(*LO);
-        break;    // End case LO2 OR case LO3
+        break;  // End case LO2 OR case LO3
 
       case RefClock:
         switch (Command) {
@@ -417,12 +389,16 @@ TopLoop:
         switch (Command) {
           case LED_off:
             digitalWrite(LED_BUILTIN, LOW);
+            #ifndef DEBUG
+              Serial.write(0xFF);
+              Serial.write(0xFF);
+            #endif
             break;
           case LED_on:
             digitalWrite(LED_BUILTIN, HIGH);
             break;
           case MSG_REQ:
-            Serial.print("- WN2A Spectrum Analyzer CmdProcessor Oct. 2021");
+            Serial.println("- WN2A Spectrum Analyzer CmdProcessor Oct. 2021");
             break;
           case RTS:
             Serial.print("PC Application is requesting to send more data.");
@@ -433,12 +409,7 @@ TopLoop:
           case ADC_045:
             adc_pin = ADC_SEL_045;  // Selects the ADC associated with LO3 output
             break;
-          case SWEEP_START:
-            BLOCK_TRANSFER = true;
-            break;
           case SWEEP_END:
-            Serial.println("Sweep stop was called");
-            BLOCK_TRANSFER = false;
             Serial.write(0xFF);
             Serial.write(0xFF);
             break;
@@ -453,30 +424,35 @@ TopLoop:
         Serial.println(" not found");
         break;
 
-    } /* End switch(Address) */
-    COMMAND_FLAG = false;
-  } /* End COMMAND_FLAG */
+    }  // End switch(Address)
+  }    // End While serial available
+  COMMAND_FLAG = false;
 } /* End loop() */
 
 
 
 
 
-// MUX Interrupt for tracking the LO1, LO2, and LO3 lock pins
+/* MUX Interrupt
+   When the mux pin is configured for Digital Lock Detect output
+   we can read the status of the pin from here.
+*/
 ISR(PCINT1_vect) {
-  Serial.print(nameLO);
-  Serial.print(" Lock ");
-  Serial.println(micros()-t_start);
+  #ifdef DEBUG
+    Serial.print(nameLO);
+    Serial.println(" Lock ");
+  #endif
 }
 
 
 void initialize_LO1(uint8_t selectPin) {
+  nameLO = "LO1";
+  spiWriteLO(LO1.Curr.Reg[4], selectPin);  // Enable LO1 lock detect
   for (int x = 13; x >= 0; x--) {
     z = LO1.Curr.Reg[x];
-    spiWriteLO(z, selectPin);                 // Program LO1=3776.52 MHz with LD on Mux
-    t_start = micros();
+    spiWriteLO(z, selectPin);  // Program LO1=3776.52 MHz with LD on Mux
   }
-  spiWriteLO(LO1.Curr.Reg[14], selectPin);    // Tri-stating the mux output disables LO1 lock detect
+  spiWriteLO(LO1.Curr.Reg[14], selectPin);  // Tri-stating the mux output disables LO1 lock detect
 }
 
 
@@ -485,16 +461,16 @@ void initialize_LO1(uint8_t selectPin) {
    register 5.                                                  Document Version: 19-7106; Rev 4; 6/20
 */
 void initialize_LO2(uint8_t selectPin, bool initialize) {
-  spiWriteLO(LO2.Curr.Reg[5], selectPin);    // First we program LO2 Register 5
+  nameLO = "LO2";
+  spiWriteLO(LO2.Curr.Reg[5], selectPin);  // First we program LO2 Register 5
   if (initialize) {
-    delay(20);  // And only if it's our first time must we wait 20 mSec
+    delay(20);  // Only if it's our first time must we wait 20 mSec
   }
   for (int x = 4; x >= 0; x--) {
-    z = LO2.Curr.Reg[x];                     // Program remaining registers where LO2=3915 MHz
-    spiWriteLO(z, selectPin);                // and Lock Detect is enabled on the Mux pin
-    t_start = micros();
+    z = LO2.Curr.Reg[x];       // Program remaining registers where LO2=3915 MHz
+    spiWriteLO(z, selectPin);  // and Lock Detect is enabled on the Mux pin
   }
-  spiWriteLO(LO2.Curr.Reg[6], selectPin);    // Tri-stating the mux output disables LO2 lock detect
+  spiWriteLO(LO2.Curr.Reg[6], selectPin);  // Tri-stating the mux output disables LO2 lock detect
 }
 
 
@@ -503,16 +479,16 @@ void initialize_LO2(uint8_t selectPin, bool initialize) {
    register 5.                                                  Document Version: 19-7106; Rev 4; 6/20
 */
 void initialize_LO3(uint8_t selectPin, bool initialize) {
-  spiWriteLO(LO3.Curr.Reg[5], selectPin);    // First we program LO3 Register 5
+  nameLO = "LO3";
+  spiWriteLO(LO3.Curr.Reg[5], selectPin);  // First we program LO3 Register 5
   if (initialize) {
-    delay(20);  // And only if it's our first time must we wait 20 mSec
+    delay(20);  // Only if it's our first time must we wait 20 mSec
   }
   for (int x = 4; x >= 0; x--) {
     z = LO3.Curr.Reg[x];                     // Program remaining registers where LO3=270 MHz
     spiWriteLO(LO3.Curr.Reg[x], selectPin);  // and Lock Detect is enabled on the Mux pin
-    t_start = micros();
   }
-  spiWriteLO(LO3.Curr.Reg[6], selectPin);    // Tri-stating the mux output disables LO3 lock detect
+  spiWriteLO(LO3.Curr.Reg[6], selectPin);  // Tri-stating the mux output disables LO3 lock detect
 }
 
 
@@ -541,23 +517,6 @@ void spiWriteLO(uint32_t reg, uint8_t selectPin) {
 }
 
 
-// When the mux pin is configured for Digital Lock Detect output
-// we can read the status of the pin from here.
-void MuxTest(String chipName) {
-  if (digitalRead(PLL_MUX)) {
-    Serial.print(chipName);
-    Serial.println(" LOCK   ");
-  }
-  else {
-    Serial.print(chipName);
-    Serial.println(" UNLOCK   ");
-  }
-}
-
-
-
-
-
 
 
 
@@ -566,8 +525,7 @@ void MuxTest(String chipName) {
 
 
 // This function is for development testing. Remove at production
-void getLOstatus(MAX2871_LO LO)
-{
+void getLOstatus(MAX2871_LO LO) {
   for (int i = 0; i < LO.Curr.numRegisters; i++) {
     Serial.print("R[");
     Serial.print(i);

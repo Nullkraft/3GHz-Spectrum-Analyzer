@@ -4,24 +4,24 @@
 #include <Arduino.h>    /* Needed for uint32_t */
 
 
-/* Default register values for MAX2871 LO: Sets RFOout = 3945 MHz */
+/* Default register values for MAX2871 LO: Sets RFOout = 3630.0 MHz */
 typedef struct adfRegisters {
   static const byte numRegisters = 15;
-  uint32_t Reg[numRegisters] = { 0x002007C0,
+  uint32_t Reg[numRegisters] = { 0x00200370,  // R[0] N = 0x37 (dec 55)
                                  0x00000001,
                                  0x00000012,
                                  0x00000003,
-                                 0x32008984,
+                                 0x00008984,  // R[4] Muxout = 3-state output DB[29:27]
                                  0x00800025,
-                                 0x95012046,
-                                 0x060000F7,
+                                 0x35034076,
+                                 0x060000F7,  // R[7] Int-N mode DB[4]
                                  0x15596568,
-                                 0x150DFCC9,
-                                 0x00C014BA,
+                                 0x2A1BBCC9,
+                                 0x00C0297A,
                                  0x0061200B,
                                  0x000015FC,
                                  0x0000000D,
-                                 0x02008984
+                                 0x30008984   // R[4] Digital Lock detect DB[29:27]
                                };
 } adf4356registers;
 

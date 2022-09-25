@@ -4,17 +4,28 @@
 #include <Arduino.h>    // Includes typedef for uint32_t
 
 
-/* Default register values for MAX2871 LO: Sets default RFOout = 80 MHz */
+/* Default register values for MAX2871 LO: Sets default RFOout = 3865.0 MHz */
+/* This correlates to an 80 MHz RFin value
+    LO2 = 3865.0 MHz
+    Fractional Mode
+    MUX = TriState
+    DIVA = 1
+    N = 58
+    F = 2294
+    M = 4092
+    RFOut_A = OFF / 0dBm
+    RFOut_B =  ON / 5dBm
+*/
 typedef struct maxRegisters {
   static const byte numRegisters = 7;
   static const byte numProgrammableRegs = 5;
-  uint32_t Reg[numRegisters] = { 0x0026C9B0,
-                                 0x40017FF9,
-                                 0x98005F42,    // Digital Lock detect ON
-                                 0x00001F23,
-                                 0x63EFF1C4,    // RFout_A disabled
-                                 0x00400005,    // Bit 18 is MSB for Digital Lock detect control
-                                 0x80005F42     // Digital Lock detect OFF (Tri-state output)
+  uint32_t Reg[numRegisters] = { 0x001D47B0,  // R[0] N = Bits[30:15], F = Bits[14:3]
+                                 0x40017FE1,  // R[1] M = Bits[14:3]
+                                 0x80005F42,  // R[2] Digital Lock detect OFF = MUX=Bits[28:26] = 110
+                                 0x04009F23,  // R[3] Fast Lock enabled = Bits[16:15]
+                                 0x638E83C4,  // R[4] RFout_B enabled @ +5dBm / RFout_A disabled
+                                 0x00400005,  // R[5] 
+                                 0x98005F42   // R[2] Digital Lock detect ON --> MUX=Bits[28:26]
                                };
 //  uint16_t* RLO2_as_int = (uint16_t*)RLO2;
 } max2871Registers;
@@ -55,6 +66,9 @@ class MAX2871_LO {
     const uint32_t neg1dBm = 0x140;
     const uint32_t pos2dBm = 0x180;
     const uint32_t pos5dBm = 0x1C0;
+
+    /* R4<22:20> Set the RFOut Divider Mode to 1, 2, 4, 8, 16, 32, 64, or 128 */
+    const uint32_t RFOUT_DIV_MASK = 0xFF8FFFFF;  // 00700000;
 
     /*****  ----------------------- NOTE: --------------------------  *****/
     /***** | Enabling Tristate, Mux_Set_TRI, automatically disables | *****/
