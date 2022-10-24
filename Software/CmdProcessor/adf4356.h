@@ -11,9 +11,9 @@ typedef struct adfRegisters {
                                  0x00000001,
                                  0x00000012,
                                  0x00000003,
-                                 0x00008984,  // R[4] Muxout = 3-state output DB[29:27]
+                                 0x30008984,  // R[4] Muxout = Digital Lock Detect DB[29:27]
                                  0x00800025,
-                                 0x35034076,
+                                 0x35034046,
                                  0x060000F7,  // R[7] Int-N mode DB[4]
                                  0x15596568,
                                  0x2A1BBCC9,

@@ -42,16 +42,20 @@ class MAX2871_LO {
     const short Data_Mask = 0x3F;
 
     /* 12 bit mask, R[1] bits [14:3], for Fractional Modulus Value, M */
-    const uint32_t M_mask = 0x7FF8;
+    const uint32_t M_set = 0x7FF8;
+    const uint32_t M_clr = 0xFFFF8007;
 
     /* 12 bit mask, R[0] bits [14:3], for Frequency Division Value, F */
-    const uint32_t F_mask = 0x7FF8;
+    const uint32_t F_set = 0x7FF8;
+    const uint32_t F_clr = 0xFFFF8007;
 
     /* 8 bit mask, R[0] bits [22:15], for Integer Counter, N */
-    const uint32_t N_mask = 0x7F8000;
+    const uint32_t N_set = 0x7F8000;
+    const uint32_t N_clr = 0xFFFF8007;
 
     /* 20 bit mask, R[0] bits [22:3], for N and F */
-    const uint32_t NF_mask = 0x7FFFF8;
+    const uint32_t NF_set = 0x7FFFF8;
+    const uint32_t NF_clr = 0xFF800007;
 
     /* R4<8> and R4<5> disable RFoutB and RFoutA */
     const uint32_t RFpower_off = 0xFFFFFE07;

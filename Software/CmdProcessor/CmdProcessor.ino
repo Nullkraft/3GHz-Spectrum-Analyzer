@@ -41,12 +41,6 @@ uint8_t* serialWordAsBytes = (uint8_t*)&serialWord;   // Serial Word as a byte a
 uint16_t* serialWordAsInts = (uint16_t*)&serialWord;  // Serial Word as a int array
 
 
-/* Several of the LO2/3 commands have an extra 6 bits of Embedded Data <21:16>
-   that tells the Arduino how many 32 bit Words are to follow. */
-uint16_t num_data_points;  // If this is >0 it means we are sweeping frequencies
-uint16_t num_points_processed;
-
-
 /* Max block size is 128 bytes and because each Data Word
    contains 4 bytes the maximum number of Data Words is 32. */
 const uint8_t size_data_buf = 8;
@@ -126,8 +120,7 @@ static String nameLO;
 
 #define USE_BINARY  // Comment out for ASCII serial commuinication
 
-
-#define DEBUG
+//#define DEBUG
 
 /******** SETUP *********************************************************************/
 void setup() {
@@ -145,11 +138,8 @@ void setup() {
   Serial.begin(2000000);
 
   //  MUX pin interrupt
-  PCICR |= 0b00000010;   // turn on port C pin-change interrupt(s)
-  PCMSK1 |= 0b00000100;  // PCINT10
-
-  num_data_points = 0;  // Used when sending LO2 and LO3 ADC outputs  to  the  PC
-  num_points_processed = 0;
+  // PCICR |= 0b00000010;   // turn on port C pin-change interrupt(s)
+  // PCMSK1 |= 0b00000100;  // PCINT10
 
   // Presets for LO3
   LO3.Curr.Reg[0] = 0x002081C8;  // LO3 = 270 MHz with 66 MHz ref clock
@@ -180,7 +170,6 @@ void setup() {
 
 
 /******** MAIN LOOP ******************************************************************/
-
 void loop() {
 LoopTop:
   while (Serial.available()) {
@@ -195,9 +184,11 @@ LoopTop:
     if (serialWord == 0) {
       goto LoopTop;
     }
+    else {
+      delay(100);
+    }
 #endif
 
-    COMMAND_FLAG = false;
     if (serialWordAsBytes[0] == CommandFlag) {
       COMMAND_FLAG = true;
     }
@@ -208,36 +199,32 @@ LoopTop:
       Data16 = serialWordAsInts[1];
       Command = (serialWordAsBytes[1] & CommandBits) >> 3;
       Address = serialWordAsBytes[1] & AddressBits;
-      #ifdef DEBUG
-      Serial.print("Data = ");
-      Serial.print(Data16, HEX);
-      Serial.print(" : Cmd = ");
-      Serial.print(Command, HEX);
-      Serial.print(" : Addr = ");
-      Serial.println(Address, HEX);
-      #endif
+      COMMAND_FLAG = false;
     }
 
-    // LO2/3 Instruction arrived...//    if (serialWordAsBytes[0] != CommandFlag)
+    // !CommandFlag - LO2/3 Instruction arrived...
     else if (!COMMAND_FLAG) {
       // M:  Clear Reg[1], bits [14:3], to accept M word
-      LO->Curr.Reg[1] &= (~LO->M_mask);
+      LO->Curr.Reg[1] = LO->Curr.Reg[1] & LO->M_clr;
       // M:  Shift and mask serialWord to form M
-      LO->Curr.Reg[1] |= ((serialWord >> 5) & LO->M_mask);
+      LO->Curr.Reg[1] = LO->Curr.Reg[1] | ((serialWord >> 5) & LO->M_set);
 
       // N and F:  Clear Reg[0], bits [22:3], to accept N and F words
-      LO->Curr.Reg[0] &= (~LO->NF_mask);
+      LO->Curr.Reg[0] = LO->Curr.Reg[0] & LO->NF_clr;
       // N:  Shift and mask serialWord to form N
-      LO->Curr.Reg[0] |= ((serialWord << 15) & LO->N_mask);
+      LO->Curr.Reg[0] = LO->Curr.Reg[0] | ((serialWord << 15) & LO->N_set);
 
       // F:  Shift and mask serialWord to form F
-      LO->Curr.Reg[0] |= ((serialWord >> 17) & LO->F_mask);
+      LO->Curr.Reg[0] = LO->Curr.Reg[0] | ((serialWord >> 17) & LO->F_set);
 
       // Program the selected LO starting with the higher numbered registers first
       spiWriteLO(LO->Curr.Reg[1], spi_select);
       spiWriteLO(LO->Curr.Reg[0], spi_select);
 
       // Now we read the ADC
+      delay(0);
+//      while (digitalRead(PLL_MUX) == LOW) {
+//      }  // Wait for LO Lock, regardless of LO2 or LO3!
       serialWordAsInts[0] = analogRead(adc_pin);  // Buffer now used for analog output
 
       // Send the amplitude data from the ADC to the PC for plotting
@@ -296,8 +283,7 @@ LoopTop:
             break;
         }
         // Now program LO1 with the new settings
-        spiWriteLO(spiWord, spi_select);
-        spiWriteLO(LO1.Curr.Reg[1], spi_select);
+        spiWriteLO(spiWord, spi_select);          // Write Reg[4] or Reg[6] depending on the given command
         spiWriteLO(LO1.Curr.Reg[0], spi_select);
         //getLOstatus(LO1);
         break;
@@ -316,7 +302,6 @@ LoopTop:
           spi_select = LO3_SEL;
         }
         // Set the remainder of the SPI pins
-        num_data_points = Data16;  // Number of frequency points to be read
         switch (Command) {
           case RF_off:
             LO->Curr.Reg[4] = LO->Curr.Reg[4] & LO->RFpower_off;
@@ -437,12 +422,12 @@ LoopTop:
    When the mux pin is configured for Digital Lock Detect output
    we can read the status of the pin from here.
 */
-ISR(PCINT1_vect) {
-  #ifdef DEBUG
-    Serial.print(nameLO);
-    Serial.println(" Lock ");
-  #endif
-}
+// ISR(PCINT1_vect) {
+//   #ifdef DEBUG
+//     Serial.print(nameLO);
+//     Serial.println(" Lock ");
+//   #endif
+// }
 
 
 void initialize_LO1(uint8_t selectPin) {
