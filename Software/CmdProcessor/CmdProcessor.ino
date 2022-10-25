@@ -41,12 +41,6 @@ uint8_t* serialWordAsBytes = (uint8_t*)&serialWord;   // Serial Word as a byte a
 uint16_t* serialWordAsInts = (uint16_t*)&serialWord;  // Serial Word as a int array
 
 
-/* Max block size is 128 bytes and because each Data Word
-   contains 4 bytes the maximum number of Data Words is 32. */
-const uint8_t size_data_buf = 8;
-uint32_t data_buf_as_word[size_data_buf];
-uint16_t* data_buf_as_int = (uint16_t*)&data_buf_as_word;
-
 // Command Flag 0xFF indicates that a new instruction was received by the Arduino
 bool COMMAND_FLAG = false;
 
@@ -94,12 +88,10 @@ const int MISC_addr = 7;
 // BitMask for programming the registers of the Attenuator IC
 const uint16_t ATTEN_Data_Mask = 0x7F;  // 7 bits of Embedded Data
 
-const uint8_t pauseMillis = 20;
-
-
 
 /*********** HARDWARE DEFINITIONS END *******/
 
+unsigned long start_time;
 
 // Assign reference designators from the schematic to the LO ojbect of choice
 ADF4356_LO LO1 = ADF4356_LO();
@@ -161,7 +153,7 @@ void setup() {
   initialize_LO3(LO3_SEL, true);
   initialize_LO2(LO2_SEL, true);
   initialize_LO1(LO1_SEL);
-  delay(pauseMillis);
+  delay(20);
   initialize_LO3(LO3_SEL, false);
   initialize_LO2(LO2_SEL, false);
   initialize_LO1(LO1_SEL);
@@ -196,7 +188,7 @@ LoopTop:
     /******** COMMAND FLAG **************************************************************/
     // If a Command Flag is found then parse the 32 bits into Data, Command and Address
     if (COMMAND_FLAG) {
-      Data16 = serialWordAsInts[1];
+      Data16 = serialWordAsInts[1];   // Copy 2 upper bytes to Data16
       Command = (serialWordAsBytes[1] & CommandBits) >> 3;
       Address = serialWordAsBytes[1] & AddressBits;
       COMMAND_FLAG = false;
@@ -204,29 +196,31 @@ LoopTop:
 
     // !CommandFlag - LO2/3 Instruction arrived...
     else if (!COMMAND_FLAG) {
-      // M:  Clear Reg[1], bits [14:3], to accept M word
+      // M:  Clear Reg[1], bits [14:3], before accepting a new M word
       LO->Curr.Reg[1] = LO->Curr.Reg[1] & LO->M_clr;
-      // M:  Shift and mask serialWord to form M
+      // M:  Mask and set bits[14:3] to program the new value for M
       LO->Curr.Reg[1] = LO->Curr.Reg[1] | ((serialWord >> 5) & LO->M_set);
-
-      // N and F:  Clear Reg[0], bits [22:3], to accept N and F words
+      // N and F:  Clear Reg[0], bits [22:3], before accepting new N and F words
       LO->Curr.Reg[0] = LO->Curr.Reg[0] & LO->NF_clr;
-      // N:  Shift and mask serialWord to form N
+      // N:  Mask and set bits [22:15] to program the new value for N
       LO->Curr.Reg[0] = LO->Curr.Reg[0] | ((serialWord << 15) & LO->N_set);
-
-      // F:  Shift and mask serialWord to form F
+      // F:  Mask and set bits [14:3] to program the new value for F
       LO->Curr.Reg[0] = LO->Curr.Reg[0] | ((serialWord >> 17) & LO->F_set);
 
       // Program the selected LO starting with the higher numbered registers first
       spiWriteLO(LO->Curr.Reg[1], spi_select);
       spiWriteLO(LO->Curr.Reg[0], spi_select);
 
-      // Now we read the ADC
-      delay(0);
-//      while (digitalRead(PLL_MUX) == LOW) {
-//      }  // Wait for LO Lock, regardless of LO2 or LO3!
-      serialWordAsInts[0] = analogRead(adc_pin);  // Buffer now used for analog output
+      start_time = millis();
+      // Wait for selected LO2 or LO3 to Lock
+      while (digitalRead(PLL_MUX) == LOW) {
+        if ((millis()-start_time) > 5) {
+          break;  // The longest lock period is 2 mSec so just bail out after 5
+        }
+      }
 
+      // Now we read the ADC and use the buffer for returning analog output to the PC
+      serialWordAsInts[0] = analogRead(adc_pin);  // 10 bit ADC copied to the 2 lowest bytes
       // Send the amplitude data from the ADC to the PC for plotting
       Serial.write(serialWordAsBytes[0]);
       Serial.write(serialWordAsBytes[1]);
@@ -235,8 +229,7 @@ LoopTop:
     /******** SPECTRUM ANALYZER INSTRUCTIONS **********************************************/
     /* Hardware selection and operations. This is where the processing of
        Specific commands occurs. */
-    // Start by selecting the device that you want to control. Then under
-    // each device you can select the operation that you want to perform.
+    // Start by selecting the Address of the device then the operation to be performed.
     switch (Address) {
       case Attenuator:
         Data16 &= ATTEN_Data_Mask;
@@ -247,14 +240,13 @@ LoopTop:
         nameLO = "LO1";
         spi_select = LO1_SEL;
         Data32 = ((uint32_t)Data16 << 4);   // Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4>
-        LO1.Curr.Reg[0] &= LO1.INT_N_Mask;  // Clear old INT_N bits from Regist 0
-        LO1.Curr.Reg[0] |= Data32;          // Insert new INT_N bits into Register 0
+        LO1.Curr.Reg[0] &= LO1.INT_N_Mask;  // Clear the INT_N bits from Register 0
+        LO1.Curr.Reg[0] |= Data32;          // Set the new INT_N bits into Register 0
         switch (Command) {
           case RF_off:
             LO1.Curr.Reg[6] = LO1.Curr.Reg[6] & LO1.RFpower_off;
             spiWord = LO1.Curr.Reg[6];
             break;
-          // Set the RFoutB power level and disable RFoutA.
           case neg_4dBm:
             LO1.Curr.Reg[6] = (LO1.Curr.Reg[6] & LO1.Power_Level_Mask) | LO1.neg4dBm;
             spiWord = LO1.Curr.Reg[6];
@@ -285,7 +277,6 @@ LoopTop:
         // Now program LO1 with the new settings
         spiWriteLO(spiWord, spi_select);          // Write Reg[4] or Reg[6] depending on the given command
         spiWriteLO(LO1.Curr.Reg[0], spi_select);
-        //getLOstatus(LO1);
         break;
 
       case LO2_addr:
@@ -301,14 +292,13 @@ LoopTop:
           LO = &LO3;
           spi_select = LO3_SEL;
         }
-        // Set the remainder of the SPI pins
         switch (Command) {
           case RF_off:
             LO->Curr.Reg[4] = LO->Curr.Reg[4] & LO->RFpower_off;
             spiWord = LO->Curr.Reg[4];
             break;
           case neg_4dBm:
-            // OR'ing with LO->neg4dBm does nothing and is only added for clarity
+            // OR'ing with LO->neg4dBm does nothing and is only added for documentation
             LO->Curr.Reg[4] = (LO->Curr.Reg[4] & LO->Power_Level_Mask) | LO->neg4dBm;
             spiWord = LO->Curr.Reg[4];
             break;
@@ -342,7 +332,6 @@ LoopTop:
         }
         // Now program the currently selected LO
         spiWriteLO(spiWord, spi_select);
-        //getLOstatus(*LO);
         break;  // End case LO2 OR case LO3
 
       case RefClock:
@@ -509,23 +498,4 @@ void spiWriteLO(uint32_t reg, uint8_t selectPin) {
 
 
 
-// This function is for development testing. Remove at production
-void getLOstatus(MAX2871_LO LO) {
-  for (int i = 0; i < LO.Curr.numRegisters; i++) {
-    Serial.print("R[");
-    Serial.print(i);
-    Serial.print("] = 0x");
-    Serial.println(LO.Curr.Reg[i], HEX);
-  }
-}
 
-
-// This function is for development testing. Remove at production
-void getLOstatus(ADF4356_LO LO) {
-  for (int i = 0; i < LO.Curr.numRegisters; i++) {
-    Serial.print("R[");
-    Serial.print(i);
-    Serial.print("] = 0x");
-    Serial.println(LO.Curr.Reg[i], HEX);
-  }
-}
