@@ -211,19 +211,28 @@ LoopTop:
       spiWriteLO(LO->Curr.Reg[1], spi_select);
       spiWriteLO(LO->Curr.Reg[0], spi_select);
 
-      start_time = millis();
       // Wait for selected LO2 or LO3 to Lock
+      start = micros;
       while (digitalRead(PLL_MUX) == LOW) {
-        if ((millis()-start_time) > 5) {
-          break;  // The longest lock period is 2 mSec so just bail out after 5
+        // The longest lock period is 2 mSec so just bail out after 120 useconds
+        if (DEBUG) {
+          delayMicroseconds(120);
+          break;
+        }
+        // If the LO fails to lock we still need to move on.
+        if ((micros - start) > 200) {
+          break;
         }
       }
 
-      // Now we read the ADC and use the buffer for returning analog output to the PC
-      serialWordAsInts[0] = analogRead(adc_pin);  // 10 bit ADC copied to the 2 lowest bytes
-      // Send the amplitude data from the ADC to the PC for plotting
-      Serial.write(serialWordAsBytes[0]);
-      Serial.write(serialWordAsBytes[1]);
+      // HACK: Read the amplitude at least twice for some reason
+      analogRead(adc_pin);    // Priming the ADC pump, or whatever
+      a2dAmplitude = analogRead(adc_pin);
+
+      // Send the amplitude as individual bytes from the ADC to the PC for plotting
+      Serial.write(ampl_byte[0]);
+      Serial.write(ampl_byte[1]);
+      delay(0);   // Let's just call this a nop so I can set a breakpoint.
     }
 
     /******** SPECTRUM ANALYZER INSTRUCTIONS **********************************************/
