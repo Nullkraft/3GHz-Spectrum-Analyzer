@@ -73,7 +73,7 @@ const int ATTEN_SEL = A5;
 //const int SPI_MISO  = 12;   // Reserved by the SPI Library
 //const int SPI_CLOCK = 13;   // Reserved by the SPI Library
 
-int adc_pin;  // Set this to either ADC_SEL_### to read the ADC for LO2 or LO3
+int adc_pin = ADC_SEL_315;  // Default sets this to either to the ADC for LO2 output
 
 
 // Addresses for selecting the various hardware ICs
@@ -91,8 +91,6 @@ const uint16_t ATTEN_Data_Mask = 0x7F;  // 7 bits of Embedded Data
 
 /*********** HARDWARE DEFINITIONS END *******/
 
-unsigned long start_time;
-
 // Assign reference designators from the schematic to the LO ojbect of choice
 ADF4356_LO LO1 = ADF4356_LO();
 MAX2871_LO LO2 = MAX2871_LO();
@@ -109,10 +107,14 @@ uint8_t* byteZ = (byte*)&z;      // Tmp as a byte array
 uint16_t* intZ = (uint16_t*)&z;  // Tmp as an int array
 
 static String nameLO;
+volatile uint16_t a2dAmplitude;
+uint8_t* ampl_byte = (uint8_t*)&a2dAmplitude;
+
+unsigned long start;
 
 #define USE_BINARY  // Comment out for ASCII serial commuinication
 
-//#define DEBUG
+bool DEBUG = false;
 
 /******** SETUP *********************************************************************/
 void setup() {
@@ -160,7 +162,6 @@ void setup() {
 }
 
 
-
 /******** MAIN LOOP ******************************************************************/
 void loop() {
 LoopTop:
@@ -175,9 +176,6 @@ LoopTop:
     serialWord = Serial.parseInt();
     if (serialWord == 0) {
       goto LoopTop;
-    }
-    else {
-      delay(100);
     }
 #endif
 
@@ -293,6 +291,7 @@ LoopTop:
         nameLO = "LO2";
         LO = &LO2;
         spi_select = LO2_SEL;
+        adc_pin = ADC_SEL_315;
         // Now fall through
       case LO3_addr:
         // Making LO3 active
@@ -300,6 +299,7 @@ LoopTop:
           nameLO = "LO3";
           LO = &LO3;
           spi_select = LO3_SEL;
+          adc_pin = ADC_SEL_045;
         }
         switch (Command) {
           case RF_off:
@@ -372,29 +372,23 @@ LoopTop:
         switch (Command) {
           case LED_off:
             digitalWrite(LED_BUILTIN, LOW);
-            #ifndef DEBUG
+            if (!DEBUG) {
               Serial.write(0xFF);
               Serial.write(0xFF);
-            #endif
+            }
             break;
           case LED_on:
             digitalWrite(LED_BUILTIN, HIGH);
             break;
           case MSG_REQ:
-            Serial.println("- WN2A Spectrum Analyzer CmdProcessor Oct. 2021");
             break;
-          case RTS:
-            Serial.print("PC Application is requesting to send more data.");
-            break;
-          case ADC_315:
-            adc_pin = ADC_SEL_315;  // Selects the ADC associated with LO2 output
-            break;
-          case ADC_045:
-            adc_pin = ADC_SEL_045;  // Selects the ADC associated with LO3 output
+          case SWEEP_START:
             break;
           case SWEEP_END:
             Serial.write(0xFF);
             Serial.write(0xFF);
+            break;
+          case RESET:
             break;
           default:
             break;
@@ -421,10 +415,10 @@ LoopTop:
    we can read the status of the pin from here.
 */
 // ISR(PCINT1_vect) {
-//   #ifdef DEBUG
+//   if (DEBUG) {
 //     Serial.print(nameLO);
 //     Serial.println(" Lock ");
-//   #endif
+//   }
 // }
 
 
@@ -498,13 +492,3 @@ void spiWriteLO(uint32_t reg, uint8_t selectPin) {
   digitalWrite(selectPin, HIGH);
   SPI.end();
 }
-
-
-
-
-
-
-
-
-
-
