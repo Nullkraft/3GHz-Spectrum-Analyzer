@@ -110,7 +110,7 @@ static String nameLO;
 volatile uint16_t a2dAmplitude;
 uint8_t* ampl_byte = (uint8_t*)&a2dAmplitude;
 
-unsigned long start;
+unsigned long start_PLL_Lock_time;
 
 #define USE_BINARY  // Comment out for ASCII serial commuinication
 
@@ -161,6 +161,11 @@ void setup() {
   initialize_LO1(LO1_SEL);
 }
 
+int hi_byte = 0;
+int lo_byte = 0;
+int LOCKED;
+const int PLL_Lock_timeout = 1000; // usec. Use 195 for testing some failures to lock.
+
 
 /******** MAIN LOOP ******************************************************************/
 void loop() {
@@ -210,27 +215,40 @@ LoopTop:
       spiWriteLO(LO->Curr.Reg[0], spi_select);
 
       // Wait for selected LO2 or LO3 to Lock
-      start = micros;
-      while (digitalRead(PLL_MUX) == LOW) {
-        // The longest lock period is 2 mSec so just bail out after 120 useconds
-        if (DEBUG) {
-          delayMicroseconds(120);
+      start_PLL_Lock_time = micros();
+      while (true) {
+        LOCKED = digitalRead(PLL_MUX);  // Check the mux pin to see if we get a lock
+        analogRead(adc_pin);  // HACK to prime the ADC. Fix the ADC input impedance?
+        //  We either get a lock or we get a timeout.
+        if (LOCKED) {
+          a2dAmplitude = analogRead(adc_pin);
+          hi_byte = ampl_byte[1];
+          lo_byte = ampl_byte[0];
           break;
         }
-        // If the LO fails to lock we still need to move on.
-        if ((micros - start) > 200) {
+        /* Trigger the timeout if we don't get a lock. We still want the amplitude data
+         * but we can send a warning so the user knows that there is some inaccuracy.
+         * The Arduino ADC is only 10 bits. That means there are 6 bits that can be used
+         * for sending a variety of 'messages' embedded in the amplitude data.
+        */
+        if ((micros()-start_PLL_Lock_time) > PLL_Lock_timeout) {
+          a2dAmplitude = analogRead(adc_pin);
+          hi_byte = ampl_byte[1] | 0xF0;    // Set the 4 MSbits to indicate failure to lock
+          lo_byte = ampl_byte[0];
+          break;
+        }
+        // Bypass the lock detect when debugging the Arduino by itself.
+        if (DEBUG) {
+          delayMicroseconds(100);
           break;
         }
       }
 
-      // HACK: Read the amplitude at least twice for some reason
-      analogRead(adc_pin);    // Priming the ADC pump, or whatever
-      a2dAmplitude = analogRead(adc_pin);
-
       // Send the amplitude as individual bytes from the ADC to the PC for plotting
-      Serial.write(ampl_byte[0]);
-      Serial.write(ampl_byte[1]);
-      delay(0);   // Let's just call this a nop so I can set a breakpoint.
+      // Big Endian
+      Serial.write(hi_byte);
+      Serial.write(lo_byte);
+//      Serial.write((byte *)a2dAmplitude, sizeof(a2dAmplitude));   // This is little-endian
     }
 
     /******** SPECTRUM ANALYZER INSTRUCTIONS **********************************************/
@@ -381,6 +399,7 @@ LoopTop:
             digitalWrite(LED_BUILTIN, HIGH);
             break;
           case MSG_REQ:
+            Serial.println("- WN2A Spectrum Analyzer CmdProcessor Oct. 2021");
             break;
           case SWEEP_START:
             break;
