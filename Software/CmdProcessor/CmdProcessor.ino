@@ -131,10 +131,6 @@ void setup() {
   Serial.setTimeout(200);
   Serial.begin(2000000);
 
-  //  MUX pin interrupt
-  // PCICR |= 0b00000010;   // turn on port C pin-change interrupt(s)
-  // PCMSK1 |= 0b00000100;  // PCINT10
-
   // Presets for LO3
   LO3.Curr.Reg[0] = 0x002081C8;  // LO3 = 270 MHz with 66 MHz ref clock
   LO3.Curr.Reg[1] = 0x400103E9;
@@ -219,7 +215,7 @@ LoopTop:
       while (true) {
         LOCKED = digitalRead(PLL_MUX);  // Check the mux pin to see if we get a lock
         analogRead(adc_pin);  // HACK to prime the ADC. Fix the ADC input impedance?
-        //  We either get a lock or we get a timeout.
+        //  We either get a lock or we check for a timeout.
         if (LOCKED) {
           a2dAmplitude = analogRead(adc_pin);
           hi_byte = ampl_byte[1];
@@ -366,19 +362,16 @@ LoopTop:
           // Turn both ref_clocks off
           case all_ref_off:
             digitalWrite(REF_LO_SEL, LOW);
-            delay(2);
             digitalWrite(REF_HI_SEL, LOW);
             break;
-          // Turn on 66.000 MHz ref_clock AND turn off 66.666 MHz ref_clock
+          // Turn off 66.666 MHz ref_clock AND turn on 66.000 MHz ref_clock
           case ref_LO:
-            digitalWrite(REF_LO_SEL, HIGH);
-            delay(2);
             digitalWrite(REF_HI_SEL, LOW);
+            digitalWrite(REF_LO_SEL, HIGH);
             break;
-          // Turn on 66.666 MHz ref_clock AND turn off 66.000 MHz ref_clock
+          // Turn off 66.000 MHz ref_clock AND turn on 66.666 MHz ref_clock
           case ref_HI:
             digitalWrite(REF_LO_SEL, LOW);
-            delay(2);
             digitalWrite(REF_HI_SEL, HIGH);
             break;
           default:
@@ -427,18 +420,6 @@ LoopTop:
 
 
 
-
-
-/* MUX Interrupt
-   When the mux pin is configured for Digital Lock Detect output
-   we can read the status of the pin from here.
-*/
-// ISR(PCINT1_vect) {
-//   if (DEBUG) {
-//     Serial.print(nameLO);
-//     Serial.println(" Lock ");
-//   }
-// }
 
 
 void initialize_LO1(uint8_t selectPin) {
