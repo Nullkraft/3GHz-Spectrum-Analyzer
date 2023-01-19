@@ -75,7 +75,6 @@ const int ATTEN_SEL = A5;
 
 int adc_pin = ADC_SEL_315;  // Default sets this to either to the ADC for LO2 output
 
-
 // Addresses for selecting the various hardware ICs
 const int Attenuator = 0;
 const int LO1_addr = 1;
@@ -118,6 +117,8 @@ bool DEBUG = false;
 
 /******** SETUP *********************************************************************/
 void setup() {
+  analogReference(EXTERNAL);
+
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(REF_LO_SEL, OUTPUT);
   pinMode(REF_HI_SEL, OUTPUT);
@@ -160,7 +161,7 @@ void setup() {
 int hi_byte = 0;
 int lo_byte = 0;
 int LOCKED;
-const int PLL_Lock_timeout = 1000; // usec. Use 195 for testing some failures to lock.
+const int PLL_Lock_timeout = 500; // usec. Use 195 for testing some failures to lock.
 
 
 /******** MAIN LOOP ******************************************************************/
