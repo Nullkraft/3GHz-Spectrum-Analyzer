@@ -230,7 +230,7 @@ LoopTop:
         */
         if ((micros()-start_PLL_Lock_time) > PLL_Lock_timeout) {
           a2dAmplitude = analogRead(adc_pin);
-          hi_byte = ampl_byte[1] | 0xF0;    // Set the 4 MSbits to indicate failure to lock
+          hi_byte = ampl_byte[1] | failed_to_lock;  // Report failure to PC
           lo_byte = ampl_byte[0];
           break;
         }
