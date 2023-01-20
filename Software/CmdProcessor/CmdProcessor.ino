@@ -156,6 +156,9 @@ void setup() {
   initialize_LO3(LO3_SEL, false);
   initialize_LO2(LO2_SEL, false);
   initialize_LO1(LO1_SEL);
+
+  noise_threshold = 193;  // Values below this are NOT to be sent over serial
+  LAST_STATE = ABOVE_NOISE_FLOOR;
 }
 
 int hi_byte = 0;
@@ -219,8 +222,21 @@ LoopTop:
         //  We either get a lock or we check for a timeout.
         if (LOCKED) {
           a2dAmplitude = analogRead(adc_pin);
-          hi_byte = ampl_byte[1];
-          lo_byte = ampl_byte[0];
+          if ((a2dAmplitude < noise_threshold) && (LAST_STATE==ABOVE_NOISE_FLOOR)) {
+            LAST_STATE = BELOW_NOISE_FLOOR;
+            hi_byte = ampl_byte[1] | start_noise_floor;  // Report entering noise-floor
+            lo_byte = ampl_byte[0];
+          }
+          else if ((a2dAmplitude >= noise_threshold) && (LAST_STATE==BELOW_NOISE_FLOOR)) {
+            LAST_STATE = ABOVE_NOISE_FLOOR;
+            hi_byte = ampl_byte[1] | end_noise_floor;  // Report leaving noise-floor
+            lo_byte = ampl_byte[0];
+          }
+          else {  // ((a2dAmplitude>noise_threshold) && (LAST_STATE==ABOVE_NOISE_FLOOR))
+                  // or ((a2dAmplitude<noise_threshold) && (LAST_STATE==BELOW_NOISE_FLOOR))
+            hi_byte = ampl_byte[1];
+            lo_byte = ampl_byte[0];
+          }
           break;
         }
         /* Trigger the timeout if we don't get a lock. We still want the amplitude data
@@ -398,6 +414,7 @@ LoopTop:
           case SWEEP_START:
             break;
           case SWEEP_END:
+            LAST_STATE = ABOVE_NOISE_FLOOR;   // Reset for start of next sweep
             Serial.write(0xFF);
             Serial.write(0xFF);
             break;
