@@ -222,21 +222,8 @@ LoopTop:
         //  We either get a lock or we check for a timeout.
         if (LOCKED) {
           a2dAmplitude = analogRead(adc_pin);
-          if ((a2dAmplitude < noise_threshold) && (LAST_STATE==ABOVE_NOISE_FLOOR)) {
-            LAST_STATE = BELOW_NOISE_FLOOR;
-            hi_byte = ampl_byte[1] | start_noise_floor;  // Report entering noise-floor
-            lo_byte = ampl_byte[0];
-          }
-          else if ((a2dAmplitude >= noise_threshold) && (LAST_STATE==BELOW_NOISE_FLOOR)) {
-            LAST_STATE = ABOVE_NOISE_FLOOR;
-            hi_byte = ampl_byte[1] | end_noise_floor;  // Report leaving noise-floor
-            lo_byte = ampl_byte[0];
-          }
-          else {  // ((a2dAmplitude>noise_threshold) && (LAST_STATE==ABOVE_NOISE_FLOOR))
-                  // or ((a2dAmplitude<noise_threshold) && (LAST_STATE==BELOW_NOISE_FLOOR))
-            hi_byte = ampl_byte[1];
-            lo_byte = ampl_byte[0];
-          }
+          hi_byte = ampl_byte[1];
+          lo_byte = ampl_byte[0];
           break;
         }
         /* Trigger the timeout if we don't get a lock. We still want the amplitude data
