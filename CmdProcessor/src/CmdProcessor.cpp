@@ -20,8 +20,10 @@
        or LO3 Specific Command.
 */
 
+#include <Arduino.h>
 #include <SPI.h>
 #include <avr/interrupt.h>
+#include "SpecAnn.h"
 
 #include "max2871.h"
 #include "adf4356.h"
@@ -497,3 +499,8 @@ void spiWriteLO(uint32_t reg, uint8_t selectPin) {
   digitalWrite(selectPin, HIGH);
   SPI.end();
 }
+
+
+
+
+
