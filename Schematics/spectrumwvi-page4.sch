@@ -1,4 +1,4 @@
-v 20130925 2
+v 20201216 2
 N 25900 58600 27400 58600 4
 {
 T 26850 58650 5 10 1 1 0 0 1
@@ -258,6 +258,10 @@ T 24500 62700 5 10 0 1 0 0 1
 device=ARDUINO_UNO_HEADER32
 T 23200 55000 5 10 0 1 0 0 1
 footprint=Header_Arduino
+T 23200 55000 5 10 0 0 0 0 1
+documentation=https://www.digikey.com/en/products/detail/adafruit-industries-llc/85/5154649
+T 23200 55000 5 10 0 0 0 0 1
+man-part-num=Digikey Part Number: 85
 }
 C 31000 58900 1 0 0 resistor-1.sym
 {
