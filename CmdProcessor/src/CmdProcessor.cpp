@@ -103,9 +103,9 @@ byte buf_index = 0;
 uint32_t frac_div_F;
 uint32_t frac_mod_M;
 uint32_t counter_N;
-uint32_t z;
-uint8_t* byteZ = (byte*)&z;      // Tmp as a byte array
-uint16_t* intZ = (uint16_t*)&z;  // Tmp as an int array
+// uint32_t z;
+// uint8_t* byteZ = (byte*)&z;      // Tmp as a byte array
+// uint16_t* intZ = (uint16_t*)&z;  // Tmp as an int array
 
 static String nameLO;
 volatile uint16_t a2dAmplitude;
@@ -433,8 +433,7 @@ void initialize_LO1(uint8_t selectPin) {
   nameLO = "LO1";
   spiWriteLO(LO1.Curr.Reg[4], selectPin);  // Enable LO1 lock detect
   for (int x = 13; x >= 0; x--) {
-    z = LO1.Curr.Reg[x];
-    spiWriteLO(z, selectPin);  // Program LO1=3776.52 MHz with LD on Mux
+    spiWriteLO(LO1.Curr.Reg[x], selectPin);  // Program LO1=3776.52 MHz with LD on Mux
   }
   spiWriteLO(LO1.Curr.Reg[14], selectPin);  // Tri-stating the mux output disables LO1 lock detect
 }
@@ -451,8 +450,7 @@ void initialize_LO2(uint8_t selectPin, bool initialize) {
     delay(20);  // Only if it's our first time must we wait 20 mSec
   }
   for (int x = 4; x >= 0; x--) {
-    z = LO2.Curr.Reg[x];       // Program remaining registers where LO2=3915 MHz
-    spiWriteLO(z, selectPin);  // and Lock Detect is enabled on the Mux pin
+    spiWriteLO(LO2.Curr.Reg[x], selectPin);  // and Lock Detect is enabled on the Mux pin
   }
   spiWriteLO(LO2.Curr.Reg[6], selectPin);  // Tri-stating the mux output disables LO2 lock detect
 }
@@ -469,7 +467,6 @@ void initialize_LO3(uint8_t selectPin, bool initialize) {
     delay(20);  // Only if it's our first time must we wait 20 mSec
   }
   for (int x = 4; x >= 0; x--) {
-    z = LO3.Curr.Reg[x];                     // Program remaining registers where LO3=270 MHz
     spiWriteLO(LO3.Curr.Reg[x], selectPin);  // and Lock Detect is enabled on the Mux pin
   }
   spiWriteLO(LO3.Curr.Reg[6], selectPin);  // Tri-stating the mux output disables LO3 lock detect
