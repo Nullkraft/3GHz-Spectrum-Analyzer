@@ -11,10 +11,10 @@ A spectrum analyzer compatible with Arduino UNO R3 Microcontroller and others.
    A combination of Mark Stanley/Mike Masterson gEDA gschem schematics
     
 2) This design is intended to meet the following preliminary specifications:
-   Frequency Range: 23.5 to 3000 MHz.
-   Spurious Free Dynamic Range: 70 dBC
-   Powered either by External +7 ~ +13V
-   Arduino driver provided allowing for serial command & control
-   Dual XTAL Reference allows minimizing Frac-N spurs.
-   Individual AZ1117 low-noise regulators for Digital, RF and VCO
-   Compatible with various Arduinos using the UNO pin arrangement
+  * Frequency Range: 23.5 to 3000 MHz.
+  * Spurious Free Dynamic Range: 72 dBC
+  * Powered either by External +7 ~ +13V
+  * Arduino driver provided allowing for serial command & control
+  * Dual XTAL Reference allows minimizing Frac-N spurs.
+  * Individual AZ1117 low-noise regulators for Digital, RF and VCO
+  * Compatible with various Arduinos using the UNO pin arrangement
