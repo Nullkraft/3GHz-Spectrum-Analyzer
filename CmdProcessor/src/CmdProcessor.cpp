@@ -171,7 +171,7 @@ const int PLL_Lock_timeout = 500; // usec. Use 195 for testing some failures to 
 
 /******** MAIN LOOP ******************************************************************/
 void loop() {
-LoopTop:
+[[maybe_unused]] LoopTop:
   while (Serial.available()) {
 #ifdef USE_BINARY
     // Binary Communication for normal usage:
