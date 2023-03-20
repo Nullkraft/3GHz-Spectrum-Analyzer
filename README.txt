@@ -2,7 +2,7 @@ This is the First set of Documents for the Spectrum Analyser project 19Feb 2018
 
 Goals:
 1) Frequency Range: DC-3000 MHz
-2) Dynamic Range: 80 dB min; 90 dB typ
+2) Dynamic Range: 72 dB min; 90 dB typ
 3) Operating signal level <0dBm;
    Max RF Input +10dBm DC-48MHz ; +15 dBm 48-3000MHz
 4) IF Bandwidths : A:~ 300KHz B:~ 7.5 KHz (Dual simultaneous IF's)
