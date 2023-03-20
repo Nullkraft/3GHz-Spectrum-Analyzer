@@ -16,16 +16,25 @@
     RFOut_A = OFF / 0dBm
     RFOut_B =  ON / 5dBm
 */
+/* Frequency 3551.0
+ * 001AE6B0 = R[0]
+ * 40017FE1 = R[1]
+ * 80005F42 = R[2]
+ * 04009F23 = R[3]
+ * 638E83C4 = R[4]
+ * 00400005 = R[5]
+*/
+
 typedef struct maxRegisters {
   static const byte numRegisters = 7;
   static const byte numProgrammableRegs = 5;
-  uint32_t Reg[numRegisters] = { 0x001D47B0,  // R[0] N = Bits[30:15], F = Bits[14:3]
-                                 0x40017FE1,  // R[1] M = Bits[14:3]
-                                 0x80005F42,  // R[2] Digital Lock detect OFF = MUX=Bits[28:26] = 110
-                                 0x04009F23,  // R[3] Fast Lock enabled = Bits[16:15]
-                                 0x638E83C4,  // R[4] RFout_B enabled @ +5dBm / RFout_A disabled
-                                 0x00400005,  // R[5] 
-                                 0x98005F42   // R[2] Digital Lock detect ON --> MUX=Bits[28:26]
+  uint32_t Reg[numRegisters] = { 0x001D47B0,  // 001D47B0 = R[0] N = Bits[30:15], F = Bits[14:3]
+                                 0x40017FE1,  // 40017FE1 = R[1] M = Bits[14:3]
+                                 0x80005F42,  // 80005F42 = R[2] Digital Lock detect OFF = MUX=Bits[28:26] = 110
+                                 0x04009F23,  // 04009F23 = R[3] Fast Lock enabled = Bits[16:15]
+                                 0x638E83C4,  // 638E83C4 = R[4] RFout_B enabled @ +5dBm / RFout_A disabled
+                                 0x00400005,  // 00400005 = R[5] 
+                                 0x98005F42   // 98005F42 = R[2] Digital Lock detect ON --> MUX=Bits[28:26]
                                };
 //  uint16_t* RLO2_as_int = (uint16_t*)RLO2;
 } max2871Registers;
