@@ -1084,7 +1084,7 @@ Via[50.2935mm 38.4825mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3
 Via[52.9605mm 38.4825mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
 Via[55.5005mm 38.4825mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
 Via[58.4215mm 38.4825mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
-Via[79.3765mm 38.4825mm 20.00mil 12.00mil 0.0000 10.00mil "" "lock,thermal(0S,1S,2S,3S,4+)"]
+Via[79.3765mm 38.4825mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
 Via[79.3765mm 36.8315mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
 Via[79.3765mm 34.6725mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
 Via[79.3765mm 32.2595mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
@@ -1388,7 +1388,6 @@ Via[25.9095mm 27.9923mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3
 Via[25.9095mm 30.1767mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
 Via[25.9095mm 26.6715mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
 Via[25.9095mm 31.4975mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
-Via[41.6575mm 31.4975mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
 Via[42.4195mm 73.5345mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
 Via[36.4505mm 24.2585mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
 Via[29.5925mm 25.5285mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
@@ -1445,7 +1444,7 @@ Via[73.4075mm 25.1475mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[71.2485mm 24.1315mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[74.8045mm 26.2905mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[72.6455mm 24.6395mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
-Via[68.8683mm 33.9105mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
+Via[68.9953mm 33.7835mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[76.5825mm 20.0675mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
 Via[74.0425mm 20.0675mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
 Via[71.1215mm 20.4485mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
@@ -1500,6 +1499,83 @@ Via[69.5975mm 25.4015mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[83.8215mm 14.3525mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[84.9645mm 20.8295mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[75.0585mm 36.5775mm 24.00mil 10.00mil 0.0000 12.00mil "" ""]
+Via[58.1675mm 30.1005mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[56.3895mm 31.3705mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[54.1035mm 32.7675mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[59.4375mm 32.8945mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[62.9935mm 32.8945mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[63.5015mm 33.7835mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[61.8505mm 34.0375mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[59.8185mm 34.0375mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[58.1675mm 34.0375mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[55.1195mm 34.2915mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[60.4535mm 38.6095mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[62.1045mm 39.1175mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[64.0095mm 39.1175mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[65.4065mm 39.1175mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[66.5495mm 39.2445mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[68.3275mm 39.1175mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[70.2325mm 39.1175mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[72.0105mm 38.4825mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[73.7885mm 38.4825mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[75.5665mm 38.4825mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[77.3445mm 38.4825mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[66.5495mm 36.3235mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[68.5815mm 36.5775mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[64.7715mm 37.3395mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[69.9785mm 36.8315mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[71.2485mm 36.3235mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[72.5185mm 36.7045mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[73.5345mm 36.8315mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[77.3445mm 33.6565mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[77.3445mm 32.0055mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[77.3445mm 29.4655mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[77.4715mm 27.3065mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[70.8675mm 24.7665mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[70.7405mm 23.6235mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[68.9625mm 23.3695mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[67.0575mm 23.4965mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[67.9465mm 24.3855mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[64.8985mm 25.9095mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[66.9305mm 30.2275mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[65.0255mm 31.3705mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[64.6445mm 32.7675mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[65.7875mm 34.2915mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[73.4075mm 35.3075mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[75.5665mm 35.3075mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[77.5985mm 35.3075mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[70.4865mm 35.3075mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[70.1055mm 34.2915mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[75.0585mm 34.2915mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[66.5495mm 33.2755mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[67.8195mm 33.9105mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[62.2315mm 25.0205mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[63.8825mm 23.7505mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[77.4715mm 22.7345mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[77.3445mm 30.7355mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[61.3425mm 23.7505mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[59.6915mm 23.7505mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[57.9135mm 26.1635mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[58.9295mm 29.2115mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[49.0235mm 27.5605mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[47.1185mm 27.5605mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[44.5785mm 27.5605mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[43.3085mm 27.5605mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[45.9755mm 27.3065mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[47.4995mm 35.3075mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[45.4675mm 34.1645mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[45.4675mm 33.1485mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[46.6105mm 33.2755mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[48.0075mm 33.0215mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[49.2775mm 33.4025mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[50.6745mm 33.1485mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[40.3875mm 31.8785mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[52.1985mm 26.9255mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[36.9585mm 27.5605mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[64.1365mm 29.3385mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
+Via[64.8985mm 30.2275mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
+Via[75.8205mm 33.1485mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[74.4235mm 23.3695mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
 
 Element["" "0402" "C211" "22_pF" 43.9435mm 41.4035mm 1.2512mm -20.00mil 0 80 ""]
 (
@@ -4098,6 +4174,13 @@ Element["onsolder" "0603" "C116" "0.01 uF" 67.6925mm 32.2595mm 0.9346mm 0.7641mm
 	Pad[-0.1250mm -0.6500mm 0.1249mm -0.6500mm 29.52mil 12.00mil 35.52mil "2" "2" "onsolder,square"]
 
 	)
+
+Element["onsolder" "0402" "R406" "22 K" 28.9575mm 17.2735mm -75.00mil -30.00mil 1 80 "onsolder"]
+(
+	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 12.00mil 25.68mil "1" "1" "onsolder,square"]
+	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 12.00mil 25.68mil "2" "2" "onsolder,square"]
+
+	)
 Layer(1 "top" "copper")
 (
 	Line[43.9435mm 1645.80mil 43.9435mm 42.6735mm 13.30mil 80.00mil "clearline"]
@@ -4552,8 +4635,7 @@ Layer(1 "top" "copper")
 	Line[74.2965mm 25.2745mm 74.4795mm 962.22mil 8.00mil 12.00mil "clearline"]
 	Line[72.1375mm 25.4015mm 71.2485mm 24.1315mm 8.00mil 12.00mil "clearline"]
 	Line[74.1696mm 27.0524mm 75.0585mm 26.7985mm 8.00mil 12.00mil "clearline"]
-	Line[68.9192mm 33.8596mm 69.3542mm 33.1060mm 8.00mil 12.00mil "clearline"]
-	Line[68.8683mm 33.9105mm 68.9192mm 33.8596mm 8.00mil 12.00mil "clearline"]
+	Line[68.9953mm 33.7835mm 69.3542mm 33.1060mm 8.00mil 12.00mil "clearline"]
 	Line[64.1365mm 36.3235mm 64.5175mm 36.7045mm 8.00mil 12.00mil "clearline"]
 	Line[64.5175mm 36.7045mm 65.7875mm 36.7045mm 8.00mil 12.00mil "clearline"]
 	Line[64.1365mm 36.3235mm 64.1365mm 30.2275mm 8.00mil 12.00mil "clearline"]
@@ -4605,9 +4687,8 @@ Layer(1 "top" "copper")
 	Line[63.1205mm 36.5775mm 63.1205mm 36.1965mm 8.00mil 12.00mil "clearline"]
 	Line[63.1205mm 36.1965mm 62.8665mm 35.9425mm 8.00mil 12.00mil "clearline"]
 	Line[62.8665mm 35.9425mm 61.6074mm 35.9425mm 8.00mil 12.00mil "clearline"]
-	Line[53.0766mm 35.9425mm 50.8015mm 35.9425mm 8.00mil 12.00mil "clearline"]
-	Line[50.8015mm 35.9425mm 50.0395mm 36.7045mm 8.00mil 12.00mil "clearline"]
-	Line[50.0395mm 36.7045mm 47.2455mm 36.7045mm 8.00mil 12.00mil "clearline"]
+	Line[53.0766mm 35.9425mm 48.8965mm 35.9425mm 8.00mil 12.00mil "clearline"]
+	Line[48.8965mm 35.9425mm 47.2455mm 36.7045mm 8.00mil 12.00mil "clearline"]
 	Line[47.2455mm 36.7045mm 46.6105mm 37.3395mm 8.00mil 12.00mil "clearline"]
 	Line[46.6105mm 37.3395mm 46.6105mm 38.3555mm 8.00mil 12.00mil "clearline"]
 	Line[68.5815mm 25.7825mm 68.8355mm 26.1635mm 8.00mil 12.00mil "clearline"]
@@ -4770,7 +4851,7 @@ Layer(3 "gnd_bot" "copper")
 	Line[97.0295mm 35.6885mm 97.0295mm 43.6895mm 5.00mil 10.00mil "clearline"]
 	Line[77.3445mm 34.7995mm 37.9745mm 34.7995mm 5.00mil 10.00mil "clearline"]
 	Line[36.0695mm 36.0695mm 40.0065mm 36.0695mm 5.00mil 10.00mil "clearline"]
-	Line[40.0065mm 36.0695mm 40.3875mm 35.6885mm 5.00mil 10.00mil "clearline"]
+	Line[40.0065mm 36.0695mm 40.2605mm 35.8155mm 5.00mil 10.00mil "clearline"]
 	Line[25.2745mm 36.0695mm 25.2745mm 23.7505mm 5.00mil 10.00mil "clearline"]
 	Line[17.1465mm 38.8635mm 16.5115mm 38.8635mm 5.00mil 10.00mil "clearline"]
 	Line[17.1465mm 60.3265mm 17.1465mm 40.3875mm 5.00mil 10.00mil "clearline"]
@@ -4825,9 +4906,8 @@ Layer(3 "gnd_bot" "copper")
 	Line[91.0605mm 48.5155mm 91.0605mm 44.8325mm 8.00mil 12.00mil "clearline"]
 	Line[91.0605mm 44.8325mm 90.6795mm 44.4515mm 8.00mil 12.00mil "clearline"]
 	Line[77.9795mm 34.1645mm 77.3445mm 34.7995mm 5.00mil 10.00mil "clearline"]
-	Line[40.3875mm 35.6885mm 75.0585mm 35.6885mm 5.00mil 10.00mil "clearline"]
-	Line[40.3875mm 35.6885mm 75.1855mm 35.6885mm 5.00mil 10.00mil "clearline"]
-	Line[75.1855mm 35.6885mm 76.2015mm 36.7045mm 5.00mil 10.00mil "clearline"]
+	Line[40.2605mm 35.8155mm 75.3125mm 35.8155mm 5.00mil 10.00mil "clearline"]
+	Line[75.3125mm 35.8155mm 76.2015mm 36.7045mm 5.00mil 10.00mil "clearline"]
 	Line[76.2015mm 36.7045mm 76.9635mm 36.7045mm 5.00mil 10.00mil "clearline"]
 	Line[76.9635mm 36.7045mm 77.9795mm 35.6885mm 5.00mil 10.00mil "clearline"]
 	Line[77.9795mm 35.6885mm 97.0295mm 35.6885mm 5.00mil 10.00mil "clearline"]
@@ -4840,21 +4920,17 @@ Layer(3 "gnd_bot" "copper")
 	Line[77.5985mm 22.0995mm 77.9795mm 22.4805mm 5.00mil 10.00mil "clearline"]
 	Line[77.9795mm 34.1645mm 77.9795mm 26.0365mm 5.00mil 10.00mil "clearline"]
 	Line[77.9795mm 26.0365mm 78.3605mm 25.6555mm 5.00mil 10.00mil "clearline"]
-	Line[68.8683mm 33.9105mm 75.9475mm 33.9105mm 8.00mil 12.00mil "clearline"]
-	Line[75.9475mm 33.9105mm 76.5825mm 33.2755mm 8.00mil 12.00mil "clearline"]
-	Line[64.1365mm 24.8935mm 64.1365mm 30.4815mm 8.00mil 12.00mil "clearline"]
-	Line[65.9145mm 29.7195mm 65.9145mm 30.4815mm 8.00mil 12.00mil "clearline"]
-	Line[65.9145mm 30.4815mm 65.5335mm 30.8625mm 8.00mil 12.00mil "clearline"]
-	Line[65.5335mm 30.8625mm 64.5175mm 30.8625mm 8.00mil 12.00mil "clearline"]
-	Line[64.5175mm 30.8625mm 64.1365mm 30.4815mm 8.00mil 12.00mil "clearline"]
-	Line[71.6295mm 23.7505mm 71.2485mm 24.1315mm 8.00mil 12.00mil "clearline"]
-	Line[71.6295mm 23.7505mm 76.0745mm 23.7505mm 8.00mil 12.00mil "clearline"]
-	Line[76.0745mm 23.7505mm 76.5825mm 24.2585mm 8.00mil 12.00mil "clearline"]
+	Line[68.9953mm 33.7835mm 76.0745mm 33.7835mm 8.00mil 12.00mil "clearline"]
+	Line[76.0745mm 33.7835mm 76.5825mm 33.2755mm 8.00mil 12.00mil "clearline"]
+	Line[64.1365mm 24.8935mm 64.1365mm 27.3065mm 8.00mil 12.00mil "clearline"]
+	Line[71.5025mm 23.8775mm 71.2485mm 24.1315mm 8.00mil 12.00mil "clearline"]
+	Line[71.5025mm 23.8775mm 76.2015mm 23.8775mm 8.00mil 12.00mil "clearline"]
+	Line[76.2015mm 23.8775mm 76.5825mm 24.2585mm 8.00mil 12.00mil "clearline"]
 	Line[76.5825mm 33.2755mm 76.5825mm 24.2585mm 8.00mil 12.00mil "clearline"]
 	Line[64.8985mm 33.9105mm 64.8985mm 33.2755mm 8.00mil 12.00mil "clearline"]
-	Line[64.8985mm 33.2755mm 65.2795mm 32.8945mm 8.00mil 12.00mil "clearline"]
-	Line[65.2795mm 32.8945mm 75.5665mm 32.8945mm 8.00mil 12.00mil "clearline"]
-	Line[75.5665mm 32.8945mm 75.9475mm 32.5135mm 8.00mil 12.00mil "clearline"]
+	Line[64.8985mm 33.2755mm 65.5335mm 32.6405mm 8.00mil 12.00mil "clearline"]
+	Line[65.5335mm 32.6405mm 75.8205mm 32.6405mm 8.00mil 12.00mil "clearline"]
+	Line[75.8205mm 32.6405mm 75.9475mm 32.5135mm 8.00mil 12.00mil "clearline"]
 	Line[75.9475mm 32.5135mm 75.9475mm 24.7665mm 8.00mil 12.00mil "clearline"]
 	Line[75.9475mm 24.7665mm 75.5665mm 24.3855mm 8.00mil 12.00mil "clearline"]
 	Line[72.8995mm 24.3855mm 75.5665mm 24.3855mm 8.00mil 12.00mil "clearline"]
@@ -4863,6 +4939,8 @@ Layer(3 "gnd_bot" "copper")
 	Line[69.5975mm 25.4015mm 71.8835mm 25.4015mm 8.00mil 12.00mil "clearline"]
 	Line[72.8995mm 24.3855mm 71.8835mm 25.4015mm 8.00mil 12.00mil "clearline"]
 	Line[19.0515mm 43.8165mm 19.0515mm 41.4035mm 8.00mil 12.00mil "clearline"]
+	Line[65.9145mm 29.7195mm 65.9145mm 29.0845mm 8.00mil 12.00mil "clearline"]
+	Line[65.9145mm 29.0845mm 64.1365mm 27.3065mm 8.00mil 12.00mil "clearline"]
 	Polygon("clearpoly,fullpoly")
 	(
 		[4.4465mm 12.7015mm] [105.0305mm 12.7015mm] [105.0305mm 78.4875mm] [4.4465mm 78.4875mm] 
@@ -5360,6 +5438,12 @@ Layer(4 "bottom" "copper")
 	Line[75.3125mm 36.3235mm 75.3125mm 36.8315mm 15.00mil 12.00mil "clearline"]
 	Line[75.3125mm 36.8315mm 74.8045mm 36.8315mm 15.00mil 12.00mil "clearline"]
 	Line[74.8045mm 36.8315mm 74.8045mm 36.3235mm 15.00mil 12.00mil "clearline"]
+	Line[28.9575mm 17.6733mm 28.9575mm 18.5435mm 8.00mil 12.00mil "clearline"]
+	Line[28.9575mm 18.5435mm 29.3385mm 18.9245mm 8.00mil 12.00mil "clearline"]
+	Line[29.3385mm 18.9245mm 53.9765mm 18.9245mm 8.00mil 12.00mil "clearline"]
+	Line[53.9765mm 18.9245mm 54.3575mm 18.5435mm 8.00mil 12.00mil "clearline"]
+	Line[54.3575mm 18.5435mm 54.3575mm 15.1145mm 8.00mil 12.00mil "clearline"]
+	Line[28.9575mm 16.8737mm 28.9575mm 15.1145mm 8.00mil 12.00mil "clearline"]
 	Polygon("clearpoly,fullpoly")
 	(
 		[105.0305mm 78.4875mm] [4.4465mm 78.4875mm] [4.4465mm 12.7015mm] [105.0305mm 12.7015mm] 
@@ -5431,10 +5515,12 @@ Layer(7 "top silk" "silk")
 	Text[60.1995mm 12.9555mm 0 122 "(A) = Vin" "clearline"]
 	Text[60.1995mm 14.6065mm 0 122 "(B) = +5Vout" "clearline"]
 	Text[72.7725mm 12.9555mm 0 122 "(D) = +5 V" "clearline"]
-	Text[72.7725mm 14.7335mm 0 122 "(E) = +3.3 V" "clearline"]
 	Text[60.1995mm 16.2575mm 0 122 "(C) = +7.5 V" "clearline"]
 	Text[97.6645mm 48.6425mm 0 122 "LD_LO3" "clearline"]
-	Text[58.1675mm 53.7225mm 0 100 "Ver. 4.0.0.00" "clearline"]
+	Text[59.0565mm 53.7225mm 0 80 "Ver. 4.0.0.00" "clearline"]
+	Text[27.9415mm 17.0195mm 0 80 "(PD)" "clearline"]
+	Text[72.7725mm 14.6065mm 0 122 "(E) = +3.3 V" "clearline"]
+	Text[72.7725mm 16.2575mm 0 122 "(PD) = PWR_DET" "clearline"]
 )
 NetList()
 (
@@ -5451,6 +5537,7 @@ NetList()
 		Connect("C500-1")
 		Connect("C501-1")
 		Connect("J401-5")
+		Connect("R406-2")
 		Connect("T201-2")
 		Connect("T300-2")
 		Connect("U200-3")
@@ -5954,6 +6041,11 @@ NetList()
 		Connect("R220-2")
 		Connect("R312-1")
 		Connect("R402-2")
+	)
+	Net("PWR_DETECT" "(unknown)")
+	(
+		Connect("J400-22")
+		Connect("R406-1")
 	)
 	Net("REF_CLK" "(unknown)")
 	(
@@ -6792,28 +6884,24 @@ NetList()
 	)
 	Net("unnamed_net145" "(unknown)")
 	(
-		Connect("J400-22")
-	)
-	Net("unnamed_net146" "(unknown)")
-	(
 		Connect("J400-12")
 		Connect("R404-1")
 	)
-	Net("unnamed_net147" "(unknown)")
+	Net("unnamed_net146" "(unknown)")
 	(
 		Connect("J400-21")
 	)
-	Net("unnamed_net148" "(unknown)")
+	Net("unnamed_net147" "(unknown)")
 	(
 		Connect("J400-13")
 	)
-	Net("unnamed_net149" "(unknown)")
+	Net("unnamed_net148" "(unknown)")
 	(
 		Connect("R500-1")
 		Connect("R501-2")
 		Connect("U500-1")
 	)
-	Net("unnamed_net150" "(unknown)")
+	Net("unnamed_net149" "(unknown)")
 	(
 		Connect("R502-1")
 		Connect("R503-2")
