@@ -15,11 +15,11 @@ C 55600 65100 1 90 0 MCL-SIM-83+.sym
 T 53095 66800 5 10 1 1 0 0 1
 refdes=U102
 T 54095 66100 5 10 1 1 0 0 1
-device=SIM-U742MH
+device=SIM-U762MH+
 T 55600 65100 5 10 0 1 90 0 1
 footprint=SIM83+
 T 55600 65100 5 10 0 1 90 0 1
-man-part-num=MCL-SIM-U742MH
+man-part-num=MCL-SIM-762H+
 }
 C 36500 57500 1 0 0 PE43711.sym
 {
@@ -134,9 +134,9 @@ refdes=R105
 T 52300 70000 5 10 0 1 90 0 1
 footprint=0805
 T 51700 69600 5 10 1 1 0 0 1
-value=24
+value=51
 T 52300 70000 5 10 0 1 90 0 1
-man-part-num=CRCW080524R0FKEA
+man-part-num=CRCW08051R00JNEA
 }
 C 50700 70000 1 180 0 resistor-1.sym
 {
@@ -147,9 +147,9 @@ refdes=R104
 T 50700 70000 5 10 0 1 90 0 1
 footprint=0805
 T 50100 69600 5 10 1 1 0 0 1
-value=24
+value=51
 T 50700 70000 5 10 0 1 90 0 1
-man-part-num=CRCW080524R0FKEA
+man-part-num=CRCW08051R00JNEA
 }
 C 48600 70200 1 0 0 7.5V-plus-1.sym
 C 49400 69900 1 270 0 capacitor-1.sym
@@ -366,8 +366,9 @@ T 51250 71550 5 10 1 1 0 0 1
 refdes=U101
 T 50700 70750 5 10 0 1 0 0 1
 footprint=MCL_DF782
-T 51450 70850 5 10 0 1 0 0 1
-man-part-num=GVA-123+
+T 51450 70850 5 10 0 1 0 0 2
+man-part-num=PHA-83W+
+
 T 50700 70750 5 10 0 1 0 0 1
 comment=MCL_DF782 SOT89
 }
