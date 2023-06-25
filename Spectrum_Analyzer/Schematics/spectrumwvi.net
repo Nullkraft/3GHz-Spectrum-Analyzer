@@ -1,13 +1,12 @@
-unnamed_net149	R502-1 R503-2 U501-1 
-unnamed_net148	R500-1 R501-2 U500-1 
-unnamed_net147	J400-13 
-unnamed_net146	J400-21 
-unnamed_net145	R404-1 J400-12 
-PWR_DETECT	R406-1 J400-22 
-unnamed_net144	J400-11 
+unnamed_net148	R502-1 R503-2 U501-1 
+unnamed_net147	R500-1 R501-2 U500-1 
+unnamed_net146	J400-13 
+unnamed_net145	J400-21 
+unnamed_net144	R404-1 J400-12 
+unnamed_net143	J400-11 
 REF_EN2	R502-2 J400-10 
 REF_EN1	R500-2 J400-9 
-unnamed_net143	J400-8 
+PWR_DETECT	R406-1 J400-8 
 unnamed_net142	J400-7 
 \_SEL_ADC\_	J400-6 
 unnamed_net141	J400-5 

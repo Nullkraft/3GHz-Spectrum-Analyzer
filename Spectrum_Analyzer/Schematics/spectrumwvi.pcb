@@ -1608,6 +1608,7 @@ Via[62.0283mm 30.9133mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3
 Via[62.0283mm 30.4053mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
 Via[62.0283mm 29.8973mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
 Via[62.0283mm 29.3893mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[34.0375mm 57.1515mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 
 Element["" "0402" "C211" "22_pF" 43.9435mm 41.4035mm 1.2512mm -20.00mil 0 80 ""]
 (
@@ -4175,13 +4176,6 @@ Element["onsolder" "0603" "C116" "0.01 uF" 67.6925mm 32.2595mm 0.9346mm 0.7641mm
 
 	)
 
-Element["onsolder" "0402" "R406" "22 K" 28.9575mm 17.2735mm -75.00mil -30.00mil 1 80 "onsolder"]
-(
-	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 12.00mil 25.68mil "1" "1" "onsolder,square"]
-	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 12.00mil 25.68mil "2" "2" "onsolder,square"]
-
-	)
-
 Element["" "0805" "R104" "51" 49.6585mm 23.1155mm -25.00mil 40.00mil 0 80 ""]
 (
 	Pad[35.43mil -3.93mil 35.43mil 3.93mil 51.18mil 20.00mil 52.68mil "1" "1" "square"]
@@ -4211,6 +4205,13 @@ Element["" "0402" "C112" "22_pF" 52.7065mm 23.7505mm -1.0351mm -81.05mil 0 80 ""
 (
 	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 12.00mil 21.18mil "1" "1" "square"]
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 12.00mil 21.18mil "2" "2" "square"]
+
+	)
+
+Element["onsolder" "0402" "R406" "22 K" 34.0375mm 60.8345mm 35.00mil 20.00mil 0 80 "onsolder"]
+(
+	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 12.00mil 25.68mil "1" "1" "onsolder,square"]
+	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 12.00mil 25.68mil "2" "2" "onsolder,square"]
 
 	)
 Layer(1 "top" "copper")
@@ -5472,13 +5473,9 @@ Layer(4 "bottom" "copper")
 	Line[75.3125mm 36.3235mm 75.3125mm 36.8315mm 15.00mil 12.00mil "clearline"]
 	Line[75.3125mm 36.8315mm 74.8045mm 36.8315mm 15.00mil 12.00mil "clearline"]
 	Line[74.8045mm 36.8315mm 74.8045mm 36.3235mm 15.00mil 12.00mil "clearline"]
-	Line[28.9575mm 17.6733mm 28.9575mm 18.5435mm 8.00mil 12.00mil "clearline"]
-	Line[28.9575mm 18.5435mm 29.3385mm 18.9245mm 8.00mil 12.00mil "clearline"]
-	Line[29.3385mm 18.9245mm 53.9765mm 18.9245mm 8.00mil 12.00mil "clearline"]
-	Line[53.9765mm 18.9245mm 54.3575mm 18.5435mm 8.00mil 12.00mil "clearline"]
-	Line[54.3575mm 18.5435mm 54.3575mm 15.1145mm 8.00mil 12.00mil "clearline"]
-	Line[28.9575mm 16.8737mm 28.9575mm 15.1145mm 8.00mil 12.00mil "clearline"]
 	Line[58.5485mm 23.4965mm 58.5485mm 26.0365mm 8.00mil 12.00mil "clearline"]
+	Line[34.0375mm 60.4347mm 34.0375mm 57.1515mm 8.00mil 12.00mil "clearline"]
+	Line[34.0375mm 2410.80mil 34.0375mm 63.3745mm 8.00mil 12.00mil "clearline"]
 	Polygon("clearpoly,fullpoly")
 	(
 		[105.0305mm 78.4875mm] [4.4465mm 78.4875mm] [4.4465mm 12.7015mm] [105.0305mm 12.7015mm] 
@@ -6080,7 +6077,7 @@ NetList()
 	)
 	Net("PWR_DETECT" "(unknown)")
 	(
-		Connect("J400-22")
+		Connect("J400-8")
 		Connect("R406-1")
 	)
 	Net("REF_CLK" "(unknown)")
@@ -6912,32 +6909,28 @@ NetList()
 	)
 	Net("unnamed_net143" "(unknown)")
 	(
-		Connect("J400-8")
-	)
-	Net("unnamed_net144" "(unknown)")
-	(
 		Connect("J400-11")
 	)
-	Net("unnamed_net145" "(unknown)")
+	Net("unnamed_net144" "(unknown)")
 	(
 		Connect("J400-12")
 		Connect("R404-1")
 	)
-	Net("unnamed_net146" "(unknown)")
+	Net("unnamed_net145" "(unknown)")
 	(
 		Connect("J400-21")
 	)
-	Net("unnamed_net147" "(unknown)")
+	Net("unnamed_net146" "(unknown)")
 	(
 		Connect("J400-13")
 	)
-	Net("unnamed_net148" "(unknown)")
+	Net("unnamed_net147" "(unknown)")
 	(
 		Connect("R500-1")
 		Connect("R501-2")
 		Connect("U500-1")
 	)
-	Net("unnamed_net149" "(unknown)")
+	Net("unnamed_net148" "(unknown)")
 	(
 		Connect("R502-1")
 		Connect("R503-2")
