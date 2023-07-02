@@ -1,0 +1,271 @@
+v 20201216 2
+B 300 -200 2000 4900 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 300 5700 8 10 0 0 0 0 1
+device=Arduino Uno
+T 300 4800 9 10 1 0 0 0 1
+Feather
+T 1900 4800 8 10 1 1 0 0 1
+refdes=U?
+T 300 5500 8 10 0 0 0 0 1
+footprint=Adafruit_Feather
+T 300 5300 8 10 0 0 0 0 1
+numslots=0
+P 0 4500 200 4500 1 0 0
+{
+T 100 4350 5 10 0 1 0 0 1
+pintype=in
+T 358 4492 9 10 1 1 0 0 1
+pinlabel=\_RST\_
+T 208 4542 5 10 1 1 0 6 1
+pinnumber=16
+}
+P 0 4200 300 4200 1 0 0
+{
+T 0 4050 5 10 0 1 0 0 1
+pintype=pwr
+T 358 4192 9 10 1 1 0 0 1
+pinlabel=3.3V
+T 208 4242 5 10 1 1 0 6 1
+pinnumber=15
+}
+P 0 3900 300 3900 1 0 0
+{
+T 0 3750 5 10 0 1 0 0 1
+pintype=in
+T 358 3892 9 10 1 1 0 0 1
+pinlabel=3.3V
+T 208 3942 5 10 1 1 0 6 1
+pinnumber=14
+}
+P 0 3600 300 3600 1 0 0
+{
+T 0 3450 5 10 0 1 0 0 1
+pintype=pwr
+T 358 3592 9 10 1 1 0 0 1
+pinlabel=GND
+T 208 3642 5 10 1 1 0 6 1
+pinnumber=13
+}
+P 0 3300 300 3300 1 0 0
+{
+T 0 3150 5 10 0 1 0 0 1
+pintype=io
+T 358 3292 9 10 1 1 0 0 1
+pinlabel=A0/GP26
+T 208 3342 5 10 1 1 0 6 1
+pinnumber=12
+}
+P 0 1800 300 1800 1 0 0
+{
+T 0 1650 5 10 0 1 0 0 1
+pintype=io
+T 358 1792 9 10 1 1 0 0 1
+pinlabel=25/GP25
+T 208 1842 5 10 1 1 0 6 1
+pinnumber=7
+}
+P 0 3000 300 3000 1 0 0
+{
+T 0 2850 5 10 0 1 0 0 1
+pintype=io
+T 358 2992 9 10 1 1 0 0 1
+pinlabel=A1/GP27
+T 208 3042 5 10 1 1 0 6 1
+pinnumber=11
+}
+P 0 2700 300 2700 1 0 0
+{
+T 0 2550 5 10 0 1 0 0 1
+pintype=io
+T 358 2692 9 10 1 1 0 0 1
+pinlabel=A2/GP28
+T 208 2742 5 10 1 1 0 6 1
+pinnumber=10
+}
+P 0 2400 300 2400 1 0 0
+{
+T 0 2250 5 10 0 1 0 0 1
+pintype=io
+T 358 2392 9 10 1 1 0 0 1
+pinlabel=A3/GP29
+T 208 2442 5 10 1 1 0 6 1
+pinnumber=9
+}
+P 0 2100 300 2100 1 0 0
+{
+T 0 1950 5 10 0 1 0 0 1
+pintype=io
+T 358 2092 9 10 1 1 0 0 1
+pinlabel=24/GP24
+T 208 2142 5 10 1 1 0 6 1
+pinnumber=8
+}
+P 2600 3300 2300 3300 1 0 0
+{
+T 2600 3150 5 10 0 1 0 6 1
+pintype=pwr
+T 2242 3292 9 10 1 1 0 6 1
+pinlabel=BAT
+T 2392 3342 5 10 1 1 0 0 1
+pinnumber=28
+}
+P 0 1500 300 1500 1 0 0
+{
+T 0 1350 5 10 0 1 0 0 1
+pintype=out
+T 358 1492 9 10 1 1 0 0 1
+pinlabel=SCK/GP18
+T 208 1542 5 10 1 1 0 6 1
+pinnumber=6
+T -3100 1450 5 10 0 0 0 0 1
+comment=Serial clock when using SPI
+}
+P 0 1200 300 1200 1 0 0
+{
+T 0 1050 5 10 0 1 0 0 1
+pintype=out
+T 358 1192 9 10 1 1 0 0 1
+pinlabel=MO/GP19
+T 208 1242 5 10 1 1 0 6 1
+pinnumber=5
+}
+P 0 900 300 900 1 0 0
+{
+T 0 750 5 10 0 1 0 0 1
+pintype=out
+T 358 892 9 10 1 1 0 0 1
+pinlabel=MI/GP20
+T 208 942 5 10 1 1 0 6 1
+pinnumber=4
+}
+P 0 600 300 600 1 0 0
+{
+T 0 450 5 10 0 1 0 0 1
+pintype=in
+T 358 592 9 10 1 1 0 0 1
+pinlabel=RX/GP01
+T 208 642 5 10 1 1 0 6 1
+pinnumber=3
+}
+P 0 300 300 300 1 0 0
+{
+T 0 150 5 10 0 1 0 0 1
+pintype=in
+T 358 292 9 10 1 1 0 0 1
+pinlabel=TX/GP00
+T 208 342 5 10 1 1 0 6 1
+pinnumber=2
+}
+P 0 0 300 0 1 0 0
+{
+T -100 -150 5 10 0 1 0 0 1
+pintype=none
+T 358 -8 9 10 1 1 0 0 1
+pinlabel=D4/GP06
+T 208 42 5 10 1 1 0 6 1
+pinnumber=1
+}
+P 2600 3000 2300 3000 1 0 0
+{
+T 2600 2850 5 10 0 1 0 6 1
+pintype=in
+T 2242 2992 9 10 1 1 0 6 1
+pinlabel=EN
+T 2392 3042 5 10 1 1 0 0 1
+pinnumber=27
+}
+P 2600 2700 2300 2700 1 0 0
+{
+T 2600 2550 5 10 0 1 0 6 1
+pintype=io
+T 2242 2692 9 10 1 1 0 6 1
+pinlabel=USB
+T 2392 2742 5 10 1 1 0 0 1
+pinnumber=26
+}
+P 2600 2400 2300 2400 1 0 0
+{
+T 2600 2250 5 10 0 1 0 6 1
+pintype=io
+T 2242 2392 9 10 1 1 0 6 1
+pinlabel=13/GP13
+T 2392 2442 5 10 1 1 0 0 1
+pinnumber=25
+}
+P 2600 2100 2300 2100 1 0 0
+{
+T 2600 1950 5 10 0 1 0 6 1
+pintype=io
+T 2242 2092 9 10 1 1 0 6 1
+pinlabel=12/GP12
+T 2392 2142 5 10 1 1 0 0 1
+pinnumber=24
+}
+P 2600 1800 2300 1800 1 0 0
+{
+T 2600 1650 5 10 0 1 0 6 1
+pintype=io
+T 2242 1792 9 10 1 1 0 6 1
+pinlabel=11/GP11
+T 2392 1842 5 10 1 1 0 0 1
+pinnumber=23
+}
+P 2600 1500 2300 1500 1 0 0
+{
+T 2600 1350 5 10 0 1 0 6 1
+pintype=io
+T 2242 1492 9 10 1 1 0 6 1
+pinlabel=10/GP10
+T 2392 1542 5 10 1 1 0 0 1
+pinnumber=22
+}
+P 2600 1200 2300 1200 1 0 0
+{
+T 2600 1050 5 10 0 1 0 6 1
+pintype=io
+T 2242 1192 9 10 1 1 0 6 1
+pinlabel=9/GP09
+T 2392 1242 5 10 1 1 0 0 1
+pinnumber=21
+}
+P 2600 900 2300 900 1 0 0
+{
+T 2600 750 5 10 0 1 0 6 1
+pintype=io
+T 2242 892 9 10 1 1 0 6 1
+pinlabel=6/GP08
+T 2392 942 5 10 1 1 0 0 1
+pinnumber=20
+}
+P 2600 600 2300 600 1 0 0
+{
+T 2600 450 5 10 0 1 0 6 1
+pintype=io
+T 2242 592 9 10 1 1 0 6 1
+pinlabel=5/GP07
+T 2392 642 5 10 1 1 0 0 1
+pinnumber=19
+}
+P 2600 300 2300 300 1 0 0
+{
+T 2600 150 5 10 0 1 0 6 1
+pintype=io
+T 2242 292 9 10 1 1 0 6 1
+pinlabel=SCL/GP03
+T 2392 342 5 10 1 1 0 0 1
+pinnumber=18
+T 5700 250 5 10 0 0 0 6 1
+comment=Serial clock when using I2C
+}
+P 2600 0 2300 0 1 0 0
+{
+T 2600 -150 5 10 0 1 0 6 1
+pintype=io
+T 2242 -8 9 10 1 1 0 6 1
+pinlabel=SDA/GP02
+T 2392 42 5 10 1 1 0 0 1
+pinnumber=17
+}
+V 250 4500 50 3 0 1 0 -1 -1 0 -1 -1 -1 -1 -1
+T 307 5100 8 10 0 0 0 0 1
+documentation=https://learn.adafruit.com/adafruit-feather-rp2040-pico
