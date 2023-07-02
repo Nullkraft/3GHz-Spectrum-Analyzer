@@ -1449,8 +1449,6 @@ Via[74.0425mm 20.0675mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3
 Via[71.1215mm 20.4485mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
 Via[65.7875mm 36.7045mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[73.6615mm 26.0365mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
-Via[64.6445mm 23.4965mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
-Via[65.9145mm 23.4965mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[68.2005mm 26.5445mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[68.5815mm 25.7825mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[75.1855mm 28.0685mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
@@ -1949,15 +1947,15 @@ Element["" "0402" "R306" "1_K" 29.2115mm 70.4865mm -0.5740mm -1.0820mm 1 80 ""]
 
 Element["" "0402" "R323" "0" 25.2745mm 73.5345mm 38.50mil -26.50mil 0 80 ""]
 (
-	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 12.00mil 25.68mil "1" "1" "square"]
-	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 12.00mil 25.68mil "2" "2" "square"]
+	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 12.00mil 21.68mil "1" "1" "square"]
+	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 12.00mil 21.68mil "2" "2" "square"]
 
 	)
 
 Element["" "0603" "C363" "0.033_uF" 36.9585mm 73.5345mm -3.7346mm -0.6716mm 0 80 ""]
 (
-	Pad[-25.59mil -4.92mil -25.59mil 4.92mil 29.52mil 12.00mil 35.52mil "1" "1" "square"]
-	Pad[25.59mil -4.92mil 25.59mil 4.92mil 29.52mil 12.00mil 35.52mil "2" "2" "square"]
+	Pad[-25.59mil -4.92mil -25.59mil 4.92mil 29.52mil 12.00mil 31.52mil "1" "1" "square"]
+	Pad[25.59mil -4.92mil 25.59mil 4.92mil 29.52mil 12.00mil 31.52mil "2" "2" "square"]
 
 	)
 
@@ -2422,7 +2420,7 @@ Element["onsolder" "0603" "L204" "68_nH" 33.7835mm 51.5635mm -1.7910mm 2.2248mm 
 
 Element["" "0603" "C350" "0.01_uF" 89.1555mm 55.2465mm 40.00mil -50.00mil 0 80 ""]
 (
-	Pad[-4.92mil -25.59mil 4.92mil -25.59mil 29.52mil 12.00mil 35.52mil "1" "1" "square"]
+	Pad[-4.92mil -25.59mil 4.92mil -25.59mil 29.52mil 12.00mil 31.52mil "1" "1" "square"]
 	Pad[-4.92mil 25.59mil 4.92mil 25.59mil 29.52mil 0.0000 29.52mil "2" "2" "square"]
 
 	)
@@ -2520,7 +2518,7 @@ Element["onsolder" "0603" "C346" "1_nF" 100.2045mm 45.5945mm -1.6985mm -1.2334mm
 
 Element["" "0603" "C341" "0.01_uF" 89.4095mm 47.4995mm -76.50mil 1.1999mm 1 80 ""]
 (
-	Pad[-4.92mil 25.59mil 4.92mil 25.59mil 29.52mil 12.00mil 35.52mil "1" "1" "square"]
+	Pad[-4.92mil 25.59mil 4.92mil 25.59mil 29.52mil 12.00mil 31.52mil "1" "1" "square"]
 	Pad[-4.92mil -25.59mil 4.92mil -25.59mil 29.52mil 0.0000 29.52mil "2" "2" "square"]
 
 	)
@@ -2636,22 +2634,22 @@ Element["" "0402" "C210" "22_pF" 45.0865mm 31.6245mm -190.00mil -40.00mil 0 80 "
 
 Element["" "0402" "R108" "300" 32.3865mm 28.3225mm -47.98mil -76.50mil 0 80 ""]
 (
-	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 12.00mil 25.68mil "1" "1" "square"]
-	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 0.0000 25.68mil "2" "2" "square"]
+	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 12.00mil 21.68mil "1" "1" "square"]
+	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 0.0000 21.68mil "2" "2" "square"]
 
 	)
 
 Element["" "0402" "R111" "18" 33.7835mm 29.0845mm -1.0353mm 42.76mil 0 80 ""]
 (
-	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 12.00mil 25.68mil "1" "1" "square"]
-	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 12.00mil 25.68mil "2" "2" "square"]
+	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 12.00mil 21.68mil "1" "1" "square"]
+	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 12.00mil 21.68mil "2" "2" "square"]
 
 	)
 
 Element["" "0402" "R110" "300" 35.1805mm 28.3225mm -40.02mil -76.50mil 0 80 ""]
 (
-	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 12.00mil 25.68mil "1" "1" "square"]
-	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 0.0000 25.68mil "2" "2" "square"]
+	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 12.00mil 21.68mil "1" "1" "square"]
+	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 0.0000 21.68mil "2" "2" "square"]
 
 	)
 
@@ -2733,8 +2731,8 @@ Element["" "0402" "C203" "0.01_uF" 28.4495mm 54.9925mm -0.6719mm 0.3991mm 0 80 "
 
 Element["" "0402" "C309" "0.1_uF" 27.6875mm 70.4865mm -0.5446mm -1.0546mm 1 80 ""]
 (
-	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 12.00mil 25.68mil "1" "1" "square"]
-	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 12.00mil 25.68mil "2" "2" "square"]
+	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 12.00mil 21.68mil "1" "1" "square"]
+	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 12.00mil 21.68mil "2" "2" "square"]
 
 	)
 
@@ -2775,8 +2773,8 @@ Element["onsolder" "0402" "C331" "39_pF" 30.3545mm 73.2805mm -3.1870mm 0.6230mm 
 
 Element["" "0402" "R321" "0" 40.0065mm 72.6455mm 1.1214mm -0.5446mm 0 80 ""]
 (
-	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 12.00mil 25.68mil "1" "1" "square"]
-	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 12.00mil 25.68mil "2" "2" "square"]
+	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 12.00mil 21.68mil "1" "1" "square"]
+	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 12.00mil 21.68mil "2" "2" "square"]
 
 	)
 
@@ -2789,8 +2787,8 @@ Element["" "0402" "R302" "4.7_R" 40.0065mm 73.9155mm 1.1332mm -24.98mil 0 80 ""]
 
 Element["" "0402" "R317" "0" 40.0065mm 71.3755mm 1.0749mm -21.50mil 0 80 ""]
 (
-	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 12.00mil 25.68mil "1" "1" "square"]
-	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 12.00mil 25.68mil "2" "2" "square"]
+	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 12.00mil 21.68mil "1" "1" "square"]
+	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 12.00mil 21.68mil "2" "2" "square"]
 
 	)
 
@@ -3140,7 +3138,7 @@ Element["onsolder" "0805" "R315" "51_R" 87.5045mm 52.5795mm -1.4336mm 2.9726mm 0
 
 Element["" "0603" "C339" "0.01_uF" 91.0605mm 46.8495mm 28.50mil 46.93mil 1 80 ""]
 (
-	Pad[-4.92mil 25.59mil 4.92mil 25.59mil 29.52mil 12.00mil 35.52mil "1" "1" "square"]
+	Pad[-4.92mil 25.59mil 4.92mil 25.59mil 29.52mil 12.00mil 31.52mil "1" "1" "square"]
 	Pad[-4.92mil -25.59mil 4.92mil -25.59mil 29.52mil 0.0000 29.52mil "2" "2" "square"]
 
 	)
@@ -3261,15 +3259,15 @@ Element["onsolder" "0402" "C220" "0.1_uF" 27.6875mm 49.9125mm -1.1490mm -0.6444m
 
 Element["" "0402" "R404" "1_K" 45.7215mm 60.7075mm -1.9416mm 0.7138mm 1 80 ""]
 (
-	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 12.00mil 25.68mil "1" "1" "square"]
-	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 12.00mil 25.68mil "2" "2" "square"]
+	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 12.00mil 21.68mil "1" "1" "square"]
+	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 12.00mil 21.68mil "2" "2" "square"]
 
 	)
 
 Element["" "0402" "R405" "1.5_K" 45.7215mm 58.8025mm 0.5692mm 0.6361mm 1 80 ""]
 (
-	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 12.00mil 25.68mil "1" "1" "square"]
-	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 12.00mil 25.68mil "2" "2" "square"]
+	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 12.00mil 21.68mil "1" "1" "square"]
+	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 12.00mil 21.68mil "2" "2" "square"]
 
 	)
 
@@ -3497,8 +3495,8 @@ Element["onsolder" "AP7353" "U309" "unknown" 93.9815mm 69.3435mm -25.00mil 40.00
 
 Element["" "0603" "C347" "1.0_uF" 87.1235mm 42.0535mm -81.50mil 47.68mil 1 80 ""]
 (
-	Pad[-4.92mil -25.59mil 4.92mil -25.59mil 29.52mil 12.00mil 35.52mil "1" "1" "square"]
-	Pad[-4.92mil 25.59mil 4.92mil 25.59mil 29.52mil 12.00mil 35.52mil "2" "2" "square"]
+	Pad[-4.92mil -25.59mil 4.92mil -25.59mil 29.52mil 12.00mil 31.52mil "1" "1" "square"]
+	Pad[-4.92mil 25.59mil 4.92mil 25.59mil 29.52mil 12.00mil 31.52mil "2" "2" "square"]
 
 	)
 
@@ -3518,8 +3516,8 @@ Element["" "AP7353" "U308" "unknown" 88.9015mm 42.6885mm -25.00mil -38.82mil 1 8
 
 Element["" "0603" "C348" "1.0_uF" 90.6795mm 42.0535mm 0.8524mm 1.1014mm 1 80 ""]
 (
-	Pad[-4.92mil -25.59mil 4.92mil -25.59mil 29.52mil 12.00mil 35.52mil "1" "1" "square"]
-	Pad[-4.92mil 25.59mil 4.92mil 25.59mil 29.52mil 12.00mil 35.52mil "2" "2" "square"]
+	Pad[-4.92mil -25.59mil 4.92mil -25.59mil 29.52mil 12.00mil 31.52mil "1" "1" "square"]
+	Pad[-4.92mil 25.59mil 4.92mil 25.59mil 29.52mil 12.00mil 31.52mil "2" "2" "square"]
 
 	)
 
@@ -3573,15 +3571,15 @@ Element["lock" "Header_Arduino" "J400" "unknown" 16.2575mm 63.3745mm -110.00mil 
 
 Element["" "0402" "R305" "SAT" 56.3895mm 68.8355mm -21.50mil 141.50mil 1 80 ""]
 (
-	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 0.0000 25.68mil "1" "1" "square"]
-	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 12.00mil 25.68mil "2" "2" "square"]
+	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 0.0000 21.68mil "1" "1" "square"]
+	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 12.00mil 21.68mil "2" "2" "square"]
 
 	)
 
 Element["" "0402" "R304" "SAT" 61.4695mm 68.8355mm -0.5446mm 3.7384mm 1 80 ""]
 (
-	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 0.0000 25.68mil "1" "1" "square"]
-	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 12.00mil 25.68mil "2" "2" "square"]
+	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 0.0000 21.68mil "1" "1" "square"]
+	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 12.00mil 21.68mil "2" "2" "square"]
 
 	)
 
@@ -3615,43 +3613,43 @@ Element["" "0402" "C330" "0.1_uF" 84.3295mm 51.3095mm 0.7726mm -24.83mil 0 80 ""
 
 Element["" "0402" "R303" "0" 58.8025mm 68.0735mm -46.50mil -91.50mil 0 80 ""]
 (
-	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 12.00mil 25.68mil "1" "1" "square"]
-	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 12.00mil 25.68mil "2" "2" "square"]
+	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 12.00mil 21.68mil "1" "1" "square"]
+	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 12.00mil 21.68mil "2" "2" "square"]
 
 	)
 
 Element["" "0402" "R124" "SAT" 48.2615mm 28.3225mm -25.00mil -35.00mil 1 80 ""]
 (
-	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
-	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 0.0000 25.68mil "2" "2" "square"]
+	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 20.00mil 21.68mil "1" "1" "square"]
+	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 0.0000 21.68mil "2" "2" "square"]
 
 	)
 
 Element["" "0402" "R123" "SAT" 45.4675mm 28.3225mm -0.6045mm -0.8229mm 1 80 ""]
 (
-	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
-	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 0.0000 25.68mil "2" "2" "square"]
+	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 20.00mil 21.68mil "1" "1" "square"]
+	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 0.0000 21.68mil "2" "2" "square"]
 
 	)
 
 Element["" "0402" "R121" "0" 46.8645mm 29.0845mm -25.74mil -50.00mil 1 80 ""]
 (
-	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
-	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
+	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 20.00mil 21.68mil "1" "1" "square"]
+	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 20.00mil 21.68mil "2" "2" "square"]
 
 	)
 
 Element["" "0402" "R125" "SAT" 49.2775mm 32.3865mm 0.4714mm 0.3777mm 0 80 ""]
 (
-	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
-	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 0.0000 25.68mil "2" "2" "square"]
+	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 20.00mil 21.68mil "1" "1" "square"]
+	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 0.0000 21.68mil "2" "2" "square"]
 
 	)
 
 Element["" "0402" "R122" "0" 47.8805mm 31.6245mm 10.00mil 170.00mil 1 80 ""]
 (
-	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
-	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
+	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 20.00mil 21.68mil "1" "1" "square"]
+	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 20.00mil 21.68mil "2" "2" "square"]
 
 	)
 
@@ -3659,13 +3657,6 @@ Element["" "0402" "L101" "3.3 nH" 65.9145mm 28.5765mm -70.00mil 99.26mil 1 80 ""
 (
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 12.00mil 25.68mil "1" "1" "square"]
 	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 12.00mil 25.68mil "2" "2" "square"]
-
-	)
-
-Element["" "0603" "C118" "0.01 uF" 65.9145mm 25.5285mm -75.00mil -95.00mil 0 80 ""]
-(
-	Pad[-4.92mil 25.59mil 4.92mil 25.59mil 29.52mil 0.0000 35.52mil "1" "1" "square"]
-	Pad[-4.92mil -25.59mil 4.92mil -25.59mil 29.52mil 12.00mil 35.52mil "2" "2" "square"]
 
 	)
 
@@ -3692,8 +3683,8 @@ Element["" "0402" "R116" "1.5 K" 17.0195mm 27.1795mm -0.6421mm -0.9875mm 1 80 ""
 
 Element["" "0402" "R126" "SAT" 46.4835mm 32.3865mm 0.5197mm 3.5139mm 1 80 ""]
 (
-	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
-	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 0.0000 25.68mil "2" "2" "square"]
+	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 20.00mil 21.68mil "1" "1" "square"]
+	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 0.0000 21.68mil "2" "2" "square"]
 
 	)
 
@@ -3856,20 +3847,20 @@ Element["" "MAX2871" "U100" "unknown" 71.6041mm 28.9575mm 2.2418mm -3.4758mm 0 8
 	Pad[0.1055mm 3.3172mm 0.4305mm 2.7543mm 0.3000mm 12.00mil 0.4016mm "REG" "24" "square,edge2"]
 	Pad[-0.3275mm 3.0672mm -0.0025mm 2.5043mm 0.3000mm 12.00mil 0.4016mm "Bias_Fil" "23" "square,edge2"]
 	Pad[-0.7605mm 2.8172mm -17.14mil 2.2543mm 0.3000mm 12.00mil 0.4016mm "RSET" "22" "square,edge2"]
-	Pad[-46.99mil 101.07mil -0.8685mm 2.0043mm 0.3000mm 12.00mil 0.4016mm "GND" "21" "square,edge2"]
+	Pad[-46.99mil 101.07mil -0.8685mm 2.0043mm 0.3000mm 0.0000 0.3000mm "GND" "21" "square,edge2"]
 	Pad[-1.6265mm 91.23mil -1.3015mm 1.7543mm 0.3000mm 12.00mil 0.4016mm "TUNE" "20" "square,edge2"]
 	Pad[-2.0595mm 2.0672mm -1.7345mm 1.5043mm 0.3000mm 12.00mil 0.4016mm "Noise_Fil" "19" "square,edge2"]
-	Pad[-2.4925mm 71.54mil -2.1675mm 1.2543mm 0.3000mm 12.00mil 0.4016mm "GND" "18" "square,edge2"]
+	Pad[-2.4925mm 71.54mil -2.1675mm 1.2543mm 0.3000mm 0.0000 0.3000mm "GND" "18" "square,edge2"]
 	Pad[-2.9255mm 1.5672mm -2.6005mm 1.0043mm 0.3000mm 12.00mil 0.4016mm "Vcc_VCO" "17" "square,edge2"]
 	Pad[2.7543mm -0.4305mm 3.3172mm -0.1055mm 0.3000mm 12.00mil 0.4016mm "Vcc_SD" "32" "square"]
-	Pad[2.5043mm 0.0025mm 3.0672mm 0.3275mm 0.3000mm 12.00mil 0.4016mm "GND" "31" "square,edge2"]
+	Pad[2.5043mm 0.0025mm 3.0672mm 0.3275mm 0.3000mm 0.0000 0.3000mm "GND" "31" "square,edge2"]
 	Pad[2.2543mm 0.4355mm 2.8172mm 0.7605mm 0.3000mm 12.00mil 0.4016mm "MUX" "30" "square,edge2"]
 	Pad[2.0043mm 0.8685mm 101.07mil 1.1935mm 0.3000mm 12.00mil 0.4016mm "REF_IN" "29" "square,edge2"]
 	Pad[1.7543mm 1.3015mm 91.23mil 1.6265mm 0.3000mm 12.00mil 0.4016mm "Vcc_DIG" "28" "square,edge2"]
-	Pad[1.5043mm 1.7345mm 2.0672mm 2.0595mm 0.3000mm 12.00mil 0.4016mm "GND" "27" "square,edge2"]
+	Pad[1.5043mm 1.7345mm 2.0672mm 2.0595mm 0.3000mm 0.0000 0.3000mm "GND" "27" "square,edge2"]
 	Pad[1.2543mm 2.1675mm 1.8172mm 2.4925mm 0.3000mm 12.00mil 0.4016mm "RF_EN" "26" "square,edge2"]
 	Pad[1.0043mm 2.6005mm 1.5672mm 2.9255mm 0.3000mm 12.00mil 0.4016mm "LD" "25" "square,edge2"]
-	Pad[-0.4305mm -2.7543mm -0.1055mm -3.3172mm 0.3000mm 12.00mil 0.4016mm "GND" "8" "square"]
+	Pad[-0.4305mm -2.7543mm -0.1055mm -3.3172mm 0.3000mm 0.0000 0.3000mm "GND" "8" "square"]
 	Pad[0.0025mm -2.5043mm 0.3275mm -3.0672mm 0.3000mm 12.00mil 0.4016mm "CP_OUT" "7" "square"]
 	Pad[0.4355mm -88.75mil 0.7605mm -2.8172mm 0.3000mm 12.00mil 0.4016mm "Vcc_CP" "6" "square"]
 	Pad[0.8685mm -2.0043mm 1.1935mm -2.5672mm 0.3000mm 12.00mil 0.4016mm "SW" "5" "square"]
@@ -3882,10 +3873,10 @@ Element["" "MAX2871" "U100" "unknown" 71.6041mm 28.9575mm 2.2418mm -3.4758mm 0 8
 	Pad[-2.8172mm -0.7605mm -88.75mil -17.14mil 0.3000mm 12.00mil 0.4016mm "OUTB_P" "14" "square"]
 	Pad[-2.5672mm -46.99mil -2.0043mm -0.8685mm 0.3000mm 12.00mil 0.4016mm "OUTA_N" "13" "square"]
 	Pad[-2.3172mm -1.6265mm -69.07mil -1.3015mm 0.3000mm 12.00mil 0.4016mm "OUTA_P" "12" "square"]
-	Pad[-2.0672mm -2.0595mm -1.5043mm -1.7345mm 0.3000mm 12.00mil 0.4016mm "GND" "11" "square"]
+	Pad[-2.0672mm -2.0595mm -1.5043mm -1.7345mm 0.3000mm 0.0000 0.3000mm "GND" "11" "square"]
 	Pad[-71.54mil -2.4925mm -49.38mil -2.1675mm 0.3000mm 12.00mil 0.4016mm "Vcc_PLL" "10" "square"]
-	Pad[-1.5672mm -2.9255mm -1.0043mm -2.6005mm 0.3000mm 12.00mil 0.4016mm "GND" "9" "square"]
-	Pad[-0.0022mm -0.0013mm 0.0000 0.0000 3.1500mm 12.00mil 3.1500mm "Pad" "33" "square"]
+	Pad[-1.5672mm -2.9255mm -1.0043mm -2.6005mm 0.3000mm 0.0000 0.3000mm "GND" "9" "square"]
+	Pad[-0.0022mm -0.0013mm 0.0000 0.0000 3.1500mm 0.0000 3.1500mm "Pad" "33" "square"]
 	ElementLine [4.0981mm -1.0981mm 4.0981mm -1.0981mm 0.2500mm]
 	ElementLine [-3.5517mm 0.9517mm -3.2053mm 1.1517mm 0.1542mm]
 	ElementLine [-3.3517mm 0.6053mm -3.5517mm 0.9517mm 0.1542mm]
@@ -4074,8 +4065,8 @@ Element["" "0402" "C109" "10_pF" 64.4987mm 27.8145mm -64.26mil -90.00mil 0 80 ""
 Element["" "MCL_DF782" "U101" "unknown" 62.9681mm 27.8145mm -195.00mil 135.00mil 0 80 ""]
 (
 	Pad[-59.00mil -12.00mil -59.00mil 56.00mil 36.00mil 0.0000 36.00mil "Gnd" "2" "square"]
-	Pad[-118.00mil -16.00mil -118.00mil 16.00mil 28.00mil 12.00mil 40.00mil "RF-OUT" "3" "square"]
-	Pad[0.0000 -16.00mil 0.0000 16.00mil 28.00mil 12.00mil 40.00mil "RF-IN" "1" "square"]
+	Pad[-118.00mil -16.00mil -118.00mil 16.00mil 28.00mil 12.00mil 30.00mil "RF-OUT" "3" "square"]
+	Pad[0.0000 -16.00mil 0.0000 16.00mil 28.00mil 12.00mil 30.00mil "RF-IN" "1" "square"]
 	Pad[-59.00mil 76.00mil -59.00mil 143.00mil 75.00mil 0.0000 75.00mil "Gnd" "2" "edge2"]
 	Pad[-41.00mil 178.00mil -24.00mil 161.00mil 6.00mil 0.0000 6.00mil "Gnd" "2" "edge2"]
 	Pad[-24.00mil 62.00mil -24.00mil 161.00mil 6.00mil 0.0000 6.00mil "Gnd" "2" "edge2"]
@@ -4212,6 +4203,13 @@ Element["onsolder" "0402" "R406" "22 K" 34.0375mm 60.8345mm 35.00mil 20.00mil 0 
 (
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 12.00mil 25.68mil "1" "1" "onsolder,square"]
 	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 12.00mil 25.68mil "2" "2" "onsolder,square"]
+
+	)
+
+Element["" "0603" "C118" "0.01 uF" 64.8985mm 23.2425mm -125.00mil -25.00mil 0 80 ""]
+(
+	Pad[-4.92mil -25.59mil 4.92mil -25.59mil 29.52mil 0.0000 35.52mil "1" "1" "square"]
+	Pad[-4.92mil 25.59mil 4.92mil 25.59mil 29.52mil 12.00mil 35.52mil "2" "2" "square"]
 
 	)
 Layer(1 "top" "copper")
@@ -4580,15 +4578,6 @@ Layer(1 "top" "copper")
 	Line[73.9355mm 1079.40mil 74.1633mm 27.0622mm 8.00mil 12.00mil "clearline"]
 	Line[2893.80mil 27.1668mm 2905.00mil 26.6982mm 8.00mil 12.00mil "clearline"]
 	Line[2905.00mil 26.6982mm 74.8045mm 26.2905mm 8.00mil 12.00mil "clearline"]
-	Line[72.3218mm 30.2518mm 73.2017mm 30.7598mm 8.00mil 12.00mil ""]
-	Line[73.3378mm 28.4920mm 74.2177mm 29.0000mm 8.00mil 12.00mil ""]
-	Line[70.3184mm 26.1945mm 2793.80mil 26.5663mm 8.00mil 12.00mil ""]
-	Line[2793.80mil 26.5663mm 71.1381mm 27.2220mm 8.00mil 12.00mil ""]
-	Line[70.8841mm 27.6619mm 69.7843mm 27.0269mm 8.00mil 12.00mil ""]
-	Line[71.3361mm 25.9218mm 70.9642mm 1045.90mil 8.00mil 12.00mil ""]
-	Line[70.9642mm 1045.90mil 2793.80mil 26.5663mm 8.00mil 12.00mil ""]
-	Line[69.8681mm 29.4217mm 69.2331mm 30.5216mm 8.00mil 12.00mil ""]
-	Line[71.1879mm 30.1837mm 70.5529mm 31.2836mm 8.00mil 12.00mil ""]
 	Line[2711.20mil 31.9219mm 2716.20mil 31.7019mm 8.00mil 12.00mil "clearline"]
 	Line[2716.20mil 31.7019mm 69.3385mm 31.6090mm 8.00mil 12.00mil "clearline"]
 	Line[69.3385mm 31.6090mm 69.7785mm 31.8629mm 8.00mil 12.00mil "clearline"]
@@ -4608,7 +4597,6 @@ Layer(1 "top" "copper")
 	Line[2820.80mil 32.9424mm 71.2083mm 32.6885mm 8.00mil 12.00mil "clearline"]
 	Line[71.4391mm 31.7432mm 71.1085mm 32.3159mm 8.00mil 12.00mil "clearline"]
 	Line[71.2083mm 32.6885mm 71.1085mm 32.3159mm 8.00mil 12.00mil "clearline"]
-	Line[71.7691mm 26.1717mm 72.1375mm 25.4015mm 8.00mil 12.00mil "clearline"]
 	Line[74.9315mm 25.6555mm 75.3125mm 25.4015mm 8.00mil 12.00mil "clearline"]
 	Line[75.3125mm 25.4015mm 75.4936mm 988.69mil 8.00mil 12.00mil "clearline"]
 	Line[72.5726mm 928.69mil 72.3915mm 23.8775mm 8.00mil 12.00mil "clearline"]
@@ -4643,7 +4631,6 @@ Layer(1 "top" "copper")
 	Line[17.0195mm 26.7797mm 17.1277mm 26.7797mm 8.00mil 12.00mil "clearline"]
 	Line[18.9295mm 28.0725mm 18.4205mm 28.0725mm 8.00mil 12.00mil "clearline"]
 	Line[17.1277mm 26.7797mm 18.4205mm 28.0725mm 8.00mil 12.00mil "clearline"]
-	Line[72.6351mm 26.6717mm 73.4075mm 25.1475mm 8.00mil 12.00mil "clearline"]
 	Line[72.2020mm 26.4218mm 72.6455mm 25.5285mm 8.00mil 12.00mil "clearline"]
 	Line[72.6455mm 25.5285mm 72.6455mm 24.6395mm 8.00mil 12.00mil "clearline"]
 	Line[72.3915mm 24.5125mm 72.8995mm 24.7665mm 8.00mil 12.00mil "clearline"]
@@ -4652,9 +4639,8 @@ Layer(1 "top" "copper")
 	Line[73.6615mm 26.0365mm 74.6140mm 25.4650mm 8.00mil 12.00mil "clearline"]
 	Line[74.9315mm 25.6555mm 74.2965mm 25.2745mm 8.00mil 12.00mil "clearline"]
 	Line[74.2965mm 25.2745mm 74.4795mm 962.22mil 8.00mil 12.00mil "clearline"]
-	Line[72.1375mm 25.4015mm 71.2485mm 24.1315mm 8.00mil 12.00mil "clearline"]
+	Line[72.0867mm 25.2491mm 71.2485mm 24.1315mm 8.00mil 12.00mil "clearline"]
 	Line[74.1696mm 27.0524mm 75.0585mm 26.7985mm 8.00mil 12.00mil "clearline"]
-	Line[68.9953mm 33.7835mm 69.3542mm 33.1060mm 8.00mil 12.00mil "clearline"]
 	Line[64.1365mm 36.3235mm 64.5175mm 36.7045mm 8.00mil 12.00mil "clearline"]
 	Line[64.5175mm 36.7045mm 65.7875mm 36.7045mm 8.00mil 12.00mil "clearline"]
 	Line[64.1365mm 36.3235mm 64.1365mm 30.2275mm 8.00mil 12.00mil "clearline"]
@@ -4747,6 +4733,13 @@ Layer(1 "top" "copper")
 	Line[58.1675mm 23.1155mm 58.5485mm 23.4965mm 8.00mil 12.00mil "clearline"]
 	Line[96.0135mm 50.1665mm 96.6485mm 50.1665mm 15.00mil 12.00mil "clearline"]
 	Line[96.0135mm 49.4045mm 96.0135mm 50.1665mm 15.00mil 12.00mil "clearline"]
+	Line[64.8985mm 23.8925mm 64.8985mm 24.8935mm 8.00mil 12.00mil "clearline"]
+	Line[68.9953mm 33.7835mm 69.3542mm 33.1060mm 8.00mil 12.00mil "clearline"]
+	Line[71.7691mm 26.1717mm 72.0867mm 25.6301mm 8.00mil 12.00mil "clearline"]
+	Line[72.0867mm 25.6301mm 72.0867mm 25.2491mm 8.00mil 12.00mil "clearline"]
+	Line[72.6351mm 26.6717mm 72.8995mm 26.2143mm 8.00mil 12.00mil "clearline"]
+	Line[73.4075mm 25.1475mm 72.9300mm 25.9908mm 8.00mil 12.00mil "clearline"]
+	Line[72.8995mm 26.2143mm 72.9300mm 25.9908mm 8.00mil 12.00mil "clearline"]
 	Polygon("clearpoly,fullpoly")
 	(
 		[4.4465mm 12.7015mm] [105.0305mm 12.7015mm] [105.0305mm 78.4875mm] [4.4465mm 78.4875mm] 
@@ -5551,9 +5544,9 @@ Layer(7 "top silk" "silk")
 	Text[60.1995mm 16.2575mm 0 122 "(C) = +7.5 V" "clearline"]
 	Text[97.6645mm 48.6425mm 0 122 "LD_LO3" "clearline"]
 	Text[59.0565mm 53.7225mm 0 80 "Ver. 4.0.0.00" "clearline"]
-	Text[27.9415mm 17.0195mm 0 80 "(PD)" "clearline"]
 	Text[72.7725mm 14.6065mm 0 122 "(E) = +3.3 V" "clearline"]
 	Text[72.7725mm 16.2575mm 0 122 "(PD) = PWR_DET" "clearline"]
+	Text[33.0215mm 60.4535mm 0 80 "(PD)" "clearline"]
 )
 NetList()
 (
