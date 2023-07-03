@@ -192,19 +192,20 @@ void loop() {
     }
 
     /******** COMMAND FLAG **************************************************************/
-    // If a Command Flag is found then parse the 3 upper bytes into Data, Command and Address
-    // There are 4 bytes in an Instruction Word:
-    // Bits serialWord[31:16] are Data
-    // Bits serialWord[15:11] contain the Command to be performed
-    // Bits serialWord[10:8] contain the address of the chip to be programmed
-    // The serial word can be accessed as a single 32 bit value called serialWord, or as
-    // a 2 word array of 16 bit values accessed by using serialWordAsInts[1 or 0], or as
-    // a 4 word array of 8 bit values accessed by using serialWordAsBytes[3, 2, 1, or 0].
-    // Since serialWordAsBytes[0] is already used to set the COMMAND_FLAG we just ignore it.
-    // So that just leaves the upper 3 bytes to process.
-    // Data16 is copied from the upper 16 bits of serialWord Byte[3] and Byte[2],
-    // Command is copied, masked, and shifted from serialWord Byte[1] bits[15:11], and
-    // Address is also copied, masked, and shifted from serialWord Byte[1] bits[10:8].
+    /* If a Command Flag is found then parse the 3 upper bytes into Data, Command and Address
+     * There are 4 bytes in an Instruction Word:
+     * Bits serialWord[31:16] are Data
+     * Bits serialWord[15:11] contain the Command to be performed
+     * Bits serialWord[10:8] contain the address of the chip to be programmed
+     * The serial word can be accessed as a single 32 bit value called serialWord, or as
+     * a 2 word array of 16 bit values accessed by using serialWordAsInts[1 or 0], or as
+     * a 4 word array of 8 bit values accessed by using serialWordAsBytes[3, 2, 1, or 0].
+     * Since serialWordAsBytes[0] is already used to set the COMMAND_FLAG we just ignore it.
+     * So that just leaves the upper 3 bytes to process.
+     * Data16 is copied from the upper 16 bits of serialWord Byte[3] and Byte[2],
+     * Command is copied, masked, and shifted from serialWord Byte[1] bits[15:11], and
+     * Address is also copied, masked, and shifted from serialWord Byte[1] bits[10:8].
+    */
     if (COMMAND_FLAG) {
       Data16 = serialWordAsInts[1];   // Copy 2 upper bytes to Data16
       Command = (serialWordAsBytes[1] & CommandBits) >> 3;
