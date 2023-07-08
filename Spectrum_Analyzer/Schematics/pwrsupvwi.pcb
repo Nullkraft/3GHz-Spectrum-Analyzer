@@ -1,18 +1,17 @@
-# release: pcb 1.99z
+# release: pcb v4.3.0-g125c85f1
 
 # To read pcb files, the pcb version (or the git source date) must be >= the file version
 FileVersion[20091103]
 
 PCB["" 4100.00mil 2500.00mil]
 
-Grid[1000.000000 0.0000 0.0000 0]
+Grid[10.00mil 0.0000 0.0000 0]
 PolyArea[3100.006200]
 Thermal[0.500000]
 DRC[3.50mil 4.00mil 3.50mil 6.00mil 7.87mil 3.50mil]
 Flags("showdrc,rubberband,nameonpcb,clearnew,newfullpoly,snappin,thindrawpoly")
 Groups("1,c:2,s:3:4")
 Styles["Signal,10.00mil,36.00mil,20.00mil,6.00mil:Power,25.00mil,60.00mil,35.00mil,10.00mil:Fat,14.00mil,60.00mil,35.00mil,40.00mil:jclpcb,5.00mil,20.00mil,10.00mil,5.00mil"]
-
 Symbol[' ' 18.00mil]
 (
 )
@@ -1046,7 +1045,7 @@ Element["lock" "JUMPER6" "J400" "unknown" 1490.00mil 280.00mil 0.0000 80.00mil 0
 	ElementLine [-50.00mil -50.00mil 50.00mil -50.00mil 10.00mil]
 
 	)
-Layer(1 "top")
+Layer(1 "top" "copper")
 (
 	Line[3130.00mil 460.00mil 3200.00mil 530.00mil 25.00mil 20.00mil "clearline"]
 	Line[3239.00mil 530.00mil 3200.00mil 530.00mil 25.00mil 20.00mil "clearline"]
@@ -1116,7 +1115,7 @@ Layer(1 "top")
 		[790.00mil 990.00mil] [1780.00mil 990.00mil] [1780.00mil 2070.00mil] [790.00mil 2070.00mil] 
 	)
 )
-Layer(2 "ground")
+Layer(2 "ground" "copper")
 (
 	Line[1090.00mil 950.00mil 1090.00mil 280.00mil 25.00mil 20.00mil "clearline"]
 	Line[1120.00mil 980.00mil 1090.00mil 950.00mil 25.00mil 20.00mil "clearline"]
@@ -1147,7 +1146,7 @@ Layer(2 "ground")
 		[790.00mil 990.00mil] [1780.00mil 990.00mil] [1780.00mil 2070.00mil] [790.00mil 2070.00mil] 
 	)
 )
-Layer(3 "outline")
+Layer(3 "outline" "outline")
 (
 	Line[700.00mil 1020.00mil 100.00mil 1020.00mil 5.00mil 10.00mil "clearline,lock"]
 	Line[700.00mil 1620.00mil 700.00mil 1020.00mil 5.00mil 10.00mil "clearline,lock"]
@@ -1158,23 +1157,17 @@ Layer(3 "outline")
 	Line[100.00mil 1020.00mil 100.00mil 100.00mil 5.00mil 10.00mil "clearline,lock"]
 	Line[100.00mil 100.00mil 4000.00mil 100.00mil 5.00mil 10.00mil "clearline,lock"]
 )
-Layer(4 "spare")
+Layer(4 "spare" "copper")
 (
 )
-Layer(5 "bottom silk")
+Layer(5 "bottom silk" "silk")
 (
 )
-Layer(6 "top silk")
+Layer(6 "top silk" "silk")
 (
 	Text[1110.00mil 1630.00mil 0 144 "+7.5 VDC" "clearline"]
 	Text[2180.00mil 1620.00mil 0 144 "+5 VDC" "clearline"]
 	Text[3180.00mil 1070.00mil 0 144 "+3.3 VDC" "clearline"]
-)
-Layer(7 "bottom soldermask")
-(
-)
-Layer(8 "top soldermask")
-(
 )
 NetList()
 (
