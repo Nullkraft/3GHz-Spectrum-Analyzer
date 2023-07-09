@@ -802,10 +802,10 @@ Via[1730.00mil 650.00mil 36.00mil 12.00mil 0.0000 20.00mil "" ""]
 Via[1795.00mil 1145.00mil 36.00mil 12.00mil 0.0000 20.00mil "" ""]
 Via[1232.50mil 1147.50mil 36.00mil 12.00mil 0.0000 20.00mil "" ""]
 
-Element["" "0603" "C5" "10 uF" 3530.00mil 675.00mil -116.50mil -26.50mil 0 100 ""]
+Element["" "0603" "C5" "10 uF" 3705.00mil 675.00mil 63.50mil -36.50mil 0 100 ""]
 (
-	Pad[25.59mil -4.92mil 25.59mil 4.92mil 29.52mil 20.00mil 35.52mil "+" "1" "square"]
-	Pad[-25.59mil -4.92mil -25.59mil 4.92mil 29.52mil 20.00mil 35.52mil "-" "2" "square"]
+	Pad[-25.59mil -4.92mil -25.59mil 4.92mil 29.52mil 20.00mil 35.52mil "+" "1" "square"]
+	Pad[25.59mil -4.92mil 25.59mil 4.92mil 29.52mil 20.00mil 35.52mil "-" "2" "square"]
 
 	)
 
@@ -1293,7 +1293,7 @@ Layer(1 "top" "copper")
 	Line[1010.00mil 1410.00mil 1060.00mil 1460.00mil 20.00mil 12.00mil "clearline"]
 	Line[1565.00mil 1352.50mil 1565.00mil 1410.00mil 20.00mil 12.00mil "clearline"]
 	Line[1565.00mil 1410.00mil 1615.00mil 1460.00mil 20.00mil 12.00mil "clearline"]
-	Line[89.0120mm 675.00mil 3485.00mil 675.00mil 20.00mil 12.00mil ""]
+	Line[94.7570mm 675.00mil 3750.00mil 675.00mil 20.00mil 12.00mil ""]
 	Line[1340.00mil 2190.00mil 1340.00mil 2280.00mil 20.00mil 12.00mil "clearline"]
 	Line[1340.00mil 2280.00mil 1365.00mil 2305.00mil 20.00mil 12.00mil "clearline"]
 	Line[1220.00mil 1685.00mil 1220.00mil 1620.00mil 20.00mil 12.00mil "clearline"]
@@ -1314,12 +1314,9 @@ Layer(1 "top" "copper")
 	Line[990.00mil 1250.00mil 1155.00mil 1250.00mil 20.00mil 12.00mil "clearline"]
 	Line[1155.00mil 1250.00mil 1180.00mil 1275.00mil 20.00mil 12.00mil "clearline"]
 	Line[1180.00mil 1275.00mil 1180.00mil 38.5930mm 20.00mil 12.00mil "clearline"]
-	Line[90.3120mm 675.00mil 3595.00mil 675.00mil 20.00mil 12.00mil "clearline"]
-	Line[3595.00mil 675.00mil 3615.00mil 695.00mil 20.00mil 12.00mil "clearline"]
 	Line[880.00mil 29.7330mm 880.00mil 1190.00mil 20.00mil 12.00mil ""]
 	Line[1435.00mil 29.7330mm 1435.00mil 1190.00mil 20.00mil 12.00mil ""]
 	Line[3715.00mil 1390.00mil 3715.00mil 1325.00mil 20.00mil 12.00mil "clearline"]
-	Line[3615.00mil 695.00mil 3615.00mil 790.00mil 20.00mil 12.00mil "clearline"]
 	Line[1665.00mil 1147.50mil 1797.50mil 1147.50mil 20.00mil 12.00mil "clearline"]
 	Line[2915.00mil 790.00mil 2915.00mil 815.00mil 20.00mil 12.00mil "clearline"]
 	Line[2915.00mil 815.00mil 2870.00mil 860.00mil 20.00mil 12.00mil "clearline"]
@@ -1363,6 +1360,9 @@ Layer(1 "top" "copper")
 	Line[4080.00mil 2375.00mil 715.00mil 2375.00mil 20.00mil 12.00mil "clearline"]
 	Line[715.00mil 2375.00mil 680.00mil 2340.00mil 20.00mil 12.00mil "clearline"]
 	Line[680.00mil 2340.00mil 680.00mil 2190.00mil 20.00mil 12.00mil "clearline"]
+	Line[3615.00mil 790.00mil 3615.00mil 700.00mil 20.00mil 12.00mil "clearline"]
+	Line[3615.00mil 700.00mil 3640.00mil 675.00mil 20.00mil 12.00mil "clearline"]
+	Line[3640.00mil 675.00mil 93.4570mm 675.00mil 20.00mil 12.00mil "clearline"]
 	Polygon("clearpoly,fullpoly")
 	(
 		[720.00mil 1660.00mil] [720.00mil 1020.00mil] [120.00mil 1020.00mil] [120.00mil 120.00mil] [4170.00mil 120.00mil] 
@@ -1434,9 +1434,6 @@ Layer(2 "ground" "copper")
 	Line[1140.00mil 995.00mil 1035.00mil 890.00mil 20.00mil 12.00mil "clearline"]
 	Line[1035.00mil 890.00mil 855.00mil 890.00mil 20.00mil 12.00mil "clearline"]
 	Line[1880.00mil 290.00mil 1880.00mil 185.00mil 20.00mil 12.00mil "clearline"]
-	Line[3575.00mil 185.00mil 3615.00mil 225.00mil 20.00mil 12.00mil "clearline"]
-	Line[3615.00mil 225.00mil 3615.00mil 790.00mil 20.00mil 12.00mil "clearline"]
-	Line[3575.00mil 185.00mil 285.00mil 185.00mil 20.00mil 12.00mil "clearline"]
 	Line[285.00mil 185.00mil 245.00mil 225.00mil 20.00mil 12.00mil "clearline"]
 	Line[245.00mil 225.00mil 245.00mil 610.00mil 20.00mil 12.00mil "clearline"]
 	Line[245.00mil 610.00mil 285.00mil 650.00mil 20.00mil 12.00mil "clearline"]
@@ -1465,9 +1462,6 @@ Layer(2 "ground" "copper")
 	Line[2615.00mil 815.00mil 2615.00mil 790.00mil 20.00mil 12.00mil "clearline"]
 	Line[2515.00mil 815.00mil 2515.00mil 790.00mil 20.00mil 12.00mil "clearline"]
 	Line[3815.00mil 1235.00mil 3815.00mil 1390.00mil 20.00mil 12.00mil "clearline"]
-	Line[3615.00mil 860.00mil 3555.00mil 920.00mil 20.00mil 12.00mil "clearline"]
-	Line[3555.00mil 920.00mil 3555.00mil 1090.00mil 20.00mil 12.00mil "clearline"]
-	Line[3615.00mil 695.00mil 3615.00mil 860.00mil 20.00mil 12.00mil "clearline"]
 	Line[2755.00mil 1935.00mil 2710.00mil 1980.00mil 20.00mil 12.00mil "clearline"]
 	Line[2710.00mil 1980.00mil 1355.00mil 1980.00mil 20.00mil 12.00mil "clearline"]
 	Line[1355.00mil 1980.00mil 1240.00mil 2095.00mil 20.00mil 12.00mil "clearline"]
@@ -1502,6 +1496,11 @@ Layer(2 "ground" "copper")
 	Line[1232.50mil 1227.50mil 1250.00mil 1245.00mil 20.00mil 12.00mil "clearline"]
 	Line[1250.00mil 1245.00mil 1795.00mil 1245.00mil 20.00mil 12.00mil "clearline"]
 	Line[2105.00mil 1555.00mil 1795.00mil 1245.00mil 20.00mil 12.00mil "clearline"]
+	Line[285.00mil 185.00mil 3585.00mil 185.00mil 20.00mil 12.00mil "clearline"]
+	Line[3585.00mil 185.00mil 3615.00mil 215.00mil 20.00mil 12.00mil "clearline"]
+	Line[3615.00mil 215.00mil 3615.00mil 845.00mil 20.00mil 12.00mil "clearline"]
+	Line[3615.00mil 845.00mil 3555.00mil 905.00mil 20.00mil 12.00mil "clearline"]
+	Line[3555.00mil 905.00mil 3555.00mil 1090.00mil 20.00mil 12.00mil "clearline"]
 	Polygon("clearpoly")
 	(
 		[120.00mil 120.00mil] [4170.00mil 120.00mil] [4170.00mil 2850.00mil] [120.00mil 2850.00mil] [120.00mil 1660.00mil] 
