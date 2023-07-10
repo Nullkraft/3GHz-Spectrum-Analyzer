@@ -15,7 +15,7 @@ P 0 3900 300 3900 1 0 0
 T 0 3750 5 10 0 1 0 0 1
 pintype=in
 T 358 3892 9 10 1 1 0 0 1
-pinlabel=USB
+pinlabel=VUSB_+5V
 T 208 3942 5 10 1 1 0 6 1
 pinnumber=15
 }
