@@ -108,13 +108,13 @@ device=DRC_Directive
 }
 C 35000 53800 0 0 0 title-bordered-D.sym
 {
-T 66500 54500 15 10 1 1 0 0 1
+T 66500 54300 15 10 1 1 0 0 1
 author=Mark Stanley
 T 62100 54800 15 10 1 1 0 0 1
 block-filename=control-page1.sch
-T 63800 54500 15 10 1 1 0 0 1
+T 63800 54300 15 10 1 1 0 0 1
 block-num-pages=1
-T 62100 54500 15 10 1 1 0 0 1
+T 62100 54300 15 10 1 1 0 0 1
 block-page=1
 T 66500 54800 15 10 1 1 0 0 1
 block-revision=2.0.0.00
@@ -451,7 +451,7 @@ value=5 Ω
 C 62700 73200 1 180 0 capacitor-2.sym
 {
 T 62500 72500 5 10 0 0 180 0 1
-device=POLARIZED_CAPACITOR
+device=CAPACITOR
 T 62700 73200 5 10 0 1 0 0 1
 footprint=0402
 T 62700 73200 5 10 0 1 270 0 1
