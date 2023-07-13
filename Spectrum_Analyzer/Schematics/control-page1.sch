@@ -75,13 +75,6 @@ C 61500 63200 1 270 0 gnd-1.sym
 C 61500 62400 1 270 0 gnd-1.sym
 C 55700 62000 1 270 0 gnd-1.sym
 C 55700 61200 1 270 0 gnd-1.sym
-C 55500 63000 1 0 0 nc-left-1.sym
-{
-T 55500 63400 5 10 0 0 0 0 1
-value=NoConnection
-T 55500 63800 5 10 0 0 0 0 1
-device=DRC_Directive
-}
 C 61800 60900 1 0 0 header6-1.sym
 {
 T 61200 63650 5 10 0 0 0 0 1
@@ -225,7 +218,7 @@ C 57200 71100 1 0 0 IS66WVS4M8.sym
 T 58595 72700 5 10 1 1 0 0 1
 refdes=U3
 T 57195 72700 5 10 1 1 0 0 1
-device=IS66WVS4M8
+device=SDRAM 1
 T 57686 70625 5 10 1 1 0 0 1
 device=SDRAM 1
 T 57200 71100 5 10 0 1 0 0 1
@@ -459,7 +452,7 @@ footprint=SOIC_8_150mil
 T 58595 68200 5 10 1 1 0 0 1
 refdes=U5
 T 57195 68200 5 10 1 1 0 0 1
-device=IS66WVS4M8
+device=SDRAM 2
 T 57686 66125 5 10 1 1 0 0 1
 device=SDRAM 2
 }
@@ -533,7 +526,7 @@ C 45850 64500 1 270 1 busripper-1.sym
 T 46250 64500 5 8 0 0 270 6 1
 device=none
 }
-U 68500 74100 68500 67200 10 1
+U 68500 74100 68500 69000 10 1
 N 66100 67000 67200 67000 4
 {
 T 66500 67050 5 10 1 1 0 0 1
@@ -545,17 +538,16 @@ C 54500 73500 1 270 1 busripper-1.sym
 T 54900 73500 5 8 0 0 270 6 1
 device=none
 }
-C 48200 61400 1 0 0 Faraday-cage.sym
+C 49300 61500 1 0 0 Faraday-cage.sym
 {
-T 48200 62200 5 10 0 0 0 0 1
+T 49300 62300 5 10 0 0 0 0 1
 device=SHEILD
-T 48200 62000 5 10 1 1 0 0 1
+T 49300 62100 5 10 1 1 0 0 1
 refdes=Sh1
-T 48200 61400 5 10 0 0 0 0 1
+T 49300 61500 5 10 0 0 0 0 1
 footprint=faraday_shield
 }
-C 51000 61600 1 0 0 gnd-1.sym
-N 48400 61900 51100 61900 4
+C 50600 61700 1 0 0 gnd-1.sym
 L 51900 65500 51700 65500 3 0 1 0 -1 -1
 L 51500 65500 51300 65500 3 0 1 0 -1 -1
 L 51100 65500 50900 65500 3 0 1 0 -1 -1
@@ -967,11 +959,11 @@ device=RESISTOR
 T 56400 73625 5 10 1 1 0 0 1
 refdes=R3
 T 57100 73600 5 10 0 0 180 0 1
-man-part-num=ERJ-3GEYJ102V
+man-part-num=ERJ-2GEJ101X
 T 56400 73225 5 10 1 1 0 0 1
-value=1k
+value=100 Ω
 T 57100 73600 5 10 0 1 180 0 1
-footprint=0603
+footprint=0402
 }
 N 37700 62100 37800 62100 4
 {
@@ -1000,11 +992,11 @@ device=RESISTOR
 T 56400 68825 5 10 1 1 0 0 1
 refdes=R5
 T 56200 68600 5 10 0 0 0 0 1
-man-part-num=ERJ-3GEYJ102V
+man-part-num=ERJ-2GEJ101X
 T 56400 68425 5 10 1 1 0 0 1
-value=1k
+value=100 Ω
 T 56200 68600 5 10 0 1 0 0 1
-footprint=0603
+footprint=0402
 }
 C 37800 62000 1 0 0 resistor-1.sym
 {
@@ -1013,11 +1005,11 @@ device=RESISTOR
 T 37700 62175 5 10 1 1 0 0 1
 refdes=R6
 T 37800 62000 5 10 0 0 0 0 1
-man-part-num=ERJ-3GEYJ102V
+man-part-num=ERJ-2GEJ101X
 T 38450 62175 5 10 1 1 0 0 1
-value=1k
+value=100 Ω
 T 37800 62000 5 10 0 1 0 0 1
-footprint=0603
+footprint=0402
 }
 C 37800 61700 1 0 0 resistor-1.sym
 {
@@ -1026,11 +1018,11 @@ device=RESISTOR
 T 37700 61875 5 10 1 1 0 0 1
 refdes=R7
 T 37800 61700 5 10 0 0 0 0 1
-man-part-num=ERJ-3GEYJ102V
+man-part-num=ERJ-2GEJ101X
 T 38450 61875 5 10 1 1 0 0 1
-value=1k
+value=100 Ω
 T 37800 61700 5 10 0 1 0 0 1
-footprint=0603
+footprint=0402
 }
 C 37800 61400 1 0 0 resistor-1.sym
 {
@@ -1039,11 +1031,11 @@ device=RESISTOR
 T 37700 61575 5 10 1 1 0 0 1
 refdes=R8
 T 37800 61400 5 10 0 0 0 0 1
-man-part-num=ERJ-3GEYJ102V
+man-part-num=ERJ-2GEJ101X
 T 38450 61575 5 10 1 1 0 0 1
-value=1k
+value=100 Ω
 T 37800 61400 5 10 0 1 0 0 1
-footprint=0603
+footprint=0402
 }
 C 37800 61100 1 0 0 resistor-1.sym
 {
@@ -1052,11 +1044,11 @@ device=RESISTOR
 T 37700 61275 5 10 1 1 0 0 1
 refdes=R9
 T 37800 61100 5 10 0 0 0 0 1
-man-part-num=ERJ-3GEYJ102V
+man-part-num=ERJ-2GEJ101X
 T 38450 61275 5 10 1 1 0 0 1
-value=1k
+value=100 Ω
 T 37800 61100 5 10 0 1 0 0 1
-footprint=0603
+footprint=0402
 }
 N 38700 62100 40350 62100 4
 {
@@ -1125,11 +1117,11 @@ device=RESISTOR
 T 52300 71225 5 10 1 1 0 0 1
 refdes=R11
 T 52200 71000 5 10 0 0 0 0 1
-man-part-num=ERJ-3GEYJ102V
+man-part-num=ERJ-2GEJ101X
 T 52800 71225 5 10 1 1 0 0 1
-value=1k
+value=100 Ω
 T 52200 71000 5 10 0 1 0 0 1
-footprint=0603
+footprint=0402
 }
 N 52200 71100 51800 71100 4
 {
@@ -1143,11 +1135,11 @@ device=RESISTOR
 T 52300 70425 5 10 1 1 0 0 1
 refdes=R12
 T 52200 70600 5 10 0 0 0 0 1
-man-part-num=ERJ-3GEYJ102V
+man-part-num=ERJ-2GEJ101X
 T 52800 70425 5 10 1 1 0 0 1
-value=1k
+value=100 Ω
 T 52200 70600 5 10 0 1 0 0 1
-footprint=0603
+footprint=0402
 }
 C 52300 68400 1 0 0 resistor-1.sym
 {
@@ -1156,37 +1148,37 @@ device=RESISTOR
 T 52400 68625 5 10 1 1 0 0 1
 refdes=R13
 T 52300 68400 5 10 0 0 0 0 1
-man-part-num=ERJ-3GEYJ102V
+man-part-num=ERJ-2GEJ101X
 T 52900 68625 5 10 1 1 0 0 1
-value=1k
+value=100 Ω
 T 52300 68400 5 10 0 1 0 0 1
-footprint=0603
+footprint=0402
 }
 C 66200 71300 1 0 0 resistor-1.sym
 {
 T 66500 71700 5 10 0 0 0 0 1
 device=RESISTOR
-T 66300 71525 5 10 1 1 0 0 1
+T 66400 71525 5 10 1 1 0 0 1
 refdes=R14
 T 66200 71300 5 10 0 0 0 0 1
-man-part-num=ERJ-3GEYJ102V
-T 66800 71525 5 10 1 1 0 0 1
-value=1k
+man-part-num=ERJ-2GEJ101X
+T 66400 71125 5 10 1 1 0 0 1
+value=100 Ω
 T 66200 71300 5 10 0 1 0 0 1
-footprint=0603
+footprint=0402
 }
 C 66200 66500 1 0 0 resistor-1.sym
 {
 T 66500 66900 5 10 0 0 0 0 1
 device=RESISTOR
-T 66300 66725 5 10 1 1 0 0 1
+T 66400 66725 5 10 1 1 0 0 1
 refdes=R15
 T 66200 66500 5 10 0 0 0 0 1
-man-part-num=ERJ-3GEYJ102V
-T 66800 66725 5 10 1 1 0 0 1
-value=1k
+man-part-num=ERJ-2GEJ101X
+T 66400 66325 5 10 1 1 0 0 1
+value=100 Ω
 T 66200 66500 5 10 0 1 0 0 1
-footprint=0603
+footprint=0402
 }
 N 52200 70700 51800 70700 4
 {
@@ -1208,12 +1200,12 @@ T 52400 73800 5 10 0 0 0 0 1
 device=RESISTOR
 T 52200 73625 5 10 1 1 0 0 1
 refdes=R16
-T 52100 73400 5 10 0 0 0 0 1
-man-part-num=Research
 T 52200 73225 5 10 1 1 0 0 1
 value=100 Ω
 T 52100 73400 5 10 0 1 0 0 1
-footprint=0603
+footprint=0402
+T 52100 73400 5 10 0 0 0 0 1
+man-part-num=ERJ-2GEJ101X
 }
 C 52100 72200 1 0 0 resistor-1.sym
 {
@@ -1221,12 +1213,12 @@ T 52400 72600 5 10 0 0 0 0 1
 device=RESISTOR
 T 52150 72425 5 10 1 1 0 0 1
 refdes=R17
-T 52100 72200 5 10 0 0 0 0 1
-man-part-num=Research
 T 52550 72425 5 10 1 1 0 0 1
 value=100 Ω
 T 52100 72200 5 10 0 1 0 0 1
-footprint=0603
+footprint=0402
+T 52100 72200 5 10 0 0 0 0 1
+man-part-num=ERJ-2GEJ101X
 }
 C 52100 71800 1 0 0 resistor-1.sym
 {
@@ -1234,12 +1226,12 @@ T 52400 72200 5 10 0 0 0 0 1
 device=RESISTOR
 T 52150 72025 5 10 1 1 0 0 1
 refdes=R18
-T 52100 71800 5 10 0 0 0 0 1
-man-part-num=Research
 T 52550 72025 5 10 1 1 0 0 1
 value=100 Ω
 T 52100 71800 5 10 0 1 0 0 1
-footprint=0603
+footprint=0402
+T 52100 71800 5 10 0 0 0 0 1
+man-part-num=ERJ-2GEJ101X
 }
 N 39850 71800 40350 71800 4
 {
@@ -1270,12 +1262,12 @@ T 65600 69600 5 10 0 0 0 0 1
 device=RESISTOR
 T 65350 69425 5 10 1 1 0 0 1
 refdes=R19
-T 65300 69200 5 10 0 0 0 0 1
-man-part-num=Research
 T 65750 69425 5 10 1 1 0 0 1
 value=100 Ω
 T 65300 69200 5 10 0 1 0 0 1
-footprint=0603
+footprint=0402
+T 65300 69200 5 10 0 0 0 0 1
+man-part-num=ERJ-2GEJ101X
 }
 N 66200 69300 68300 69300 4
 {
@@ -1293,12 +1285,12 @@ T 65600 70400 5 10 0 0 0 0 1
 device=RESISTOR
 T 65350 70225 5 10 1 1 0 0 1
 refdes=R20
-T 65300 70000 5 10 0 0 0 0 1
-man-part-num=Research
 T 65850 70225 5 10 1 1 0 0 1
 value=100 Ω
 T 65300 70000 5 10 0 1 0 0 1
-footprint=0603
+footprint=0402
+T 65300 70000 5 10 0 0 0 0 1
+man-part-num=ERJ-2GEJ101X
 }
 C 65300 69600 1 0 0 resistor-1.sym
 {
@@ -1306,12 +1298,12 @@ T 65600 70000 5 10 0 0 0 0 1
 device=RESISTOR
 T 65250 69825 5 10 1 1 0 0 1
 refdes=R21
-T 65300 69600 5 10 0 0 0 0 1
-man-part-num=Research
 T 65750 69825 5 10 1 1 0 0 1
 value=100 Ω
 T 65300 69600 5 10 0 1 0 0 1
-footprint=0603
+footprint=0402
+T 65300 69600 5 10 0 0 0 0 1
+man-part-num=ERJ-2GEJ101X
 }
 N 56200 73500 56100 73500 4
 N 56100 73500 56100 72300 4
@@ -1354,7 +1346,7 @@ N 61200 69300 65300 69300 4
 T 62150 69350 5 10 1 1 0 0 1
 netname=MISO
 }
-U 61000 73100 61000 66200 10 1
+U 61000 72000 61000 66300 10 1
 C 61200 70100 1 90 0 busripper-1.sym
 {
 T 60800 70100 5 8 0 0 90 0 1
@@ -1407,4 +1399,33 @@ N 67200 67400 66100 67400 4
 {
 T 67100 67450 5 10 1 1 0 6 1
 netname=SPICLK
+}
+C 54200 63100 1 0 0 7.5V-plus-1.sym
+N 56000 63100 54400 63100 4
+{
+T 55600 63150 5 10 1 1 0 6 1
+netname=+7.5VDC
+}
+N 40350 63300 38300 63300 4
+{
+T 39500 63350 5 10 1 1 0 6 1
+netname=+7.5VDC
+}
+C 37600 63800 1 0 0 7.5V-plus-1.sym
+N 49500 62000 50700 62000 4
+C 37700 62900 1 0 0 gnd-1.sym
+N 37800 63800 38300 63800 4
+N 38300 63800 38300 63300 4
+C 37700 63800 1 270 0 capacitor-1.sym
+{
+T 38400 63600 5 10 0 0 270 0 1
+device=CAPACITOR
+T 37400 63600 5 10 1 1 0 0 1
+refdes=C8
+T 37200 63300 5 10 1 1 0 0 1
+value=0.1 uF
+T 37700 63800 5 10 0 1 270 0 1
+footprint=0402
+T 37700 63800 5 10 0 1 270 0 1
+man-part-num=885012205037
 }
