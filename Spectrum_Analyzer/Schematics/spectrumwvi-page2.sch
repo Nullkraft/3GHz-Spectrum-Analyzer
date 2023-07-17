@@ -6,7 +6,7 @@ C 25700 30500 1 90 0 gnd-1.sym
 C 20700 31600 1 270 1 gnd-1.sym
 C 23200 35400 1 180 0 gnd-1.sym
 C 24100 33800 1 180 0 gnd-1.sym
-C 24700 34300 1 0 0 capacitor-1.sym
+C 24700 34300 1 0 0 capacitor-1_small.sym
 {
 T 24900 35000 5 10 0 1 0 0 1
 device=CAPACITOR
@@ -49,7 +49,7 @@ netname=+3.3V_RF_LO2
 C 24600 35500 1 90 0 gnd-1.sym
 N 23700 33500 23700 35600 4
 C 27700 35200 1 0 1 gnd-1.sym
-C 27700 36100 1 90 1 capacitor-1.sym
+C 27700 36100 1 90 1 capacitor-1_small.sym
 {
 T 27000 35900 5 10 0 1 90 6 1
 device=CAPACITOR
@@ -79,7 +79,7 @@ man-part-num=CRCW0402240RFKEDC
 }
 N 23400 33500 23400 36100 4
 N 23400 36100 28500 36100 4
-C 31000 31700 1 0 1 capacitor-1.sym
+C 31000 31700 1 0 1 capacitor-1_small.sym
 {
 T 30800 32400 5 10 0 1 0 6 1
 device=CAPACITOR
@@ -103,7 +103,7 @@ N 22100 34100 22100 33500 4
 N 21800 34900 22400 34900 4
 N 22400 34900 22400 33500 4
 C 20900 34800 1 270 1 gnd-1.sym
-C 16900 31000 1 0 1 capacitor-1.sym
+C 16900 31000 1 0 1 capacitor-1_small.sym
 {
 T 16700 31700 5 10 0 1 0 6 1
 device=CAPACITOR
@@ -119,7 +119,7 @@ T 16900 31000 5 10 0 1 0 0 1
 man-part-num=885012006029
 }
 N 18400 31100 21000 31100 4
-C 19500 30000 1 90 1 capacitor-1.sym
+C 19500 30000 1 90 1 capacitor-1_small.sym
 {
 T 18800 29800 5 10 0 1 90 6 1
 device=CAPACITOR
@@ -140,7 +140,7 @@ T 18500 30100 5 10 1 1 0 0 1
 netname=+3.3V_DIG
 }
 C 19500 29100 1 0 1 gnd-1.sym
-C 24200 28200 1 90 1 capacitor-1.sym
+C 24200 28200 1 90 1 capacitor-1_small.sym
 {
 T 23500 28000 5 10 0 1 90 6 1
 device=CAPACITOR
@@ -186,7 +186,7 @@ T 26700 26600 5 10 0 1 0 0 1
 man-part-num=CRCW040290R9FKEDC
 }
 C 26700 25400 1 0 0 gnd-1.sym
-C 26900 28800 1 90 1 capacitor-1.sym
+C 26900 28800 1 90 1 capacitor-1_small.sym
 {
 T 26200 28600 5 10 0 1 90 6 1
 device=CAPACITOR
@@ -201,7 +201,7 @@ footprint=0402
 T 26900 28200 5 10 1 1 0 0 1
 value=0.1 uF
 }
-C 25700 28800 1 90 1 capacitor-1.sym
+C 25700 28800 1 90 1 capacitor-1_small.sym
 {
 T 25000 28600 5 10 0 1 90 6 1
 device=CAPACITOR
@@ -230,7 +230,7 @@ T 26900 26800 5 10 0 1 0 0 1
 man-part-num=CRCW040230R1FKED
 }
 C 25500 27900 1 0 0 gnd-1.sym
-C 19500 32700 1 90 1 capacitor-1.sym
+C 19500 32700 1 90 1 capacitor-1_small.sym
 {
 T 18800 32500 5 10 0 1 90 6 1
 device=CAPACITOR
@@ -252,7 +252,7 @@ T 14550 31100 5 10 1 1 0 0 1
 netname=REF_CLK
 }
 C 23000 30600 1 0 0 gnd-1.sym
-C 24700 33700 1 0 0 capacitor-1.sym
+C 24700 33700 1 0 0 capacitor-1_small.sym
 {
 T 24900 34400 5 10 0 1 0 0 1
 device=CAPACITOR
@@ -268,7 +268,7 @@ T 24700 33700 5 10 0 1 0 0 1
 man-part-num=GRM1885C1H103JA01J
 }
 C 26000 33700 1 90 0 gnd-1.sym
-C 20100 30000 1 90 1 capacitor-1.sym
+C 20100 30000 1 90 1 capacitor-1_small.sym
 {
 T 19400 29800 5 10 0 1 90 6 1
 device=CAPACITOR
@@ -285,7 +285,7 @@ man-part-num=GRM1885C1H103JA01J
 }
 C 20100 29100 1 0 1 gnd-1.sym
 N 20300 32100 21000 32100 4
-C 18900 32700 1 90 1 capacitor-1.sym
+C 18900 32700 1 90 1 capacitor-1_small.sym
 {
 T 18200 32500 5 10 0 1 90 6 1
 device=CAPACITOR
@@ -301,7 +301,7 @@ T 18200 32100 5 10 1 1 0 0 1
 value=100 pF
 }
 C 18900 31800 1 0 1 gnd-1.sym
-C 24800 28200 1 90 1 capacitor-1.sym
+C 24800 28200 1 90 1 capacitor-1_small.sym
 {
 T 24100 28000 5 10 0 1 90 6 1
 device=CAPACITOR
@@ -343,7 +343,7 @@ footprint=0805
 T 29650 33600 5 10 0 1 0 0 1
 man-part-num=CRCW080551R0FKEA
 }
-C 26500 30300 1 90 1 capacitor-1.sym
+C 26500 30300 1 90 1 capacitor-1_small.sym
 {
 T 25800 30100 5 10 0 1 90 6 1
 device=CAPACITOR
@@ -364,7 +364,7 @@ N 25400 30300 27600 30300 4
 T 26800 30400 5 10 1 1 0 0 1
 netname=+3.3V_PLL
 }
-C 27300 30300 1 90 1 capacitor-1.sym
+C 27300 30300 1 90 1 capacitor-1_small.sym
 {
 T 26600 30100 5 10 0 1 90 6 1
 device=CAPACITOR
@@ -380,7 +380,7 @@ T 27300 30300 5 10 0 1 0 0 1
 man-part-num=GRM1885C1H103JA01J
 }
 C 27100 29400 1 0 0 gnd-1.sym
-C 27000 33600 1 90 1 capacitor-1.sym
+C 27000 33600 1 90 1 capacitor-1_small.sym
 {
 T 26300 33400 5 10 0 1 90 6 1
 device=CAPACITOR
@@ -401,7 +401,7 @@ N 26100 33600 31200 33600 4
 T 30400 33700 5 10 1 1 0 0 1
 netname=+3.3V_RF_LO2
 }
-C 27550 33600 1 90 1 capacitor-1.sym
+C 27550 33600 1 90 1 capacitor-1_small.sym
 {
 T 26850 33400 5 10 0 1 90 6 1
 device=CAPACITOR
@@ -419,7 +419,7 @@ man-part-num=GRM1885C1H103JA01J
 C 27350 32700 1 0 0 gnd-1.sym
 N 25400 32600 26100 32600 4
 N 26100 32600 26100 33600 4
-C 32200 32100 1 0 1 capacitor-1.sym
+C 32200 32100 1 0 1 capacitor-1_small.sym
 {
 T 32000 32800 5 10 0 1 0 6 1
 device=CAPACITOR
@@ -462,7 +462,7 @@ N 20300 31400 20300 32700 4
 N 20300 31400 21000 31400 4
 N 29400 36100 34100 36100 4
 N 34100 36100 34100 28800 4
-C 21200 34800 1 0 0 capacitor-1.sym
+C 21200 34800 1 0 0 capacitor-1_small.sym
 {
 T 21400 35500 5 10 0 1 0 0 1
 device=CAPACITOR
@@ -477,7 +477,7 @@ refdes=C223
 T 21700 35000 5 10 1 1 0 0 1
 value=1.0 uF
 }
-C 21200 34000 1 0 0 capacitor-1.sym
+C 21200 34000 1 0 0 capacitor-1_small.sym
 {
 T 21400 34700 5 10 0 1 0 0 1
 device=CAPACITOR
@@ -492,7 +492,7 @@ refdes=C225
 T 21700 34200 5 10 1 1 0 0 1
 value=1.0 uF
 }
-C 23700 35500 1 0 0 capacitor-1.sym
+C 23700 35500 1 0 0 capacitor-1_small.sym
 {
 T 23900 36200 5 10 0 1 0 0 1
 device=CAPACITOR
@@ -604,7 +604,7 @@ footprint=0603
 T 35500 38000 5 10 0 1 0 0 1
 man-part-num=0603CS-R10XJLU
 }
-C 33500 41200 1 270 0 capacitor-1.sym
+C 33500 41200 1 270 0 capacitor-1_small.sym
 {
 T 34200 41000 5 10 0 1 270 0 1
 device=CAPACITOR
@@ -662,7 +662,7 @@ N 37700 38700 37700 40400 4
 C 35200 40400 1 0 0 3.3V-plus-1.sym
 N 39300 38100 39500 38100 4
 N 39500 38100 39500 37900 4
-C 34400 38100 1 270 0 capacitor-1.sym
+C 34400 38100 1 270 0 capacitor-1_small.sym
 {
 T 35100 37900 5 10 0 1 270 0 1
 device=CAPACITOR
@@ -763,7 +763,7 @@ T 20850 41250 5 10 0 1 0 0 1
 man-part-num=CRCW080551R0FKEA
 }
 C 21650 42650 1 0 0 7.5V-plus-1.sym
-C 20550 42650 1 180 0 capacitor-1.sym
+C 20550 42650 1 180 0 capacitor-1_small.sym
 {
 T 20350 41950 5 10 0 1 180 0 1
 device=CAPACITOR
@@ -778,7 +778,7 @@ footprint=0402
 T 20550 42650 5 10 0 1 0 0 1
 man-part-num=885012205037
 }
-C 20550 41350 1 180 0 capacitor-1.sym
+C 20550 41350 1 180 0 capacitor-1_small.sym
 {
 T 20350 40650 5 10 0 1 180 0 1
 device=CAPACITOR
@@ -945,7 +945,7 @@ N 42800 38700 43000 38700 4
 N 43000 39500 43000 39000 4
 N 43000 39300 42800 39300 4
 N 41700 39300 41300 39300 4
-C 40200 39000 1 270 0 capacitor-1.sym
+C 40200 39000 1 270 0 capacitor-1_small.sym
 {
 T 40900 38800 5 10 0 1 270 0 1
 device=CAPACITOR
@@ -976,7 +976,7 @@ T 40400 39200 5 10 0 1 0 0 1
 man-part-num=0603CS-68NXJLU
 }
 N 39300 39300 40400 39300 4
-C 43900 38100 1 270 0 capacitor-1.sym
+C 43900 38100 1 270 0 capacitor-1_small.sym
 {
 T 44600 37900 5 10 0 1 270 0 1
 device=CAPACITOR
@@ -1060,7 +1060,7 @@ value=68 nH
 T 49000 38600 5 10 0 1 0 0 1
 man-part-num=0603CS-68NXJLU
 }
-C 46900 38600 1 0 0 capacitor-1.sym
+C 46900 38600 1 0 0 capacitor-1_small.sym
 {
 T 47100 39300 5 10 0 1 0 0 1
 device=CAPACITOR
@@ -1076,7 +1076,7 @@ T 46900 38600 5 10 0 1 0 0 1
 man-part-num=885012205031
 }
 C 46400 41300 1 0 0 7.5V-plus-1.sym
-C 49000 37700 1 90 0 capacitor-1.sym
+C 49000 37700 1 90 0 capacitor-1_small.sym
 {
 T 48300 37900 5 10 0 1 90 0 1
 device=CAPACITOR
@@ -1104,7 +1104,7 @@ value=51
 T 46700 40000 5 10 0 1 0 0 1
 man-part-num=CRCW120651R0JNEA
 }
-C 46600 39900 1 0 0 capacitor-1.sym
+C 46600 39900 1 0 0 capacitor-1_small.sym
 {
 T 46800 40600 5 10 0 1 0 0 1
 device=CAPACITOR
@@ -1119,7 +1119,7 @@ value=0.01 uF
 T 46600 39900 5 10 0 1 0 0 1
 man-part-num=885012205031
 }
-C 46600 41000 1 0 0 capacitor-1.sym
+C 46600 41000 1 0 0 capacitor-1_small.sym
 {
 T 46800 41700 5 10 0 1 0 0 1
 device=CAPACITOR
@@ -1191,7 +1191,7 @@ footprint=0402
 T 53900 37200 5 10 0 1 0 0 1
 man-part-num=0402CS-36NXJLU
 }
-C 55600 37200 1 270 0 capacitor-1.sym
+C 55600 37200 1 270 0 capacitor-1_small.sym
 {
 T 56300 37000 5 10 0 1 270 0 1
 device=CAPACITOR
@@ -1204,7 +1204,7 @@ value=!BOM
 T 55600 37200 5 10 0 1 0 0 1
 footprint=0603
 }
-C 55800 39000 1 90 0 capacitor-1.sym
+C 55800 39000 1 90 0 capacitor-1_small.sym
 {
 T 55100 39200 5 10 0 1 90 0 1
 device=CAPACITOR
@@ -1348,7 +1348,7 @@ C 37900 37900 1 0 0 WBC9-1LB-transformer.sym
 T 38300 39500 5 10 1 1 0 0 1
 refdes=T201
 T 37900 39800 5 10 0 1 0 0 1
-device=TRANSFORMER 
+device=TRANSFORMER
 T 37900 37900 5 10 0 1 0 0 1
 footprint=WBC9-1LB
 T 38200 37600 5 10 0 1 0 0 1
@@ -1384,7 +1384,7 @@ man-part-num=AP7353-33CV4-7
 T 41600 31200 5 10 0 1 0 0 1
 footprint=AP7353
 }
-C 40600 31400 1 90 0 capacitor-1.sym
+C 40600 31400 1 90 0 capacitor-1_small.sym
 {
 T 39900 31600 5 10 0 1 90 0 1
 device=CAPACITOR
@@ -1402,7 +1402,7 @@ value=1.0 uF
 C 40300 32200 1 0 0 5V-plus-1.sym
 N 40500 32200 40500 32000 4
 N 40500 32000 41800 32000 4
-C 45100 31400 1 90 0 capacitor-1.sym
+C 45100 31400 1 90 0 capacitor-1_small.sym
 {
 T 44400 31600 5 10 0 1 90 0 1
 device=CAPACITOR
@@ -1466,7 +1466,7 @@ man-part-num=CRCW04021K00FKEDC
 }
 N 17500 31100 16900 31100 4
 N 49000 38700 48800 38700 4
-C 47900 37700 1 90 0 capacitor-1.sym
+C 47900 37700 1 90 0 capacitor-1_small.sym
 {
 T 47200 37900 5 10 0 1 90 0 1
 device=CAPACITOR
@@ -1498,7 +1498,7 @@ man-part-num=0402DC-22NXJRW
 }
 C 47700 37400 1 0 0 gnd-1.sym
 N 47900 38700 47500 38700 4
-C 52500 37800 1 270 0 capacitor-1.sym
+C 52500 37800 1 270 0 capacitor-1_small.sym
 {
 T 53200 37600 5 10 0 1 270 0 1
 device=CAPACITOR
@@ -1520,7 +1520,7 @@ C 28350 38350 1 0 0 TC1-1-43X+.sym
 T 29450 39750 5 10 1 1 180 0 1
 refdes=T200
 T 28650 40150 5 10 0 1 0 0 1
-device=TRANSFORMER 
+device=TRANSFORMER
 T 28850 38300 5 10 0 1 0 0 1
 man-part-num=TC1-1-43X+
 T 28350 38350 5 10 0 1 0 0 1
