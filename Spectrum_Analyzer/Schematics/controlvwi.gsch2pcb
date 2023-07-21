@@ -1,3 +1,4 @@
 schematics control-page1.sch
 elements-dir ../Components/WN2A_PCB_Footprints
 output-name controlvwi
+use-files
