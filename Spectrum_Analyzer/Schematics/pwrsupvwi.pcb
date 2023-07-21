@@ -784,7 +784,7 @@ Symbol['~' 12.00mil]
 	SymbolLine[15.00mil 35.00mil 20.00mil 35.00mil 8.00mil]
 	SymbolLine[20.00mil 35.00mil 25.00mil 30.00mil 8.00mil]
 )
-Attribute("PCB::grid::unit" "mil")
+Attribute("PCB::grid::unit" "mm")
 Attribute("PCB::grid::size" "5.00mil")
 Via[205.00mil 285.00mil 225.00mil 0.0000 235.00mil 125.00mil "" "lock"]
 Via[205.00mil 2635.00mil 225.00mil 0.0000 235.00mil 125.00mil "" "lock"]
@@ -869,6 +869,88 @@ Element["lock" "faraday_shield" "Sh1" "unknown" 2760.00mil 1270.00mil 1060.00mil
 	ElementLine [1160.00mil -670.00mil 1160.00mil -770.00mil 25.00mil]
 
 	)
+
+Element["" "TPSM33625" "U1" "unknown" 961.60mil 29.0081mm 16.60mil -172.95mil 0 100 ""]
+(
+	Pad[-70.80mil 20.40mil -61.00mil 20.40mil 0.2500mm 0.1000mm 0.3000mm "VOUT" "4" "square"]
+	Pad[-70.80mil 39.90mil -61.00mil 39.90mil 0.2500mm 0.1000mm 0.3000mm "VOUT" "4" "square"]
+	Pad[-70.80mil 59.60mil -61.00mil 59.60mil 0.2500mm 0.1000mm 0.3000mm "VOUT" "4" "square"]
+	Pad[-70.80mil 79.40mil -61.00mil 79.40mil 0.2500mm 0.1000mm 0.3000mm "VOUT" "4" "square"]
+	Pad[-70.80mil -36.70mil -37.30mil -36.70mil 0.2500mm 0.1000mm 0.3000mm "EN" "2" "square"]
+	Pad[-70.80mil -17.00mil -37.30mil -17.00mil 0.2500mm 0.1000mm 0.3000mm "VIN" "3" "square"]
+	Pad[-68.40mil -68.60mil -38.70mil -68.60mil 0.3700mm 0.1000mm 0.4200mm "PGOOD" "1" "square"]
+	Pad[-19.70mil -2.1184mm -19.70mil -61.70mil 0.2500mm 0.1000mm 0.3000mm "RT" "11" "square"]
+	Pad[0.0000 -82.40mil 0.0000 -51.70mil 0.3000mm 0.1000mm 0.3500mm "GND" "10" "square"]
+	Pad[61.00mil 20.40mil 70.80mil 20.40mil 0.2500mm 0.1000mm 0.3000mm "SW" "5" "square,edge2"]
+	Pad[61.00mil 39.90mil 70.80mil 39.90mil 0.2500mm 0.1000mm 0.3000mm "SW" "5" "square,edge2"]
+	Pad[61.00mil 59.60mil 70.80mil 59.60mil 0.2500mm 0.1000mm 0.3000mm "SW" "5" "square,edge2"]
+	Pad[61.00mil 79.40mil 70.80mil 79.40mil 0.2500mm 0.1000mm 0.3000mm "SW" "5" "square,edge2"]
+	Pad[19.70mil -2.1184mm 19.70mil -61.70mil 0.2500mm 0.1000mm 0.3000mm "FB" "9" "square"]
+	Pad[38.80mil -36.70mil 1.8365mm -36.70mil 0.2500mm 0.1000mm 0.3000mm "BOOT" "7" "square,edge2"]
+	Pad[38.80mil -17.00mil 1.8365mm -17.00mil 0.2500mm 0.1000mm 0.3000mm "SW" "6" "square,edge2"]
+	Pad[40.20mil -68.60mil 69.90mil -68.60mil 0.3700mm 0.1000mm 0.4200mm "VCC" "8" "square,edge2"]
+	Pad[38.40mil 29.20mil 38.40mil 66.70mil 1.0998mm 0.1000mm 1.1498mm "SW" "5" "square,edge2"]
+	Pad[-38.40mil 29.20mil -38.40mil 66.70mil 1.0998mm 0.1000mm 1.1498mm "VOUT" "4" "square,edge2"]
+	Pad[0.0000 -38.70mil 0.0000 77.30mil 0.5600mm 0.0000 0.5700mm "GND" "10" "square,edge2"]
+	ElementLine [0.30mil -0.30mil -0.30mil 0.30mil 0.0010mm]
+	ElementLine [-0.30mil -0.30mil 0.30mil 0.30mil 0.0010mm]
+	ElementLine [85.70mil -97.50mil 85.70mil -2.0904mm 10.00mil]
+	ElementLine [58.70mil 97.30mil 85.70mil 97.30mil 10.00mil]
+	ElementLine [85.70mil 70.30mil 85.70mil 97.30mil 10.00mil]
+	ElementLine [-85.70mil 97.30mil -58.70mil 97.30mil 10.00mil]
+	ElementLine [-85.70mil 70.30mil -85.70mil 97.30mil 10.00mil]
+	ElementLine [58.70mil -97.50mil 85.70mil -97.50mil 10.00mil]
+	ElementLine [-85.70mil -97.50mil -58.70mil -97.50mil 10.00mil]
+	ElementLine [-85.70mil -2.0904mm -85.70mil -97.50mil 10.00mil]
+	ElementLine [-99.20mil -110.60mil -99.20mil -110.60mil 10.00mil]
+
+	)
+
+Element["" "0402" "R1" "unknown" 784.26mil 910.00mil -2.0844mm -1.5177mm 0 100 ""]
+(
+	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
+	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
+
+	)
+
+Element["" "0402" "R2" "unknown" 734.26mil 695.00mil 52.76mil -11.50mil 0 100 ""]
+(
+	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
+	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
+
+	)
+
+Element["" "0402" "C2" "1 uF" 31.8582mm 915.00mil -97.80mil -51.50mil 0 100 ""]
+(
+	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
+	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
+
+	)
+
+Element["" "0402" "C1" "unknown" 654.26mil 1215.00mil 1.5269mm -0.2941mm 0 100 ""]
+(
+	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
+	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
+
+	)
+
+Element["" "0402" "C3" "unknown" 654.26mil 1320.00mil 47.76mil -11.50mil 0 100 ""]
+(
+	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
+	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
+
+	)
+Rat[638.52mil 30.7612mm 0 490.00mil 1030.00mil 0  "via"]
+Rat[941.90mil 26.8897mm 0 490.00mil 1030.00mil 1  "via"]
+Rat[718.52mil 691.07mil 0 490.00mil 1030.00mil 1  "via"]
+Rat[638.52mil 33.4282mm 0 490.00mil 1030.00mil 1  "via"]
+Rat[1270.00mil 911.07mil 0 490.00mil 1030.00mil 1  "via"]
+Rat[31.4584mm 911.07mil 0 1031.50mil 27.2656mm 0  ""]
+Rat[800.00mil 906.07mil 0 750.00mil 691.07mil 0  ""]
+Rat[800.00mil 906.07mil 0 981.30mil 26.8897mm 0  ""]
+Rat[670.00mil 30.7612mm 0 670.00mil 33.4282mm 0  ""]
+Rat[670.00mil 30.7612mm 0 890.80mil 30.5219mm 0  ""]
+Rat[890.80mil 29.5262mm 0 768.52mil 906.07mil 0  ""]
 Layer(1 "top" "copper")
 (
 	Polygon("clearpoly,fullpoly")
@@ -922,13 +1004,19 @@ NetList()
 	)
 	Net("GND" "(unknown)")
 	(
+		Connect("C1-1")
+		Connect("C2-1")
+		Connect("C3-1")
 		Connect("J1-15")
 		Connect("J1-24")
 		Connect("J1-25")
 		Connect("J2-2")
 		Connect("J2-4")
 		Connect("J2-6")
+		Connect("R2-1")
 		Connect("Sh1-1")
+		Connect("U1-10")
+		Connect("U1-11")
 	)
 	Net("PLL_MUX" "(unknown)")
 	(
@@ -977,5 +1065,35 @@ NetList()
 	Net("unnamed_net3" "(unknown)")
 	(
 		Connect("J1-23")
+	)
+	Net("unnamed_net4" "(unknown)")
+	(
+		Connect("U1-6")
+	)
+	Net("unnamed_net5" "(unknown)")
+	(
+		Connect("U1-7")
+	)
+	Net("unnamed_net6" "(unknown)")
+	(
+		Connect("C2-2")
+		Connect("U1-8")
+	)
+	Net("unnamed_net7" "(unknown)")
+	(
+		Connect("U1-5")
+	)
+	Net("unnamed_net8" "(unknown)")
+	(
+		Connect("R1-1")
+		Connect("R2-2")
+		Connect("U1-9")
+	)
+	Net("Vout" "(unknown)")
+	(
+		Connect("C1-2")
+		Connect("C3-2")
+		Connect("R1-2")
+		Connect("U1-4")
 	)
 )

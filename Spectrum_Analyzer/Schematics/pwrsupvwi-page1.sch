@@ -158,34 +158,42 @@ C 42700 60600 1 0 0 TPSM33625.sym
 T 42200 59400 5 10 1 1 0 0 1
 device=TPSM33625
 T 43700 61800 5 10 1 1 0 6 1
-refdes=U?
+refdes=U1
+T 42700 60600 5 10 0 0 0 0 1
+footprint=TPSM33625
 }
-C 40000 60700 1 90 0 capacitor-1_small.sym
+C 41100 58800 1 90 0 capacitor-1_small.sym
 {
-T 39375 60825 5 10 0 0 90 0 1
+T 40475 58925 5 10 0 0 90 0 1
 device=CAPACITOR
-T 39500 60800 5 10 1 1 0 0 1
-refdes=C?
-T 39175 60825 5 10 0 0 90 0 1
+T 40600 58900 5 10 1 1 0 0 1
+refdes=C3
+T 40275 58925 5 10 0 0 90 0 1
 symversion=0.1
+T 41100 58800 5 10 0 0 0 0 1
+footprint=0402
 }
 C 44900 62800 1 90 0 capacitor-1_small.sym
 {
 T 44275 62925 5 10 0 0 90 0 1
 device=CAPACITOR
 T 45000 63100 5 10 1 1 0 0 1
-refdes=C?
+refdes=C1
 T 44075 62925 5 10 0 0 90 0 1
 symversion=0.1
+T 44900 62800 5 10 0 0 0 0 1
+footprint=0402
 }
 C 44900 60000 1 90 0 capacitor-1_small.sym
 {
 T 44275 60125 5 10 0 0 90 0 1
 device=CAPACITOR
 T 44900 60400 5 10 1 1 0 0 1
-refdes=C?
+refdes=C2
 T 44900 60100 5 10 1 1 0 0 1
 value=1 uF
+T 44900 60000 5 10 0 0 0 0 1
+footprint=0402
 }
 C 42800 62300 1 180 0 gnd-1.sym
 C 44700 59700 1 0 0 gnd-1.sym
@@ -217,14 +225,18 @@ C 44300 61600 1 90 0 resistor-1.sym
 T 43900 61900 5 10 0 0 90 0 1
 device=RESISTOR
 T 43800 62100 5 10 1 1 0 0 1
-refdes=R?
+refdes=R2
+T 44300 61600 5 10 0 0 0 0 1
+footprint=0402
 }
 C 44300 62500 1 90 0 resistor-1.sym
 {
 T 43900 62800 5 10 0 0 90 0 1
 device=RESISTOR
 T 43800 63000 5 10 1 1 0 0 1
-refdes=R?
+refdes=R1
+T 44300 62500 5 10 0 0 0 0 1
+footprint=0402
 }
 N 40100 59400 41000 59400 4
 {
@@ -253,3 +265,4 @@ netname=Vout
 }
 N 41000 59400 41000 59900 4
 N 41000 59900 41400 59900 4
+C 40900 58500 1 0 0 gnd-1.sym
