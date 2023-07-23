@@ -962,21 +962,21 @@ Element["" "0402" "C5" "10_uF" 64.9864mm 26.9052mm -99.28mil -27.24mil 0 100 ""]
 
 	)
 
-Element["" "0402" "C6" "20_uF" 2680.00mil 1055.00mil 42.02mil -34.28mil 0 100 ""]
+Element["" "0402" "C6" "20_uF" 2530.00mil 880.00mil 42.02mil -34.28mil 0 100 ""]
 (
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
 
 	)
 
-Element["" "0402" "C8" "20_uF" 1950.00mil 1070.00mil 0.8944mm -0.8900mm 0 100 ""]
+Element["" "0402" "C8" "20_uF" 1750.00mil 885.00mil 0.8944mm -0.8900mm 0 100 ""]
 (
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
 
 	)
 
-Element["" "SOT223-H2" "U3" "unknown" 2605.00mil 530.00mil 170.00mil -15.00mil 0 100 ""]
+Element["" "SOT223-H2" "U3" "unknown" 1640.00mil 615.00mil 170.00mil -15.00mil 0 100 ""]
 (
 	Pad[-26.00mil -122.00mil 26.00mil -122.00mil 2.2000mm 11.00mil 2.4794mm "GND" "2" "square"]
 	Pad[1.00mil 103.00mil 1.00mil 141.00mil 1.2000mm 11.00mil 1.4794mm "GND" "2" "square,edge2"]
@@ -989,7 +989,7 @@ Element["" "SOT223-H2" "U3" "unknown" 2605.00mil 530.00mil 170.00mil -15.00mil 0
 
 	)
 
-Element["" "SOT223-H2" "U2" "unknown" 2045.00mil 630.00mil 175.00mil -15.00mil 0 100 ""]
+Element["" "SOT223-H2" "U2" "unknown" 2390.00mil 615.00mil 175.00mil -15.00mil 0 100 ""]
 (
 	Pad[-26.00mil -122.00mil 26.00mil -122.00mil 2.2000mm 11.00mil 2.4794mm "GND" "2" "square"]
 	Pad[1.00mil 103.00mil 1.00mil 141.00mil 1.2000mm 11.00mil 1.4794mm "GND" "2" "square,edge2"]
@@ -1001,29 +1001,29 @@ Element["" "SOT223-H2" "U2" "unknown" 2045.00mil 630.00mil 175.00mil -15.00mil 0
 	ElementLine [-130.00mil 181.00mil 130.00mil 181.00mil 10.00mil]
 
 	)
-Rat[67.9722mm 26.3972mm 0 2135.00mil 771.00mil 0  ""]
-Rat[2135.00mil 771.00mil 0 2050.00mil 260.00mil 1  ""]
-Rat[49.4302mm 26.7782mm 0 1850.00mil 260.00mil 1  ""]
-Rat[49.4302mm 26.7782mm 0 2695.00mil 671.00mil 0  ""]
+Rat[64.1622mm 864.26mil 0 2480.00mil 756.00mil 0  ""]
+Rat[2480.00mil 756.00mil 0 2050.00mil 260.00mil 1  ""]
+Rat[44.3502mm 869.26mil 0 1730.00mil 756.00mil 0  ""]
+Rat[1730.00mil 756.00mil 0 1850.00mil 260.00mil 1  ""]
 Rat[670.00mil 33.4282mm 0 944.20mil 1270.10mil 0  ""]
 Rat[944.20mil 1211.10mil 0 768.52mil 906.07mil 0  ""]
-Rat[976.60mil 31.9380mm 0 46.5092mm 26.7594mm 0  ""]
-Rat[46.5092mm 26.7594mm 0 1955.00mil 771.00mil 0  ""]
-Rat[1955.00mil 771.00mil 0 2515.00mil 671.00mil 0  ""]
-Rat[2515.00mil 671.00mil 0 64.8866mm 26.5054mm 0  ""]
-Rat[1955.00mil 771.00mil 0 1650.00mil 260.00mil 1  ""]
+Rat[944.20mil 1211.10mil 0 1550.00mil 756.00mil 0  ""]
+Rat[1550.00mil 756.00mil 0 46.5092mm 26.7594mm 0  ""]
+Rat[1550.00mil 756.00mil 0 1650.00mil 260.00mil 1  ""]
+Rat[46.5092mm 26.7594mm 0 2300.00mil 756.00mil 0  ""]
+Rat[2300.00mil 756.00mil 0 64.8866mm 26.5054mm 0  ""]
 Rat[800.00mil 906.07mil 0 750.00mil 691.07mil 0  ""]
 Rat[800.00mil 906.07mil 0 1034.70mil 1107.30mil 0  ""]
 Rat[638.52mil 30.7612mm 0 490.00mil 1030.00mil 0  "via"]
 Rat[995.30mil 1107.30mil 0 490.00mil 1030.00mil 1  "via"]
-Rat[2046.00mil 771.00mil 0 490.00mil 1030.00mil 1  "via"]
-Rat[2019.00mil 508.00mil 0 490.00mil 1030.00mil 1  "via"]
-Rat[2606.00mil 671.00mil 0 490.00mil 1030.00mil 1  "via"]
-Rat[2579.00mil 408.00mil 0 490.00mil 1030.00mil 1  "via"]
+Rat[2391.00mil 756.00mil 0 490.00mil 1030.00mil 1  "via"]
+Rat[2364.00mil 493.00mil 0 490.00mil 1030.00mil 1  "via"]
+Rat[1641.00mil 756.00mil 0 490.00mil 1030.00mil 1  "via"]
+Rat[1614.00mil 493.00mil 0 490.00mil 1030.00mil 1  "via"]
 Rat[718.52mil 691.07mil 0 490.00mil 1030.00mil 1  "via"]
-Rat[49.4302mm 27.5778mm 0 490.00mil 1030.00mil 1  "via"]
+Rat[44.3502mm 900.74mil 0 490.00mil 1030.00mil 1  "via"]
 Rat[46.5092mm 1085.00mil 0 490.00mil 1030.00mil 1  "via"]
-Rat[67.9722mm 27.1968mm 0 490.00mil 1030.00mil 1  "via"]
+Rat[64.1622mm 895.74mil 0 490.00mil 1030.00mil 1  "via"]
 Rat[64.8866mm 1075.00mil 0 490.00mil 1030.00mil 1  "via"]
 Rat[32.2748mm 26.4822mm 0 490.00mil 1030.00mil 1  "via"]
 Rat[638.52mil 33.4282mm 0 490.00mil 1030.00mil 1  "via"]
