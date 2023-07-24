@@ -8,7 +8,7 @@ A spectrum analyzer compatible with Arduino UNO R3 Microcontroller and others.
 					specrtumwvi-page4.sch
 					specrtumwvi-page5.sch
     
-   A combination of Mark Stanley/Mike Masterson gEDA gschem schematics
+   A team of Mark Stanley and Mike Masterson using gEDA gschem schematics
     
 2) This design is intended to meet the following preliminary specifications:
   * Frequency Range: 23.5 to 3000 MHz.
