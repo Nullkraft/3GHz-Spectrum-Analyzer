@@ -346,7 +346,9 @@ device=DIODE
 T 39900 62500 5 10 1 1 0 0 1
 refdes=D1
 T 39600 62000 5 10 0 0 0 0 1
-footprint=DO214AC
+footprint=DO220AA
+T 39600 62000 5 10 0 0 0 0 1
+man-part-num=SS2P5HM3/84A
 }
 C 41000 62100 1 0 0 inductor-1.sym
 {
