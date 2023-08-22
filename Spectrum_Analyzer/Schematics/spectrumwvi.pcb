@@ -1629,14 +1629,14 @@ Element["lock" "JUMPER6" "J402" "unknown" 21.3375mm 76.0745mm -170.00mil -25.00m
 
 	)
 
-Element["lock" "JUMPER6" "J401" "unknown" 44.1975mm 15.1145mm 565.00mil 45.00mil 1 80 ""]
+Element["" "JUMPER6" "J401" "unknown" 44.1975mm 15.1145mm 565.00mil 45.00mil 1 80 ""]
 (
-	Pin[0.0000 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "1" "1" "square,lock,edge2"]
-	Pin[100.00mil 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "2" "2" "lock,edge2,thermal(0X,1X,2X,3X)"]
-	Pin[200.00mil 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "3" "3" "lock,edge2"]
-	Pin[300.00mil 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "4" "4" "lock,edge2,thermal(0X,1X,2X,3X)"]
-	Pin[400.00mil 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "5" "5" "lock,edge2"]
-	Pin[500.00mil 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "6" "6" "lock,edge2,thermal(0X,1X,2X,3X)"]
+	Pin[0.0000 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "1" "1" "square,edge2"]
+	Pin[100.00mil 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "2" "2" "edge2,thermal(0X,1X,2X,3X)"]
+	Pin[200.00mil 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "3" "3" "edge2"]
+	Pin[300.00mil 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "4" "4" "edge2,thermal(0X,1X,2X,3X)"]
+	Pin[400.00mil 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "5" "5" "edge2"]
+	Pin[500.00mil 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "6" "6" "edge2,thermal(0X,1X,2X,3X)"]
 	ElementLine [-50.00mil 50.00mil 550.00mil 50.00mil 10.00mil]
 	ElementLine [550.00mil -50.00mil 550.00mil 50.00mil 10.00mil]
 	ElementLine [-50.00mil -50.00mil 550.00mil -50.00mil 10.00mil]
@@ -5420,13 +5420,13 @@ Layer(7 "top silk" "silk")
 	Text[54.9925mm 52.1731mm 0 80 "3 GHz Spectrum Analyzer" "clearline"]
 	Text[60.1995mm 12.9555mm 0 122 "(A) = Vin" "clearline"]
 	Text[60.1995mm 14.6065mm 0 122 "(B) = +5Vout" "clearline"]
-	Text[72.7725mm 12.9555mm 0 122 "(D) = +5 V" "clearline"]
-	Text[60.1995mm 16.2575mm 0 122 "(C) = +7.5 V" "clearline"]
+	Text[72.7725mm 12.9555mm 0 122 "(D) = +7.5 V" "clearline"]
+	Text[60.1995mm 16.2575mm 0 122 "(C) = +5 V" "clearline"]
 	Text[97.6645mm 48.6425mm 0 122 "LD_LO3" "clearline"]
 	Text[59.0565mm 53.7225mm 0 80 "Ver. 4.0.0.00" "clearline"]
 	Text[72.7725mm 14.6065mm 0 122 "(E) = +3.3 V" "clearline"]
-	Text[72.7725mm 16.2575mm 0 122 "(PD) = PWR_DET" "clearline"]
 	Text[30.4815mm 60.5805mm 0 80 "(PD)" "clearline"]
+	Text[46.7375mm 75.1855mm 0 122 "(PD) = PWR_DET" "clearline"]
 )
 NetList()
 (
