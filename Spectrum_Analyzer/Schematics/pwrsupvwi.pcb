@@ -1033,27 +1033,6 @@ Element["" "1206" "C8" "22_uF" 1275.00mil 360.00mil -25.55mil -155.55mil 0 100 "
 
 	)
 
-Element["lock" "sparkfun_11544" "J1" "unknown" 1650.00mil 260.00mil -145.00mil -25.00mil 0 100 ""]
-(
-	Pad[0.0000 50.00mil 0.0000 70.00mil 40.00mil 12.00mil 47.00mil "1" "1" "square,lock,edge2"]
-	Pad[200.00mil 50.00mil 200.00mil 70.00mil 40.00mil 12.00mil 47.00mil "3" "3" "square,lock,edge2"]
-	Pad[400.00mil 50.00mil 400.00mil 70.00mil 40.00mil 12.00mil 47.00mil "5" "5" "square,lock,edge2"]
-	Pad[500.00mil -70.00mil 500.00mil -50.00mil 40.00mil 12.00mil 47.00mil "6" "6" "square,lock"]
-	Pad[300.00mil -70.00mil 300.00mil -50.00mil 40.00mil 12.00mil 47.00mil "4" "4" "square,lock"]
-	Pad[100.00mil -70.00mil 100.00mil -50.00mil 40.00mil 12.00mil 47.00mil "2" "2" "square,lock"]
-	ElementLine [-65.00mil -55.00mil -65.00mil 55.00mil 10.00mil]
-	ElementLine [565.00mil -55.00mil 565.00mil 55.00mil 10.00mil]
-	ElementLine [-65.00mil 55.00mil -40.00mil 55.00mil 10.00mil]
-	ElementLine [40.00mil 55.00mil 160.00mil 55.00mil 10.00mil]
-	ElementLine [240.00mil 55.00mil 360.00mil 55.00mil 10.00mil]
-	ElementLine [440.00mil 55.00mil 565.00mil 55.00mil 10.00mil]
-	ElementLine [540.00mil -55.00mil 565.00mil -55.00mil 10.00mil]
-	ElementLine [340.00mil -55.00mil 460.00mil -55.00mil 10.00mil]
-	ElementLine [140.00mil -55.00mil 260.00mil -55.00mil 10.00mil]
-	ElementLine [-65.00mil -55.00mil 60.00mil -55.00mil 10.00mil]
-
-	)
-
 Element["lock" "SM4_TOP" "CONN1" "unknown" 1505.00mil 2745.00mil -515.00mil -470.00mil 0 100 ""]
 (
 	Pad[-3.1387mm -5.2620mm -3.1387mm -3.8625mm 1.6000mm 13.00mil 1.6762mm "" "99" "square,lock,edge2"]
@@ -1271,6 +1250,27 @@ Element["" "SM4_TOP" "CONN2" "unknown" 4.3277mm 46.0647mm 0.0809mm -14.8324mm 0 
 	ElementLine [0.0000 -13.0800mm 0.0000 0.0000 10.00mil]
 
 	)
+
+Element["" "sparkfun_11544" "J401" "unknown" 1650.00mil 260.00mil 610.00mil -35.00mil 0 100 ""]
+(
+	Pad[0.0000 50.00mil 0.0000 70.00mil 40.00mil 20.00mil 60.00mil "1" "1" "square,edge2"]
+	Pad[200.00mil 50.00mil 200.00mil 70.00mil 40.00mil 20.00mil 60.00mil "3" "3" "square,edge2"]
+	Pad[400.00mil 50.00mil 400.00mil 70.00mil 40.00mil 20.00mil 60.00mil "5" "5" "square,edge2"]
+	Pad[500.00mil -70.00mil 500.00mil -50.00mil 40.00mil 20.00mil 60.00mil "6" "6" "square"]
+	Pad[300.00mil -70.00mil 300.00mil -50.00mil 40.00mil 20.00mil 60.00mil "4" "4" "square"]
+	Pad[100.00mil -70.00mil 100.00mil -50.00mil 40.00mil 20.00mil 60.00mil "2" "2" "square"]
+	ElementLine [-65.00mil -55.00mil -65.00mil 55.00mil 10.00mil]
+	ElementLine [565.00mil -55.00mil 565.00mil 55.00mil 10.00mil]
+	ElementLine [-65.00mil 55.00mil -40.00mil 55.00mil 10.00mil]
+	ElementLine [40.00mil 55.00mil 160.00mil 55.00mil 10.00mil]
+	ElementLine [240.00mil 55.00mil 360.00mil 55.00mil 10.00mil]
+	ElementLine [440.00mil 55.00mil 565.00mil 55.00mil 10.00mil]
+	ElementLine [540.00mil -55.00mil 565.00mil -55.00mil 10.00mil]
+	ElementLine [340.00mil -55.00mil 460.00mil -55.00mil 10.00mil]
+	ElementLine [140.00mil -55.00mil 260.00mil -55.00mil 10.00mil]
+	ElementLine [-65.00mil -55.00mil 60.00mil -55.00mil 10.00mil]
+
+	)
 Layer(1 "top" "copper")
 (
 	Line[1275.00mil 270.00mil 1275.00mil 330.00mil 15.00mil 12.00mil ""]
@@ -1438,20 +1438,20 @@ NetList()
 	Net("+3.3V" "(unknown)")
 	(
 		Connect("C9-2")
-		Connect("J1-5")
+		Connect("J401-5")
 		Connect("U3-3")
 	)
 	Net("+5V" "(unknown)")
 	(
 		Connect("C6-2")
-		Connect("J1-1")
+		Connect("J401-1")
 		Connect("U2-3")
 	)
 	Net("+7.5V" "(unknown)")
 	(
 		Connect("C5-2")
 		Connect("C8-2")
-		Connect("J1-3")
+		Connect("J401-3")
 		Connect("L2-2")
 		Connect("U2-1")
 		Connect("U3-1")
@@ -1476,9 +1476,9 @@ NetList()
 		Connect("CONN1-1")
 		Connect("CONN2-1")
 		Connect("D2-2")
-		Connect("J1-2")
-		Connect("J1-4")
-		Connect("J1-6")
+		Connect("J401-2")
+		Connect("J401-4")
+		Connect("J401-6")
 		Connect("R3-1")
 		Connect("Sh1-1")
 		Connect("Sh2-1")

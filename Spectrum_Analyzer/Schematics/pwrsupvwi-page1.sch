@@ -4,7 +4,7 @@ C 68200 61800 1 0 0 header6-1.sym
 T 67600 64550 5 10 0 0 0 0 1
 device=HEADER6
 T 68500 64250 5 10 1 1 0 0 1
-refdes=J1
+refdes=J401
 T 67600 61400 5 10 0 1 0 0 1
 description=Included w/ Adafruit parts
 T 68200 61800 5 10 0 0 0 0 1
