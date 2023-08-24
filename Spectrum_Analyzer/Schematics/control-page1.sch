@@ -40,7 +40,7 @@ C 56000 60900 1 0 0 header6-1.sym
 T 55400 63650 5 10 0 0 0 0 1
 device=HEADER6
 T 56300 63350 5 10 1 1 0 0 1
-refdes=J2
+refdes=J401
 T 55400 60500 5 10 0 1 0 0 1
 description=Included w/ Adafruit parts
 T 56000 60900 5 10 0 0 0 0 1
@@ -72,7 +72,7 @@ C 61800 60900 1 0 0 header6-1.sym
 T 61200 63650 5 10 0 0 0 0 1
 device=HEADER6
 T 62100 63350 5 10 1 1 0 0 1
-refdes=J3
+refdes=J402
 T 61200 60500 5 10 0 1 0 0 1
 description=Included w/ Adafruit parts
 T 61800 60900 5 10 0 0 0 0 1
@@ -114,7 +114,7 @@ netname=REF_EN2
 C 48200 67100 1 0 0 Arduino_Uno_header.sym
 {
 T 48600 71900 5 10 1 1 0 0 1
-refdes=J1
+refdes=J400
 T 49500 74800 5 10 0 0 0 0 1
 device=ARDUINO_UNO_HEADER32
 T 48200 67100 5 10 0 1 0 0 1
