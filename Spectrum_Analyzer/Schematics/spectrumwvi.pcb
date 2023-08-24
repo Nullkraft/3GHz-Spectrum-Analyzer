@@ -11,7 +11,7 @@ Thermal[0.500000]
 DRC[3.50mil 4.00mil 3.50mil 6.00mil 7.87mil 5.00mil]
 Flags("showdrc,rubberband,nameonpcb,clearnew,newfullpoly,snappin,thindrawpoly")
 Groups("1,c:2:3:4,s:5")
-Styles["Signal,15.00mil,20.00mil,10.00mil,6.00mil:Power,20.00mil,60.00mil,35.00mil,6.00mil:RF Line,13.33mil,60.00mil,35.00mil,40.00mil:Skinny,5.00mil,24.00mil,12.00mil,5.00mil"]
+Styles["Signal,15.00mil,20.00mil,10.00mil,6.00mil:Power,20.00mil,60.00mil,35.00mil,6.00mil:RF Line,13.33mil,60.00mil,35.00mil,40.00mil:Skinny,8.00mil,24.00mil,12.00mil,5.00mil"]
 Symbol[' ' 18.00mil]
 (
 )
@@ -1612,7 +1612,7 @@ Element["" "0402" "C211" "22_pF" 43.9435mm 41.4035mm 1.2512mm -20.00mil 0 80 ""]
 
 	)
 
-Element["lock" "JUMPER6" "J402" "unknown" 21.3375mm 76.0745mm -170.00mil -25.00mil 0 80 ""]
+Element["lock" "JUMPER6" "J402" "unknown" 21.3375mm 76.0745mm -175.00mil -25.00mil 0 80 ""]
 (
 	Pin[0.0000 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "1" "1" "square,lock,edge2,thermal(0X,1X,2X,3X)"]
 	Pin[100.00mil 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "2" "2" "lock,edge2"]
@@ -1629,7 +1629,7 @@ Element["lock" "JUMPER6" "J402" "unknown" 21.3375mm 76.0745mm -170.00mil -25.00m
 
 	)
 
-Element["" "JUMPER6" "J401" "unknown" 44.1975mm 15.1145mm 565.00mil 45.00mil 1 80 ""]
+Element["" "JUMPER6" "J401" "unknown" 44.1975mm 15.1145mm 575.00mil -25.00mil 0 80 ""]
 (
 	Pin[0.0000 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "1" "1" "square,edge2"]
 	Pin[100.00mil 0.0000 76.00mil 12.00mil 82.00mil 40.00mil "2" "2" "edge2,thermal(0X,1X,2X,3X)"]
@@ -1693,7 +1693,7 @@ Element["" "0402" "C308" "5_pF" 30.4815mm 66.1685mm -133.02mil -30.98mil 0 80 ""
 
 	)
 
-Element["" "0805" "L300" "82_nH" 33.9105mm 66.1685mm 75.00mil -50.00mil 0 80 ""]
+Element["" "0805" "L300" "82_nH" 33.9105mm 66.1685mm 85.00mil -25.00mil 0 80 ""]
 (
 	Pad[35.43mil -3.93mil 35.43mil 3.93mil 51.18mil 20.00mil 52.68mil "1" "1" "square"]
 	Pad[-35.43mil -3.93mil -35.43mil 3.93mil 51.18mil 20.00mil 52.68mil "2" "2" "square"]
@@ -2691,7 +2691,7 @@ Element["" "0402" "C309" "0.1_uF" 27.6875mm 70.4865mm -0.5446mm -1.0546mm 1 80 "
 
 	)
 
-Element["" "SOT25-RJ5" "U302" "unknown" 24.1315mm 70.1055mm -170.00mil 100.00mil 0 80 ""]
+Element["" "SOT25-RJ5" "U302" "unknown" 24.1315mm 70.1055mm -180.00mil -15.00mil 0 80 ""]
 (
 	Pad[0.0000 1.3400mm 0.0000 1.7400mm 24.00mil 0.0000 24.00mil "in-" "2" "square,edge2"]
 	Pad[0.9500mm -1.7400mm 0.9500mm -1.3400mm 24.00mil 15.50mil 25.50mil "V-" "4" "square"]
@@ -3434,7 +3434,7 @@ Element["" "0603" "C348" "1.0_uF" 90.6795mm 42.0535mm 0.8524mm 1.1014mm 1 80 ""]
 
 	)
 
-Element["lock" "Header_Arduino" "J400" "unknown" 16.2575mm 63.3745mm -110.00mil 45.00mil 1 80 ""]
+Element["lock" "Header_Arduino" "J400" "unknown" 16.2575mm 63.3745mm -170.00mil -25.00mil 0 80 ""]
 (
 	Pin[600.00mil 0.0000 80.00mil 14.00mil 86.00mil 40.00mil "I/O 6" "7" "lock"]
 	Pin[700.00mil 0.0000 80.00mil 14.00mil 86.00mil 40.00mil "I/O 7" "8" "lock"]
@@ -4099,7 +4099,7 @@ Element["" "0402" "C111" "0.1_uF" 45.5945mm 23.1155mm -122.50mil -25.76mil 0 80 
 Element["" "0805" "R105" "51" 55.8815mm 23.1155mm -45.00mil 40.00mil 0 80 ""]
 (
 	Pad[35.43mil -3.93mil 35.43mil 3.93mil 51.18mil 20.00mil 52.68mil "1" "1" "square"]
-	Pad[-35.43mil -3.93mil -35.43mil 3.93mil 51.18mil 20.00mil 52.68mil "2" "2" "square"]
+	Pad[-35.43mil -3.93mil -35.43mil 3.93mil 51.18mil 20.00mil 52.68mil "Vout" "2" "square"]
 	ElementLine [-3.93mil 27.55mil 3.93mil 27.55mil 8.00mil]
 	ElementLine [-3.93mil -27.55mil 3.93mil -27.55mil 8.00mil]
 
@@ -5401,32 +5401,64 @@ Layer(7 "top silk" "silk")
 	Line[57.7865mm 26.0365mm 58.0405mm 26.2905mm 5.00mil 10.00mil "clearline"]
 	Line[9.6535mm 18.6705mm 10.4155mm 17.9085mm 5.00mil 10.00mil "clearline"]
 	Line[9.9075mm 18.1625mm 10.1615mm 18.4165mm 5.00mil 10.00mil "clearline"]
+	Line[44.7055mm 77.0905mm 41.5305mm 77.0905mm 8.00mil 10.00mil "clearline"]
+	Line[41.5305mm 77.0905mm 40.6415mm 77.9795mm 8.00mil 10.00mil "clearline"]
+	Line[40.6415mm 77.9795mm 29.7195mm 77.9795mm 8.00mil 10.00mil "clearline"]
+	Line[29.7195mm 77.9795mm 29.4655mm 77.7255mm 8.00mil 10.00mil "clearline"]
+	Line[21.4645mm 73.5345mm 22.6075mm 73.5345mm 8.00mil 10.00mil "clearline"]
+	Line[22.6075mm 73.5345mm 23.4965mm 74.4235mm 8.00mil 10.00mil "clearline"]
+	Line[64.6445mm 73.5345mm 64.6445mm 78.2335mm 8.00mil 10.00mil "clearline"]
+	Line[74.5505mm 73.5345mm 74.5505mm 78.2335mm 8.00mil 10.00mil "clearline"]
+	Line[73.1535mm 13.0825mm 73.1535mm 17.7815mm 8.00mil 10.00mil "clearline"]
+	Line[83.0595mm 13.0825mm 83.0595mm 17.7815mm 8.00mil 10.00mil "clearline"]
 	Arc[10.0345mm 18.2895mm 15.00mil 15.00mil 5.00mil 10.00mil 0.000000 -90.000000 "clearline"]
 	Arc[10.0345mm 18.2895mm 15.00mil 15.00mil 5.00mil 10.00mil 180.000000 -90.000000 "clearline"]
 	Text[4.7005mm 6.0975mm 0 80 "1. Open the menu File -> Prefrences... -> Library" "clearline"]
 	Text[4.4465mm 7.8755mm 0 80 "2. Copy-&-Paste \"../Components/WN2A_PCB_Footprints\" into the colon separated list of Element Directories" "clearline"]
 	Text[4.5735mm 9.6535mm 0 80 "3. Close and restart PCB" "clearline"]
-	Text[33.4025mm 17.0195mm 0 80 "(A)" "clearline"]
-	Text[41.0225mm 17.0195mm 0 80 "(B)" "clearline"]
+	Text[34.5455mm 16.7655mm 3 80 "Vin" "clearline"]
 	Text[37.2125mm 16.7655mm 3 80 "Gnd" "clearline"]
 	Text[39.7525mm 16.7655mm 3 80 "Gnd" "clearline"]
-	Text[43.5625mm 17.0195mm 0 80 "(C)" "clearline"]
-	Text[53.7225mm 17.0195mm 0 80 "(E)" "clearline"]
-	Text[48.6425mm 17.0195mm 0 80 "(D)" "clearline"]
+	Text[43.5625mm 17.0195mm 0 80 "(E)" "clearline"]
+	Text[53.7225mm 17.0195mm 0 80 "(G)" "clearline"]
+	Text[48.6425mm 17.0195mm 0 80 "(F)" "clearline"]
 	Text[47.3725mm 16.7655mm 3 80 "Gnd" "clearline"]
 	Text[57.5325mm 16.7655mm 3 80 "Gnd" "clearline"]
 	Text[52.4525mm 16.7655mm 3 80 "Gnd" "clearline"]
 	Text[60.9615mm 50.5221mm 0 80 "WN2A" "clearline"]
 	Text[54.9925mm 52.1731mm 0 80 "3 GHz Spectrum Analyzer" "clearline"]
-	Text[60.1995mm 12.9555mm 0 122 "(A) = Vin" "clearline"]
-	Text[60.1995mm 14.6065mm 0 122 "(B) = +5Vout" "clearline"]
-	Text[72.7725mm 12.9555mm 0 122 "(D) = +7.5 V" "clearline"]
-	Text[60.1995mm 16.2575mm 0 122 "(C) = +5 V" "clearline"]
 	Text[97.6645mm 48.6425mm 0 122 "LD_LO3" "clearline"]
 	Text[59.0565mm 53.7225mm 0 80 "Ver. 4.0.0.00" "clearline"]
-	Text[72.7725mm 14.6065mm 0 122 "(E) = +3.3 V" "clearline"]
-	Text[30.4815mm 60.5805mm 0 80 "(PD)" "clearline"]
-	Text[46.7375mm 75.1855mm 0 122 "(PD) = PWR_DET" "clearline"]
+	Text[15.6225mm 17.0195mm 0 80 "(A)" "clearline"]
+	Text[18.1625mm 17.0195mm 0 80 "(B)" "clearline"]
+	Text[20.7025mm 17.0195mm 0 80 "(C)" "clearline"]
+	Text[23.2425mm 17.0195mm 0 80 "(D)" "clearline"]
+	Text[42.1655mm 16.7655mm 3 80 "Vout" "clearline"]
+	Text[62.6125mm 13.2095mm 0 100 "(A) SEL_ATTEN" "clearline"]
+	Text[62.6125mm 14.7335mm 0 100 "(B) SEL_LO3" "clearline"]
+	Text[62.6125mm 16.2575mm 0 100 "(C) SEL_LO1" "clearline"]
+	Text[74.0425mm 13.2095mm 0 100 "(D) PLL_MUX" "clearline"]
+	Text[74.0425mm 14.7335mm 0 100 "(E) +5V" "clearline"]
+	Text[74.0425mm 16.2575mm 0 100 "(F) +7.5V" "clearline"]
+	Text[84.2025mm 13.2095mm 0 100 "(G) +3.3V" "clearline"]
+	Text[50.1665mm 60.5805mm 0 80 "(Z)" "clearline"]
+	Text[30.8625mm 60.5805mm 0 80 "(S)" "clearline"]
+	Text[23.2425mm 60.5805mm 0 80 "(R)" "clearline"]
+	Text[37.4665mm 60.5805mm 0 80 "(T)" "clearline"]
+	Text[40.0065mm 60.5805mm 0 80 "(U)" "clearline"]
+	Text[45.0865mm 60.5805mm 0 80 "(X)" "clearline"]
+	Text[47.6265mm 60.5805mm 0 80 "(Y)" "clearline"]
+	Text[12.5745mm 72.7725mm 0 100 "LOGAMP_315" "clearline"]
+	Text[45.5945mm 76.3285mm 0 100 "LOGAMP_45" "clearline"]
+	Text[55.6275mm 73.6615mm 0 100 "(R) SEL_LO2" "clearline"]
+	Text[55.6275mm 75.1855mm 0 100 "(S) PWR_DET" "clearline"]
+	Text[55.6275mm 76.7095mm 0 100 "(T) REF1_EN" "clearline"]
+	Text[65.6605mm 73.6615mm 0 100 "(U) REF2_EN" "clearline"]
+	Text[76.3285mm 73.6615mm 0 100 "(X) MOSI" "clearline"]
+	Text[76.3285mm 75.1855mm 0 100 "(Y) MISO" "clearline"]
+	Text[76.3285mm 76.7095mm 0 100 "(Z) SPI_CLK" "clearline"]
+	Text[98.9345mm 21.7185mm 0 100 "REF1" "clearline"]
+	Text[98.9345mm 31.4975mm 0 100 "REF2" "clearline"]
 )
 NetList()
 (
