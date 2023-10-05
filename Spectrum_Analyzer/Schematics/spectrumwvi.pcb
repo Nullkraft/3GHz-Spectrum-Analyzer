@@ -3273,7 +3273,7 @@ Element["onsolder,lock" "Shield_6" "Sh405" "unknown" 41.7845mm 41.2765mm -45.00m
 
 	)
 
-Element["lock" "Shield_7" "Sh401" "unknown" 14.9875mm 58.9295mm -6.0945mm -1.2685mm 0 80 ""]
+Element["lock" "Shield_7" "Sh401" "unknown" 14.9875mm 58.9295mm 26.4175mm -1.2685mm 0 80 ""]
 (
 	Pad[0.0000 -1070.00mil 0.0000 0.0000 100.00mil 0.0000 100.00mil "1" "1" "square,lock,edge2"]
 	Pad[0.0000 0.0000 955.00mil 0.0000 100.00mil 0.0000 100.00mil "1" "1" "square,lock"]
@@ -4099,7 +4099,7 @@ Element["" "0402" "C111" "0.1_uF" 45.5945mm 23.1155mm -122.50mil -25.76mil 0 80 
 Element["" "0805" "R105" "51" 55.8815mm 23.1155mm -45.00mil 40.00mil 0 80 ""]
 (
 	Pad[35.43mil -3.93mil 35.43mil 3.93mil 51.18mil 20.00mil 52.68mil "1" "1" "square"]
-	Pad[-35.43mil -3.93mil -35.43mil 3.93mil 51.18mil 20.00mil 52.68mil "Vout" "2" "square"]
+	Pad[-35.43mil -3.93mil -35.43mil 3.93mil 51.18mil 20.00mil 52.68mil "2" "2" "square"]
 	ElementLine [-3.93mil 27.55mil 3.93mil 27.55mil 8.00mil]
 	ElementLine [-3.93mil -27.55mil 3.93mil -27.55mil 8.00mil]
 
@@ -5359,16 +5359,16 @@ Layer(5 "outline" "outline")
 )
 Layer(6 "bottom silk" "silk")
 (
-	Line[73.7885mm 33.5295mm 73.7885mm 23.1155mm 6.00mil 12.00mil "clearline"]
-	Line[13.2095mm 23.1155mm 13.2095mm 33.5295mm 6.00mil 12.00mil "clearline"]
+	Line[73.7885mm 33.5295mm 73.7885mm 23.1155mm 6.00mil 12.00mil "clearline,lock"]
+	Line[13.2095mm 23.1155mm 13.2095mm 33.5295mm 6.00mil 12.00mil "clearline,lock"]
 	Line[28.8305mm 43.4694mm 25.4015mm 43.4694mm 6.00mil 12.00mil "clearline"]
 	Line[28.8305mm 40.1674mm 28.8305mm 43.4694mm 6.00mil 12.00mil "clearline"]
 	Line[25.4015mm 40.1674mm 28.8305mm 40.1674mm 6.00mil 12.00mil "clearline"]
 	Line[25.4015mm 43.4694mm 25.4015mm 40.1674mm 6.00mil 12.00mil "clearline"]
 	Line[80.2655mm 64.5175mm 82.0435mm 64.3905mm 5.00mil 10.00mil "clearline"]
 	Line[82.0435mm 64.3905mm 82.4245mm 64.5175mm 5.00mil 10.00mil "clearline"]
-	Line[73.7885mm 23.1155mm 13.2095mm 23.1155mm 6.00mil 12.00mil "clearline"]
-	Line[13.2095mm 33.5295mm 73.7885mm 33.5295mm 6.00mil 12.00mil "clearline"]
+	Line[73.7885mm 23.1155mm 13.2095mm 23.1155mm 6.00mil 12.00mil "clearline,lock"]
+	Line[13.2095mm 33.5295mm 73.7885mm 33.5295mm 6.00mil 12.00mil "clearline,lock"]
 	Line[78.4875mm 64.0095mm 80.2655mm 64.5175mm 5.00mil 10.00mil "clearline"]
 	Text[34.4185mm 28.7035mm 0 122 "KEEP OUT" "clearline,onsolder"]
 	Text[30.3545mm 38.8635mm 0 122 "LD_LO2" "clearline,onsolder"]
@@ -5411,6 +5411,9 @@ Layer(7 "top silk" "silk")
 	Line[74.5505mm 73.5345mm 74.5505mm 78.2335mm 8.00mil 10.00mil "clearline"]
 	Line[73.1535mm 13.0825mm 73.1535mm 17.7815mm 8.00mil 10.00mil "clearline"]
 	Line[83.0595mm 13.0825mm 83.0595mm 17.7815mm 8.00mil 10.00mil "clearline"]
+	Line[4.8275mm 33.7835mm 4.8275mm 59.1835mm 8.00mil 10.00mil "clearline"]
+	Line[4.8275mm 59.1835mm 13.4635mm 59.1835mm 8.00mil 10.00mil "clearline"]
+	Line[13.4635mm 59.1835mm 13.4635mm 33.7835mm 8.00mil 10.00mil "clearline"]
 	Arc[10.0345mm 18.2895mm 15.00mil 15.00mil 5.00mil 10.00mil 0.000000 -90.000000 "clearline"]
 	Arc[10.0345mm 18.2895mm 15.00mil 15.00mil 5.00mil 10.00mil 180.000000 -90.000000 "clearline"]
 	Text[4.7005mm 6.0975mm 0 80 "1. Open the menu File -> Prefrences... -> Library" "clearline"]
