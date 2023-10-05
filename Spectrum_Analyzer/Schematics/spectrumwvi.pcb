@@ -11,7 +11,7 @@ Thermal[0.500000]
 DRC[3.50mil 4.00mil 3.50mil 6.00mil 7.87mil 5.00mil]
 Flags("showdrc,rubberband,nameonpcb,clearnew,newfullpoly,snappin,thindrawpoly")
 Groups("1,c:2:3:4,s:5")
-Styles["Signal,15.00mil,20.00mil,10.00mil,6.00mil:Power,20.00mil,60.00mil,35.00mil,6.00mil:RF Line,13.33mil,60.00mil,35.00mil,40.00mil:Skinny,8.00mil,24.00mil,12.00mil,5.00mil"]
+Styles["Signal,15.00mil,20.00mil,10.00mil,6.00mil:Power,20.00mil,60.00mil,35.00mil,6.00mil:RF Line,13.33mil,60.00mil,35.00mil,40.00mil:Skinny,6.00mil,24.00mil,12.00mil,5.00mil"]
 Symbol[' ' 18.00mil]
 (
 )
@@ -1558,7 +1558,7 @@ Via[40.3875mm 31.8785mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3
 Via[36.9585mm 27.5605mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
 Via[64.1365mm 29.3385mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
 Via[64.8985mm 30.2275mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S,4+)"]
-Via[75.8205mm 33.1485mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
+Via[73.8647mm 33.2755mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
 Via[74.4235mm 23.3695mm 20.00mil 12.00mil 0.0000 10.00mil "" "thermal(0S,1S,2S,3S)"]
 Via[58.5485mm 26.0365mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
 Via[58.5485mm 23.4965mm 20.00mil 12.00mil 0.0000 10.00mil "" ""]
@@ -3685,13 +3685,6 @@ Element["" "0603" "C108" "1_nF" 76.4555mm 35.0535mm 0.5862mm 1.2979mm 1 80 ""]
 
 	)
 
-Element["" "0603" "C124" "0.01 uF" 74.7791mm 33.0215mm -1.4621mm 1.2748mm 0 80 ""]
-(
-	Pad[-0.6254mm -0.2168mm -0.5004mm -0.4332mm 29.52mil 12.00mil 35.52mil "1" "1" "square"]
-	Pad[0.5004mm 0.4332mm 0.6254mm 0.2168mm 29.52mil 0.0000 35.52mil "2" "2" "square,edge2"]
-
-	)
-
 Element["" "0402" "R100" "1_K" 75.8492mm 29.1767mm 0.7830mm -12.46mil 1 80 ""]
 (
 	Pad[4.47mil -0.3961mm 0.2863mm -0.2963mm 19.68mil 12.00mil 25.18mil "1" "1" "square"]
@@ -3799,13 +3792,6 @@ Element["" "MAX2871" "U100" "unknown" 71.6041mm 28.9575mm 2.2418mm -3.4758mm 0 8
 	ElementLine [3.5517mm -0.9517mm 3.3517mm -23.83mil 0.1542mm]
 	ElementLine [-0.9517mm -3.5517mm -1.1517mm -3.2053mm 0.1542mm]
 	ElementLine [-0.9517mm -3.5517mm -23.83mil -3.3517mm 0.1542mm]
-
-	)
-
-Element["" "0603" "C120" "0.01 uF" 74.8045mm 23.8775mm 0.6720mm -1.9024mm 0 80 ""]
-(
-	Pad[0.2168mm -0.6254mm 0.4332mm -0.5004mm 29.52mil 0.0000 35.52mil "1" "1" "square"]
-	Pad[-0.4332mm 0.5004mm -0.2168mm 0.6254mm 29.52mil 12.00mil 35.52mil "2" "2" "square,edge2"]
 
 	)
 
@@ -4123,6 +4109,20 @@ Element["onsolder" "0402" "R406" "22 K" 31.4975mm 60.8345mm 35.00mil 20.00mil 0 
 (
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 12.00mil 25.68mil "1" "1" "onsolder,square"]
 	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 12.00mil 25.68mil "2" "2" "onsolder,square"]
+
+	)
+
+Element["" "0603" "C124" "0.01 uF" 74.8045mm 23.8775mm 0.6969mm -1.9002mm 0 80 ""]
+(
+	Pad[-0.4332mm 0.5004mm -0.2168mm 0.6254mm 29.52mil 12.00mil 35.52mil "1" "1" "square,edge2"]
+	Pad[0.2168mm -0.6254mm 0.4332mm -0.5004mm 29.52mil 0.0000 35.52mil "2" "2" "square"]
+
+	)
+
+Element["" "0603" "C120" "0.01 uF" 74.8045mm 32.7675mm -1.4870mm 1.3996mm 0 80 ""]
+(
+	Pad[0.5004mm 0.4332mm 0.6254mm 0.2168mm 29.52mil 0.0000 35.52mil "1" "1" "square,edge2"]
+	Pad[-0.6254mm -0.2168mm -0.5004mm -0.4332mm 29.52mil 12.00mil 35.52mil "2" "2" "square"]
 
 	)
 Layer(1 "top" "copper")
@@ -4497,10 +4497,10 @@ Layer(1 "top" "copper")
 	Line[75.3125mm 25.4015mm 75.4936mm 988.69mil 8.00mil 12.00mil "clearline"]
 	Line[72.5726mm 928.69mil 72.3915mm 23.8775mm 8.00mil 12.00mil "clearline"]
 	Line[72.3915mm 23.8775mm 72.3915mm 24.5125mm 8.00mil 12.00mil "clearline"]
-	Line[73.1398mm 31.2875mm 73.9155mm 31.7515mm 8.00mil 12.00mil "clearline"]
-	Line[74.2711mm 31.3705mm 73.7885mm 32.1325mm 8.00mil 12.00mil "clearline"]
-	Line[73.7885mm 32.1325mm 73.7885mm 32.3865mm 8.00mil 12.00mil "clearline"]
-	Line[73.7885mm 32.3865mm 2921.90mil 32.6965mm 8.00mil 12.00mil "clearline"]
+	Line[73.1398mm 31.2875mm 73.8360mm 31.7040mm 8.00mil 12.00mil "clearline"]
+	Line[74.2711mm 31.3705mm 73.8360mm 31.7040mm 8.00mil 12.00mil "clearline"]
+	Line[73.8360mm 31.7040mm 73.8573mm 32.1907mm 8.00mil 12.00mil "clearline"]
+	Line[73.8573mm 32.1907mm 2922.90mil 32.4425mm 8.00mil 12.00mil "clearline"]
 	Line[74.2711mm 31.3705mm 74.5505mm 31.3705mm 8.00mil 12.00mil "clearline"]
 	Line[74.5505mm 31.3705mm 75.0679mm 31.6787mm 8.00mil 12.00mil "clearline"]
 	Line[73.8898mm 29.9885mm 75.6013mm 30.7897mm 8.00mil 12.00mil "clearline"]
@@ -5389,8 +5389,8 @@ Layer(7 "top silk" "silk")
 	Line[68.7085mm 23.7505mm 68.7085mm 23.6235mm 5.00mil 10.00mil "clearline"]
 	Line[68.7085mm 23.6235mm 67.9465mm 22.9885mm 5.00mil 10.00mil "clearline"]
 	Line[67.9465mm 22.9885mm 67.9465mm 22.8615mm 5.00mil 10.00mil "clearline"]
-	Line[74.2965mm 34.2915mm 74.2965mm 33.7835mm 5.00mil 10.00mil "clearline"]
-	Line[74.2965mm 33.7835mm 74.5505mm 33.5295mm 5.00mil 10.00mil "clearline"]
+	Line[74.4235mm 34.1645mm 74.4235mm 33.5295mm 5.00mil 10.00mil "clearline"]
+	Line[74.4235mm 33.5295mm 74.5505mm 33.2755mm 5.00mil 10.00mil "clearline"]
 	Line[72.7725mm 35.1805mm 73.0265mm 35.4345mm 5.00mil 10.00mil "clearline"]
 	Line[73.0265mm 35.4345mm 73.0265mm 36.0695mm 5.00mil 10.00mil "clearline"]
 	Line[70.4865mm 36.0695mm 70.4865mm 35.3075mm 5.00mil 10.00mil "clearline"]
@@ -5414,6 +5414,10 @@ Layer(7 "top silk" "silk")
 	Line[4.8275mm 33.7835mm 4.8275mm 59.1835mm 8.00mil 10.00mil "clearline"]
 	Line[4.8275mm 59.1835mm 13.4635mm 59.1835mm 8.00mil 10.00mil "clearline"]
 	Line[13.4635mm 59.1835mm 13.4635mm 33.7835mm 8.00mil 10.00mil "clearline"]
+	Line[72.1375mm 22.6075mm 72.3915mm 22.8615mm 6.00mil 10.00mil "clearline"]
+	Line[73.9155mm 22.9885mm 74.1695mm 22.7345mm 6.00mil 10.00mil "clearline"]
+	Line[76.4555mm 23.7505mm 76.3285mm 23.7505mm 6.00mil 10.00mil "clearline"]
+	Line[76.3285mm 23.7505mm 76.0745mm 24.0045mm 6.00mil 10.00mil "clearline"]
 	Arc[10.0345mm 18.2895mm 15.00mil 15.00mil 5.00mil 10.00mil 0.000000 -90.000000 "clearline"]
 	Arc[10.0345mm 18.2895mm 15.00mil 15.00mil 5.00mil 10.00mil 180.000000 -90.000000 "clearline"]
 	Text[4.7005mm 6.0975mm 0 80 "1. Open the menu File -> Prefrences... -> Library" "clearline"]
