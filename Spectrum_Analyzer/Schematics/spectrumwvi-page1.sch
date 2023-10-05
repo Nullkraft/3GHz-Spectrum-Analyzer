@@ -246,7 +246,7 @@ device=Conn SMA Jack R/A
 T 32200 58000 5 10 0 1 0 0 1
 man-part-num=619540-1
 T 32200 58000 5 10 0 1 0 0 1
-documentation=https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=619540&DocType=Customer+Drawing&DocLang=English
+documentation=https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Catalog+Section%7F1307191_SMA_Connectors%7F0307%7Fpdf%7FEnglish%7FENG_CS_1307191_SMA_Connectors_0307.pdf%7F619540-1
 }
 N 32900 58700 33100 58700 4
 N 33100 58700 33100 57900 4
