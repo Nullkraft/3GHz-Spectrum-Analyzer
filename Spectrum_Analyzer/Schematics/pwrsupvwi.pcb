@@ -953,7 +953,7 @@ Via[2795.00mil 2355.00mil 36.00mil 10.00mil 0.0000 20.00mil "" "thermal(0S,1S)"]
 Via[2795.00mil 2060.00mil 36.00mil 10.00mil 0.0000 20.00mil "" ""]
 Via[2795.00mil 2645.00mil 36.00mil 10.00mil 0.0000 20.00mil "" "thermal(0S,1S)"]
 
-Element["" "1206" "C9" "20_uF" 3220.00mil 360.00mil -31.50mil -156.50mil 0 100 ""]
+Element["" "1206" "C9" "22_uF" 3220.00mil 360.00mil -31.50mil -156.50mil 0 100 ""]
 (
 	Pad[-11.81mil -59.05mil 11.81mil -59.05mil 51.18mil 12.00mil 57.18mil "1" "1" "square"]
 	Pad[-11.81mil 59.05mil 11.81mil 59.05mil 51.18mil 16.00mil 57.18mil "2" "2" "square"]
@@ -997,7 +997,7 @@ Element["" "SOT223-H2" "U2" "unknown" 1185.00mil 715.00mil 190.00mil -120.00mil 
 
 	)
 
-Element["" "1206" "C6" "20_uF" 1095.00mil 360.00mil -31.50mil -156.50mil 0 100 ""]
+Element["" "1206" "C6" "22_uF" 1095.00mil 360.00mil -31.50mil -156.50mil 0 100 ""]
 (
 	Pad[-11.81mil -59.05mil 11.81mil -59.05mil 51.18mil 12.00mil 57.18mil "1" "1" "square"]
 	Pad[-11.81mil 59.05mil 11.81mil 59.05mil 51.18mil 16.00mil 57.18mil "2" "2" "square"]
