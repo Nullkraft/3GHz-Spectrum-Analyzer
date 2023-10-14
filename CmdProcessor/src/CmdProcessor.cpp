@@ -213,7 +213,7 @@ void loop() {
       COMMAND_FLAG = false;
     }
 
-    // !CommandFlag - LO2/3 Instruction arrived...
+    // If !CommandFlag - means that an LO2/3 Instruction arrived...
     else if (!COMMAND_FLAG) {
       // M:  Clear Reg[1], bits [14:3], before accepting a new M word
       LO->Curr.Reg[1] = LO->Curr.Reg[1] & LO->M_clr;
