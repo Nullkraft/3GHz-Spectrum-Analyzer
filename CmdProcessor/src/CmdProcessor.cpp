@@ -216,7 +216,8 @@ void loop() {
     // If !CommandFlag - means that an LO2/3 Instruction arrived...
     else if (!COMMAND_FLAG) {
       // M:  Clear Reg[1], bits [14:3], before accepting a new M word
-      LO->Curr.Reg[1] = LO->Curr.Reg[1] & LO->M_clr;
+      LO->clr_reg1();
+//      LO->Curr.Reg[1] = LO->Curr.Reg[1] & LO->M_clr;
       // M:  Mask and set bits[14:3] to program the new value for M
       LO->Curr.Reg[1] = LO->Curr.Reg[1] | ((serialWord >> 5) & LO->M_set);
       // N and F:  Clear Reg[0], bits [22:3], before accepting new N and F words

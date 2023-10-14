@@ -95,6 +95,8 @@ class MAX2871_LO {
     const uint32_t Mux_Set_DLD = 0x18000000;
 
     uint32_t spiMaxSpeed = 20000000;   // 20 MHz max SPI clock
+
+    void clr_reg1();
 };
 
 

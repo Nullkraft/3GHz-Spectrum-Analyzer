@@ -2,7 +2,7 @@
 
 
 void MAX2871_LO::begin(float freq) {
-    freq += 1.0;
+  freq += 1.0;
 /* Based on the settings of the default register values the LO will be intitialized with:
   - Frequency is set to 
   - The Mux is set to tristated output (Digital Lock Detect is off)
@@ -14,4 +14,9 @@ void MAX2871_LO::begin(float freq) {
   - RFOUTB power is set to +5 dBm
   - RFOUTA is off
 */
+}
+
+void MAX2871_LO::clr_reg1() {
+  // M:  Clear Reg[1], bits [14:3], before accepting a new M word
+  Curr.Reg[1] = Curr.Reg[1] & M_clr;
 }
