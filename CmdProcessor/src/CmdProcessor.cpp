@@ -191,8 +191,8 @@ void loop() {
       COMMAND_FLAG = true;
     }
 
-    /******** COMMAND FLAG **************************************************************/
-    /* If a Command Flag is found then parse the 3 upper bytes into Data, Command and Address
+    /******** COMMAND FLAG **************************************************************
+     * If a Command Flag is found then parse the 3 upper bytes into Data, Command and Address
      * There are 4 bytes in an Instruction Word:
      * Bits serialWord[31:16] are Data
      * Bits serialWord[15:11] contain the Command to be performed
