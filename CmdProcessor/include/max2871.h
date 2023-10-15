@@ -2,6 +2,7 @@
 #define _MAX2871_
 
 #include <Arduino.h>    // Includes typedef for uint32_t
+#include <SPI.h>
 
 
 /* Default register values for MAX2871 LO: Sets default RFOout = 3865.0 MHz */
@@ -96,7 +97,14 @@ class MAX2871_LO {
 
     uint32_t spiMaxSpeed = 20000000;   // 20 MHz max SPI clock
 
+    void clr_reg0();
     void clr_reg1();
+    void set_reg0(int32_t);
+    void set_reg1(int32_t);
+
+    // Program a single register by sending and latching 4 bytes
+    void spiWriteLO(uint32_t reg, uint8_t selectPin);
+
 };
 
 
