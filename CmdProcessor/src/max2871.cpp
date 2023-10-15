@@ -39,7 +39,7 @@ void MAX2871_LO::set_reg1(int32_t serialWord) {
 }
 
 // Program a single register of the selected LO by sending and latching 4 bytes
-void MAX2871_LO::spiWriteLO(uint32_t reg, uint8_t selectPin) {
+void MAX2871_LO::spiWrite(uint32_t reg, uint8_t selectPin) {
   SPI.beginTransaction(SPISettings(spiMaxSpeed, MSBFIRST, SPI_MODE0));
   SPI.begin();
   digitalWrite(selectPin, LOW);

@@ -20,7 +20,6 @@
        or LO3 Specific Command.
 */
 
-#include <Arduino.h>
 #include <SPI.h>
 #include <avr/interrupt.h>
 #include "SpecAnn.h"
@@ -227,8 +226,8 @@ void loop() {
       LO->set_reg0(serialWord);
 
       // Program the selected LO starting with the higher numbered registers first
-      LO->spiWriteLO(LO->Curr.Reg[1], spi_select);
-      LO->spiWriteLO(LO->Curr.Reg[0], spi_select);
+      LO->spiWrite(LO->Curr.Reg[1], spi_select);
+      LO->spiWrite(LO->Curr.Reg[0], spi_select);
 
       // Wait for selected LO2 or LO3 to Lock
       start_PLL_Lock_time = micros();

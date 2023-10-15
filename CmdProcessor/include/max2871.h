@@ -103,7 +103,7 @@ class MAX2871_LO {
     void set_reg1(int32_t);
 
     // Program a single register by sending and latching 4 bytes
-    void spiWriteLO(uint32_t reg, uint8_t selectPin);
+    void spiWrite(uint32_t reg, uint8_t selectPin);
 
 };
 
