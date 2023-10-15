@@ -336,38 +336,28 @@ void loop() {
         }
         switch (Command) {
           case RF_off:
-            LO->Curr.Reg[4] = LO->Curr.Reg[4] & LO->RFpower_off;
-            spiWord = LO->Curr.Reg[4];
+            spiWord = LO->turn_off_RF();
             break;
           case neg_4dBm:
-            // OR'ing with LO->neg4dBm does nothing and is only added for documentation
-            LO->Curr.Reg[4] = (LO->Curr.Reg[4] & LO->Power_Level_Mask) | LO->neg4dBm;
-            spiWord = LO->Curr.Reg[4];
+            spiWord = LO->set_n4dBm();
             break;
           case neg_1dBm:
-            LO->Curr.Reg[4] = (LO->Curr.Reg[4] & LO->Power_Level_Mask) | LO->neg1dBm;
-            spiWord = LO->Curr.Reg[4];
+            spiWord = LO->set_n1dBm();
             break;
           case pos_2dBm:
-            LO->Curr.Reg[4] = (LO->Curr.Reg[4] & LO->Power_Level_Mask) | LO->pos2dBm;
-            spiWord = LO->Curr.Reg[4];
+            spiWord = LO->set_p2dBm();
             break;
           case pos_5dBm:
-            LO->Curr.Reg[4] = (LO->Curr.Reg[4] & LO->Power_Level_Mask) | LO->pos5dBm;
-            spiWord = LO->Curr.Reg[4];
+            spiWord = LO->set_p5dBm();
             break;
           case Mux_TRI:
-            LO->Curr.Reg[2] = LO->Curr.Reg[2] & LO->Mux_Set_TRI;  // Set MuxOut to Tristate
-            spiWord = LO->Curr.Reg[2];
+            spiWord = LO->set_TRI();
             break;
           case Mux_DLD:
-            LO->Curr.Reg[2] = LO->Curr.Reg[2] | LO->Mux_Set_DLD;  // Set MuxOut to Dig. Lock Det.
-            spiWord = LO->Curr.Reg[2];
+            spiWord = LO->set_DLD();
             break;
           case DIV_MODE:
-            LO->Curr.Reg[4] &= LO->RFOUT_DIV_MASK;
-            LO->Curr.Reg[4] |= (serialWord & !LO->RFOUT_DIV_MASK);
-            spiWord = LO->Curr.Reg[4];
+            spiWord = LO->set_DIV_MODE(serialWord);
             break;
           default:
             break;

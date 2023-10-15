@@ -21,7 +21,7 @@ void MAX2871_LO::clr_reg0() {
   Curr.Reg[0] = Curr.Reg[0] & NF_clr;
 }
 
-void MAX2871_LO::set_reg0(int32_t serialWord) {
+void MAX2871_LO::set_reg0(uint32_t serialWord) {
   // N:  Mask and set bits [22:15] to program the new value for N
   Curr.Reg[0] = Curr.Reg[0] | ((serialWord << 15) & N_set);
   // F:  Mask and set bits [14:3] to program the new value for F
@@ -33,9 +33,49 @@ void MAX2871_LO::clr_reg1() {
   Curr.Reg[1] = Curr.Reg[1] & M_clr;
 }
 
-void MAX2871_LO::set_reg1(int32_t serialWord) {
+void MAX2871_LO::set_reg1(uint32_t serialWord) {
   // M:  Mask and set bits[14:3] to program the new value for M
   Curr.Reg[1] = Curr.Reg[1] | ((serialWord >> 5) & M_set);
+}
+
+uint32_t MAX2871_LO::set_DLD() {
+  Curr.Reg[2] = Curr.Reg[2] | Mux_Set_DLD;  // Set MuxOut to Dig. Lock Det.
+  return Curr.Reg[2];
+}
+
+uint32_t MAX2871_LO::set_TRI() {
+  Curr.Reg[2] = Curr.Reg[2] & Mux_Set_TRI;  // Set MuxOut to Tristate
+  return Curr.Reg[2];
+}
+
+uint32_t MAX2871_LO::set_DIV_MODE(uint32_t serialWord) {
+  Curr.Reg[4] &= RFOUT_DIV_MASK;
+  Curr.Reg[4] |= (serialWord & !RFOUT_DIV_MASK);
+  return Curr.Reg[4];
+}
+
+uint32_t MAX2871_LO::set_p5dBm() {
+  Curr.Reg[4] = (Curr.Reg[4] & Power_Level_Mask) | pos5dBm;
+  return Curr.Reg[4];
+}
+
+uint32_t MAX2871_LO::turn_off_RF() {
+  Curr.Reg[4] = Curr.Reg[4] & RFpower_off;
+  return Curr.Reg[4];
+}
+
+uint32_t MAX2871_LO::set_n4dBm() {
+  Curr.Reg[4] = (Curr.Reg[4] & Power_Level_Mask) | neg4dBm;
+  return Curr.Reg[4];
+}
+uint32_t MAX2871_LO::set_n1dBm() {
+  Curr.Reg[4] = (Curr.Reg[4] & Power_Level_Mask) | neg1dBm;
+  return Curr.Reg[4];
+}
+
+uint32_t MAX2871_LO::set_p2dBm() {
+  Curr.Reg[4] = (Curr.Reg[4] & Power_Level_Mask) | pos2dBm;
+  return Curr.Reg[4];
 }
 
 // Program a single register of the selected LO by sending and latching 4 bytes
