@@ -53,7 +53,6 @@ uint32_t spiWord;    // Holds the register contents to be written to the selecte
 uint16_t Data16;  // 16 bits
 uint32_t Data32;  // Needed for bit shifting and masking with LO registers
 byte Command;
-const byte CommandBits = 0xF8;  // Mask to select 5 bits of 'Command' from serialWord[1]
 byte Address;
 const byte AddressBits = 0x07;  // Mask to select 3 bits of 'Address' from serialWord[1]
 const byte CommandFlag = 0xFF;  // Byte pattern to identify a 'Control Word'
@@ -207,7 +206,7 @@ void loop() {
     */
     if (COMMAND_FLAG) {
       Data16 = serialWordAsInts[1];   // Copy 2 upper bytes to Data16
-      Command = (serialWordAsBytes[1] & CommandBits) >> 3;
+      Command = serialWordAsBytes[1] >> 3;
       Address = serialWordAsBytes[1] & AddressBits;
       COMMAND_FLAG = false;
     }
