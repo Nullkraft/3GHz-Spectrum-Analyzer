@@ -240,9 +240,10 @@ void loop() {
           lo_byte = ampl_byte[0];
           break;
         }
-        /* Trigger the timeout if we don't get a lock. We still want the amplitude data
-         * but we can send a warning so the user knows that there is some inaccuracy.
-         * The Arduino ADC is only 10 bits. That means there are 6 bits that can be used
+        /* Trigger the timeout if we don't get a lock. We still want the amplitude
+         * data so a 'failure to lock' warning is appended to the data so that the
+         * user is notified that the amplitude may not be exact.
+         * The ADC will eventually be a 12 bit device. That means there are 4 bits
          * for sending a variety of 'messages' embedded in the amplitude data.
         */
         if ((micros()-start_PLL_Lock_time) > PLL_Lock_timeout) {
