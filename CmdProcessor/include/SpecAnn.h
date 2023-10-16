@@ -26,17 +26,17 @@ enum devices { General,
                No_change, 
                Mux_TRI, 
                Mux_DLD, 
-               DIV_MODE };
+               DIV_MODE, };
 
 const int len_devices = 10;
 
 // Command names for operating the reference oscillators
 enum LOCmds { all_ref_off, 
               ref_LO, 
-              ref_HI };
+              ref_HI, };
 
 // Command names for operating the PLL Mux
-enum mux { all_tristate };
+enum mux { all_tristate, };
 
 // Command names for controlling and reporting Arduino state
 enum misc { LED_off, 
@@ -44,7 +44,7 @@ enum misc { LED_off,
             MSG_REQ, 
             SWEEP_START, 
             SWEEP_END, 
-            RESET };
+            RESET, };
 
 void initialize_LO1(uint8_t selectPin);
 void initialize_LO2(uint8_t selectPin, bool initialize);
