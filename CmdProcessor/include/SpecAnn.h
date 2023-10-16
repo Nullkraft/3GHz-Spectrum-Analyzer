@@ -28,6 +28,8 @@ enum devices { General,
                Mux_DLD, 
                DIV_MODE };
 
+const int len_devices = 10;
+
 // Command names for operating the reference oscillators
 enum LOCmds { all_ref_off, 
               ref_LO, 
