@@ -279,44 +279,12 @@ void loop() {
       case LO1_addr:
         nameLO = "LO1";
         spi_select = LO1_SEL;
-        Data32 = ((uint32_t)Data16 << 4);   // Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4>
-        LO1.Curr.Reg[0] &= LO1.INT_N_Mask;  // Clear the INT_N bits from Register 0
-        LO1.Curr.Reg[0] |= Data32;          // Set the new INT_N bits into Register 0
-        switch (Command) {
-          case RF_off:
-            LO1.Curr.Reg[6] = LO1.Curr.Reg[6] & LO1.RFpower_off;
-            spiWord = LO1.Curr.Reg[6];
-            break;
-          case neg_4dBm:
-            LO1.Curr.Reg[6] = (LO1.Curr.Reg[6] & LO1.Power_Level_Mask) | LO1.neg4dBm;
-            spiWord = LO1.Curr.Reg[6];
-            break;
-          case neg_1dBm:
-            LO1.Curr.Reg[6] = (LO1.Curr.Reg[6] & LO1.Power_Level_Mask) | LO1.neg1dBm;
-            spiWord = LO1.Curr.Reg[6];
-            break;
-          case pos_2dBm:
-            LO1.Curr.Reg[6] = (LO1.Curr.Reg[6] & LO1.Power_Level_Mask) | LO1.pos2dBm;
-            spiWord = LO1.Curr.Reg[6];
-            break;
-          case pos_5dBm:
-            LO1.Curr.Reg[6] = (LO1.Curr.Reg[6] & LO1.Power_Level_Mask) | LO1.pos5dBm;
-            spiWord = LO1.Curr.Reg[6];
-            break;
-          case Mux_TRI:
-            LO1.Curr.Reg[4] = (LO1.Curr.Reg[4] & LO1.Mux_Set_TRI);  // Turns on Tristate
-            spiWord = LO1.Curr.Reg[4];
-            break;
-          case Mux_DLD:
-            LO1.Curr.Reg[4] = LO1.Curr.Reg[4] | LO1.Mux_Set_DLD;  // Set MuxOut to Dig. Lock Det.
-            spiWord = LO1.Curr.Reg[4];
-            break;
-          default:
-            break;
-        }
-        // Now program LO1 with the new settings
-        spiWriteLO(spiWord, spi_select);          // Write Reg[4] or Reg[6] depending on the given command
-        spiWriteLO(LO1.Curr.Reg[0], spi_select);
+        Data32 = ((uint32_t)Data16 << 4);           // Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4>
+        LO1.Curr.Reg[0] &= LO1.INT_N_Mask;          // Clear the INT_N bits from Register 0
+        LO1.Curr.Reg[0] |= Data32;                  // Set the new INT_N bits into Register 0
+        spiWord = LO1.executeFunction(Command);     // This selects from 1 of 7 commands to run
+        LO1.spiWrite(spiWord, spi_select);          // Write Reg[4] when doing set_TRI/set_DLD, ELSE Reg[6]
+        LO1.spiWrite(LO1.Curr.Reg[0], spi_select);  // followed by Reg[0] as required by the spec-sheet.
         break;
 
       case LO2_addr:
@@ -335,35 +303,35 @@ void loop() {
           adc_pin = ADC_SEL_045;
         }
         switch (Command) {
-          case RF_off:
+          case static_cast<int>(devices::RF_off):
             spiWord = LO->turn_off_RF();
             break;
-          case neg_4dBm:
+          case static_cast<int>(devices::neg_4dBm):
             spiWord = LO->set_n4dBm();
             break;
-          case neg_1dBm:
+          case static_cast<int>(devices::neg_1dBm):
             spiWord = LO->set_n1dBm();
             break;
-          case pos_2dBm:
+          case static_cast<int>(devices::pos_2dBm):
             spiWord = LO->set_p2dBm();
             break;
-          case pos_5dBm:
+          case static_cast<int>(devices::pos_5dBm):
             spiWord = LO->set_p5dBm();
             break;
-          case Mux_TRI:
+          case static_cast<int>(devices::Mux_TRI):
             spiWord = LO->set_TRI();
             break;
-          case Mux_DLD:
+          case static_cast<int>(devices::Mux_DLD):
             spiWord = LO->set_DLD();
             break;
-          case DIV_MODE:
+          case static_cast<int>(devices::DIV_MODE):
             spiWord = LO->set_DIV_MODE(serialWord);
             break;
           default:
             break;
         }
         // Now program the currently selected LO
-        spiWriteLO(spiWord, spi_select);
+        LO->spiWrite(spiWord, spi_select);
         break;  // End case LO2 OR case LO3
 
       case RefClock:
@@ -434,11 +402,14 @@ void loop() {
 
 void initialize_LO1(uint8_t selectPin) {
   nameLO = "LO1";
-  spiWriteLO(LO1.Curr.Reg[4], selectPin);  // Enable LO1 lock detect
+  LO1.spiWrite(LO1.Curr.Reg[4], selectPin);  // Enable LO1 lock detect
+  // spiWriteLO(LO1.Curr.Reg[4], selectPin);  // Enable LO1 lock detect
   for (int x = 13; x >= 0; x--) {
-    spiWriteLO(LO1.Curr.Reg[x], selectPin);  // Program LO1=3776.52 MHz with LD on Mux
+    LO1.spiWrite(LO1.Curr.Reg[x], selectPin);  // Program LO1=3776.52 MHz with LD on Mux
+    // spiWriteLO(LO1.Curr.Reg[x], selectPin);  // Program LO1=3776.52 MHz with LD on Mux
   }
-  spiWriteLO(LO1.Curr.Reg[14], selectPin);  // Tri-stating the mux output disables LO1 lock detect
+  LO1.spiWrite(LO1.Curr.Reg[14], selectPin);  // Tri-stating the mux output disables LO1 lock detect
+  // spiWriteLO(LO1.Curr.Reg[14], selectPin);  // Tri-stating the mux output disables LO1 lock detect
 }
 
 
@@ -448,14 +419,14 @@ void initialize_LO1(uint8_t selectPin) {
 */
 void initialize_LO2(uint8_t selectPin, bool initialize) {
   nameLO = "LO2";
-  spiWriteLO(LO2.Curr.Reg[5], selectPin);  // First we program LO2 Register 5
+  LO2.spiWrite(LO2.Curr.Reg[5], selectPin);  // First we program LO2 Register 5
   if (initialize) {
     delay(20);  // Only if it's our first time must we wait 20 mSec
   }
   for (int x = 4; x >= 0; x--) {
-    spiWriteLO(LO2.Curr.Reg[x], selectPin);  // and Lock Detect is enabled on the Mux pin
+    LO2.spiWrite(LO2.Curr.Reg[x], selectPin);  // and Lock Detect is enabled on the Mux pin
   }
-  spiWriteLO(LO2.Curr.Reg[6], selectPin);  // Tri-stating the mux output disables LO2 lock detect
+  LO2.spiWrite(LO2.Curr.Reg[6], selectPin);  // Tri-stating the mux output disables LO2 lock detect
 }
 
 
@@ -465,14 +436,14 @@ void initialize_LO2(uint8_t selectPin, bool initialize) {
 */
 void initialize_LO3(uint8_t selectPin, bool initialize) {
   nameLO = "LO3";
-  spiWriteLO(LO3.Curr.Reg[5], selectPin);  // First we program LO3 Register 5
+  LO3.spiWrite(LO3.Curr.Reg[5], selectPin);  // First we program LO3 Register 5
   if (initialize) {
     delay(20);  // Only if it's our first time must we wait 20 mSec
   }
   for (int x = 4; x >= 0; x--) {
-    spiWriteLO(LO3.Curr.Reg[x], selectPin);  // and Lock Detect is enabled on the Mux pin
+    LO3.spiWrite(LO3.Curr.Reg[x], selectPin);  // and Lock Detect is enabled on the Mux pin
   }
-  spiWriteLO(LO3.Curr.Reg[6], selectPin);  // Tri-stating the mux output disables LO3 lock detect
+  LO3.spiWrite(LO3.Curr.Reg[6], selectPin);  // Tri-stating the mux output disables LO3 lock detect
 }
 
 
@@ -485,22 +456,4 @@ void spiWriteAtten(uint8_t level, uint8_t selectPin) {
   digitalWrite(selectPin, LOW);
   SPI.end();
 }
-
-
-// Program a single register of the selected LO by sending and latching 4 bytes
-void spiWriteLO(uint32_t reg, uint8_t selectPin) {
-  SPI.beginTransaction(SPISettings(20000000, MSBFIRST, SPI_MODE0));
-  SPI.begin();
-  digitalWrite(selectPin, LOW);
-  SPI.transfer(reg >> 24);
-  SPI.transfer(reg >> 16);
-  SPI.transfer(reg >> 8);
-  SPI.transfer(reg);
-  digitalWrite(selectPin, HIGH);
-  SPI.end();
-}
-
-
-
-
 

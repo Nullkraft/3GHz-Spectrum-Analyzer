@@ -2,6 +2,7 @@
 #define _ADF4356_
 
 #include <Arduino.h>    /* Needed for uint32_t */
+#include <SPI.h>
 
 
 /* Default register values for MAX2871 LO: Sets RFOout = 3630.0 MHz */
@@ -25,13 +26,32 @@ typedef struct adfRegisters {
                                };
 } adf4356registers;
 
-
-
-
 class ADF4356_LO {
-  public:
-    void begin(float initial_frequency);
+  private:
+    static const int NUMBER_OF_FUNCTIONS = 10;
 
+  public:
+    // ADF4356_LO(int num_funcs);
+
+    typedef uint32_t (ADF4356_LO::*CmdFunc)();
+
+    /* Create an array of function pointers to replace the CmdProcessor.cpp
+     * giant switch-case statements. Intialize adfCmdFuncs with all the
+     * available commands
+     */
+    CmdFunc adfCmdFuncs[NUMBER_OF_FUNCTIONS] = {
+      &ADF4356_LO::unused,
+      &ADF4356_LO::turn_RF_off,
+      &ADF4356_LO::set_n4dBm,
+      &ADF4356_LO::set_n1dBm,
+      &ADF4356_LO::set_p2dBm,
+      &ADF4356_LO::set_p5dBm,
+      &ADF4356_LO::unused,
+      &ADF4356_LO::set_TRI,
+      &ADF4356_LO::set_DLD,
+      &ADF4356_LO::unused,
+    };
+    
     const adfRegisters Default;   // Default read-only copy of the registers
     adfRegisters Curr;            // Current modifiable copy of the registers
 
@@ -67,6 +87,26 @@ class ADF4356_LO {
     const uint32_t Mux_Set_DLD = 0x30000000;
 
     uint32_t spiMaxSpeed = 50000000;   // 50 MHz max SPI clock
+
+    // ADF4356 methods
+    void begin(float);
+    uint32_t unused();
+    uint32_t turn_RF_off();
+    uint32_t set_n4dBm();
+    uint32_t set_n1dBm();
+    uint32_t set_p2dBm();
+    uint32_t set_p5dBm();
+    uint32_t set_TRI();
+    uint32_t set_DLD();
+
+    uint32_t executeFunction(int commandIndex) {
+      if (commandIndex >= 0 && commandIndex < NUMBER_OF_FUNCTIONS) {
+        return (this->*adfCmdFuncs[commandIndex])();
+      }
+      return 0xFFFF;    // You tried to use an undefined command
+    }
+
+    void spiWrite(uint32_t reg, uint8_t selectPin);
 };
 
 
