@@ -36,10 +36,10 @@ class ADF4356_LO {
     typedef uint32_t (ADF4356_LO::*CmdFunc)();
 
     /* Create an array of function pointers to replace the CmdProcessor.cpp
-     * giant switch-case statements. Intialize adfCmdFuncs with all the
+     * giant switch-case statements. Intialize adfCmds with all the
      * available commands
      */
-    CmdFunc adfCmdFuncs[NUMBER_OF_FUNCTIONS] = {
+    CmdFunc adfCmds[NUMBER_OF_FUNCTIONS] = {
       &ADF4356_LO::unused,
       &ADF4356_LO::turn_RF_off,
       &ADF4356_LO::set_n4dBm,
@@ -101,7 +101,7 @@ class ADF4356_LO {
 
     uint32_t executeFunction(int commandIndex) {
       if (commandIndex >= 0 && commandIndex < NUMBER_OF_FUNCTIONS) {
-        return (this->*adfCmdFuncs[commandIndex])();
+        return (this->*adfCmds[commandIndex])();
       }
       return 0xFFFF;    // You tried to use an undefined command
     }
