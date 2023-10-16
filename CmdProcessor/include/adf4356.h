@@ -99,7 +99,7 @@ class ADF4356_LO {
     uint32_t set_TRI();
     uint32_t set_DLD();
 
-    uint32_t executeFunction(int commandIndex) {
+    uint32_t ADF4356Execute(int commandIndex) {
       if (commandIndex >= 0 && commandIndex < NUMBER_OF_FUNCTIONS) {
         return (this->*adfCmds[commandIndex])();
       }
