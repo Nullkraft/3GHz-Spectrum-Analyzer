@@ -16,6 +16,10 @@ void MAX2871_LO::begin(float freq) {
 */
 }
 
+uint32_t MAX2871_LO::unused() {
+    return 0xFFFF;  // You tried to use an undefined command
+}
+
 void MAX2871_LO::clr_reg0() {
   // N and F:  Clear Reg[0], bits [22:3], before accepting new N and F words
   Curr.Reg[0] = Curr.Reg[0] & NF_clr;
@@ -59,7 +63,7 @@ uint32_t MAX2871_LO::set_p5dBm() {
   return Curr.Reg[4];
 }
 
-uint32_t MAX2871_LO::turn_off_RF() {
+uint32_t MAX2871_LO::turn_RF_off() {
   Curr.Reg[4] = Curr.Reg[4] & RFpower_off;
   return Curr.Reg[4];
 }

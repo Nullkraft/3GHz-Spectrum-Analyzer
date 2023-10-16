@@ -42,8 +42,30 @@ typedef struct maxRegisters {
 
 
 class MAX2871_LO {
+  private:
+    static const int NUMBER_OF_FUNCTIONS = 9;
+
   public:
     void begin(float initial_frequency);
+
+    typedef uint32_t (MAX2871_LO::*CmdFunc)();
+    typedef uint32_t (MAX2871_LO::*CmdFuncWithArg)(uint32_t);
+
+    CmdFunc maxCmds[NUMBER_OF_FUNCTIONS] = {
+      &MAX2871_LO::unused,
+      &MAX2871_LO::turn_RF_off,
+      &MAX2871_LO::set_n4dBm,
+      &MAX2871_LO::set_n1dBm,
+      &MAX2871_LO::set_p2dBm,
+      &MAX2871_LO::set_p5dBm,
+      &MAX2871_LO::unused,
+      &MAX2871_LO::set_TRI,
+      &MAX2871_LO::set_DLD,
+    };
+
+    CmdFuncWithArg maxCmdsWithArg[1] = {
+      &MAX2871_LO::set_DIV_MODE,
+    };
 
     const max2871Registers Default;   // Default read-only copy of the registers
     max2871Registers Curr;            // Modifiable copy of the registers for LO3
@@ -101,10 +123,11 @@ class MAX2871_LO {
     void clr_reg1();
     void set_reg0(uint32_t);
     void set_reg1(uint32_t);
+    uint32_t unused();
     uint32_t set_DLD();
     uint32_t set_TRI();
     uint32_t set_DIV_MODE(uint32_t);
-    uint32_t turn_off_RF();
+    uint32_t turn_RF_off();
     uint32_t set_n4dBm();
     uint32_t set_n1dBm();
     uint32_t set_p2dBm();

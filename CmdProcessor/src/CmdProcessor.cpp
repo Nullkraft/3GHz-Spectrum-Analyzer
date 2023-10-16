@@ -304,7 +304,7 @@ void loop() {
         }
         switch (Command) {
           case static_cast<int>(devices::RF_off):
-            spiWord = LO->turn_off_RF();
+            spiWord = LO->turn_RF_off();
             break;
           case static_cast<int>(devices::neg_4dBm):
             spiWord = LO->set_n4dBm();

@@ -33,7 +33,7 @@ class ADF4356_LO {
   public:
     // ADF4356_LO(int num_funcs);
 
-    typedef uint32_t (ADF4356_LO::*CmdFunc)();
+    typedef uint32_t (ADF4356_LO::*CmdFunc)();  // Create a funcPtr type
 
     /* Create an array of function pointers to replace the CmdProcessor.cpp
      * giant switch-case statements. Intialize adfCmds with all the
