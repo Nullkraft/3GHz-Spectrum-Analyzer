@@ -213,17 +213,10 @@ void loop() {
 
     // If !CommandFlag - means that an LO2/3 Instruction arrived...
     else if (!COMMAND_FLAG) {
-      // M:  Clear Reg[1], bits [14:3], before accepting a new M word
-      LO->clr_reg1();
-      // M:  Mask and set bits[14:3] to program the new value for M
+      // M:  Set R[1], bits[14:3] to program the new value for M
       LO->set_reg1(serialWord);
-      // // N and F:  Clear Reg[0], bits [22:3], before accepting new N and F words
-      // LO->Curr.Reg[0] = LO->Curr.Reg[0] & LO->NF_clr;
-      LO->clr_reg0();
-      // N:  Mask and set bits [22:15] to program the new value for N
-      // F:  Mask and set bits [14:3] to program the new value for F
+      // N & F:  Set bits R[0], bits[22:15] for new N, and R[0], bits[14:3] for new F
       LO->set_reg0(serialWord);
-
       // Program the selected LO starting with the higher numbered registers first
       LO->spiWrite(LO->Curr.Reg[1], spi_select);
       LO->spiWrite(LO->Curr.Reg[0], spi_select);
