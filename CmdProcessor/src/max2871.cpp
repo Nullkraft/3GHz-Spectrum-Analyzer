@@ -24,24 +24,18 @@ uint32_t MAX2871_LO::unused(uint32_t) {
     return 0xFFFF;  // You tried to use an undefined command
 }
 
-void MAX2871_LO::clr_reg0() {
+void MAX2871_LO::set_reg0(uint32_t serialWord) {
   // N and F:  Clear Reg[0], bits [22:3], before accepting new N and F words
   Curr.Reg[0] = Curr.Reg[0] & NF_clr;
-}
-
-void MAX2871_LO::set_reg0(uint32_t serialWord) {
   // N:  Mask and set bits [22:15] to program the new value for N
   Curr.Reg[0] = Curr.Reg[0] | ((serialWord << 15) & N_set);
   // F:  Mask and set bits [14:3] to program the new value for F
   Curr.Reg[0] = Curr.Reg[0] | ((serialWord >> 17) & F_set);
 }
 
-void MAX2871_LO::clr_reg1() {
+void MAX2871_LO::set_reg1(uint32_t serialWord) {
   // M:  Clear Reg[1], bits [14:3], before accepting a new M word
   Curr.Reg[1] = Curr.Reg[1] & M_clr;
-}
-
-void MAX2871_LO::set_reg1(uint32_t serialWord) {
   // M:  Mask and set bits[14:3] to program the new value for M
   Curr.Reg[1] = Curr.Reg[1] | ((serialWord >> 5) & M_set);
 }
