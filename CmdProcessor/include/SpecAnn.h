@@ -6,7 +6,6 @@
 // Vref = 2.595  Volts/ADC_bit == 0.002536 Volts
 // Noise-floor ≈ 0.488 Volts
 // ADC_value of 193 ≈ 0.488/0.002536
-unsigned int noise_threshold;
 bool LAST_STATE;
 bool ABOVE_NOISE_FLOOR;
 bool BELOW_NOISE_FLOOR;

@@ -158,7 +158,6 @@ void setup() {
   initialize_LO2(LO2_SEL, false);
   initialize_LO1(LO1_SEL);
 
-  noise_threshold = 193;  // Values below this are NOT to be sent over serial
   LAST_STATE = ABOVE_NOISE_FLOOR;
 }
 
@@ -339,7 +338,7 @@ void loop() {
             digitalWrite(LED_BUILTIN, HIGH);
             break;
           case MSG_REQ:
-            Serial.print("- WN2A Spectrum Analyzer CmdProcessor Oct. 2021");
+            Serial.print(F("- WN2A Spectrum Analyzer CmdProcessor Oct. 2023"));
             break;
           case SWEEP_START:
             break;
@@ -356,9 +355,9 @@ void loop() {
         break;
 
       default:
-        Serial.print("Requested Address:");
+        Serial.print(F("Requested Address:"));
         Serial.print(Address);
-        Serial.println(" not found");
+        Serial.println(F(" not found"));
         break;
 
     }  // End switch(Address)
