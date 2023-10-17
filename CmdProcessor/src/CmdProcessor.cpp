@@ -93,7 +93,7 @@ const uint16_t ATTEN_Data_Mask = 0x7F;  // 7 bits of Embedded Data
 ADF4356_LO LO1 = ADF4356_LO();
 MAX2871_LO LO2 = MAX2871_LO();
 MAX2871_LO LO3 = MAX2871_LO();
-MAX2871_LO* LO = new MAX2871_LO();  // Allows a single function to select and operate on LO2 or LO3
+MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
 
 
 byte buf_index = 0;
