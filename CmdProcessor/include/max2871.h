@@ -64,7 +64,7 @@ class MAX2871_LO {
       &MAX2871_LO::set_DLD,
     };
 
-    CmdFuncWithArg maxCmdsWithArg[5] = {
+    CmdFuncWithArg maxCmdsWithArg[NUMBER_OF_COMMANDS] = {
       &MAX2871_LO::unused,
       &MAX2871_LO::unused,
       &MAX2871_LO::unused,
@@ -124,8 +124,6 @@ class MAX2871_LO {
 
     uint32_t spiMaxSpeed = 20000000;   // 20 MHz max SPI clock
 
-    void clr_reg0();
-    void clr_reg1();
     void set_reg0(uint32_t);
     void set_reg1(uint32_t);
     uint32_t unused();
