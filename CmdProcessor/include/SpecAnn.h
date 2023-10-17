@@ -17,17 +17,17 @@ const int end_noise_floor   = 0xE0;  // Last in the series of ADC noise-floor re
 const int failed_to_lock    = 0xF0;  // VCO Failed to lock
 
 // Command names for operating LO1, LO2 and LO3
-enum class devices { 
-    General,
-    RF_off,
-    neg_4dBm,
-    neg_1dBm, 
-    pos_2dBm, 
-    pos_5dBm, 
-    No_change, 
-    Mux_TRI, 
-    Mux_DLD, 
-    DIV_MODE,
+enum class devices {
+    // General,
+    // RF_off,
+    // neg_4dBm,
+    // neg_1dBm, 
+    // pos_2dBm, 
+    // pos_5dBm, 
+    // No_change, 
+    // Mux_TRI, 
+    // Mux_DLD,
+    DIV_MODE = 9,
     COUNT       // Sentinel value must always be at the end
 };
 
