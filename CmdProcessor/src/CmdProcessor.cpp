@@ -279,12 +279,12 @@ void loop() {
       case LO1_addr:
         nameLO = "LO1";
         spi_select = LO1_SEL;
-        Data32 = ((uint32_t)Data16 << 4);           // Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4>
-        LO1.Curr.Reg[0] &= LO1.INT_N_Mask;          // Clear the INT_N bits from Register 0
-        LO1.Curr.Reg[0] |= Data32;                  // Set the new INT_N bits into Register 0
-        spiWord = LO1.executeFunction(Command);     // This selects from 1 of 7 commands to run
-        LO1.spiWrite(spiWord, spi_select);          // Write Reg[4] when doing set_TRI/set_DLD, ELSE Reg[6]
-        LO1.spiWrite(LO1.Curr.Reg[0], spi_select);  // followed by Reg[0] as required by the spec-sheet.
+        Data32 = ((uint32_t)Data16 << 4);          // Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4>
+        LO1.Curr.Reg[0] &= LO1.INT_N_Mask;         // Clear the INT_N bits from Register 0
+        LO1.Curr.Reg[0] |= Data32;                 // Set the new INT_N bits into Register 0
+        spiWord = LO1.ADF4356Execute(Command);  // This selects from 1 of 7 commands to run
+        LO1.spiWrite(spiWord, spi_select);         // Write Reg[4] when doing set_TRI/set_DLD, ELSE Reg[6]
+        LO1.spiWrite(LO1.Curr.Reg[0], spi_select); // followed by Reg[0] as required by the spec-sheet.
         break;
 
       case LO2_addr:
@@ -302,33 +302,10 @@ void loop() {
           spi_select = LO3_SEL;
           adc_pin = ADC_SEL_045;
         }
-        switch (Command) {
-          case static_cast<int>(devices::RF_off):
-            spiWord = LO->turn_RF_off();
-            break;
-          case static_cast<int>(devices::neg_4dBm):
-            spiWord = LO->set_n4dBm();
-            break;
-          case static_cast<int>(devices::neg_1dBm):
-            spiWord = LO->set_n1dBm();
-            break;
-          case static_cast<int>(devices::pos_2dBm):
-            spiWord = LO->set_p2dBm();
-            break;
-          case static_cast<int>(devices::pos_5dBm):
-            spiWord = LO->set_p5dBm();
-            break;
-          case static_cast<int>(devices::Mux_TRI):
-            spiWord = LO->set_TRI();
-            break;
-          case static_cast<int>(devices::Mux_DLD):
-            spiWord = LO->set_DLD();
-            break;
-          case static_cast<int>(devices::DIV_MODE):
-            spiWord = LO->set_DIV_MODE(serialWord);
-            break;
-          default:
-            break;
+        if (Command == static_cast<int>(devices::DIV_MODE)) {
+          spiWord = LO->MAX2871Execute(Command);
+        } else {
+          spiWord = LO->MAX2871ExecuteWithArg(Command, serialWord);
         }
         // Now program the currently selected LO
         LO->spiWrite(spiWord, spi_select);

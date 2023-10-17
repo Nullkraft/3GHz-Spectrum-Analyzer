@@ -44,6 +44,7 @@ typedef struct maxRegisters {
 class MAX2871_LO {
   private:
     static const int NUMBER_OF_FUNCTIONS = 9;
+    static const int NUMBER_OF_COMMANDS = 5;
 
   public:
     void begin(float initial_frequency);
@@ -63,7 +64,11 @@ class MAX2871_LO {
       &MAX2871_LO::set_DLD,
     };
 
-    CmdFuncWithArg maxCmdsWithArg[1] = {
+    CmdFuncWithArg maxCmdsWithArg[5] = {
+      &MAX2871_LO::unused,
+      &MAX2871_LO::unused,
+      &MAX2871_LO::unused,
+      &MAX2871_LO::unused,
       &MAX2871_LO::set_DIV_MODE,
     };
 
@@ -124,6 +129,7 @@ class MAX2871_LO {
     void set_reg0(uint32_t);
     void set_reg1(uint32_t);
     uint32_t unused();
+    uint32_t unused(uint32_t);
     uint32_t set_DLD();
     uint32_t set_TRI();
     uint32_t set_DIV_MODE(uint32_t);
@@ -135,7 +141,20 @@ class MAX2871_LO {
 
     // Program a single register by sending and latching 4 bytes
     void spiWrite(uint32_t reg, uint8_t selectPin);
+    uint32_t MAX2871Execute(int commandIndex) {
+      if (commandIndex >= 0 && commandIndex < NUMBER_OF_FUNCTIONS) {
+        return (this->*maxCmds[commandIndex])();
+      }
+      return 0xFFFF;    // You tried to use an undefined command
+    }
 
+    // Program the register for setting div mode
+    uint32_t MAX2871ExecuteWithArg(int commandIndex, uint32_t serialWord) {
+      if (commandIndex >= 0 && commandIndex < NUMBER_OF_COMMANDS) {
+        return (this->*maxCmdsWithArg[commandIndex])(serialWord);
+      }
+      return 0xFFFF;    // You tried to use an undefined command
+    }
 };
 
 
