@@ -479,11 +479,11 @@ device=RESISTOR
 T 53500 59300 5 10 1 1 0 0 1
 refdes=R4
 T 54100 58800 5 10 0 1 90 0 1
-man-part-num=RC1206JR-07270RL
+man-part-num=RC1206JR-07470RL
 T 54100 58800 5 10 0 1 90 0 1
 footprint=1206
 T 53300 59000 5 10 1 1 0 0 1
-value=270 Ω
+value=470 Ω
 }
 C 53900 58800 1 270 0 led-2.sym
 {

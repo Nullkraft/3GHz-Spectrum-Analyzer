@@ -1033,7 +1033,7 @@ Element["" "SM4_TOP" "CONN1" "unknown" 100.9185mm 30.4340mm -390.00mil -70.00mil
 
 	)
 
-Element["" "1206" "R4" "270_?" 94.2581mm 2230.00mil -1.3563mm -116.50mil 0 100 ""]
+Element["" "1206" "R4" "470_?" 94.2581mm 2230.00mil -1.3563mm -116.50mil 0 100 ""]
 (
 	Pad[59.05mil -11.81mil 59.05mil 11.81mil 51.18mil 20.00mil 57.18mil "1" "1" "square"]
 	Pad[-59.05mil -11.81mil -59.05mil 11.81mil 51.18mil 20.00mil 57.18mil "2" "2" "square"]
