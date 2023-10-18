@@ -89,7 +89,7 @@ class ADF4356_LO {
     uint32_t spiMaxSpeed = 50000000;   // 50 MHz max SPI clock
 
     // ADF4356 methods
-    void begin(float);
+    void begin(uint8_t);
     uint32_t unused();
     uint32_t turn_RF_off();
     uint32_t set_n4dBm();
