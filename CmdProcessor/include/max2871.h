@@ -45,9 +45,10 @@ class MAX2871_LO {
   private:
     static const int NUMBER_OF_FUNCTIONS = 9;
     static const int NUMBER_OF_COMMANDS = 5;
+    String deviceName;
 
   public:
-    void begin(float initial_frequency);
+    void begin(uint8_t, bool);
 
     typedef uint32_t (MAX2871_LO::*CmdFunc)();
     typedef uint32_t (MAX2871_LO::*CmdFuncWithArg)(uint32_t);
@@ -124,6 +125,7 @@ class MAX2871_LO {
 
     uint32_t spiMaxSpeed = 20000000;   // 20 MHz max SPI clock
 
+    void begin(uint8_t, String*);
     void set_reg0(uint32_t);
     void set_reg1(uint32_t);
     uint32_t unused();

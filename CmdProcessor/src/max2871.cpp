@@ -1,27 +1,27 @@
 #include "max2871.h"
 
 
-void MAX2871_LO::begin(float freq) {
-  freq += 1.0;
-/* Based on the settings of the default register values the LO will be intitialized with:
-  - Frequency is set to 
-  - The Mux is set to tristated output (Digital Lock Detect is off)
-  - Clock divider mode - Fast-lock is enabled
-  - Clock divider value is set to 1
-  - Band select clock divider - Set to 1023
-  - RFOUT output divider mode - Set to 4
-  - RFOUTB is enabled and set to divided output
-  - RFOUTB power is set to +5 dBm
-  - RFOUTA is off
-*/
-}
-
 uint32_t MAX2871_LO::unused() {
     return 0xFFFF;  // You tried to use an undefined command
 }
 
 uint32_t MAX2871_LO::unused(uint32_t) {
     return 0xFFFF;  // You tried to use an undefined command
+}
+
+/* IAW Manufacturer's PDF document "MAX2871 - 23.5MHz to 6000MHz Fractional/Integer-N Synthesizer/VCO"
+   pg. 13 4-Wire Serial Interface during initialization there should be a 20mS delay after programming
+   register 5.                                                  Document Version: 19-7106; Rev 4; 6/20
+*/
+void MAX2871_LO::begin(uint8_t selectPin, bool initialize) {
+  spiWrite(Curr.Reg[5], selectPin);  // First we program LO2 Register 5
+  if (initialize) {
+    delay(20);  // Only if it's our first time must we wait 20 mSec
+  }
+  for (int x = 4; x >= 0; x--) {
+    spiWrite(Curr.Reg[x], selectPin);  // and Lock Detect is enabled on the Mux pin
+  }
+  spiWrite(Curr.Reg[6], selectPin);  // Tri-stating the mux output disables LO2 lock detect
 }
 
 void MAX2871_LO::set_reg0(uint32_t serialWord) {
