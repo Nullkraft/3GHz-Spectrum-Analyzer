@@ -119,7 +119,6 @@ void setup() {
   pinMode(ATTEN_SEL, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);  // Make sure the LED is off
 
-  Serial.setTimeout(200);
   Serial.begin(2000000);
 
   // Presets for LO3
