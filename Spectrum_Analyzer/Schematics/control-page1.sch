@@ -516,16 +516,7 @@ C 54400 72700 1 270 1 busripper-1.sym
 T 54800 72700 5 8 0 0 270 6 1
 device=none
 }
-C 49300 61500 1 0 0 Faraday-cage.sym
-{
-T 49300 62300 5 10 0 0 0 0 1
-device=SHEILD
-T 49300 62100 5 10 1 1 0 0 1
-refdes=Sh1
-T 49300 61500 5 10 0 0 0 0 1
-footprint=faraday_shield
-}
-C 50600 61700 1 0 0 gnd-1.sym
+C 47500 61700 1 0 0 gnd-1.sym
 L 51900 65500 51700 65500 3 0 1 0 -1 -1
 L 51500 65500 51300 65500 3 0 1 0 -1 -1
 L 51100 65500 50900 65500 3 0 1 0 -1 -1
@@ -1347,7 +1338,6 @@ T 39100 64250 5 10 1 1 0 6 1
 netname=+7.5VDC
 }
 C 37200 65000 1 0 0 7.5V-plus-1.sym
-N 49500 62000 50700 62000 4
 C 37300 64100 1 0 0 gnd-1.sym
 N 37400 65000 37900 65000 4
 N 37900 65000 37900 64200 4
@@ -1563,3 +1553,134 @@ T 37500 67200 5 10 0 1 0 0 1
 footprint=0402
 }
 N 37500 67300 37200 67300 4
+C 48600 62400 1 0 0 Faraday-cage.sym
+{
+T 48600 63200 5 10 0 0 0 0 1
+device=SHEILD
+T 48600 63000 5 10 1 1 0 0 1
+refdes=Sh1
+T 48600 62400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+}
+N 51200 62900 48000 62900 4
+N 48000 62900 48000 61100 4
+N 48000 61100 51200 61100 4
+N 51200 62000 48000 62000 4
+N 47600 62000 48000 62000 4
+C 51000 62400 1 0 0 Faraday-cage.sym
+{
+T 51000 63200 5 10 0 0 0 0 1
+device=SHEILD
+T 51000 63000 5 10 1 1 0 0 1
+refdes=Sh5
+T 51000 62400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+}
+C 50400 62400 1 0 0 Faraday-cage.sym
+{
+T 50400 63200 5 10 0 0 0 0 1
+device=SHEILD
+T 50400 63000 5 10 1 1 0 0 1
+refdes=Sh4
+T 50400 62400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+}
+C 49800 62400 1 0 0 Faraday-cage.sym
+{
+T 49800 63200 5 10 0 0 0 0 1
+device=SHEILD
+T 49800 63000 5 10 1 1 0 0 1
+refdes=Sh3
+T 49800 62400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+}
+C 49200 62400 1 0 0 Faraday-cage.sym
+{
+T 49200 63200 5 10 0 0 0 0 1
+device=SHEILD
+T 49200 63000 5 10 1 1 0 0 1
+refdes=Sh2
+T 49200 62400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+}
+C 48600 61500 1 0 0 Faraday-cage.sym
+{
+T 48600 62300 5 10 0 0 0 0 1
+device=SHEILD
+T 48600 61500 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+T 48600 62100 5 10 1 1 0 0 1
+refdes=Sh6
+}
+C 51000 61500 1 0 0 Faraday-cage.sym
+{
+T 51000 62300 5 10 0 0 0 0 1
+device=SHEILD
+T 51000 61500 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+T 51000 62100 5 10 1 1 0 0 1
+refdes=Sh10
+}
+C 50400 61500 1 0 0 Faraday-cage.sym
+{
+T 50400 62300 5 10 0 0 0 0 1
+device=SHEILD
+T 50400 61500 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+T 50400 62100 5 10 1 1 0 0 1
+refdes=Sh9
+}
+C 49800 61500 1 0 0 Faraday-cage.sym
+{
+T 49800 62300 5 10 0 0 0 0 1
+device=SHEILD
+T 49800 61500 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+T 49800 62100 5 10 1 1 0 0 1
+refdes=Sh8
+}
+C 49200 61500 1 0 0 Faraday-cage.sym
+{
+T 49200 62300 5 10 0 0 0 0 1
+device=SHEILD
+T 49200 61500 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+T 49200 62100 5 10 1 1 0 0 1
+refdes=Sh7
+}
+C 49200 60600 1 0 0 Faraday-cage.sym
+{
+T 49200 61400 5 10 0 0 0 0 1
+device=SHEILD
+T 49200 60600 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+T 49200 61200 5 10 1 1 0 0 1
+refdes=Sh11
+}
+C 51000 60600 1 0 0 Faraday-cage.sym
+{
+T 51000 61400 5 10 0 0 0 0 1
+device=SHEILD
+T 51000 60600 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+T 51000 61200 5 10 1 1 0 0 1
+refdes=Sh14
+}
+C 50400 60600 1 0 0 Faraday-cage.sym
+{
+T 50400 61400 5 10 0 0 0 0 1
+device=SHEILD
+T 50400 60600 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+T 50400 61200 5 10 1 1 0 0 1
+refdes=Sh13
+}
+C 49800 60600 1 0 0 Faraday-cage.sym
+{
+T 49800 61400 5 10 0 0 0 0 1
+device=SHEILD
+T 49800 60600 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+T 49800 61200 5 10 1 1 0 0 1
+refdes=Sh12
+}
