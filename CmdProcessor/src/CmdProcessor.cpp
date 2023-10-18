@@ -150,8 +150,8 @@ void setup() {
   LAST_STATE = ABOVE_NOISE_FLOOR;
 }
 
-int hi_byte = 0;
-int lo_byte = 0;
+uint8_t hi_byte;
+uint8_t lo_byte;
 int LOCKED;
 const int PLL_Lock_timeout = 500; // usec. Use 195 for testing some failures to lock.
 
