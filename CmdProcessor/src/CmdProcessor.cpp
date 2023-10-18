@@ -23,7 +23,6 @@
 #include <SPI.h>
 #include <avr/interrupt.h>
 #include "SpecAnn.h"
-
 #include "max2871.h"
 #include "adf4356.h"
 
@@ -40,14 +39,12 @@ uint32_t serialWord;                                  // Serial Word as 32 bits
 uint8_t* serialWordAsBytes = (uint8_t*)&serialWord;   // Serial Word as a byte array
 uint16_t* serialWordAsInts = (uint16_t*)&serialWord;  // Serial Word as a int array
 
-
 // Command Flag 0xFF indicates that a new instruction was received by the Arduino
 bool COMMAND_FLAG = false;
 
 /* All the values required by the spi_write() command */
 uint8_t spi_select;  // Currently selected LO (1, 2 or 3) that is to be programmed
 uint32_t spiWord;    // Holds the register contents to be written to the selected device
-
 
 /*** Parsed values from the incoming 32 bit serial word ***/
 uint16_t Data16;  // 16 bits
@@ -56,7 +53,6 @@ byte Command;
 byte Address;
 const byte AddressBits = 0x07;  // Mask to select 3 bits of 'Address' from serialWord[1]
 const byte CommandFlag = 0xFF;  // Byte pattern to identify a 'Control Word'
-
 
 /*********** ARDUINO PIN DEFINITIONS ***********/
 const int LO1_SEL = A3;
@@ -82,10 +78,8 @@ const int LO3_addr = 3;
 const int RefClock = 4;
 const int MISC_addr = 7;
 
-
 // BitMask for programming the registers of the Attenuator IC
 const uint16_t ATTEN_Data_Mask = 0x7F;  // 7 bits of Embedded Data
-
 
 /*********** HARDWARE DEFINITIONS END *******/
 
@@ -95,16 +89,11 @@ MAX2871_LO LO2 = MAX2871_LO();
 MAX2871_LO LO3 = MAX2871_LO();
 MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
 
-
 byte buf_index = 0;
 uint32_t frac_div_F;
 uint32_t frac_mod_M;
 uint32_t counter_N;
-// uint32_t z;
-// uint8_t* byteZ = (byte*)&z;      // Tmp as a byte array
-// uint16_t* intZ = (uint16_t*)&z;  // Tmp as an int array
 
-static String nameLO;
 volatile uint16_t a2dAmplitude;
 uint8_t* ampl_byte = (uint8_t*)&a2dAmplitude;
 
@@ -150,13 +139,13 @@ void setup() {
      TODO: Investigate LO1 locking anomaly
      Initialize IC's LO1, LO2 and LO3 by programming them twice IAW manufacturer's documentation
   */
-  initialize_LO3(LO3_SEL, true);
-  initialize_LO2(LO2_SEL, true);
-  initialize_LO1(LO1_SEL);
+  LO3.begin(LO3_SEL, true);
+  LO2.begin(LO2_SEL, true);
+  LO1.begin(LO1_SEL);
   delay(20);
-  initialize_LO3(LO3_SEL, false);
-  initialize_LO2(LO2_SEL, false);
-  initialize_LO1(LO1_SEL);
+  LO3.begin(LO3_SEL, false);
+  LO2.begin(LO2_SEL, false);
+  LO1.begin(LO1_SEL);
 
   LAST_STATE = ABOVE_NOISE_FLOOR;
 }
@@ -269,7 +258,6 @@ void loop() {
         break;
 
       case LO1_addr:
-        nameLO = "LO1";
         spi_select = LO1_SEL;
         Data32 = ((uint32_t)Data16 << 4);          // Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4>
         LO1.Curr.Reg[0] &= LO1.INT_N_Mask;         // Clear the INT_N bits from Register 0
@@ -281,7 +269,6 @@ void loop() {
 
       case LO2_addr:
         // Making LO2 active
-        nameLO = "LO2";
         LO = &LO2;
         spi_select = LO2_SEL;
         adc_pin = ADC_SEL_315;
@@ -289,7 +276,6 @@ void loop() {
       case LO3_addr:
         // Making LO3 active
         if (Address == LO3_addr) {
-          nameLO = "LO3";
           LO = &LO3;
           spi_select = LO3_SEL;
           adc_pin = ADC_SEL_045;
@@ -364,56 +350,6 @@ void loop() {
   }    // End While serial available
   COMMAND_FLAG = false;
 } /* End loop() */
-
-
-
-
-
-void initialize_LO1(uint8_t selectPin) {
-  nameLO = "LO1";
-  LO1.spiWrite(LO1.Curr.Reg[4], selectPin);  // Enable LO1 lock detect
-  // spiWriteLO(LO1.Curr.Reg[4], selectPin);  // Enable LO1 lock detect
-  for (int x = 13; x >= 0; x--) {
-    LO1.spiWrite(LO1.Curr.Reg[x], selectPin);  // Program LO1=3776.52 MHz with LD on Mux
-    // spiWriteLO(LO1.Curr.Reg[x], selectPin);  // Program LO1=3776.52 MHz with LD on Mux
-  }
-  LO1.spiWrite(LO1.Curr.Reg[14], selectPin);  // Tri-stating the mux output disables LO1 lock detect
-  // spiWriteLO(LO1.Curr.Reg[14], selectPin);  // Tri-stating the mux output disables LO1 lock detect
-}
-
-
-/* IAW Manufacturer's PDF document "MAX2871 - 23.5MHz to 6000MHz Fractional/Integer-N Synthesizer/VCO"
-   pg. 13 4-Wire Serial Interface during initialization there should be a 20mS delay after programming
-   register 5.                                                  Document Version: 19-7106; Rev 4; 6/20
-*/
-void initialize_LO2(uint8_t selectPin, bool initialize) {
-  nameLO = "LO2";
-  LO2.spiWrite(LO2.Curr.Reg[5], selectPin);  // First we program LO2 Register 5
-  if (initialize) {
-    delay(20);  // Only if it's our first time must we wait 20 mSec
-  }
-  for (int x = 4; x >= 0; x--) {
-    LO2.spiWrite(LO2.Curr.Reg[x], selectPin);  // and Lock Detect is enabled on the Mux pin
-  }
-  LO2.spiWrite(LO2.Curr.Reg[6], selectPin);  // Tri-stating the mux output disables LO2 lock detect
-}
-
-
-/* IAW Manufacturer's PDF document "MAX2871 - 23.5MHz to 6000MHz Fractional/Integer-N Synthesizer/VCO"
-   pg. 13 4-Wire Serial Interface during initialization there should be a 20mS delay after programming
-   register 5.                                                  Document Version: 19-7106; Rev 4; 6/20
-*/
-void initialize_LO3(uint8_t selectPin, bool initialize) {
-  nameLO = "LO3";
-  LO3.spiWrite(LO3.Curr.Reg[5], selectPin);  // First we program LO3 Register 5
-  if (initialize) {
-    delay(20);  // Only if it's our first time must we wait 20 mSec
-  }
-  for (int x = 4; x >= 0; x--) {
-    LO3.spiWrite(LO3.Curr.Reg[x], selectPin);  // and Lock Detect is enabled on the Mux pin
-  }
-  LO3.spiWrite(LO3.Curr.Reg[6], selectPin);  // Tri-stating the mux output disables LO3 lock detect
-}
 
 
 // Program the Digital Attenuator by sending and latching a single byte
