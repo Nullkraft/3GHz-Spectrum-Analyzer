@@ -90,6 +90,7 @@ class ADF4356_LO {
 
     // ADF4356 methods
     void begin(uint8_t);
+    void set_reg0(uint32_t);
     uint32_t unused();
     uint32_t turn_off_RF();
     uint32_t set_n4dBm();

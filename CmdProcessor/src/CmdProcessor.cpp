@@ -258,12 +258,11 @@ void loop() {
 
       case LO1_addr:
         spi_select = LO1_SEL;
-        Data32 = ((uint32_t)Data16 << 4);          // Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4>
-        LO1.Curr.Reg[0] &= LO1.INT_N_Mask;         // Clear the INT_N bits from Register 0
-        LO1.Curr.Reg[0] |= Data32;                 // Set the new INT_N bits into Register 0
-        spiWord = LO1.ADF4356Execute(Command);  // This selects from 1 of 7 commands to run
-        LO1.spiWrite(spiWord, spi_select);         // Write Reg[4] when doing set_TRI/set_DLD, ELSE Reg[6]
-        LO1.spiWrite(LO1.Curr.Reg[0], spi_select); // followed by Reg[0] as required by the spec-sheet.
+        Data32 = ((uint32_t)Data16 << 4);           // Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4>
+        LO1.set_reg0(Data32);                       // Set the new INT_N bits into Register 0
+        spiWord = LO1.ADF4356Execute(Command);      // This selects from 1 of 7 adf4356 commands to run
+        LO1.spiWrite(spiWord, spi_select);          // Write Reg[4] when doing set_TRI/set_DLD, ELSE Reg[6]
+        LO1.spiWrite(LO1.Curr.Reg[0], spi_select);  // followed by Reg[0] as required by the spec-sheet.
         break;
 
       case LO2_addr:
