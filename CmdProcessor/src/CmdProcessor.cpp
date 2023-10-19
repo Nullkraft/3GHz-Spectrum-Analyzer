@@ -121,7 +121,7 @@ void loop() {
      * a 4 word array of 8 bit values accessed by using serialWordAsBytes[3, 2, 1, or 0].
      * Since serialWordAsBytes[0] is already used to set the COMMAND_FLAG we just ignore it.
      * So that just leaves the upper 3 bytes to process.
-     * Data16 is copied from the upper 16 bits of serialWord Byte[3] and Byte[2],
+     * Data16 is copied from the upper 16 bits of serialWordAsInts[1],
      * Command is copied, masked, and shifted from serialWord Byte[1] bits[15:11], and
      * Address is also copied, masked, and shifted from serialWord Byte[1] bits[10:8].
     */
