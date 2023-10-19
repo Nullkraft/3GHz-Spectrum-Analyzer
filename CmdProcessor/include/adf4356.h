@@ -59,7 +59,7 @@ class ADF4356_LO {
     const uint32_t Data_Mask = 0x300000;
 
     /* Clear old INT_N bits from Regist 0 */
-    const uint32_t INT_N_Mask = 0xFFF0000F;
+    #define INT_N_Mask 0xFFF0000F // const uint32_t INT_N_Mask = 0xFFF0000F;
 
     /* R6<DB9> and <DB6> disable RFoutB and RFoutA */
     const uint32_t RFpower_off = 0xFFFFFC0F;
@@ -100,12 +100,7 @@ class ADF4356_LO {
     uint32_t set_TRI();
     uint32_t set_DLD();
 
-    uint32_t ADF4356Execute(int commandIndex) {
-      if (commandIndex >= 0 && commandIndex < NUMBER_OF_FUNCTIONS) {
-        return (this->*adfCmds[commandIndex])();
-      }
-      return 0xFFFF;    // You tried to use an undefined command
-    }
+    uint32_t ADF4356Execute(int commandIndex);
 
     void spiWrite(uint32_t reg, uint8_t selectPin);
 };

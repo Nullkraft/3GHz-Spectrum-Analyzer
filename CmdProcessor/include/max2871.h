@@ -77,20 +77,20 @@ class MAX2871_LO {
     const short Data_Mask = 0x3F;
 
     /* 12 bit mask, R[1] bits [14:3], for Fractional Modulus Value, M */
-    const uint32_t M_set = 0x7FF8;
-    const uint32_t M_clr = 0xFFFF8007;
+    #define M_set 0x7FF8      // const uint32_t M_set = 0x7FF8;
+    #define M_clr 0xFFFF8007  // const uint32_t M_clr = 0xFFFF8007;
 
     /* 12 bit mask, R[0] bits [14:3], for Frequency Division Value, F */
-    const uint32_t F_set = 0x7FF8;
-    const uint32_t F_clr = 0xFFFF8007;
+    #define F_set 0x7FF8      // const uint32_t F_set = 0x7FF8;
+    #define F_clr 0xFFFF8007  // const uint32_t F_clr = 0xFFFF8007;
 
     /* 8 bit mask, R[0] bits [22:15], for Integer Counter, N */
-    const uint32_t N_set = 0x7F8000;
-    const uint32_t N_clr = 0xFFFF8007;
+    #define N_set 0x7F8000    // const uint32_t N_set = 0x7F8000;
+    #define N_clr 0xFFFF8007  // const uint32_t N_clr = 0xFFFF8007;
 
     /* 20 bit mask, R[0] bits [22:3], for N and F */
-    const uint32_t NF_set = 0x7FFFF8;
-    const uint32_t NF_clr = 0xFF800007;
+    #define NF_set 0x7FFFF8   // const uint32_t NF_set = 0x7FFFF8;
+    #define NF_clr 0xFF800007 // const uint32_t NF_clr = 0xFF800007;
 
     /* R4<8> and R4<5> disable RFoutB and RFoutA */
     const uint32_t RFpower_off = 0xFFFFFE07;
@@ -107,7 +107,7 @@ class MAX2871_LO {
     const uint32_t pos5dBm = 0x1C0;
 
     /* R4<22:20> Set the RFOut Divider Mode to 1, 2, 4, 8, 16, 32, 64, or 128 */
-    const uint32_t RFOUT_DIV_MASK = 0xFF8FFFFF;  // 00700000;
+    #define RFOUT_DIV_MASK 0xFF8FFFFF // const uint32_t RFOUT_DIV_MASK = 0xFF8FFFFF;  // 00700000;
 
     /*****  ----------------------- NOTE: --------------------------  *****/
     /***** | Enabling Tristate, Mux_Set_TRI, automatically disables | *****/
