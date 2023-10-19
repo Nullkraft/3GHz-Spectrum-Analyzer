@@ -98,11 +98,11 @@ void loop() {
   while (Serial.available()) {
 #ifdef USE_BINARY
     // Binary Communication for normal usage:
-    // Blocks until numBytesInSerialWord==4 has been received
+    // Blocks until numBytesInSerialWord have been received or it will time out
     Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);  // serialWord == serialWordAsBytes
 #else
     // ASCII Communication for testing Mike's code:
-    // Blocks until numBytesInSerialWord==4 has been received
+    // Blocks until numBytesInSerialWord have been received or it will time out
     serialWord = Serial.parseInt();
     if (serialWord == 0) {    // Serial timed out on SER_TIMEOUT
       goto LoopTop;
