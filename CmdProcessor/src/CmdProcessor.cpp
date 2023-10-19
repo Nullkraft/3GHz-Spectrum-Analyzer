@@ -67,7 +67,6 @@ const int ATTEN_SEL = A5;
 //const int SPI_MOSI  = 11;   // Reserved by the SPI Library
 //const int SPI_MISO  = 12;   // Reserved by the SPI Library
 //const int SPI_CLOCK = 13;   // Reserved by the SPI Library
-
 int adc_pin = ADC_SEL_315;  // Default sets this to either to the ADC for LO2 output
 
 // Addresses for selecting the various hardware ICs
@@ -109,6 +108,8 @@ void setup() {
     analogReference(EXTERNAL);
   #endif
 
+  Serial.begin(2000000);
+
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(REF_LO_SEL, OUTPUT);
   pinMode(REF_HI_SEL, OUTPUT);
@@ -119,17 +120,6 @@ void setup() {
   pinMode(ATTEN_SEL, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);  // Make sure the LED is off
 
-  Serial.begin(2000000);
-
-  // Presets for LO3
-  LO3.Curr.Reg[0] = 0x002081C8;  // LO3 = 270 MHz with 66 MHz ref clock
-  LO3.Curr.Reg[1] = 0x400103E9;
-  LO3.Curr.Reg[2] = 0x98005F42;  // Digital Lock Detect ON
-  LO3.Curr.Reg[3] = 0x00001F23;
-  LO3.Curr.Reg[4] = 0x63CE803C;
-  LO3.Curr.Reg[5] = 0x00400005;
-  LO3.Curr.Reg[6] = 0x80005F42;  // Digital Lock Detect ON
-
   // Hardware Initialization for testing of early hardware builds.
   spiWriteAtten(0x0, ATTEN_SEL);   // Set 0dB on the digital attenuator
   digitalWrite(REF_LO_SEL, HIGH);  // Enable low frequency referenc clock
@@ -138,14 +128,8 @@ void setup() {
      TODO: Investigate LO1 locking anomaly
      Initialize IC's LO1, LO2 and LO3 by programming them twice IAW manufacturer's documentation
   */
-  LO3.begin(LO3_SEL, true);
-  LO2.begin(LO2_SEL, true);
-  LO1.begin(LO1_SEL);
-  delay(20);
-  LO3.begin(LO3_SEL, false);
-  LO2.begin(LO2_SEL, false);
-  LO1.begin(LO1_SEL);
 
+  init_specann();
   LAST_STATE = ABOVE_NOISE_FLOOR;
 }
 
@@ -349,6 +333,26 @@ void loop() {
   COMMAND_FLAG = false;
 } /* End loop() */
 
+
+
+void init_specann() {
+  // Presets for LO3
+  LO3.Curr.Reg[0] = 0x002081C8;  // LO3 = 270 MHz with 66 MHz ref clock
+  LO3.Curr.Reg[1] = 0x400103E9;
+  LO3.Curr.Reg[2] = 0x98005F42;  // Digital Lock Detect ON
+  LO3.Curr.Reg[3] = 0x00001F23;
+  LO3.Curr.Reg[4] = 0x63CE803C;
+  LO3.Curr.Reg[5] = 0x00400005;
+  LO3.Curr.Reg[6] = 0x80005F42;  // Digital Lock Detect ON
+
+  LO3.begin(LO3_SEL, true);
+  LO2.begin(LO2_SEL, true);
+  LO1.begin(LO1_SEL);
+  delay(20);
+  LO3.begin(LO3_SEL, false);
+  LO2.begin(LO2_SEL, false);
+  LO1.begin(LO1_SEL);
+}
 
 // Program the Digital Attenuator by sending and latching a single byte
 void spiWriteAtten(uint8_t level, uint8_t selectPin) {

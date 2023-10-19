@@ -47,6 +47,7 @@ enum misc { LED_off,
             RESET, };
 
 void spiWriteAtten(uint8_t level, uint8_t selectPin);
+void init_specann();
 
 #endif
 
