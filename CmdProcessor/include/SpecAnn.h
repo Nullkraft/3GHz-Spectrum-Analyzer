@@ -2,6 +2,8 @@
 #define _SPECANN_H_
 
 #include "Arduino.h"
+#include "max2871.h"
+#include "adf4356.h"
 
 // Vref = 2.595  Volts/ADC_bit == 0.002536 Volts
 // Noise-floor ≈ 0.488 Volts

@@ -23,8 +23,6 @@
 #include <SPI.h>
 #include <avr/interrupt.h>
 #include "SpecAnn.h"
-#include "max2871.h"
-#include "adf4356.h"
 
 
 /*           Serial Word with Command Flag:
