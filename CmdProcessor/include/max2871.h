@@ -123,8 +123,8 @@ class MAX2871_LO {
     uint32_t spiMaxSpeed = 20000000;   // 20 MHz max SPI clock
 
     void begin(uint8_t, bool);
-    void set_reg0(uint32_t);
-    void set_reg1(uint32_t);
+    void set_NF_bits(uint32_t);
+    void set_M_bits(uint32_t);
     uint32_t unused();
     uint32_t unused(uint32_t);
     uint32_t set_DLD();

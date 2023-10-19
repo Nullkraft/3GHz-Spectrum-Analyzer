@@ -24,7 +24,7 @@ void MAX2871_LO::begin(uint8_t selectPin, bool initialize) {
   spiWrite(Curr.Reg[6], selectPin);  // Tri-stating the mux output disables LO2 lock detect
 }
 
-void MAX2871_LO::set_reg0(uint32_t controlWord) {
+void MAX2871_LO::set_NF_bits(uint32_t controlWord) {
   // N and F:  Clear Reg[0], bits [22:3], before accepting new N and F words
   Curr.Reg[0] = Curr.Reg[0] & NF_clr;
   // N:  Mask and set bits [22:15] to program the new value for N
@@ -33,7 +33,7 @@ void MAX2871_LO::set_reg0(uint32_t controlWord) {
   Curr.Reg[0] = Curr.Reg[0] | ((controlWord >> 17) & F_set);
 }
 
-void MAX2871_LO::set_reg1(uint32_t controlWord) {
+void MAX2871_LO::set_M_bits(uint32_t controlWord) {
   // M:  Clear Reg[1], bits [14:3], before accepting a new M word
   Curr.Reg[1] = Curr.Reg[1] & M_clr;
   // M:  Mask and set bits[14:3] to program the new value for M

@@ -138,9 +138,9 @@ void loop() {
     // If !CommandFlag - means that an LO2/3 Instruction arrived...
     else if (!COMMAND_FLAG) {
       // M:  Set R[1], bits[14:3] to program the new value for M
-      LO->set_reg1(serialWord);
+      LO->set_M_bits(serialWord);
       // N & F:  Set bits R[0], bits[22:15] for new N, and R[0], bits[14:3] for new F
-      LO->set_reg0(serialWord);
+      LO->set_NF_bits(serialWord);
       // Program the selected LO starting with the higher numbered registers first
       LO->spiWrite(LO->Curr.Reg[1], spi_select);
       LO->spiWrite(LO->Curr.Reg[0], spi_select);
