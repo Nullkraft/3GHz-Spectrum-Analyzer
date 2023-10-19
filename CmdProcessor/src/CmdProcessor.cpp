@@ -21,7 +21,6 @@
 */
 
 #include <SPI.h>
-#include <avr/interrupt.h>
 #include "SpecAnn.h"
 
 
