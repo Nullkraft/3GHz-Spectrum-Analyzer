@@ -53,7 +53,8 @@ const byte CommandFlag = 0xFF;  // Byte pattern to identify a 'Control Word'
 
 unsigned long start_PLL_Lock_time;
 
-#define USE_BINARY  // Comment out for ASCII serial commuinication
+#define SER_TIMEOUT 200   // Serial port gives up trying to read after 200 mSec
+#define USE_BINARY      // Comment out for ASCII serial commuinication
 
 bool DEBUG = false;
 
@@ -63,6 +64,7 @@ void setup() {
     analogReference(EXTERNAL);
   #endif
 
+  Serial.setTimeout(SER_TIMEOUT);
   Serial.begin(2000000);
 
   pinMode(LED_BUILTIN, OUTPUT);
@@ -79,10 +81,6 @@ void setup() {
   spiWriteAtten(0x0, ATTEN_SEL);   // Set 0dB on the digital attenuator
   digitalWrite(REF_LO_SEL, HIGH);  // Enable low frequency referenc clock
   digitalWrite(REF_HI_SEL, LOW);   // Disable high frequency referenc clock
-  /* Starting with one of the MAX2871 chips makes initializing LO1 much more consistent.  Why?
-     TODO: Investigate LO1 locking anomaly
-     Initialize IC's LO1, LO2 and LO3 by programming them twice IAW manufacturer's documentation
-  */
 
   init_specann();
   LAST_STATE = ABOVE_NOISE_FLOOR;
@@ -106,7 +104,7 @@ void loop() {
     // ASCII Communication for testing Mike's code:
     // Blocks until numBytesInSerialWord==4 has been received
     serialWord = Serial.parseInt();
-    if (serialWord == 0) {
+    if (serialWord == 0) {    // Serial timed out on SER_TIMEOUT
       goto LoopTop;
     }
 #endif
@@ -289,7 +287,10 @@ void loop() {
 } /* End loop() */
 
 
-
+/* Starting with one of the MAX2871 chips makes initializing LO1 much more consistent.  Why?
+    TODO: Investigate LO1 locking anomaly
+    Initialize IC's LO1, LO2 and LO3 by programming them twice IAW manufacturer's specsheet
+*/
 void init_specann() {
   // Presets for LO3
   LO3.Curr.Reg[0] = 0x002081C8;  // LO3 = 270 MHz with 66 MHz ref clock
