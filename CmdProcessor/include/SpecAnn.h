@@ -46,9 +46,6 @@ enum misc { LED_off,
             SWEEP_END, 
             RESET, };
 
-void initialize_LO1(uint8_t selectPin);
-void initialize_LO2(uint8_t selectPin, bool initialize);
-void initialize_LO3(uint8_t selectPin, bool initialize);
 void spiWriteAtten(uint8_t level, uint8_t selectPin);
 
 #endif
