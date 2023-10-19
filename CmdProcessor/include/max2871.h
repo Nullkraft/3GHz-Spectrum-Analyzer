@@ -55,7 +55,7 @@ class MAX2871_LO {
 
     CmdFunc maxCmds[NUMBER_OF_FUNCTIONS] = {
       &MAX2871_LO::unused,
-      &MAX2871_LO::turn_RF_off,
+      &MAX2871_LO::turn_off_RF,
       &MAX2871_LO::set_n4dBm,
       &MAX2871_LO::set_n1dBm,
       &MAX2871_LO::set_p2dBm,
@@ -133,7 +133,7 @@ class MAX2871_LO {
     uint32_t set_DLD();
     uint32_t set_TRI();
     uint32_t set_DIV_MODE(uint32_t);
-    uint32_t turn_RF_off();
+    uint32_t turn_off_RF();
     uint32_t set_n4dBm();
     uint32_t set_n1dBm();
     uint32_t set_p2dBm();
