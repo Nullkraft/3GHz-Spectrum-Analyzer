@@ -9,10 +9,10 @@ void ADF4356_LO::begin(uint8_t selectPin) {
    spiWrite(Curr.Reg[14], selectPin);  // Tri-stating the mux output disables LO1 lock detect
 }
 
-void ADF4356_LO::set_reg0(uint32_t Data32)
+void ADF4356_LO::set_N_bits(uint32_t Data32)
 {
-  Curr.Reg[0] &= INT_N_Mask;         // Clear the INT_N bits from Register 0
-  Curr.Reg[0] |= Data32;                 // Set the new INT_N bits into Register 0
+  Curr.Reg[0] &= INT_N_Mask;          // Clear the INT_N bits from Register 0
+  Curr.Reg[0] |= Data32;              // Set the new INT_N bits into Register 0
 }
 
 uint32_t ADF4356_LO::unused() {
