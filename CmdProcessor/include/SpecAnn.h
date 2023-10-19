@@ -13,9 +13,9 @@ bool ABOVE_NOISE_FLOOR;
 bool BELOW_NOISE_FLOOR;
 
 // Status codes: Uses the 4 msbits of the 16 bit ADC return values
-const int start_noise_floor = 0xD0;  // First in the series of ADC noise-floor readings
-const int end_noise_floor   = 0xE0;  // Last in the series of ADC noise-floor readings
-const int failed_to_lock    = 0xF0;  // VCO Failed to lock
+// const int start_noise_floor = 0xD0;  // First in the series of ADC noise-floor readings
+// const int end_noise_floor   = 0xE0;  // Last in the series of ADC noise-floor readings
+const int failed_to_lock = 0xF0;  // VCO Failed to lock
 
 // Command names for operating LO1, LO2 and LO3
 enum class devices {
@@ -49,28 +49,28 @@ enum misc { LED_off,
             RESET, };
 
 /*********** ARDUINO PIN DEFINITIONS ***********/
-const int LO1_SEL = A3;
-const int LO2_SEL = 3;
-const int LO3_SEL = A4;
-const int REF_LO_SEL = 8;
-const int REF_HI_SEL = 9;
-const int ADC_SEL_045 = A0;  // ADC for LO2
-const int ADC_SEL_315 = A1;  // ADC for LO3
-const int PLL_MUX = A2;      // Equals physical pin 16 on Port C (use PCMSK1)
-const int ATTEN_SEL = A5;
-//const int SPI_MOSI  = 11;   // Reserved by the SPI Library
-//const int SPI_MISO  = 12;   // Reserved by the SPI Library
-//const int SPI_CLOCK = 13;   // Reserved by the SPI Library
-int adc_pin = ADC_SEL_315;  // Default sets this to either to the ADC for LO2 output
+const uint8_t LO1_SEL = A3;
+const uint8_t LO2_SEL = 3;
+const uint8_t LO3_SEL = A4;
+const uint8_t REF_LO_SEL = 8;
+const uint8_t REF_HI_SEL = 9;
+const uint8_t ADC_SEL_045 = A0;  // ADC for LO2
+const uint8_t ADC_SEL_315 = A1;  // ADC for LO3
+const uint8_t PLL_MUX = A2;      // Equals physical pin 16 on Port C (use PCMSK1)
+const uint8_t ATTEN_SEL = A5;
+//const uint8_t SPI_MOSI  = 11;   // Reserved by the SPI Library
+//const uint8_t SPI_MISO  = 12;   // Reserved by the SPI Library
+//const uint8_t SPI_CLOCK = 13;   // Reserved by the SPI Library
+uint8_t adc_pin = ADC_SEL_315;  // Default sets this to either to the ADC for LO2 output
 
 // Addresses for selecting the various hardware ICs
 // TODO: Create the list in a config file that remains with the project files.
-const int Attenuator = 0;
-const int LO1_addr = 1;
-const int LO2_addr = 2;
-const int LO3_addr = 3;
-const int RefClock = 4;
-const int MISC_addr = 7;
+const uint8_t Attenuator = 0;
+const uint8_t LO1_addr = 1;
+const uint8_t LO2_addr = 2;
+const uint8_t LO3_addr = 3;
+const uint8_t RefClock = 4;
+const uint8_t MISC_addr = 7;
 
 // BitMask for programming the registers of the Attenuator IC
 const uint16_t ATTEN_Data_Mask = 0x7F;  // 7 bits of Embedded Data
