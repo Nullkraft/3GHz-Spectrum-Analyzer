@@ -24,20 +24,20 @@ void MAX2871_LO::begin(uint8_t selectPin, bool initialize) {
   spiWrite(Curr.Reg[6], selectPin);  // Tri-stating the mux output disables LO2 lock detect
 }
 
-void MAX2871_LO::set_reg0(uint32_t serialWord) {
+void MAX2871_LO::set_reg0(uint32_t controlWord) {
   // N and F:  Clear Reg[0], bits [22:3], before accepting new N and F words
   Curr.Reg[0] = Curr.Reg[0] & NF_clr;
   // N:  Mask and set bits [22:15] to program the new value for N
-  Curr.Reg[0] = Curr.Reg[0] | ((serialWord << 15) & N_set);
+  Curr.Reg[0] = Curr.Reg[0] | ((controlWord << 15) & N_set);
   // F:  Mask and set bits [14:3] to program the new value for F
-  Curr.Reg[0] = Curr.Reg[0] | ((serialWord >> 17) & F_set);
+  Curr.Reg[0] = Curr.Reg[0] | ((controlWord >> 17) & F_set);
 }
 
-void MAX2871_LO::set_reg1(uint32_t serialWord) {
+void MAX2871_LO::set_reg1(uint32_t controlWord) {
   // M:  Clear Reg[1], bits [14:3], before accepting a new M word
   Curr.Reg[1] = Curr.Reg[1] & M_clr;
   // M:  Mask and set bits[14:3] to program the new value for M
-  Curr.Reg[1] = Curr.Reg[1] | ((serialWord >> 5) & M_set);
+  Curr.Reg[1] = Curr.Reg[1] | ((controlWord >> 5) & M_set);
 }
 
 uint32_t MAX2871_LO::set_DLD() {
@@ -50,9 +50,9 @@ uint32_t MAX2871_LO::set_TRI() {
   return Curr.Reg[2];
 }
 
-uint32_t MAX2871_LO::set_DIV_MODE(uint32_t serialWord) {
+uint32_t MAX2871_LO::set_DIV_MODE(uint32_t controlWord) {
   Curr.Reg[4] &= RFOUT_DIV_MASK;
-  Curr.Reg[4] |= (serialWord & !RFOUT_DIV_MASK);
+  Curr.Reg[4] |= (controlWord & !RFOUT_DIV_MASK);
   return Curr.Reg[4];
 }
 
@@ -88,9 +88,9 @@ uint32_t MAX2871_LO::MAX2871Execute(int commandIndex) {
 }
 
 // Program the register for setting div mode
-uint32_t MAX2871_LO::MAX2871ExecuteWithArg(int commandIndex, uint32_t serialWord) {
+uint32_t MAX2871_LO::MAX2871ExecuteWithArg(int commandIndex, uint32_t controlWord) {
   if (commandIndex >= 0 && commandIndex < MAX2871_LO::NUMBER_OF_COMMANDS) {
-    return (this->*maxCmdsWithArg[commandIndex])(serialWord);
+    return (this->*maxCmdsWithArg[commandIndex])(controlWord);
   }
   return 0xFFFF;    // You tried to use an undefined command
 }

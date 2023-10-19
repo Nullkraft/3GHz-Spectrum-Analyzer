@@ -138,7 +138,7 @@ class MAX2871_LO {
 
     void spiWrite(uint32_t reg, uint8_t selectPin); // Write 4 bytes to chip register
     uint32_t MAX2871Execute(int commandIndex);
-    uint32_t MAX2871ExecuteWithArg(int commandIndex, uint32_t serialWord);  // Set divider mode
+    uint32_t MAX2871ExecuteWithArg(int commandIndex, uint32_t controlWord);  // Set divider mode
 };
 
 
