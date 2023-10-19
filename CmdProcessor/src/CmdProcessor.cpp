@@ -114,8 +114,8 @@ void loop() {
      * If a Command Flag is found then parse the 3 upper bytes into Data, Command and Address
      * There are 4 bytes in an Instruction Word:
      * Bits serialWord[31:16] are Data
-     * Bits serialWord[15:11] contain the Command to be performed
-     * Bits serialWord[10:8] contain the address of the chip to be programmed
+     * Bits serialWord[15:11] are the Command to be performed
+     * Bits serialWord[10:8] are the address of the chip to be programmed
      * The serial word can be accessed as a single 32 bit value called serialWord, or as
      * a 2 word array of 16 bit values accessed by using serialWordAsInts[1 or 0], or as
      * a 4 word array of 8 bit values accessed by using serialWordAsBytes[3, 2, 1, or 0].
