@@ -61,7 +61,7 @@ uint32_t MAX2871_LO::set_p5dBm() {
   return Curr.Reg[4];
 }
 
-uint32_t MAX2871_LO::turn_RF_off() {
+uint32_t MAX2871_LO::turn_off_RF() {
   Curr.Reg[4] = Curr.Reg[4] & RFpower_off;
   return Curr.Reg[4];
 }
