@@ -53,8 +53,8 @@ const byte CommandFlag = 0xFF;  // Byte pattern to identify a 'Control Word'
 
 unsigned long start_PLL_Lock_time;
 
-#define SER_TIMEOUT 200   // Serial port gives up trying to read after 200 mSec
-#define USE_BINARY      // Comment out for ASCII serial commuinication
+#define SER_TIMEOUT 200 // Serial port gives up trying to read after 200 mSec
+bool useBinary = true;  // Set this to true for binary mode, false for ASCII mode
 
 bool DEBUG = false;
 
@@ -94,20 +94,17 @@ const int PLL_Lock_timeout = 500; // usec. Use 195 for testing some failures to 
 
 /******** MAIN LOOP ******************************************************************/
 void loop() {
-[[maybe_unused]] LoopTop:
   while (Serial.available()) {
-#ifdef USE_BINARY
-    // Binary Communication for normal usage:
-    // Blocks until numBytesInSerialWord have been received or it will time out
-    Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);  // serialWord == serialWordAsBytes
-#else
-    // ASCII Communication for testing Mike's code:
-    // Blocks until numBytesInSerialWord have been received or it will time out
-    serialWord = Serial.parseInt();
-    if (serialWord == 0) {    // Serial timed out on SER_TIMEOUT
-      goto LoopTop;
+    if (useBinary) {
+      // Binary Communication for normal usage:
+      Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);  // serialWord == serialWordAsBytes
+    } else {
+      // ASCII Communication for testing Mike's code:
+      serialWord = Serial.parseInt();
+      if (serialWord == 0) {    // Serial timed out on SER_TIMEOUT
+        continue;  // This will just skip to the next iteration of the loop
+      }
     }
-#endif
 
     if (serialWordAsBytes[0] == CommandFlag) {
       COMMAND_FLAG = true;
@@ -134,9 +131,7 @@ void loop() {
       Address = serialWordAsBytes[1] & AddressBits;
       COMMAND_FLAG = false;
     }
-
-    // If !CommandFlag - means that an LO2/3 Instruction arrived...
-    else if (!COMMAND_FLAG) {
+    else if (!COMMAND_FLAG) {    // An LO2 or LO3 Instruction has arrived...
       // M:  Set R[1], bits[14:3] to program the new value for M
       LO->set_M_bits(serialWord);
       // N & F:  Set bits R[0], bits[22:15] for new N, and R[0], bits[14:3] for new F
