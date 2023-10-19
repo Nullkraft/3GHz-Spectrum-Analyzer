@@ -54,6 +54,13 @@ uint32_t ADF4356_LO::set_DLD() {
   return Curr.Reg[4];
 }
 
+uint32_t ADF4356_LO::ADF4356Execute(int commandIndex) {
+  if (commandIndex >= 0 && commandIndex < ADF4356_LO::NUMBER_OF_FUNCTIONS) {
+    return (this->*adfCmds[commandIndex])();
+  }
+  return 0xFFFF;    // You tried to use an undefined command
+}
+
 // Program a single register of the ADF4356 by sending and latching 4 bytes
 void ADF4356_LO::spiWrite(uint32_t reg, uint8_t selectPin) {
     SPI.beginTransaction(SPISettings(20000000, MSBFIRST, SPI_MODE0));
