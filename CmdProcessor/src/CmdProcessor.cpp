@@ -88,11 +88,6 @@ MAX2871_LO LO2 = MAX2871_LO();
 MAX2871_LO LO3 = MAX2871_LO();
 MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
 
-byte buf_index = 0;
-uint32_t frac_div_F;
-uint32_t frac_mod_M;
-uint32_t counter_N;
-
 volatile uint16_t a2dAmplitude;
 uint8_t* ampl_byte = (uint8_t*)&a2dAmplitude;
 
