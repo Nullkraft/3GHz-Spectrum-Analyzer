@@ -48,6 +48,44 @@ enum misc { LED_off,
             SWEEP_END, 
             RESET, };
 
+/*********** ARDUINO PIN DEFINITIONS ***********/
+const int LO1_SEL = A3;
+const int LO2_SEL = 3;
+const int LO3_SEL = A4;
+const int REF_LO_SEL = 8;
+const int REF_HI_SEL = 9;
+const int ADC_SEL_045 = A0;  // ADC for LO2
+const int ADC_SEL_315 = A1;  // ADC for LO3
+const int PLL_MUX = A2;      // Equals physical pin 16 on Port C (use PCMSK1)
+const int ATTEN_SEL = A5;
+//const int SPI_MOSI  = 11;   // Reserved by the SPI Library
+//const int SPI_MISO  = 12;   // Reserved by the SPI Library
+//const int SPI_CLOCK = 13;   // Reserved by the SPI Library
+int adc_pin = ADC_SEL_315;  // Default sets this to either to the ADC for LO2 output
+
+// Addresses for selecting the various hardware ICs
+// TODO: Create the list in a config file that remains with the project files.
+const int Attenuator = 0;
+const int LO1_addr = 1;
+const int LO2_addr = 2;
+const int LO3_addr = 3;
+const int RefClock = 4;
+const int MISC_addr = 7;
+
+// BitMask for programming the registers of the Attenuator IC
+const uint16_t ATTEN_Data_Mask = 0x7F;  // 7 bits of Embedded Data
+
+/*********** HARDWARE DEFINITIONS END *******/
+
+// Assign reference designators from the schematic to the LO ojbect of choice
+ADF4356_LO LO1 = ADF4356_LO();
+MAX2871_LO LO2 = MAX2871_LO();
+MAX2871_LO LO3 = MAX2871_LO();
+MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
+
+volatile uint16_t a2dAmplitude;
+uint8_t* ampl_byte = (uint8_t*)&a2dAmplitude;
+
 void spiWriteAtten(uint8_t level, uint8_t selectPin);
 void init_specann();
 
