@@ -13,9 +13,9 @@ uint32_t MAX2871_LO::unused(uint32_t) {
    pg. 13 4-Wire Serial Interface during initialization there should be a 20mS delay after programming
    register 5.                                                  Document Version: 19-7106; Rev 4; 6/20
 */
-void MAX2871_LO::begin(uint8_t selectPin, bool initialize) {
+void MAX2871_LO::begin(uint8_t selectPin, bool first_init) {
   spiWrite(Curr.Reg[5], selectPin);  // First we program LO2 Register 5
-  if (initialize) {
+  if (first_init) {
     delay(20);  // Only if it's our first time must we wait 20 mSec
   }
   for (int x = 4; x >= 0; x--) {
