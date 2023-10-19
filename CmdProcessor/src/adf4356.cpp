@@ -13,7 +13,7 @@ uint32_t ADF4356_LO::unused() {
     return 0xFFFF;  // You tried to use an undefined command
 }
 
-uint32_t ADF4356_LO::turn_RF_off() {
+uint32_t ADF4356_LO::turn_off_RF() {
   Curr.Reg[6] = Curr.Reg[6] & RFpower_off;
   return Curr.Reg[6];
 }

@@ -41,7 +41,7 @@ class ADF4356_LO {
      */
     CmdFunc adfCmds[NUMBER_OF_FUNCTIONS] = {
       &ADF4356_LO::unused,
-      &ADF4356_LO::turn_RF_off,
+      &ADF4356_LO::turn_off_RF,
       &ADF4356_LO::set_n4dBm,
       &ADF4356_LO::set_n1dBm,
       &ADF4356_LO::set_p2dBm,
@@ -91,7 +91,7 @@ class ADF4356_LO {
     // ADF4356 methods
     void begin(uint8_t);
     uint32_t unused();
-    uint32_t turn_RF_off();
+    uint32_t turn_off_RF();
     uint32_t set_n4dBm();
     uint32_t set_n1dBm();
     uint32_t set_p2dBm();
