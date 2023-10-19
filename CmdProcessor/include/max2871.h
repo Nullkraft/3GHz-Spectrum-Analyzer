@@ -136,22 +136,9 @@ class MAX2871_LO {
     uint32_t set_p2dBm();
     uint32_t set_p5dBm();
 
-    // Program a single register by sending and latching 4 bytes
-    void spiWrite(uint32_t reg, uint8_t selectPin);
-    uint32_t MAX2871Execute(int commandIndex) {
-      if (commandIndex >= 0 && commandIndex < NUMBER_OF_FUNCTIONS) {
-        return (this->*maxCmds[commandIndex])();
-      }
-      return 0xFFFF;    // You tried to use an undefined command
-    }
-
-    // Program the register for setting div mode
-    uint32_t MAX2871ExecuteWithArg(int commandIndex, uint32_t serialWord) {
-      if (commandIndex >= 0 && commandIndex < NUMBER_OF_COMMANDS) {
-        return (this->*maxCmdsWithArg[commandIndex])(serialWord);
-      }
-      return 0xFFFF;    // You tried to use an undefined command
-    }
+    void spiWrite(uint32_t reg, uint8_t selectPin); // Write 4 bytes to chip register
+    uint32_t MAX2871Execute(int commandIndex);
+    uint32_t MAX2871ExecuteWithArg(int commandIndex, uint32_t serialWord);  // Set divider mode
 };
 
 

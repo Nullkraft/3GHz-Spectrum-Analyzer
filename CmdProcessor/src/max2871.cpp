@@ -80,6 +80,21 @@ uint32_t MAX2871_LO::set_p2dBm() {
   return Curr.Reg[4];
 }
 
+uint32_t MAX2871_LO::MAX2871Execute(int commandIndex) {
+  if (commandIndex >= 0 && commandIndex < MAX2871_LO::NUMBER_OF_FUNCTIONS) {
+    return (this->*maxCmds[commandIndex])();
+  }
+  return 0xFFFF;    // You tried to use an undefined command
+}
+
+// Program the register for setting div mode
+uint32_t MAX2871_LO::MAX2871ExecuteWithArg(int commandIndex, uint32_t serialWord) {
+  if (commandIndex >= 0 && commandIndex < MAX2871_LO::NUMBER_OF_COMMANDS) {
+    return (this->*maxCmdsWithArg[commandIndex])(serialWord);
+  }
+  return 0xFFFF;    // You tried to use an undefined command
+}
+
 // Program a single register of the selected LO by sending and latching 4 bytes
 void MAX2871_LO::spiWrite(uint32_t reg, uint8_t selectPin) {
   SPI.beginTransaction(SPISettings(spiMaxSpeed, MSBFIRST, SPI_MODE0));
