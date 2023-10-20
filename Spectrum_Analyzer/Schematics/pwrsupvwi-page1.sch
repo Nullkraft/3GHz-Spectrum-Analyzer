@@ -27,22 +27,11 @@ netname=+3.3VDC
 }
 C 66400 62400 1 0 0 3.3V-plus-1.sym
 C 66400 64000 1 0 0 5V-plus-1.sym
-C 59800 60100 1 0 0 Faraday-cage.sym
-{
-T 59800 60900 5 10 0 0 0 0 1
-device=SHEILD
-T 59900 60800 5 10 1 1 0 0 1
-refdes=Sh1
-T 59800 60100 5 10 0 1 0 0 1
-footprint=pwrsup_shield
-}
-C 61100 60300 1 0 0 gnd-1.sym
 T 61500 60800 9 18 1 0 0 0 1
 FARADAY SHIELD
 T 66600 64800 9 18 1 0 0 0 1
 Power Outputs
 C 66400 63200 1 0 0 7.5V-plus-1.sym
-N 60000 60600 61200 60600 4
 C 60100 57500 1 0 0 TPSM33625.sym
 {
 T 59100 58700 5 10 1 1 0 0 1
@@ -503,17 +492,17 @@ N 51100 59400 51100 56700 4
 T 51300 58450 5 10 1 1 0 0 1
 netname=+12_VDC
 }
-C 55700 63500 1 0 0 Faraday-cage.sym
+C 59600 59700 1 0 0 Faraday-cage.sym
 {
-T 55700 64300 5 10 0 0 0 0 1
+T 59600 60500 5 10 0 0 0 0 1
 device=SHEILD
-T 55800 64200 5 10 1 1 0 0 1
+T 59700 60400 5 10 1 1 0 0 1
 refdes=Sh2
-T 55700 63500 5 10 0 1 0 0 1
+T 59600 59700 5 10 0 1 0 0 1
 footprint=mask_clear
 }
-N 55900 64000 57100 64000 4
-C 57000 63700 1 0 0 gnd-1.sym
+N 59800 60200 63900 60200 4
+C 63800 59900 1 0 0 gnd-1.sym
 N 50900 56700 51100 56700 4
 C 50800 56100 1 0 0 gnd-1.sym
 C 49200 58400 1 180 1 connector2-1.sym
@@ -597,3 +586,57 @@ PCB but these symbols will be able to hold
 the needed part numbers.
 N 50300 63300 50300 63700 4
 N 50300 63700 50500 63700 4
+C 60200 59700 1 0 0 Faraday-cage.sym
+{
+T 60200 60500 5 10 0 0 0 0 1
+device=SHEILD
+T 60300 60400 5 10 1 1 0 0 1
+refdes=Sh5
+T 60200 59700 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+}
+C 60800 59700 1 0 0 Faraday-cage.sym
+{
+T 60800 60500 5 10 0 0 0 0 1
+device=SHEILD
+T 60900 60400 5 10 1 1 0 0 1
+refdes=Sh6
+T 60800 59700 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+}
+C 61400 59700 1 0 0 Faraday-cage.sym
+{
+T 61400 60500 5 10 0 0 0 0 1
+device=SHEILD
+T 61500 60400 5 10 1 1 0 0 1
+refdes=Sh7
+T 61400 59700 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+}
+C 62000 59700 1 0 0 Faraday-cage.sym
+{
+T 62000 60500 5 10 0 0 0 0 1
+device=SHEILD
+T 62100 60400 5 10 1 1 0 0 1
+refdes=Sh8
+T 62000 59700 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+}
+C 62600 59700 1 0 0 Faraday-cage.sym
+{
+T 62600 60500 5 10 0 0 0 0 1
+device=SHEILD
+T 62700 60400 5 10 1 1 0 0 1
+refdes=Sh9
+T 62600 59700 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+}
+C 63200 59700 1 0 0 Faraday-cage.sym
+{
+T 63200 60500 5 10 0 0 0 0 1
+device=SHEILD
+T 63300 60400 5 10 1 1 0 0 1
+refdes=Sh10
+T 63200 59700 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
+}
