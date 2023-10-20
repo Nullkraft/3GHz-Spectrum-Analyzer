@@ -47,29 +47,6 @@ class MAX2871_LO {
     static const int NUMBER_OF_COMMANDS = 5;
 
   public:
-    typedef uint32_t (MAX2871_LO::*CmdFunc)();
-    typedef uint32_t (MAX2871_LO::*CmdFuncWithArg)(uint32_t);
-
-    CmdFunc maxCmds[NUMBER_OF_FUNCTIONS] = {
-      &MAX2871_LO::unused,
-      &MAX2871_LO::turn_off_RF,
-      &MAX2871_LO::set_n4dBm,
-      &MAX2871_LO::set_n1dBm,
-      &MAX2871_LO::set_p2dBm,
-      &MAX2871_LO::set_p5dBm,
-      &MAX2871_LO::unused,
-      &MAX2871_LO::set_TRI,
-      &MAX2871_LO::set_DLD,
-    };
-
-    CmdFuncWithArg maxCmdsWithArg[NUMBER_OF_COMMANDS] = {
-      &MAX2871_LO::unused,
-      &MAX2871_LO::unused,
-      &MAX2871_LO::unused,
-      &MAX2871_LO::unused,
-      &MAX2871_LO::set_DIV_MODE,
-    };
-
     const max2871Registers Default;   // Default read-only copy of the registers
     max2871Registers Curr;            // Modifiable copy of the registers for LO3
 
@@ -121,6 +98,29 @@ class MAX2871_LO {
     const uint32_t Mux_Set_DLD = 0x18000000;
 
     uint32_t spiMaxSpeed = 20000000;   // 20 MHz max SPI clock
+
+    typedef uint32_t (MAX2871_LO::*CmdFunc)();
+    typedef uint32_t (MAX2871_LO::*CmdFuncWithArg)(uint32_t);
+
+    CmdFunc maxCmds[NUMBER_OF_FUNCTIONS] = {
+      &MAX2871_LO::unused,
+      &MAX2871_LO::turn_off_RF,
+      &MAX2871_LO::set_n4dBm,
+      &MAX2871_LO::set_n1dBm,
+      &MAX2871_LO::set_p2dBm,
+      &MAX2871_LO::set_p5dBm,
+      &MAX2871_LO::unused,
+      &MAX2871_LO::set_TRI,
+      &MAX2871_LO::set_DLD,
+    };
+
+    CmdFuncWithArg maxCmdsWithArg[NUMBER_OF_COMMANDS] = {
+      &MAX2871_LO::unused,
+      &MAX2871_LO::unused,
+      &MAX2871_LO::unused,
+      &MAX2871_LO::unused,
+      &MAX2871_LO::set_DIV_MODE,
+    };
 
     void begin(uint8_t, bool);
     void set_NF_bits(uint32_t);

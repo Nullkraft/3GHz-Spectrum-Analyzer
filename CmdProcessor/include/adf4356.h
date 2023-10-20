@@ -31,27 +31,6 @@ class ADF4356_LO {
     static const int NUMBER_OF_FUNCTIONS = 10;
 
   public:
-    // ADF4356_LO(int num_funcs);
-
-    typedef uint32_t (ADF4356_LO::*CmdFunc)();  // Create a funcPtr type
-
-    /* Create an array of function pointers to replace the CmdProcessor.cpp
-     * giant switch-case statements. Intialize adfCmds with all the
-     * available commands
-     */
-    CmdFunc adfCmds[NUMBER_OF_FUNCTIONS] = {
-      &ADF4356_LO::unused,
-      &ADF4356_LO::turn_off_RF,
-      &ADF4356_LO::set_n4dBm,
-      &ADF4356_LO::set_n1dBm,
-      &ADF4356_LO::set_p2dBm,
-      &ADF4356_LO::set_p5dBm,
-      &ADF4356_LO::unused,
-      &ADF4356_LO::set_TRI,
-      &ADF4356_LO::set_DLD,
-      &ADF4356_LO::unused,
-    };
-    
     const adfRegisters Default;   // Default read-only copy of the registers
     adfRegisters Curr;            // Current modifiable copy of the registers
 
@@ -88,6 +67,25 @@ class ADF4356_LO {
 
     uint32_t spiMaxSpeed = 50000000;   // 50 MHz max SPI clock
 
+    typedef uint32_t (ADF4356_LO::*CmdFunc)();  // Create a funcPtr type
+
+    /* Create an array of function pointers to replace the CmdProcessor.cpp
+     * giant switch-case statements. Intialize adfCmds with all the
+     * available commands
+     */
+    CmdFunc adfCmds[NUMBER_OF_FUNCTIONS] = {
+      &ADF4356_LO::unused,
+      &ADF4356_LO::turn_off_RF,
+      &ADF4356_LO::set_n4dBm,
+      &ADF4356_LO::set_n1dBm,
+      &ADF4356_LO::set_p2dBm,
+      &ADF4356_LO::set_p5dBm,
+      &ADF4356_LO::unused,
+      &ADF4356_LO::set_TRI,
+      &ADF4356_LO::set_DLD,
+      &ADF4356_LO::unused,
+    };
+    
     // ADF4356 methods
     void begin(uint8_t);
     void set_N_bits(uint32_t);
