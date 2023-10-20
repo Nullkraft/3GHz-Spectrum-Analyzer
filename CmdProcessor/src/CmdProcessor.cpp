@@ -170,10 +170,8 @@ void loop() {
           break;
         }
       }
-
       // Send the amplitude as individual bytes from the ADC to the PC for plotting
-      // Big Endian
-      Serial.write(hi_byte);
+      Serial.write(hi_byte);  // Big Endian
       Serial.write(lo_byte);
 //      Serial.write((byte *)a2dAmplitude, sizeof(a2dAmplitude));   // This is little-endian
     }

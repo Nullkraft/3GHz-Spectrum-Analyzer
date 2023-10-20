@@ -51,8 +51,10 @@ uint32_t MAX2871_LO::set_TRI() {
 }
 
 uint32_t MAX2871_LO::set_DIV_MODE(uint32_t controlWord) {
-  Curr.Reg[4] &= RFOUT_DIV_MASK;
-  Curr.Reg[4] |= (controlWord & !RFOUT_DIV_MASK);
+  Curr.Reg[4] = Curr.Reg[4] & RFOUT_DIV_MASK;
+  // Curr.Reg[4] &= RFOUT_DIV_MASK;
+  Curr.Reg[4] = (Curr.Reg[4] | (controlWord & !RFOUT_DIV_MASK));
+  // Curr.Reg[4] |= (controlWord & !RFOUT_DIV_MASK);
   return Curr.Reg[4];
 }
 
