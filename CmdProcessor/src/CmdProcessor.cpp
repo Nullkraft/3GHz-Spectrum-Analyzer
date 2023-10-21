@@ -208,11 +208,7 @@ void loop() {
           spi_select = LO3_SEL;
           adc_pin = ADC_SEL_045;
         }
-        if (Command == static_cast<int>(devices::DIV_MODE)) {
-          spiWord = LO->MAX2871Execute(Command);
-        } else {
-          spiWord = LO->MAX2871ExecuteWithArg(Command, serialWord);
-        }
+        spiWord = LO->MAX2871Execute(Command, serialWord);
         // Now program the currently selected LO
         LO->spiWrite(spiWord, spi_select);
         break;  // End case LO2 OR case LO3

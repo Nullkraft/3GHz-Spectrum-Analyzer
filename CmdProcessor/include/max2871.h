@@ -43,8 +43,7 @@ typedef struct maxRegisters {
 
 class MAX2871_LO {
   private:
-    static const int NUMBER_OF_FUNCTIONS = 9;
-    static const int NUMBER_OF_COMMANDS = 5;
+    static const int NUMBER_OF_FUNCTIONS = 10;
 
   public:
     const max2871Registers Default;   // Default read-only copy of the registers
@@ -99,8 +98,7 @@ class MAX2871_LO {
 
     uint32_t spiMaxSpeed = 20000000;   // 20 MHz max SPI clock
 
-    typedef uint32_t (MAX2871_LO::*CmdFunc)();
-    typedef uint32_t (MAX2871_LO::*CmdFuncWithArg)(uint32_t);
+    typedef uint32_t (MAX2871_LO::*CmdFunc)(uint32_t);
 
     CmdFunc maxCmds[NUMBER_OF_FUNCTIONS] = {
       &MAX2871_LO::unused,
@@ -112,33 +110,28 @@ class MAX2871_LO {
       &MAX2871_LO::unused,
       &MAX2871_LO::set_TRI,
       &MAX2871_LO::set_DLD,
-    };
-
-    CmdFuncWithArg maxCmdsWithArg[NUMBER_OF_COMMANDS] = {
-      &MAX2871_LO::unused,
-      &MAX2871_LO::unused,
-      &MAX2871_LO::unused,
-      &MAX2871_LO::unused,
       &MAX2871_LO::set_DIV_MODE,
     };
 
     void begin(uint8_t, bool);
     void set_NF_bits(uint32_t);
     void set_M_bits(uint32_t);
-    uint32_t unused();
-    uint32_t unused(uint32_t);
-    uint32_t set_DLD();
-    uint32_t set_TRI();
-    uint32_t set_DIV_MODE(uint32_t);
-    uint32_t turn_off_RF();
-    uint32_t set_n4dBm();
-    uint32_t set_n1dBm();
-    uint32_t set_p2dBm();
-    uint32_t set_p5dBm();
+    /* dummySignature is used just to make the function signatures all
+       match. That way a single function pointer array can be used
+       simplifying the code necessary to access the function pointers
+    */
+    uint32_t unused(uint32_t dummySignature);
+    uint32_t set_DLD(uint32_t dummySignature);
+    uint32_t set_TRI(uint32_t dummySignature);
+    uint32_t set_DIV_MODE(uint32_t controlWord);
+    uint32_t turn_off_RF(uint32_t dummySignature);
+    uint32_t set_n4dBm(uint32_t dummySignature);
+    uint32_t set_n1dBm(uint32_t dummySignature);
+    uint32_t set_p2dBm(uint32_t dummySignature);
+    uint32_t set_p5dBm(uint32_t dummySignature);
 
     void spiWrite(uint32_t reg, uint8_t selectPin); // Write 4 bytes to chip register
-    uint32_t MAX2871Execute(int commandIndex);
-    uint32_t MAX2871ExecuteWithArg(int commandIndex, uint32_t controlWord);  // Set divider mode
+    uint32_t MAX2871Execute(byte commandIndex, uint32_t controlWord);
 };
 
 

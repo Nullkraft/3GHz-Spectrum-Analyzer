@@ -28,7 +28,7 @@ typedef struct adfRegisters {
 
 class ADF4356_LO {
   private:
-    static const int NUMBER_OF_FUNCTIONS = 10;
+    static const int NUMBER_OF_FUNCTIONS = 9;
 
   public:
     const adfRegisters Default;   // Default read-only copy of the registers
@@ -83,7 +83,6 @@ class ADF4356_LO {
       &ADF4356_LO::unused,
       &ADF4356_LO::set_TRI,
       &ADF4356_LO::set_DLD,
-      &ADF4356_LO::unused,
     };
     
     // ADF4356 methods
@@ -98,7 +97,7 @@ class ADF4356_LO {
     uint32_t set_TRI();
     uint32_t set_DLD();
 
-    uint32_t ADF4356Execute(int commandIndex);
+    uint32_t ADF4356Execute(byte commandIndex);
 
     void spiWrite(uint32_t reg, uint8_t selectPin);
 };

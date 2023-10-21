@@ -1,10 +1,5 @@
 #include "max2871.h"
 
-
-uint32_t MAX2871_LO::unused() {
-    return 0xFFFF;  // You tried to use an undefined command
-}
-
 uint32_t MAX2871_LO::unused(uint32_t) {
     return 0xFFFF;  // You tried to use an undefined command
 }
@@ -40,12 +35,12 @@ void MAX2871_LO::set_M_bits(uint32_t controlWord) {
   Curr.Reg[1] = Curr.Reg[1] | ((controlWord >> 5) & M_set);
 }
 
-uint32_t MAX2871_LO::set_DLD() {
+uint32_t MAX2871_LO::set_DLD(uint32_t dummySignature) {
   Curr.Reg[2] = Curr.Reg[2] | Mux_Set_DLD;  // Set MuxOut to Dig. Lock Det.
   return Curr.Reg[2];
 }
 
-uint32_t MAX2871_LO::set_TRI() {
+uint32_t MAX2871_LO::set_TRI(uint32_t dummySignature) {
   Curr.Reg[2] = Curr.Reg[2] & Mux_Set_TRI;  // Set MuxOut to Tristate
   return Curr.Reg[2];
 }
@@ -58,41 +53,33 @@ uint32_t MAX2871_LO::set_DIV_MODE(uint32_t controlWord) {
   return Curr.Reg[4];
 }
 
-uint32_t MAX2871_LO::set_p5dBm() {
+uint32_t MAX2871_LO::set_p5dBm(uint32_t dummySignature) {
   Curr.Reg[4] = (Curr.Reg[4] & Power_Level_Mask) | pos5dBm;
   return Curr.Reg[4];
 }
 
-uint32_t MAX2871_LO::turn_off_RF() {
+uint32_t MAX2871_LO::turn_off_RF(uint32_t dummySignature) {
   Curr.Reg[4] = Curr.Reg[4] & RFpower_off;
   return Curr.Reg[4];
 }
 
-uint32_t MAX2871_LO::set_n4dBm() {
+uint32_t MAX2871_LO::set_n4dBm(uint32_t dummySignature) {
   Curr.Reg[4] = (Curr.Reg[4] & Power_Level_Mask) | neg4dBm;
   return Curr.Reg[4];
 }
-uint32_t MAX2871_LO::set_n1dBm() {
+uint32_t MAX2871_LO::set_n1dBm(uint32_t dummySignature) {
   Curr.Reg[4] = (Curr.Reg[4] & Power_Level_Mask) | neg1dBm;
   return Curr.Reg[4];
 }
 
-uint32_t MAX2871_LO::set_p2dBm() {
+uint32_t MAX2871_LO::set_p2dBm(uint32_t dummySignature) {
   Curr.Reg[4] = (Curr.Reg[4] & Power_Level_Mask) | pos2dBm;
   return Curr.Reg[4];
 }
 
-uint32_t MAX2871_LO::MAX2871Execute(int commandIndex) {
+uint32_t MAX2871_LO::MAX2871Execute(byte commandIndex, uint32_t controlWord) {
   if (commandIndex >= 0 && commandIndex < MAX2871_LO::NUMBER_OF_FUNCTIONS) {
-    return (this->*maxCmds[commandIndex])();
-  }
-  return 0xFFFF;    // You tried to use an undefined command
-}
-
-// Program the register for setting div mode
-uint32_t MAX2871_LO::MAX2871ExecuteWithArg(int commandIndex, uint32_t controlWord) {
-  if (commandIndex >= 0 && commandIndex < MAX2871_LO::NUMBER_OF_COMMANDS) {
-    return (this->*maxCmdsWithArg[commandIndex])(controlWord);
+    return (this->*maxCmds[commandIndex])(controlWord);
   }
   return 0xFFFF;    // You tried to use an undefined command
 }
