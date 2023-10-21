@@ -220,12 +220,12 @@ void loop() {
             digitalWrite(REF_LO_SEL, LOW);
             digitalWrite(REF_HI_SEL, LOW);
             break;
-          // Turn off 66.666 MHz ref_clock AND turn on 66.000 MHz ref_clock
+          // Turn on low freq reference clock, Ref1, and turn off high freq reference clock, Ref2
           case ref_LO:
             digitalWrite(REF_HI_SEL, LOW);
             digitalWrite(REF_LO_SEL, HIGH);
             break;
-          // Turn off 66.000 MHz ref_clock AND turn on 66.666 MHz ref_clock
+          // Turn on high freq reference clock, Ref2, and turn off low freq reference clock, Ref1
           case ref_HI:
             digitalWrite(REF_LO_SEL, LOW);
             digitalWrite(REF_HI_SEL, HIGH);
