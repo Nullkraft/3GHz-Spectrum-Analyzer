@@ -240,6 +240,8 @@ void loop() {
           case LED_off:
             digitalWrite(LED_BUILTIN, LOW);
             if (!DEBUG) {
+              // Send end-of-serialWords message.
+              // This allows manually terminating a sweep for whatever reason.
               Serial.write(0xFF);
               Serial.write(0xFF);
             }
