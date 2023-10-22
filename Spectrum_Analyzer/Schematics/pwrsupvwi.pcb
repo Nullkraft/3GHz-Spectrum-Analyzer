@@ -9,7 +9,7 @@ Grid[5.00mil 0.0000 0.0000 1]
 PolyArea[3100.006200]
 Thermal[0.500000]
 DRC[3.50mil 4.00mil 3.50mil 6.00mil 7.87mil 3.50mil]
-Flags("showdrc,rubberband,nameonpcb,clearnew,newfullpoly,snappin,thindrawpoly")
+Flags("showdrc,rubberband,nameonpcb,clearnew,newfullpoly,snappin,showmask,thindrawpoly")
 Groups("1,c:2,s:3")
 Styles["Signal,10.00mil,36.00mil,20.00mil,6.00mil:Power,30.00mil,60.00mil,35.00mil,10.00mil:Fat,20.00mil,60.00mil,35.00mil,10.00mil:jclpcb,1.00mil,20.00mil,10.00mil,1.00mil"]
 Symbol[' ' 18.00mil]
@@ -1067,9 +1067,9 @@ Element["" "1305" "D2" "unknown" 3975.00mil 1836.80mil -93.20mil 99.60mil 0 100 
 
 	)
 
-Element["onsolder,lock" "mask_clear" "Sh2" "unknown" 2065.00mil 1460.00mil -1560.00mil 960.00mil 0 100 "onsolder"]
+Element["onsolder,lock" "mask_clear" "Sh2" "unknown" 2065.00mil 1420.00mil -1560.00mil 960.00mil 0 100 "onsolder"]
 (
-	Pad[-685.00mil 0.0000 685.00mil 0.0000 1750.00mil 0.0000 2656.00mil "1" "1" "onsolder,square,lock"]
+	Pad[-685.00mil 0.0000 685.00mil 0.0000 1750.00mil 0.0000 1750.00mil "1" "1" "onsolder,square,lock,edge2"]
 	ElementLine [-1970.00mil -420.00mil -1565.00mil -420.00mil 10.00mil]
 	ElementLine [-1565.00mil -420.00mil -1565.00mil -880.00mil 10.00mil]
 	ElementLine [-1565.00mil -880.00mil -1970.00mil -880.00mil 10.00mil]
