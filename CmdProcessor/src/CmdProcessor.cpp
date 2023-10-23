@@ -83,7 +83,7 @@ void setup() {
   digitalWrite(REF_HI_SEL, LOW);   // Disable high frequency referenc clock
 
   init_specann();
-  LAST_STATE = ABOVE_NOISE_FLOOR;
+  // LAST_STATE = ABOVE_NOISE_FLOOR;
 }
 
 uint8_t hi_byte;
@@ -255,7 +255,7 @@ void loop() {
           case SWEEP_START:
             break;
           case SWEEP_END:
-            LAST_STATE = ABOVE_NOISE_FLOOR;   // Reset for start of next sweep
+            // LAST_STATE = ABOVE_NOISE_FLOOR;   // Reset for start of next sweep
             Serial.write(0xFF);
             Serial.write(0xFF);
             break;
