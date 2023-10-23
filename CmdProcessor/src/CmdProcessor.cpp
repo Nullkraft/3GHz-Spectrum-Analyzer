@@ -238,7 +238,7 @@ void loop() {
       case MISC_addr:
         switch (Command) {
           case LED_off:
-            digitalWrite(LED_BUILTIN, LOW);
+            builtinLEDOff();
             if (!DEBUG) {
               // Send end-of-serialWords message.
               // This allows manually terminating a sweep for whatever reason.
@@ -247,7 +247,7 @@ void loop() {
             }
             break;
           case LED_on:
-            digitalWrite(LED_BUILTIN, HIGH);
+            builtinLEDOn();
             break;
           case MSG_REQ:
             version();

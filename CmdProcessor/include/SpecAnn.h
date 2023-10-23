@@ -130,3 +130,11 @@ void spiWriteAtten(uint8_t level, uint8_t selectPin) {
 void version() {
   Serial.print(F("- WN2A Spectrum Analyzer CmdProcessor Oct. 2023"));
 }
+
+void builtinLEDOn() {
+    digitalWrite(LED_BUILTIN, HIGH);
+}
+
+void builtinLEDOff() {
+    digitalWrite(LED_BUILTIN, LOW);
+}
