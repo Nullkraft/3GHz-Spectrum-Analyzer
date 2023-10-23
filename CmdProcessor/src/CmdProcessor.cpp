@@ -58,6 +58,17 @@ bool useBinary = true;  // Set this to true for binary mode, false for ASCII mod
 
 bool DEBUG = false;
 
+volatile uint16_t a2dAmplitude;
+uint8_t* ampl_byte = (uint8_t*)&a2dAmplitude;
+uint8_t adc_pin;
+
+// Assign reference designators from the schematic to the LO ojbect of choice
+ADF4356_LO LO1 = ADF4356_LO();
+MAX2871_LO LO2 = MAX2871_LO();
+MAX2871_LO LO3 = MAX2871_LO();
+MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
+
+
 /******** SETUP *********************************************************************/
 void setup() {
   #ifndef ARDUINO_SAMD_ZERO
@@ -148,6 +159,8 @@ void loop() {
         //  We either get a lock or we check for a timeout.
         if (LOCKED) {
           a2dAmplitude = analogRead(adc_pin);
+          // hi_byte = (uint8_t)(a2dAmplitude >> 8);
+          // lo_byte = (uint8_t)a2dAmplitude;
           hi_byte = ampl_byte[1];
           lo_byte = ampl_byte[0];
           break;
@@ -160,6 +173,8 @@ void loop() {
         */
         if ((micros()-start_PLL_Lock_time) > PLL_Lock_timeout) {
           a2dAmplitude = analogRead(adc_pin);
+          // hi_byte = (uint8_t)(a2dAmplitude >> 8) | failed_to_lock;  // Report failure to PC
+          // lo_byte = (uint8_t)a2dAmplitude;
           hi_byte = ampl_byte[1] | failed_to_lock;  // Report failure to PC
           lo_byte = ampl_byte[0];
           break;
@@ -276,3 +291,27 @@ void loop() {
   }    // End While serial available
   COMMAND_FLAG = false;
 } /* End loop() */
+
+
+/* Starting with one of the MAX2871 chips makes initializing LO1 much more consistent.  Why?
+    TODO: Investigate LO1 locking anomaly
+    Initialize IC's LO1, LO2 and LO3 by programming them twice IAW manufacturer's specsheet
+*/
+void init_specann() {
+  // Presets for LO3
+  LO3.Curr.Reg[0] = 0x002081C8;  // LO3 = 270 MHz with 66 MHz ref clock
+  LO3.Curr.Reg[1] = 0x400103E9;
+  LO3.Curr.Reg[2] = 0x98005F42;  // Digital Lock Detect ON
+  LO3.Curr.Reg[3] = 0x00001F23;
+  LO3.Curr.Reg[4] = 0x63CE803C;
+  LO3.Curr.Reg[5] = 0x00400005;
+  LO3.Curr.Reg[6] = 0x80005F42;  // Digital Lock Detect ON
+
+  LO3.begin(LO3_SEL, true);
+  LO2.begin(LO2_SEL, true);
+  LO1.begin(LO1_SEL);
+  delay(20);
+  LO3.begin(LO3_SEL, false);
+  LO2.begin(LO2_SEL, false);
+  LO1.begin(LO1_SEL);
+}
