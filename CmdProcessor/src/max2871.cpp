@@ -1,9 +1,5 @@
 #include "max2871.h"
 
-uint32_t MAX2871_LO::unused(uint32_t) {
-    return 0xFFFF;  // You tried to use an undefined command
-}
-
 /* IAW Manufacturer's PDF document "MAX2871 - 23.5MHz to 6000MHz Fractional/Integer-N Synthesizer/VCO"
    pg. 13 4-Wire Serial Interface during initialization there should be a 20mS delay after programming
    register 5.                                                  Document Version: 19-7106; Rev 4; 6/20
