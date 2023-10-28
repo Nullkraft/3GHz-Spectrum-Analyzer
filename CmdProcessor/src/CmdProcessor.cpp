@@ -73,6 +73,7 @@ MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
 
 // Command     = { 0, 1, 2, 3, 4, 5,  6, 7, 8, 9 };
 uint8_t max2871CmdMap[] {31, 0, 1, 2, 3, 4, 31, 5, 6, 7 }; // 31 is the 'invalid' command
+uint8_t adf4356CmdMap[] {31, 0, 1, 2, 3, 4, 31, 5, 6 }; // 31 is the 'invalid' command
 
 void init_specann();
 
