@@ -43,7 +43,7 @@ typedef struct maxRegisters {
 
 class MAX2871_LO {
   private:
-    static const int NUMBER_OF_FUNCTIONS = 10;
+    static const int NUMBER_OF_FUNCTIONS = 8;
 
   public:
     const max2871Registers Default;   // Default read-only copy of the registers
@@ -108,16 +108,14 @@ class MAX2871_LO {
      * to the program running on the PC.
      */
     CmdFunc maxCmds[NUMBER_OF_FUNCTIONS] = {
-      &MAX2871_LO::unused,
-      &MAX2871_LO::turn_off_RF,
-      &MAX2871_LO::set_n4dBm,
-      &MAX2871_LO::set_n1dBm,
-      &MAX2871_LO::set_p2dBm,
-      &MAX2871_LO::set_p5dBm,
-      &MAX2871_LO::unused,
-      &MAX2871_LO::set_TRI,
-      &MAX2871_LO::set_DLD,
-      &MAX2871_LO::set_DIV_MODE,
+      &MAX2871_LO::turn_off_RF,   // 0
+      &MAX2871_LO::set_n4dBm,     // 1
+      &MAX2871_LO::set_n1dBm,     // 2
+      &MAX2871_LO::set_p2dBm,     // 3
+      &MAX2871_LO::set_p5dBm,     // 4
+      &MAX2871_LO::set_TRI,       // 5
+      &MAX2871_LO::set_DLD,       // 6
+      &MAX2871_LO::set_DIV_MODE,  // 7
     };
 
     void begin(uint8_t, bool);
