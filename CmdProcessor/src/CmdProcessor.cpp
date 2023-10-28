@@ -71,7 +71,10 @@ MAX2871_LO LO2 = MAX2871_LO();
 MAX2871_LO LO3 = MAX2871_LO();
 MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
 
-// Command     = { 0, 1, 2, 3, 4, 5,  6, 7, 8, 9 };
+/* Maps the Command to the index of the, max2871CmdMap or adf4356CmdMap, function:
+ * This decouples the Command value from the function-pointer-array index in
+ * max2871.h and adf4356.h driver files.
+ */
 uint8_t max2871CmdMap[] {31, 0, 1, 2, 3, 4, 31, 5, 6, 7 }; // 31 is the 'invalid' command
 uint8_t adf4356CmdMap[] {31, 0, 1, 2, 3, 4, 31, 5, 6 }; // 31 is the 'invalid' command
 
@@ -213,7 +216,7 @@ void loop() {
         spi_select = LO1_SEL;
         Data32 = ((uint32_t)Data16 << 4);           // Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4>
         LO1.set_N_bits(Data32);                     // Set the new INT_N bits into Register 0
-        spiWord = LO1.ADF4356Execute(Command);      // This selects from 1 of 7 adf4356 commands to run
+        spiWord = LO1.ADF4356Execute(adf4356CmdMap[Command]); // This selects from 1 of 7 adf4356 commands
         LO1.spiWrite(spiWord, spi_select);          // Write Reg[4] when doing set_TRI/set_DLD, ELSE Reg[6]
         LO1.spiWrite(LO1.Curr.Reg[0], spi_select);  // followed by Reg[0] as required by the spec-sheet.
         break;
