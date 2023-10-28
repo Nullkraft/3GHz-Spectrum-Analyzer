@@ -15,10 +15,6 @@ void ADF4356_LO::set_N_bits(uint32_t Data32)
   Curr.Reg[0] |= Data32;              // Set the new INT_N bits into Register 0
 }
 
-uint32_t ADF4356_LO::unused() {
-    return 0xFFFF;  // You tried to use an undefined command
-}
-
 uint32_t ADF4356_LO::turn_off_RF() {
   Curr.Reg[6] = Curr.Reg[6] & RFpower_off;
   return Curr.Reg[6];

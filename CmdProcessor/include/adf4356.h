@@ -28,7 +28,7 @@ typedef struct adfRegisters {
 
 class ADF4356_LO {
   private:
-    static const int NUMBER_OF_FUNCTIONS = 9;
+    static const int NUMBER_OF_FUNCTIONS = 7;
 
   public:
     const adfRegisters Default;   // Default read-only copy of the registers
@@ -74,21 +74,18 @@ class ADF4356_LO {
      * available commands
      */
     CmdFunc adfCmds[NUMBER_OF_FUNCTIONS] = {
-      &ADF4356_LO::unused,
-      &ADF4356_LO::turn_off_RF,
-      &ADF4356_LO::set_n4dBm,
-      &ADF4356_LO::set_n1dBm,
-      &ADF4356_LO::set_p2dBm,
-      &ADF4356_LO::set_p5dBm,
-      &ADF4356_LO::unused,
-      &ADF4356_LO::set_TRI,
-      &ADF4356_LO::set_DLD,
+      &ADF4356_LO::turn_off_RF, // 0
+      &ADF4356_LO::set_n4dBm,   // 1
+      &ADF4356_LO::set_n1dBm,   // 2
+      &ADF4356_LO::set_p2dBm,   // 3
+      &ADF4356_LO::set_p5dBm,   // 4
+      &ADF4356_LO::set_TRI,     // 5
+      &ADF4356_LO::set_DLD,     // 6
     };
     
     // ADF4356 methods
     void begin(uint8_t);
     void set_N_bits(uint32_t);
-    uint32_t unused();
     uint32_t turn_off_RF();
     uint32_t set_n4dBm();
     uint32_t set_n1dBm();
