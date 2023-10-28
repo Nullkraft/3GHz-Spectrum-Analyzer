@@ -126,7 +126,6 @@ class MAX2871_LO {
      * would be needed, negating the benefit of 'indexing' into
      * the array.
      */
-    uint32_t unused(uint32_t dummyControlWord);
     uint32_t set_DLD(uint32_t dummyControlWord);
     uint32_t set_TRI(uint32_t dummyControlWord);
     uint32_t set_DIV_MODE(uint32_t controlWord);
