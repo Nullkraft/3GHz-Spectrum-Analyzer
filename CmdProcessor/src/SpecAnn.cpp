@@ -22,3 +22,9 @@ void version() {
   Serial.print(F("- WN2A Spectrum Analyzer CmdProcessor Oct. 2023"));
 }
 
+// Send the end-of-sweep acknowledgement back to the controller
+void end_sweep_ack() {
+  Serial.write(0xFF);
+  Serial.write(0xFF);
+}
+

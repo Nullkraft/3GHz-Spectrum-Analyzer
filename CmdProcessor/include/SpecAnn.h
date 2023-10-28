@@ -57,9 +57,10 @@ const uint16_t ATTEN_Data_Mask = 0x7F;  // 7 bits of Embedded Data
 
 /*********** HARDWARE DEFINITIONS END *******/
 
-void spiWriteAtten(uint8_t level, uint8_t selectPin);
-void version();
-void builtinLEDOn();
 void builtinLEDOff();
+void builtinLEDOn();
+void version();
+void end_sweep_ack();
+void spiWriteAtten(uint8_t level, uint8_t selectPin);
 
 #endif  // SPECANN_H
