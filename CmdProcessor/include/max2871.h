@@ -102,11 +102,6 @@ class MAX2871_LO {
     typedef uint32_t (MAX2871_LO::*CmdFunc)(uint32_t);
 
     // Create the function pointer array
-    /* The array index depends on the user's selected command.
-     *
-     * WARNING: So basically the array indexing is tightly coupled
-     * to the program running on the PC.
-     */
     CmdFunc maxCmds[NUMBER_OF_FUNCTIONS] = {
       &MAX2871_LO::turn_off_RF,   // 0
       &MAX2871_LO::set_n4dBm,     // 1
