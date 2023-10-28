@@ -20,9 +20,6 @@ enum LOCmds { all_ref_off,
               ref_HI,
             };
 
-// // // Command names for operating the PLL Mux
-// // enum mux { all_tristate, };
-
 // Command names for controlling and reporting Arduino state
 enum misc { LED_off, 
             LED_on, 
@@ -45,7 +42,6 @@ const uint8_t ATTEN_SEL = A5;
 //const uint8_t SPI_MOSI  = 11;   // Reserved by the SPI Library
 //const uint8_t SPI_MISO  = 12;   // Reserved by the SPI Library
 //const uint8_t SPI_CLOCK = 13;   // Reserved by the SPI Library
-// uint8_t adc_pin;
 
 // Addresses for selecting the various hardware ICs
 // TODO: Create the list in a config file that remains with the project files.
@@ -59,66 +55,11 @@ const uint8_t MISC_addr = 7;
 // BitMask for programming the registers of the Attenuator IC
 const uint16_t ATTEN_Data_Mask = 0x7F;  // 7 bits of Embedded Data
 
-// // /*********** HARDWARE DEFINITIONS END *******/
-
-// // Assign reference designators from the schematic to the LO ojbect of choice
-// ADF4356_LO LO1 = ADF4356_LO();
-// MAX2871_LO LO2 = MAX2871_LO();
-// MAX2871_LO LO3 = MAX2871_LO();
-// MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
-
-// volatile uint16_t a2dAmplitude;
-// byte* ampl_byte = (byte*)&a2dAmplitude;
+/*********** HARDWARE DEFINITIONS END *******/
 
 void spiWriteAtten(uint8_t level, uint8_t selectPin);
-void init_specann();
 void version();
 void builtinLEDOn();
 void builtinLEDOff();
-
-// /* Starting with one of the MAX2871 chips makes initializing LO1 much more consistent.  Why?
-//     TODO: Investigate LO1 locking anomaly
-//     Initialize IC's LO1, LO2 and LO3 by programming them twice IAW manufacturer's specsheet
-// */
-// void init_specann() {
-//   // Presets for LO3
-//   LO3.Curr.Reg[0] = 0x002081C8;  // LO3 = 270 MHz with 66 MHz ref clock
-//   LO3.Curr.Reg[1] = 0x400103E9;
-//   LO3.Curr.Reg[2] = 0x98005F42;  // Digital Lock Detect ON
-//   LO3.Curr.Reg[3] = 0x00001F23;
-//   LO3.Curr.Reg[4] = 0x63CE803C;
-//   LO3.Curr.Reg[5] = 0x00400005;
-//   LO3.Curr.Reg[6] = 0x80005F42;  // Digital Lock Detect ON
-
-//   LO3.begin(LO3_SEL, true);
-//   LO2.begin(LO2_SEL, true);
-//   LO1.begin(LO1_SEL);
-//   delay(20);
-//   LO3.begin(LO3_SEL, false);
-//   LO2.begin(LO2_SEL, false);
-//   LO1.begin(LO1_SEL);
-// }
-
-// Program the Digital Attenuator by sending and latching a single byte
-// void spiWriteAtten(uint8_t level, uint8_t selectPin) {
-//   SPI.beginTransaction(SPISettings(16000000, LSBFIRST, SPI_MODE0));
-//   SPI.begin();
-//   SPI.transfer(level);
-//   digitalWrite(selectPin, HIGH);
-//   digitalWrite(selectPin, LOW);
-//   SPI.end();
-// }
-
-// void version() {
-//   Serial.print(F("- WN2A Spectrum Analyzer CmdProcessor Oct. 2023"));
-// }
-
-// void builtinLEDOn() {
-//     digitalWrite(LED_BUILTIN, HIGH);
-// }
-
-// void builtinLEDOff() {
-//     digitalWrite(LED_BUILTIN, LOW);
-// }
 
 #endif  // SPECANN_H

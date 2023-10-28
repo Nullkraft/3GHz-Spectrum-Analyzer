@@ -20,6 +20,7 @@
        or LO3 Specific Command.
 */
 
+#include <Arduino.h>
 #include <SPI.h>
 #include "SpecAnn.h"
 #include "max2871.h"
@@ -64,11 +65,13 @@ volatile uint16_t a2dAmplitude;
 uint8_t* ampl_byte = (uint8_t*)&a2dAmplitude;
 uint8_t adc_pin;
 
-// Assign reference designators from the schematic to the LO ojbect of choice
+// Assign reference designators from the schematic to the circuit components
 ADF4356_LO LO1 = ADF4356_LO();
 MAX2871_LO LO2 = MAX2871_LO();
 MAX2871_LO LO3 = MAX2871_LO();
 MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
+
+void init_specann();
 
 
 /******** SETUP *********************************************************************/
@@ -294,7 +297,6 @@ void loop() {
 
 
 /* Starting with one of the MAX2871 chips makes initializing LO1 much more consistent.  Why?
-    TODO: Investigate LO1 locking anomaly
     Initialize IC's LO1, LO2 and LO3 by programming them twice IAW manufacturer's specsheet
 */
 void init_specann() {
