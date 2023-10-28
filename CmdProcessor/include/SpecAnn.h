@@ -14,6 +14,9 @@
 // const int end_noise_floor   = 0xE0;  // Last in the series of ADC noise-floor readings
 const int failed_to_lock = 0xF0;  // VCO Failed to lock
 
+// BitMask for programming the registers of the Attenuator IC
+const uint16_t ATTEN_Data_Mask = 0x7F;  // 7 bits of Embedded Data
+
 // Command names for operating the reference oscillators
 enum LOCmds { all_ref_off, 
               ref_LO, 
@@ -51,9 +54,6 @@ const uint8_t LO2_addr = 2;
 const uint8_t LO3_addr = 3;
 const uint8_t RefClock = 4;
 const uint8_t MISC_addr = 7;
-
-// BitMask for programming the registers of the Attenuator IC
-const uint16_t ATTEN_Data_Mask = 0x7F;  // 7 bits of Embedded Data
 
 /*********** HARDWARE DEFINITIONS END *******/
 
