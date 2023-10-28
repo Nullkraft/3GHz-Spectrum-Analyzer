@@ -71,6 +71,9 @@ MAX2871_LO LO2 = MAX2871_LO();
 MAX2871_LO LO3 = MAX2871_LO();
 MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
 
+// Command     = { 0, 1, 2, 3, 4, 5,  6, 7, 8, 9 };
+uint8_t max2871CmdMap[] {31, 0, 1, 2, 3, 4, 31, 5, 6, 7 }; // 31 is the 'invalid' command
+
 void init_specann();
 
 
@@ -227,7 +230,7 @@ void loop() {
           spi_select = LO3_SEL;
           adc_pin = ADC_SEL_045;
         }
-        spiWord = LO->MAX2871Execute(Command, serialWord);
+        spiWord = LO->MAX2871Execute(max2871CmdMap[Command], serialWord);
         // Now program the currently selected LO
         LO->spiWrite(spiWord, spi_select);
         break;  // End case LO2 OR case LO3
