@@ -259,10 +259,8 @@ void loop() {
           case LED_off:
             builtinLEDOff();
             if (!DEBUG) {
-              // Send end-of-serialWords message.
-              // This allows manually terminating a sweep for whatever reason.
-              Serial.write(0xFF);
-              Serial.write(0xFF);
+              // Toggling the LED terminates a long running sweep
+              end_sweep_ack();
             }
             break;
           case LED_on:
@@ -274,8 +272,7 @@ void loop() {
           case SWEEP_START:
             break;
           case SWEEP_END:
-            Serial.write(0xFF);
-            Serial.write(0xFF);
+            end_sweep_ack();
             break;
           case RESET:
             break;
