@@ -72,13 +72,26 @@ MAX2871_LO LO3 = MAX2871_LO();
 MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
 
 /* Maps the Command to the index of the, max2871CmdMap or adf4356CmdMap, function:
- * This decouples the Command value from the function-pointer-array index in
+ * This map decouples the Command value from the function-pointer-array index in
  * max2871.h and adf4356.h driver files.
  * See MAX2871Execute(), in max2871.h, or ADF4356Execute(), in adf4356.h, for the
  * list of available commands
  */
-uint8_t max2871CmdMap[] {31, 0, 1, 2, 3, 4, 31, 5, 6, 7 }; // 31 is the 'invalid' command
-uint8_t adf4356CmdMap[] {31, 0, 1, 2, 3, 4, 31, 5, 6 }; // 31 is the 'invalid' command
+enum cmdList{GERERAL,
+             RFOFF,
+             N4DBM,
+             N1DBM,
+             P2DBM,
+             P5DBM,
+             CHANGE_FREQ,
+             TRI,
+             DLD,
+             DIV_MODE,
+             NA=30,     // This driver command is not in use
+             };
+
+uint8_t max2871CmdMap[] {NA, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, NA, TRI, DLD, DIV_MODE };
+uint8_t adf4356CmdMap[] {NA, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, NA, TRI, DLD };
 
 void init_specann();  // Why do I have to declare this function???
 
