@@ -224,6 +224,7 @@ void loop() {
     switch (Address) {
       case Attenuator:
         Data16 &= ATTEN_Data_Mask;
+        miscExecute(Command, (uint8_t)Data16, ATTEN_SEL);
         spiWriteAtten((uint8_t)Data16, ATTEN_SEL);
         break;
 
@@ -279,22 +280,22 @@ void loop() {
       case MISC_addr:
         switch (Command) {
           case LED_off:
-            builtinLEDOff();
+            builtinLEDOff(LOW, LED_BUILTIN);
             if (!DEBUG) {
               // Toggling the LED terminates a long running sweep
-              end_sweep_ack();
+              end_sweep_ack(0, 0);
             }
             break;
           case LED_on:
-            builtinLEDOn();
+            builtinLEDOn(HIGH, LED_BUILTIN);
             break;
           case MSG_REQ:
-            version();
+            version(0, 0);
             break;
           case SWEEP_START:
             break;
           case SWEEP_END:
-            end_sweep_ack();
+            end_sweep_ack(0, 0);
             break;
           case RESET:
             break;
