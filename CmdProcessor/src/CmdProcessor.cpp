@@ -110,7 +110,7 @@ void setup() {
   digitalWrite(LED_BUILTIN, LOW);  // Make sure the LED is off
 
   // Hardware Initialization for testing of early hardware builds.
-  spiWriteAtten(0x0, ATTEN_SEL);   // Set 0dB on the digital attenuator
+  setAtten(0x0, ATTEN_SEL);   // Set 0dB on the digital attenuator
   digitalWrite(REF_LO_SEL, HIGH);  // Enable low frequency referenc clock
   digitalWrite(REF_HI_SEL, LOW);   // Disable high frequency referenc clock
 
@@ -217,9 +217,7 @@ void loop() {
     // Start by selecting the Address of the device then the operation to be performed.
     switch (Address) {
       case Attenuator:
-        Data16 &= ATTEN_Data_Mask;
-        miscExecute(Command, (uint8_t)Data16, ATTEN_SEL);
-        spiWriteAtten((uint8_t)Data16, ATTEN_SEL);
+        setAtten((uint8_t)Data16, ATTEN_SEL);
         break;
 
       case LO1_addr:
