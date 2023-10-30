@@ -47,7 +47,7 @@ bool COMMAND_FLAG = false;
 
 /* All the values required by the spi_write() command */
 uint8_t spi_select;  // Currently selected LO (1, 2 or 3) that is to be programmed
-uint32_t spiWord;    // Holds the register contents to be written to the selected device
+uint32_t regWord;    // Holds the register contents to be written to the selected device
 
 /*** Parsed values from the incoming 32 bit serial word ***/
 uint16_t Data16;  // 16 bits
@@ -222,9 +222,9 @@ void loop() {
 
       case LO1_addr:
         spi_select = LO1_SEL;
-        LO1.set_N_bits(Data16);                     // Set the new INT_N bits into Register 0
-        spiWord = LO1.ADF4356Execute(adf4356CmdMap[Command]); // This selects from 1 of 7 adf4356 commands
-        LO1.update(spiWord, spi_select);          // Write Reg[4] when doing set_TRI/set_DLD, ELSE Reg[6]
+        LO1.set_N_bits(Data16);                   // Set the new INT_N bits into Register 0
+        regWord = LO1.ADF4356Execute(adf4356CmdMap[Command]); // This selects from 1 of 7 adf4356 commands
+        LO1.update(regWord, spi_select);          // Write Reg[4] when doing set_TRI/set_DLD, ELSE Reg[6]
         LO1.update(LO1.Curr.Reg[0], spi_select);  // followed by Reg[0] as required by the spec-sheet.
         break;
 
@@ -241,9 +241,9 @@ void loop() {
           spi_select = LO3_SEL;
           adc_pin = ADC_SEL_045;
         }
-        spiWord = LO->MAX2871Execute(max2871CmdMap[Command], serialWord);
+        regWord = LO->MAX2871Execute(max2871CmdMap[Command], serialWord);
         // Now program the currently selected LO
-        LO->spiWrite(spiWord, spi_select);
+        LO->spiWrite(regWord, spi_select);
         break;  // End case LO2 OR case LO3
 
       case RefClock:
