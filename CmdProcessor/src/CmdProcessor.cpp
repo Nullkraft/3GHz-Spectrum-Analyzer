@@ -168,8 +168,8 @@ void loop() {
       // N & F:  Set bits R[0], bits[22:15] for new N, and R[0], bits[14:3] for new F
       LO->set_NF_bits(serialWord);
       // Program the selected LO starting with the higher numbered registers first
-      LO->spiWrite(LO->Curr.Reg[1], spi_select);
-      LO->spiWrite(LO->Curr.Reg[0], spi_select);
+      LO->update(LO->Curr.Reg[1], spi_select);
+      LO->update(LO->Curr.Reg[0], spi_select);
 
       // Wait for selected LO2 or LO3 to Lock
       start_PLL_Lock_time = micros();
@@ -243,7 +243,7 @@ void loop() {
         }
         regWord = LO->MAX2871Execute(max2871CmdMap[Command], serialWord);
         // Now program the currently selected LO
-        LO->spiWrite(regWord, spi_select);
+        LO->update(regWord, spi_select);
         break;  // End case LO2 OR case LO3
 
       case RefClock:

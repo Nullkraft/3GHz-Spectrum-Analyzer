@@ -132,7 +132,7 @@ class MAX2871_LO {
     uint32_t set_p2dBm(uint32_t dummyControlWord);
     uint32_t set_p5dBm(uint32_t dummyControlWord);
 
-    void spiWrite(uint32_t reg, uint8_t selectPin); // Write 4 bytes to chip register
+    void update(uint32_t reg, uint8_t selectPin); // Write 4 bytes to chip register
     uint32_t MAX2871Execute(byte commandIndex, uint32_t controlWord);
 };
 
