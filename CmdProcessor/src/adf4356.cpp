@@ -6,7 +6,7 @@ void ADF4356_LO::begin(uint8_t selectPin) {
    for (int x = 13; x >= 0; x--) {
      update(Curr.Reg[x], selectPin);  // Program LO1=3776.52 MHz with LD on Mux
    }
-   update(Curr.Reg[14], selectPin);   // Tri-stating the mux output disables LO1 lock detect
+   update(Curr.Reg[14], selectPin);   // Set mux tri-state to disable LO1 lock detect
 }
 
 void ADF4356_LO::set_N_bits(uint16_t Data16)
