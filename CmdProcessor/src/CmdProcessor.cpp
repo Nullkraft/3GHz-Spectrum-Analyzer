@@ -214,7 +214,7 @@ void loop() {
     /******** SPECTRUM ANALYZER INSTRUCTIONS **********************************************/
     /* Hardware selection and operations. This is where the processing of
        Specific commands occurs. */
-    // Start by selecting the Address of the device then the operation to be performed.
+    // Start by selecting the Address of the device then the 'Command' to be performed.
     switch (Address) {
       case Attenuator:
         setAtten((uint8_t)Data16, ATTEN_SEL);
@@ -222,8 +222,9 @@ void loop() {
 
       case LO1_addr:
         spi_select = LO1_SEL;
-        Data32 = ((uint32_t)Data16 << 4);           // Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4>
-        LO1.set_N_bits(Data32);                     // Set the new INT_N bits into Register 0
+        // Data32 = ((uint32_t)Data16 << 4);           // Aligns INT_N bits <N16:N1> with R[0]<DB19:DB4>
+        LO1.set_N_bits(Data16);                     // Set the new INT_N bits into Register 0
+        // LO1.set_N_bits(Data32);                     // Set the new INT_N bits into Register 0
         spiWord = LO1.ADF4356Execute(adf4356CmdMap[Command]); // This selects from 1 of 7 adf4356 commands
         LO1.spiWrite(spiWord, spi_select);          // Write Reg[4] when doing set_TRI/set_DLD, ELSE Reg[6]
         LO1.spiWrite(LO1.Curr.Reg[0], spi_select);  // followed by Reg[0] as required by the spec-sheet.
