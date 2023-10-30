@@ -38,24 +38,16 @@ void end_sweep_ack() {
 }
 
 void miscExecute(uint8_t commandIndex) {
-  if (commandIndex >= 0 && commandIndex < NUM_FUNCTIONS) {
+  if (commandIndex >= 0 && commandIndex < NUM_MISC_FUNCTIONS) {
     miscCmds[commandIndex]();
   }
 }
 
 // Create the function pointer array
-void (*miscCmds[NUM_FUNCTIONS])() = {
+void (*miscCmds[NUM_MISC_FUNCTIONS])() = {
   builtinLEDOff, // 0
   builtinLEDOn,  // 1
   version,       // 2
   end_sweep_ack, // 3
 };
-
-/* VSCode does AutoSave. If by chance you accidentally hit your keyboard
- * and your cursor is parked inside your code then it will get auto-saved.
- * 
- * Save yourself the trouble and always park your cursor past the last
- * line of your code.
- */
-
 

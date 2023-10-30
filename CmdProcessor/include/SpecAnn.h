@@ -56,7 +56,7 @@ const uint8_t RefClock = 4;
 const uint8_t MISC_addr = 7;
 
 /*********** HARDWARE DEFINITIONS END *******/
-#define NUM_FUNCTIONS 4
+#define NUM_MISC_FUNCTIONS 4
 
 // Create a function pointer to use in the function pointer array
 // typedef void (*CmdFunc)(uint8_t, uint8_t);
@@ -66,7 +66,7 @@ void version();
 void end_sweep_ack();
 void setAtten(uint8_t level, uint8_t selectPin);
 
-extern void (*miscCmds[NUM_FUNCTIONS])();
+extern void (*miscCmds[NUM_MISC_FUNCTIONS])();
 void miscExecute(uint8_t);
 
 #endif  // _SPECANN_
