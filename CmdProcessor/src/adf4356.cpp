@@ -60,13 +60,13 @@ uint32_t ADF4356_LO::ADF4356Execute(byte commandIndex) {
 
 // Program a single register of the ADF4356 by sending and latching 4 bytes
 void ADF4356_LO::update(uint32_t reg, uint8_t selectPin) {
-    SPI.beginTransaction(SPISettings(20000000, MSBFIRST, SPI_MODE0));
-    SPI.begin();
-    digitalWrite(selectPin, LOW);
-    SPI.transfer(reg >> 24);
-    SPI.transfer(reg >> 16);
-    SPI.transfer(reg >> 8);
-    SPI.transfer(reg);
-    digitalWrite(selectPin, HIGH);
-    SPI.end();
+  SPI.beginTransaction(SPISettings(spiMaxSpeed, MSBFIRST, SPI_MODE0));
+  SPI.begin();
+  digitalWrite(selectPin, LOW);
+  SPI.transfer(reg >> 24);
+  SPI.transfer(reg >> 16);
+  SPI.transfer(reg >> 8);
+  SPI.transfer(reg);
+  digitalWrite(selectPin, HIGH);
+  SPI.end();
 }
