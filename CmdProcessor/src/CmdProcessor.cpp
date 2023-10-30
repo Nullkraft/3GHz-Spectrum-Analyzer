@@ -242,9 +242,8 @@ void loop() {
           adc_pin = ADC_SEL_045;
         }
         regWord = LO->MAX2871Execute(max2871CmdMap[Command], serialWord);
-        // Now program the currently selected LO
-        LO->update(regWord, spi_select);
-        break;  // End case LO2 OR case LO3
+        LO->update(regWord, spi_select);  // Now program the currently selected LO
+        break;
 
       case RefClock:
         switch (Command) {
