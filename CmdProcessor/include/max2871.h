@@ -1,7 +1,9 @@
 #ifndef _MAX2871_
 #define _MAX2871_
 
-#include <Arduino.h>    // Includes typedef for uint32_t
+#ifdef PLATFORMIO
+#include <Arduino.h>    /* Needed for uint32_t */
+#endif
 #include <SPI.h>
 
 

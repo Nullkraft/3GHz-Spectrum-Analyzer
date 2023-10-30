@@ -1,7 +1,9 @@
 #ifndef _ADF4356_
 #define _ADF4356_
 
+#ifdef PLATFORMIO
 #include <Arduino.h>    /* Needed for uint32_t */
+#endif
 #include <SPI.h>
 
 

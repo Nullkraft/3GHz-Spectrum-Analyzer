@@ -20,7 +20,9 @@
        or LO3 Specific Command.
 */
 
+#ifdef PLATFORMIO
 #include <Arduino.h>
+#endif
 #include <SPI.h>
 #include "SpecAnn.h"
 #include "max2871.h"
