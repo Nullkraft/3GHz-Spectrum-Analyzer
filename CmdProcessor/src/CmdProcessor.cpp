@@ -20,13 +20,14 @@
        or LO3 Specific Command.
 */
 
+#include <SPI.h>
+
 #ifdef PLATFORMIO
 #include <Arduino.h>
-#endif
-#include <SPI.h>
 #include "SpecAnn.h"
 #include "max2871.h"
 #include "adf4356.h"
+#endif
 
 
 /*           Serial Word with Command Flag:
