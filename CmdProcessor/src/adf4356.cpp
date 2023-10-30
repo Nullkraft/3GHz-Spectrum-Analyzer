@@ -2,11 +2,11 @@
 #include "adf4356.h"
 
 void ADF4356_LO::begin(uint8_t selectPin) {
-   spiWrite(Curr.Reg[4], selectPin);  // Enable LO1 lock detect
+   update(Curr.Reg[4], selectPin);    // Enable LO1 lock detect
    for (int x = 13; x >= 0; x--) {
-     spiWrite(Curr.Reg[x], selectPin);  // Program LO1=3776.52 MHz with LD on Mux
+     update(Curr.Reg[x], selectPin);  // Program LO1=3776.52 MHz with LD on Mux
    }
-   spiWrite(Curr.Reg[14], selectPin);  // Tri-stating the mux output disables LO1 lock detect
+   update(Curr.Reg[14], selectPin);   // Tri-stating the mux output disables LO1 lock detect
 }
 
 void ADF4356_LO::set_N_bits(uint16_t Data16)
@@ -59,7 +59,7 @@ uint32_t ADF4356_LO::ADF4356Execute(byte commandIndex) {
 }
 
 // Program a single register of the ADF4356 by sending and latching 4 bytes
-void ADF4356_LO::spiWrite(uint32_t reg, uint8_t selectPin) {
+void ADF4356_LO::update(uint32_t reg, uint8_t selectPin) {
     SPI.beginTransaction(SPISettings(20000000, MSBFIRST, SPI_MODE0));
     SPI.begin();
     digitalWrite(selectPin, LOW);

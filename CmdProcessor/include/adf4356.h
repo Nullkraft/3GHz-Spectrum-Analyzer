@@ -98,7 +98,7 @@ class ADF4356_LO {
 
     uint32_t ADF4356Execute(byte commandIndex);
 
-    void spiWrite(uint32_t reg, uint8_t selectPin);
+    void update(uint32_t reg, uint8_t selectPin);
 };
 
 

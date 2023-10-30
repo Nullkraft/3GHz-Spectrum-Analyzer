@@ -224,8 +224,8 @@ void loop() {
         spi_select = LO1_SEL;
         LO1.set_N_bits(Data16);                     // Set the new INT_N bits into Register 0
         spiWord = LO1.ADF4356Execute(adf4356CmdMap[Command]); // This selects from 1 of 7 adf4356 commands
-        LO1.spiWrite(spiWord, spi_select);          // Write Reg[4] when doing set_TRI/set_DLD, ELSE Reg[6]
-        LO1.spiWrite(LO1.Curr.Reg[0], spi_select);  // followed by Reg[0] as required by the spec-sheet.
+        LO1.update(spiWord, spi_select);          // Write Reg[4] when doing set_TRI/set_DLD, ELSE Reg[6]
+        LO1.update(LO1.Curr.Reg[0], spi_select);  // followed by Reg[0] as required by the spec-sheet.
         break;
 
       case LO2_addr:
