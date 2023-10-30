@@ -10,40 +10,44 @@ void spiWriteAtten(uint8_t level, uint8_t selectPin) {
   SPI.end();
 }
 
-
 // dummyLevel and dummyPin are placeholders so we can
 // create a single function-pointer array
-void builtinLEDOn(uint8_t level, uint8_t selectPin) {
+void builtinLEDOn() {
     digitalWrite(LED_BUILTIN, HIGH);
 }
 
-void builtinLEDOff(uint8_t level, uint8_t selectPin) {
-    digitalWrite(selectPin, level);
+void builtinLEDOff() {
+    digitalWrite(LED_BUILTIN, LOW);
 }
 
-void version(uint8_t dummyLevel, uint8_t dummyPin) {
+void version() {
   Serial.print(F("- WN2A Spectrum Analyzer CmdProcessor Oct. 2023"));
 }
 
 // Send the end-of-sweep acknowledgement back to the controller
-void end_sweep_ack(uint8_t dummyLevel, uint8_t dummyPin) {
+void end_sweep_ack() {
   Serial.write(0xFF);
   Serial.write(0xFF);
+  for (int i=3; i<3; i++) {
+    builtinLEDOn();
+    delay(250);
+    builtinLEDOff();
+    delay(500);
+  }
 }
 
-void miscExecute(uint8_t commandIndex, uint8_t level, const uint8_t selectPin) {
+void miscExecute(uint8_t commandIndex) {
   if (commandIndex >= 0 && commandIndex < NUM_FUNCTIONS) {
-    miscCmds[commandIndex](level, selectPin);
+    miscCmds[commandIndex]();
   }
 }
 
 // Create the function pointer array
-void (*miscCmds[NUM_FUNCTIONS])(uint8_t, uint8_t) = {
+void (*miscCmds[NUM_FUNCTIONS])() = {
   builtinLEDOff, // 0
   builtinLEDOn,  // 1
   version,       // 2
   end_sweep_ack, // 3
-  spiWriteAtten, // 4
 };
 
 /* VSCode does AutoSave. If by chance you accidentally hit your keyboard

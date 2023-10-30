@@ -74,27 +74,18 @@ MAX2871_LO LO2 = MAX2871_LO();
 MAX2871_LO LO3 = MAX2871_LO();
 MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
 
-/* Maps the Command to the index of the, max2871CmdMap or adf4356CmdMap, function:
+/* Maps the Command to the index of the max2871CmdMap or adf4356CmdMap function:
  * This map decouples the Command value from the function-pointer-array index in
  * max2871.h and adf4356.h driver files.
  * See MAX2871Execute(), in max2871.h, or ADF4356Execute(), in adf4356.h, for the
  * list of available commands
  */
-enum cmdList{GERERAL,
-             RFOFF,
-             N4DBM,
-             N1DBM,
-             P2DBM,
-             P5DBM,
-             CHANGE_FREQ,
-             TRI,
-             DLD,
-             DIV_MODE,
-             NA=30,     // This driver command is not in use
-             };
+enum loCmdList{GERERAL, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, CHANGE_FREQ, TRI, DLD, DIV_MODE, NA=30, };
+enum arduinoCmdList{LED_OFF, LED_ON, VERSION, BEGIN_SWEEP, };
 
 uint8_t max2871CmdMap[] {NA, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, NA, TRI, DLD, DIV_MODE };
 uint8_t adf4356CmdMap[] {NA, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, NA, TRI, DLD };
+uint8_t arduinoCmdMap[] {LED_OFF, LED_ON, VERSION, BEGIN_SWEEP };
 
 void init_specann();  // Why do I have to declare this function???
 
@@ -281,30 +272,7 @@ void loop() {
         break;
 
       case MISC_addr:
-        switch (Command) {
-          case LED_off:
-            builtinLEDOff(LOW, LED_BUILTIN);
-            if (!DEBUG) {
-              // Toggling the LED terminates a long running sweep
-              end_sweep_ack(0, 0);
-            }
-            break;
-          case LED_on:
-            builtinLEDOn(HIGH, LED_BUILTIN);
-            break;
-          case MSG_REQ:
-            version(0, 0);
-            break;
-          case SWEEP_START:
-            break;
-          case SWEEP_END:
-            end_sweep_ack(0, 0);
-            break;
-          case RESET:
-            break;
-          default:
-            break;
-        }
+        miscExecute(arduinoCmdMap[Command]);
         break;
 
       default:
@@ -313,8 +281,8 @@ void loop() {
         Serial.println(F(" not found"));
         break;
 
-    }  // End switch(Address)
-  }    // End While serial available
+    }   /* End switch(Address) */
+  }   /* End While serial available */
   COMMAND_FLAG = false;
 } /* End loop() */
 
