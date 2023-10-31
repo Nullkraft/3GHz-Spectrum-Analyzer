@@ -17,21 +17,6 @@ const int failed_to_lock = 0xF0;  // VCO Failed to lock
 // BitMask for programming the registers of the Attenuator IC
 const uint16_t ATTEN_Data_Mask = 0x7F;  // 7 bits of Embedded Data
 
-// Command names for operating the reference oscillators
-enum LOCmds { all_ref_off, 
-              ref_LO, 
-              ref_HI,
-            };
-
-// Command names for controlling and reporting Arduino state
-enum misc { LED_off, 
-            LED_on, 
-            MSG_REQ, 
-            SWEEP_START, 
-            SWEEP_END, 
-            RESET, 
-          };
-
 /*********** ARDUINO PIN DEFINITIONS ***********/
 const uint8_t LO1_SEL = A3;
 const uint8_t LO2_SEL = 3;
@@ -57,6 +42,7 @@ const uint8_t MISC_addr = 7;
 
 /*********** HARDWARE DEFINITIONS END *******/
 #define NUM_MISC_FUNCTIONS 4
+#define NUM_CLK_FUNCTIONS 3
 
 // Create a function pointer to use in the function pointer array
 // typedef void (*CmdFunc)(uint8_t, uint8_t);
@@ -64,9 +50,17 @@ void builtinLEDOff();
 void builtinLEDOn();
 void version();
 void end_sweep_ack();
+
+void all_ref_off();
+void ref_LO();
+void ref_HI();
+
 void setAtten(uint8_t level, uint8_t selectPin);
 
 extern void (*miscCmds[NUM_MISC_FUNCTIONS])();
 void miscExecute(uint8_t);
+
+extern void (*refClockCmds[NUM_CLK_FUNCTIONS])();
+void clkExecute(uint8_t);
 
 #endif  // _SPECANN_

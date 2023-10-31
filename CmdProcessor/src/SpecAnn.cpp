@@ -37,17 +37,46 @@ void end_sweep_ack() {
   }
 }
 
+// Turn both ref_clocks off
+void all_ref_off() {
+  digitalWrite(REF_LO_SEL, LOW);
+  digitalWrite(REF_HI_SEL, LOW);
+}
+// Turn on low freq reference clock, Ref1, and turn off high freq reference clock, Ref2
+void ref_LO() {
+  digitalWrite(REF_HI_SEL, LOW);
+  digitalWrite(REF_LO_SEL, HIGH);
+}
+// Turn on high freq reference clock, Ref2, and turn off low freq reference clock, Ref1
+void ref_HI() {
+  digitalWrite(REF_LO_SEL, LOW);
+  digitalWrite(REF_HI_SEL, HIGH);
+}
+
+void clkExecute(uint8_t commandIndex) {
+  if (commandIndex >= 0 && commandIndex < NUM_CLK_FUNCTIONS) {
+    refClockCmds[commandIndex]();
+  }
+}
+
+// function-pointer array for clock selection functions
+void (*refClockCmds[NUM_CLK_FUNCTIONS])() = {
+  all_ref_off,  // Command number 0
+  ref_LO,       // Command number 1
+  ref_HI,       // Command number 2
+};
+
 void miscExecute(uint8_t commandIndex) {
   if (commandIndex >= 0 && commandIndex < NUM_MISC_FUNCTIONS) {
     miscCmds[commandIndex]();
   }
 }
 
-// Create the function pointer array
+// function-pointer array for miscellenious functions
 void (*miscCmds[NUM_MISC_FUNCTIONS])() = {
-  builtinLEDOff, // 0
-  builtinLEDOn,  // 1
-  version,       // 2
-  end_sweep_ack, // 3
+  builtinLEDOff, // Command number 0
+  builtinLEDOn,  // Command number 1
+  version,       // Command number 2
+  end_sweep_ack, // Command number 3
 };
 

@@ -82,10 +82,12 @@ MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
  */
 enum loCmdList{GERERAL, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, CHANGE_FREQ, TRI, DLD, DIV_MODE, NA=30, };
 enum arduinoCmdList{LED_OFF, LED_ON, VERSION, BEGIN_SWEEP, };
+enum ckCmdLIst{ALL_OFF, REF_LO_ON, REF_HI_ON, };
 
 uint8_t max2871CmdMap[] {NA, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, NA, TRI, DLD, DIV_MODE };
 uint8_t adf4356CmdMap[] {NA, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, NA, TRI, DLD };
 uint8_t arduinoCmdMap[] {LED_OFF, LED_ON, VERSION, BEGIN_SWEEP };
+uint8_t clkCmdMap[] {ALL_OFF, REF_LO_ON, REF_HI_ON};
 
 void init_specann();  // Why do I have to declare this function???
 
@@ -246,25 +248,7 @@ void loop() {
         break;
 
       case RefClock:
-        switch (Command) {
-          // Turn both ref_clocks off
-          case all_ref_off:
-            digitalWrite(REF_LO_SEL, LOW);
-            digitalWrite(REF_HI_SEL, LOW);
-            break;
-          // Turn on low freq reference clock, Ref1, and turn off high freq reference clock, Ref2
-          case ref_LO:
-            digitalWrite(REF_HI_SEL, LOW);
-            digitalWrite(REF_LO_SEL, HIGH);
-            break;
-          // Turn on high freq reference clock, Ref2, and turn off low freq reference clock, Ref1
-          case ref_HI:
-            digitalWrite(REF_LO_SEL, LOW);
-            digitalWrite(REF_HI_SEL, HIGH);
-            break;
-          default:
-            break;
-        }
+        clkExecute(Command);
         break;
 
       case MISC_addr:
