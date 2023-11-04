@@ -113,11 +113,8 @@ void setup() {
   pinMode(SA.ATTEN_SEL, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);  // Make sure the LED is off
 
-  // Hardware Initialization for testing of early hardware builds.
   SA.updateAtten(0x0, SA.ATTEN_SEL);   // Set 0dB on the digital attenuator
-  digitalWrite(SA.REF_LO_SEL, HIGH);  // Enable low frequency referenc clock
-  digitalWrite(SA.REF_HI_SEL, LOW);   // Disable high frequency referenc clock
-
+  SA.ref_LO();
   init_specann();
 }
 
