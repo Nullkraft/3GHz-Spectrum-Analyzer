@@ -273,6 +273,7 @@ void loop() {
     Initialize IC's LO1, LO2 and LO3 by programming them twice IAW manufacturer's specsheet
 */
 void init_specann() {
+  SA.ref_LO();
   // Presets for LO3
   LO3.Curr.Reg[0] = 0x002081C8;  // LO3 = 270 MHz with 66 MHz ref clock
   LO3.Curr.Reg[1] = 0x400103E9;
