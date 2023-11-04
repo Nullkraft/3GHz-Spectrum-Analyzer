@@ -77,11 +77,22 @@ MAX2871_LO LO2 = MAX2871_LO();
 MAX2871_LO LO3 = MAX2871_LO();
 MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
 
-/* Maps the Command to the index of the max2871CmdMap or adf4356CmdMap function:
- * This map decouples the Command value from the function-pointer-array index in
- * max2871.h and adf4356.h driver files.
- * See MAX2871Execute(), in max2871.h, or ADF4356Execute(), in adf4356.h, for the
- * list of available commands
+/* Command-to-Function Mapping:
+ * 
+ * Ensure the API 'Command' names found in 'Instruction List XXX.ods'
+ * remain decoupled from the function-pointer arrays in the .h files.
+ * 
+ * The enums loCmdList, arduinoCmdList, and ckCmdList are used to loosely
+ * associate descriptive command names with the indexes of their
+ * function-pointer array indexes found in the driver ".h" files.
+ * 
+ * The arrays, max2871CmdMap, adf4356CmdMap, arduinoCmdMap, and clkCmdMap, 
+ * provide a mapping between these user command names and the indexes of their 
+ * corresponding functions in the driver files max2871.h and adf4356.h.
+ * 
+ * For a detailed list of available commands and their corresponding functions, 
+ * refer to the MAX2871Execute() function in max2871.h and the ADF4356Execute() 
+ * function in adf4356.h.
  */
 enum loCmdList{GERERAL, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, CHANGE_FREQ, TRI, DLD, DIV_MODE, NA=30, };
 enum arduinoCmdList{LED_OFF, LED_ON, VERSION, BEGIN_SWEEP, };
