@@ -33,8 +33,7 @@ class ADF4356_LO {
     static constexpr int NUMBER_OF_FUNCTIONS = 7;
 
   public:
-    const adfRegisters Default;   // Default read-only copy of the registers
-    adfRegisters Curr;            // Current modifiable copy of the registers
+    adfRegisters Curr;  // Current modifiable copy of the registers
 
     /* 16 bit Mask of Embedded Data from serial Specific Command */
     static constexpr uint32_t Data_Mask = 0x300000;

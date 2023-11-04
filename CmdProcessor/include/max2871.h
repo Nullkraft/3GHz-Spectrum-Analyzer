@@ -47,8 +47,7 @@ class MAX2871_LO {
     static constexpr int NUMBER_OF_FUNCTIONS = 8;
 
   public:
-    const max2871Registers Default;   // Default read-only copy of the registers
-    max2871Registers Curr;            // Modifiable copy of the registers for LO3
+    max2871Registers Curr;  // Modifiable copy of the registers for LO3
 
     /* 6 bit mask of Embedded Data from serial Specific Command */
     static constexpr short Data_Mask = 0x3F;
