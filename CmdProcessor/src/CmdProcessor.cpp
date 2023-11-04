@@ -89,9 +89,6 @@ uint8_t adf4356CmdMap[] {NA, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, NA, TRI, DLD };
 uint8_t arduinoCmdMap[] {LED_OFF, LED_ON, VERSION, BEGIN_SWEEP };
 uint8_t clkCmdMap[] {ALL_OFF, REF_LO_ON, REF_HI_ON};
 
-void init_specann();  // Why do I have to declare this function???
-
-
 /******** SETUP *********************************************************************/
 void setup() {
   #ifndef ARDUINO_SAMD_ZERO

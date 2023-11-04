@@ -63,4 +63,6 @@ void miscExecute(uint8_t);
 extern void (*refClockCmds[NUM_CLK_FUNCTIONS])();
 void clkExecute(uint8_t);
 
+void init_specann();
+
 #endif  // _SPECANN_
