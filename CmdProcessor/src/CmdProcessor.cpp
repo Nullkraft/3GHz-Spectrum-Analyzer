@@ -103,6 +103,11 @@ uint8_t adf4356CmdMap[] {NA, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, NA, TRI, DLD };
 uint8_t arduinoCmdMap[] {LED_OFF, LED_ON, VERSION, BEGIN_SWEEP };
 uint8_t clkCmdMap[] {ALL_OFF, REF_LO_ON, REF_HI_ON};
 
+uint8_t hi_byte;
+uint8_t lo_byte;
+int LOCKED;
+const int PLL_Lock_timeout = 500; // usec. Use 195 for testing some failures to lock.
+
 void init_specann();
 
 /******** SETUP *********************************************************************/
@@ -125,14 +130,8 @@ void setup() {
   digitalWrite(LED_BUILTIN, LOW);  // Make sure the LED is off
 
   SA.updateAtten(0x0, SA.ATTEN_SEL);   // Set 0dB on the digital attenuator
-  SA.ref_LO();
   init_specann();
 }
-
-uint8_t hi_byte;
-uint8_t lo_byte;
-int LOCKED;
-const int PLL_Lock_timeout = 500; // usec. Use 195 for testing some failures to lock.
 
 
 /******** MAIN LOOP ******************************************************************/
