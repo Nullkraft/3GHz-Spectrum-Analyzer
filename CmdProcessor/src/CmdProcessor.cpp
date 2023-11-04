@@ -68,6 +68,9 @@ volatile uint16_t a2dAmplitude;
 uint8_t* ampl_byte = (uint8_t*)&a2dAmplitude;
 uint8_t adc_pin;
 
+// Spectrum Analyzer command-&-control
+SPECANN SA = SPECANN();
+
 // Assign reference designators from the schematic to the circuit components
 ADF4356_LO LO1 = ADF4356_LO();
 MAX2871_LO LO2 = MAX2871_LO();
@@ -89,6 +92,8 @@ uint8_t adf4356CmdMap[] {NA, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, NA, TRI, DLD };
 uint8_t arduinoCmdMap[] {LED_OFF, LED_ON, VERSION, BEGIN_SWEEP };
 uint8_t clkCmdMap[] {ALL_OFF, REF_LO_ON, REF_HI_ON};
 
+void init_specann();
+
 /******** SETUP *********************************************************************/
 void setup() {
   #ifndef ARDUINO_SAMD_ZERO
@@ -99,19 +104,19 @@ void setup() {
   Serial.begin(2000000);
 
   pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(REF_LO_SEL, OUTPUT);
-  pinMode(REF_HI_SEL, OUTPUT);
-  pinMode(LO1_SEL, OUTPUT);
-  pinMode(LO2_SEL, OUTPUT);
-  pinMode(LO3_SEL, OUTPUT);
-  pinMode(PLL_MUX, INPUT);
-  pinMode(ATTEN_SEL, OUTPUT);
+  pinMode(SA.REF_LO_SEL, OUTPUT);
+  pinMode(SA.REF_HI_SEL, OUTPUT);
+  pinMode(SA.LO1_SEL, OUTPUT);
+  pinMode(SA.LO2_SEL, OUTPUT);
+  pinMode(SA.LO3_SEL, OUTPUT);
+  pinMode(SA.PLL_MUX, INPUT);
+  pinMode(SA.ATTEN_SEL, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);  // Make sure the LED is off
 
   // Hardware Initialization for testing of early hardware builds.
-  setAtten(0x0, ATTEN_SEL);   // Set 0dB on the digital attenuator
-  digitalWrite(REF_LO_SEL, HIGH);  // Enable low frequency referenc clock
-  digitalWrite(REF_HI_SEL, LOW);   // Disable high frequency referenc clock
+  SA.setAtten(0x0, SA.ATTEN_SEL);   // Set 0dB on the digital attenuator
+  digitalWrite(SA.REF_LO_SEL, HIGH);  // Enable low frequency referenc clock
+  digitalWrite(SA.REF_HI_SEL, LOW);   // Disable high frequency referenc clock
 
   init_specann();
 }
@@ -173,7 +178,7 @@ void loop() {
       // Wait for selected LO2 or LO3 to Lock
       start_PLL_Lock_time = micros();
       while (true) {
-        LOCKED = digitalRead(PLL_MUX);  // Check the mux pin to see if we get a lock
+        LOCKED = digitalRead(SA.PLL_MUX);  // Check the mux pin to see if we get a lock
         analogRead(adc_pin);  // HACK to prime the ADC. Fix the ADC input impedance?
         //  We either get a lock or we check for a timeout.
         if (LOCKED) {
@@ -194,7 +199,7 @@ void loop() {
           a2dAmplitude = analogRead(adc_pin);
           // hi_byte = (uint8_t)(a2dAmplitude >> 8) | failed_to_lock;  // Report failure to PC
           // lo_byte = (uint8_t)a2dAmplitude;
-          hi_byte = ampl_byte[1] | failed_to_lock;  // Report failure to PC
+          hi_byte = ampl_byte[1] | SA.failed_to_lock;  // Report failure to PC
           lo_byte = ampl_byte[0];
           break;
         }
@@ -215,41 +220,41 @@ void loop() {
        Specific commands occurs. */
     // Start by selecting the Address of the device then the 'Command' to be performed.
     switch (Address) {
-      case Attenuator:
-        setAtten((uint8_t)Data16, ATTEN_SEL);
+      case SA.Attenuator:
+        SA.setAtten((uint8_t)Data16, SA.ATTEN_SEL);
         break;
 
-      case LO1_addr:
-        spi_select = LO1_SEL;
+      case SA.LO1_addr:
+        spi_select = SA.LO1_SEL;
         LO1.set_N_bits(Data16);                   // Set the new INT_N bits into Register 0
         regWord = LO1.ADF4356Execute(adf4356CmdMap[Command]); // This selects from 1 of 7 adf4356 commands
         LO1.update(regWord, spi_select);          // Write Reg[4] when doing set_TRI/set_DLD, ELSE Reg[6]
         LO1.update(LO1.Curr.Reg[0], spi_select);  // followed by Reg[0] as required by the spec-sheet.
         break;
 
-      case LO2_addr:
+      case SA.LO2_addr:
         // Making LO2 active
         LO = &LO2;
-        spi_select = LO2_SEL;
-        adc_pin = ADC_SEL_315;
+        spi_select = SA.LO2_SEL;
+        adc_pin = SA.ADC_SEL_315;
         // Now fall through
-      case LO3_addr:
+      case SA.LO3_addr:
         // Making LO3 active
-        if (Address == LO3_addr) {
+        if (Address == SA.LO3_addr) {
           LO = &LO3;
-          spi_select = LO3_SEL;
-          adc_pin = ADC_SEL_045;
+          spi_select = SA.LO3_SEL;
+          adc_pin = SA.ADC_SEL_045;
         }
         regWord = LO->MAX2871Execute(max2871CmdMap[Command], serialWord);
         LO->update(regWord, spi_select);  // Now program the currently selected LO
         break;
 
-      case RefClock:
-        clkExecute(Command);
+      case SA.RefClock:
+        SA.clkExecute(Command);
         break;
 
-      case MISC_addr:
-        miscExecute(arduinoCmdMap[Command]);
+      case SA.MISC_addr:
+        SA.miscExecute(arduinoCmdMap[Command]);
         break;
 
       default:
@@ -277,11 +282,11 @@ void init_specann() {
   LO3.Curr.Reg[5] = 0x00400005;
   LO3.Curr.Reg[6] = 0x80005F42;  // Digital Lock Detect ON
 
-  LO3.begin(LO3_SEL, true);
-  LO2.begin(LO2_SEL, true);
-  LO1.begin(LO1_SEL);
+  LO3.begin(SA.LO3_SEL, true);
+  LO2.begin(SA.LO2_SEL, true);
+  LO1.begin(SA.LO1_SEL);
   delay(20);
-  LO3.begin(LO3_SEL, false);
-  LO2.begin(LO2_SEL, false);
-  LO1.begin(LO1_SEL);
+  LO3.begin(SA.LO3_SEL, false);
+  LO2.begin(SA.LO2_SEL, false);
+  LO1.begin(SA.LO1_SEL);
 }
