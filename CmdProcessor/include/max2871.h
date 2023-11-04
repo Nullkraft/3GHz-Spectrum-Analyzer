@@ -29,8 +29,7 @@
 */
 
 typedef struct maxRegisters {
-  static const byte numRegisters = 7;
-  static const byte numProgrammableRegs = 5;
+  static constexpr byte numRegisters = 7;
   uint32_t Reg[numRegisters] = { 0x001D47B0,  // 001D47B0 = R[0] N = Bits[30:15], F = Bits[14:3]
                                  0x40017FE1,  // 40017FE1 = R[1] M = Bits[14:3]
                                  0x80005F42,  // 80005F42 = R[2] Digital Lock detect OFF = MUX=Bits[28:26] = 110
@@ -45,14 +44,14 @@ typedef struct maxRegisters {
 
 class MAX2871_LO {
   private:
-    static const int NUMBER_OF_FUNCTIONS = 8;
+    static constexpr int NUMBER_OF_FUNCTIONS = 8;
 
   public:
     const max2871Registers Default;   // Default read-only copy of the registers
     max2871Registers Curr;            // Modifiable copy of the registers for LO3
 
     /* 6 bit mask of Embedded Data from serial Specific Command */
-    const short Data_Mask = 0x3F;
+    static constexpr short Data_Mask = 0x3F;
 
     /* 12 bit mask, R[1] bits [14:3], for Fractional Modulus Value, M */
     #define M_set 0x7FF8      // const uint32_t M_set = 0x7FF8;
@@ -71,18 +70,18 @@ class MAX2871_LO {
     #define NF_clr 0xFF800007 // const uint32_t NF_clr = 0xFF800007;
 
     /* R4<8> and R4<5> disable RFoutB and RFoutA */
-    const uint32_t RFpower_off = 0xFFFFFE07;
+    static constexpr uint32_t RFpower_off = 0xFFFFFE07;
 
     /* R4<7:6> Adjust the RFoutB power level. (RFoutA is off by default) */
     /* Also provides a differenct name to make the main sketch more readable */
-    const uint32_t Power_Level_Mask = RFpower_off;
+    static constexpr uint32_t Power_Level_Mask = RFpower_off;
 
     /* R4<7:6> Adjust the RFoutB power level. (RFoutA is off by default) */
     /* The MSbit, R4<8>, ensures that the RFout is enabled */
-    const uint32_t neg4dBm = 0x100;
-    const uint32_t neg1dBm = 0x140;
-    const uint32_t pos2dBm = 0x180;
-    const uint32_t pos5dBm = 0x1C0;
+    static constexpr uint32_t neg4dBm = 0x100;
+    static constexpr uint32_t neg1dBm = 0x140;
+    static constexpr uint32_t pos2dBm = 0x180;
+    static constexpr uint32_t pos5dBm = 0x1C0;
 
     /* R4<22:20> Set the RFOut Divider Mode to 1, 2, 4, 8, 16, 32, 64, or 128 */
     #define RFOUT_DIV_MASK 0xFF8FFFFF // const uint32_t RFOUT_DIV_MASK = 0xFF8FFFFF;  // 00700000;
@@ -93,10 +92,10 @@ class MAX2871_LO {
     /*****  --------------------------------------------------------  *****/
 
     /* 'AND' Mux_Set_TRI with R2 to enable Tristate. Affects bits <28:26> */
-    const uint32_t Mux_Set_TRI = 0xE3FFFFFF;
+    static constexpr uint32_t Mux_Set_TRI = 0xE3FFFFFF;
 
     /* 'OR' Mux_Set_DLD with R2 to enable Digital Lock Detect. Affects bits <28:26> */
-    const uint32_t Mux_Set_DLD = 0x18000000;
+    static constexpr uint32_t Mux_Set_DLD = 0x18000000;
 
     uint32_t spiMaxSpeed = 20000000;   // 20 MHz max SPI clock
 

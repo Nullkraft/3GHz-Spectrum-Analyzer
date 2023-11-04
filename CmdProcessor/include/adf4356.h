@@ -9,7 +9,7 @@
 
 /* Default register values for MAX2871 LO: Sets RFOout = 3630.0 MHz */
 typedef struct adfRegisters {
-  static const byte numRegisters = 15;
+  static constexpr byte numRegisters = 15;
   uint32_t Reg[numRegisters] = { 0x00200370,  // R[0] N = 0x37 (dec 55)
                                  0x00000001,
                                  0x00000012,
@@ -30,31 +30,31 @@ typedef struct adfRegisters {
 
 class ADF4356_LO {
   private:
-    static const int NUMBER_OF_FUNCTIONS = 7;
+    static constexpr int NUMBER_OF_FUNCTIONS = 7;
 
   public:
     const adfRegisters Default;   // Default read-only copy of the registers
     adfRegisters Curr;            // Current modifiable copy of the registers
 
     /* 16 bit Mask of Embedded Data from serial Specific Command */
-    const uint32_t Data_Mask = 0x300000;
+    static constexpr uint32_t Data_Mask = 0x300000;
 
     /* Clear old INT_N bits from Regist 0 */
     #define INT_N_Mask 0xFFF0000F // const uint32_t INT_N_Mask = 0xFFF0000F;
 
     /* R6<DB9> and <DB6> disable RFoutB and RFoutA */
-    const uint32_t RFpower_off = 0xFFFFFC0F;
+    static constexpr uint32_t RFpower_off = 0xFFFFFC0F;
 
     /* R6<DB5:DB4> Adjust the RFoutA power level. (RFoutB is off by default) */
     /* Also provides a differenct name to make the main sketch more readable */
-    const uint32_t Power_Level_Mask = RFpower_off;
+    static constexpr uint32_t Power_Level_Mask = RFpower_off;
 
     /* R6<DB8:DB7> Adjust the RFoutA power level. (RFoutB is off by default) */
     /* The MSbit, R6<DB9> ensures that the RFout is enabled */
-    const uint32_t neg4dBm = 0x40;
-    const uint32_t neg1dBm = 0x50;
-    const uint32_t pos2dBm = 0x60;
-    const uint32_t pos5dBm = 0x70;
+    static constexpr uint32_t neg4dBm = 0x40;
+    static constexpr uint32_t neg1dBm = 0x50;
+    static constexpr uint32_t pos2dBm = 0x60;
+    static constexpr uint32_t pos5dBm = 0x70;
 
     /*****  ----------------------- NOTE: --------------------------  *****/
     /***** | Enabling Tristate, Mux_Set_TRI, automatically disables | *****/
@@ -62,10 +62,10 @@ class ADF4356_LO {
     /*****  --------------------------------------------------------  *****/
 
     /* 'AND' Mux_Set_TRI with R4 to enable Tristate. Affects bits <DB29:DB27> */
-    const uint32_t Mux_Set_TRI = 0xC7FFFFFF;
+    static constexpr uint32_t Mux_Set_TRI = 0xC7FFFFFF;
 
     /* 'OR' Mux_Set_DLD with R4 to enable Digital Lock Detect. Affects bits <DB29:DB27> */
-    const uint32_t Mux_Set_DLD = 0x30000000;
+    static constexpr uint32_t Mux_Set_DLD = 0x30000000;
 
     uint32_t spiMaxSpeed = 50000000;   // 50 MHz max SPI clock
 
