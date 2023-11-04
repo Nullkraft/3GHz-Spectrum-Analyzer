@@ -114,7 +114,7 @@ void setup() {
   digitalWrite(LED_BUILTIN, LOW);  // Make sure the LED is off
 
   // Hardware Initialization for testing of early hardware builds.
-  SA.setAtten(0x0, SA.ATTEN_SEL);   // Set 0dB on the digital attenuator
+  SA.updateAtten(0x0, SA.ATTEN_SEL);   // Set 0dB on the digital attenuator
   digitalWrite(SA.REF_LO_SEL, HIGH);  // Enable low frequency referenc clock
   digitalWrite(SA.REF_HI_SEL, LOW);   // Disable high frequency referenc clock
 
@@ -221,9 +221,8 @@ void loop() {
     // Start by selecting the Address of the device then the 'Command' to be performed.
     switch (Address) {
       case SA.Attenuator:
-        SA.setAtten((uint8_t)Data16, SA.ATTEN_SEL);
+        SA.updateAtten((uint8_t)Data16, SA.ATTEN_SEL);
         break;
-
       case SA.LO1_addr:
         spi_select = SA.LO1_SEL;
         LO1.set_N_bits(Data16);                   // Set the new INT_N bits into Register 0
@@ -231,32 +230,26 @@ void loop() {
         LO1.update(regWord, spi_select);          // Write Reg[4] when doing set_TRI/set_DLD, ELSE Reg[6]
         LO1.update(LO1.Curr.Reg[0], spi_select);  // followed by Reg[0] as required by the spec-sheet.
         break;
-
       case SA.LO2_addr:
-        // Making LO2 active
         LO = &LO2;
         spi_select = SA.LO2_SEL;
         adc_pin = SA.ADC_SEL_315;
-        // Now fall through
-      case SA.LO3_addr:
-        // Making LO3 active
-        if (Address == SA.LO3_addr) {
-          LO = &LO3;
-          spi_select = SA.LO3_SEL;
-          adc_pin = SA.ADC_SEL_045;
-        }
         regWord = LO->MAX2871Execute(max2871CmdMap[Command], serialWord);
-        LO->update(regWord, spi_select);  // Now program the currently selected LO
+        LO->update(regWord, spi_select);  // Update LO2 registers
         break;
-
+      case SA.LO3_addr:
+        LO = &LO3;
+        spi_select = SA.LO3_SEL;
+        adc_pin = SA.ADC_SEL_045;
+        regWord = LO->MAX2871Execute(max2871CmdMap[Command], serialWord);
+        LO->update(regWord, spi_select);  // Update LO3 registers
+        break;
       case SA.RefClock:
         SA.clkExecute(Command);
         break;
-
       case SA.MISC_addr:
         SA.miscExecute(arduinoCmdMap[Command]);
         break;
-
       default:
         Serial.print(F("Requested Address:"));
         Serial.print(Address);

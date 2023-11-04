@@ -1,7 +1,7 @@
 #include "SpecAnn.h"
 
 // Program the Digital Attenuator by sending and latching a single byte
-void SPECANN::setAtten(uint8_t level, uint8_t selectPin) {
+void SPECANN::updateAtten(uint8_t level, uint8_t selectPin) {
   level = level & ATTEN_Data_Mask;
   SPI.beginTransaction(SPISettings(16000000, LSBFIRST, SPI_MODE0));
   SPI.begin();

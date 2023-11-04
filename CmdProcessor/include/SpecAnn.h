@@ -56,7 +56,7 @@ class SPECANN {
     void ref_LO();
     void ref_HI();
 
-    void setAtten(uint8_t level, uint8_t selectPin);
+    void updateAtten(uint8_t reg, uint8_t selectPin);
 
     typedef void (SPECANN::*MiscFuncs)();
     void miscExecute(uint8_t);
