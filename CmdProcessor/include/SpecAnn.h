@@ -44,8 +44,6 @@ const uint8_t MISC_addr = 7;
 #define NUM_MISC_FUNCTIONS 4
 #define NUM_CLK_FUNCTIONS 3
 
-// Create a function pointer to use in the function pointer array
-// typedef void (*CmdFunc)(uint8_t, uint8_t);
 void builtinLEDOff();
 void builtinLEDOn();
 void version();

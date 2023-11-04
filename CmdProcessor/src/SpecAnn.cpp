@@ -66,13 +66,16 @@ void (*refClockCmds[NUM_CLK_FUNCTIONS])() = {
   ref_HI,       // Command number 2
 };
 
+// Select the miscCmds function to be executed
 void miscExecute(uint8_t commandIndex) {
   if (commandIndex >= 0 && commandIndex < NUM_MISC_FUNCTIONS) {
+    // Call the function 
     miscCmds[commandIndex]();
   }
 }
 
-// function-pointer array for miscellenious functions
+// Array of function-pointers containing the
+// 'Spectrum Analyzer miscellenious functions'
 void (*miscCmds[NUM_MISC_FUNCTIONS])() = {
   builtinLEDOff, // Command number 0
   builtinLEDOn,  // Command number 1
