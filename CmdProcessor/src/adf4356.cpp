@@ -51,7 +51,7 @@ uint32_t ADF4356_LO::set_DLD() {
   return Curr.Reg[4];
 }
 
-uint32_t ADF4356_LO::ADF4356Execute(byte commandIndex) {
+uint32_t ADF4356_LO::Execute(byte commandIndex) {
   if (commandIndex >= 0 && commandIndex < ADF4356_LO::NUMBER_OF_FUNCTIONS) {
     return (this->*adfCmds[commandIndex])();
   }

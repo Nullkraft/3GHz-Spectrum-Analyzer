@@ -95,7 +95,7 @@ class ADF4356_LO {
     uint32_t set_TRI();
     uint32_t set_DLD();
 
-    uint32_t ADF4356Execute(byte commandIndex);
+    uint32_t Execute(byte commandIndex);
 
     void update(uint32_t reg, uint8_t selectPin);
 };

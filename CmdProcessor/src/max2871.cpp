@@ -73,7 +73,7 @@ uint32_t MAX2871_LO::set_p2dBm(uint32_t dummyControlWord) {
   return Curr.Reg[4];
 }
 
-uint32_t MAX2871_LO::MAX2871Execute(byte commandIndex, uint32_t controlWord) {
+uint32_t MAX2871_LO::Execute(byte commandIndex, uint32_t controlWord) {
   if (commandIndex >= 0 && commandIndex < MAX2871_LO::NUMBER_OF_FUNCTIONS) {
     return (this->*maxCmds[commandIndex])(controlWord);
   }

@@ -90,9 +90,8 @@ MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
  * The enums provide descriptive command names for the function-pointer
  * arrays instead of using the Command Numbers.
  * 
- * For a detailed list of available commands and their corresponding functions, 
- * refer to the MAX2871Execute() function in max2871.h and the ADF4356Execute() 
- * function in adf4356.h.
+ * For a list of available commands and their corresponding functions, refer
+ * to the Execute() function in max2871.h and the Execute() function in adf4356.h.
  */
 enum loCmdList{GERERAL, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, CHANGE_FREQ, TRI, DLD, DIV_MODE, NA=30, };
 enum arduinoCmdList{LED_OFF, LED_ON, VERSION, BEGIN_SWEEP, };
@@ -226,23 +225,23 @@ void loop() {
         break;
       case SA.LO1_addr:
         spi_select = SA.LO1_SEL;
-        LO1.set_N_bits(Data16);                               // Set the new INT_N bits into Register 0
-        regWord = LO1.ADF4356Execute(adf4356CmdMap[Command]); // This selects from 1 of 7 adf4356 commands
-        LO1.update(regWord, spi_select);                      // Write Reg[4] for set_TRI/set_DLD, ELSE Reg[6]
-        LO1.update(LO1.Curr.Reg[0], spi_select);              // followed by Reg[0] (REQUIRED by specsheet)
+        LO1.set_N_bits(Data16);                        // Set the new INT_N bits into Register 0
+        regWord = LO1.Execute(adf4356CmdMap[Command]); // This selects from 1 of 7 adf4356 commands
+        LO1.update(regWord, spi_select);               // Write Reg[4] for set_TRI/set_DLD, ELSE Reg[6]
+        LO1.update(LO1.Curr.Reg[0], spi_select);       // followed by Reg[0] (REQUIRED by specsheet)
         break;
       case SA.LO2_addr:
         LO = &LO2;
         spi_select = SA.LO2_SEL;
         adc_pin = SA.ADC_SEL_315;
-        regWord = LO->MAX2871Execute(max2871CmdMap[Command], serialWord);
+        regWord = LO->Execute(max2871CmdMap[Command], serialWord);
         LO->update(regWord, spi_select);  // Update LO2 registers
         break;
       case SA.LO3_addr:
         LO = &LO3;
         spi_select = SA.LO3_SEL;
         adc_pin = SA.ADC_SEL_045;
-        regWord = LO->MAX2871Execute(max2871CmdMap[Command], serialWord);
+        regWord = LO->Execute(max2871CmdMap[Command], serialWord);
         LO->update(regWord, spi_select);  // Update LO3 registers
         break;
       case SA.RefClock:
