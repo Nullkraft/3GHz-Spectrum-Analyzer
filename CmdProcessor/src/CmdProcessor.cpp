@@ -51,7 +51,6 @@ uint32_t regWord;    // Holds the register contents to be written to the selecte
 
 /*** Parsed values from the incoming 32 bit serial word ***/
 uint16_t Data16;  // 16 bits
-uint32_t Data32;  // Needed for bit shifting and masking with LO registers
 byte Command;
 byte Address;
 const byte AddressBits = 0x07;  // Mask to select 3 bits of 'Address' from serialWord[1]
