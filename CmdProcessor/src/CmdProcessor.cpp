@@ -115,7 +115,6 @@ void setup() {
   #ifndef ARDUINO_SAMD_ZERO
     analogReference(EXTERNAL);
   #endif
-
   Serial.setTimeout(SER_TIMEOUT);
   Serial.begin(2000000);
 
@@ -174,6 +173,7 @@ void loop() {
       COMMAND_FLAG = false;
     }
     else if (!COMMAND_FLAG) {    // An LO2 or LO3 Instruction has arrived...
+      // This is where we set the frequency of LO2 or LO3
       // M:  Set R[1], bits[14:3] to program the new value for M
       LO->set_M_bits(serialWord);
       // N & F:  Set bits R[0], bits[22:15] for new N, and R[0], bits[14:3] for new F
@@ -190,8 +190,6 @@ void loop() {
         //  We either get a lock or we check for a timeout.
         if (LOCKED) {
           a2dAmplitude = analogRead(adc_pin);
-          // hi_byte = (uint8_t)(a2dAmplitude >> 8);
-          // lo_byte = (uint8_t)a2dAmplitude;
           hi_byte = ampl_byte[1];
           lo_byte = ampl_byte[0];
           break;
@@ -204,9 +202,7 @@ void loop() {
         */
         if ((micros()-start_PLL_Lock_time) > PLL_Lock_timeout) {
           a2dAmplitude = analogRead(adc_pin);
-          // hi_byte = (uint8_t)(a2dAmplitude >> 8) | failed_to_lock;  // Report failure to PC
-          // lo_byte = (uint8_t)a2dAmplitude;
-          hi_byte = ampl_byte[1] | SA.failed_to_lock;  // Report failure to PC
+          hi_byte = ampl_byte[1] | SA.failed_to_lock;  // Send failure report to PC
           lo_byte = ampl_byte[0];
           break;
         }
@@ -219,23 +215,21 @@ void loop() {
       // Send the amplitude as individual bytes from the ADC to the PC for plotting
       Serial.write(hi_byte);  // Big Endian
       Serial.write(lo_byte);
-//      Serial.write((byte *)a2dAmplitude, sizeof(a2dAmplitude));   // This is little-endian
     }
 
     /******** SPECTRUM ANALYZER INSTRUCTIONS **********************************************/
     /* Hardware selection and operations. This is where the processing of
        Specific commands occurs. */
-    // Start by selecting the Address of the device then the 'Command' to be performed.
     switch (Address) {
       case SA.Attenuator:
         SA.updateAtten((uint8_t)Data16, SA.ATTEN_SEL);
         break;
       case SA.LO1_addr:
         spi_select = SA.LO1_SEL;
-        LO1.set_N_bits(Data16);                   // Set the new INT_N bits into Register 0
+        LO1.set_N_bits(Data16);                               // Set the new INT_N bits into Register 0
         regWord = LO1.ADF4356Execute(adf4356CmdMap[Command]); // This selects from 1 of 7 adf4356 commands
-        LO1.update(regWord, spi_select);          // Write Reg[4] when doing set_TRI/set_DLD, ELSE Reg[6]
-        LO1.update(LO1.Curr.Reg[0], spi_select);  // followed by Reg[0] as required by the spec-sheet.
+        LO1.update(regWord, spi_select);                      // Write Reg[4] for set_TRI/set_DLD, ELSE Reg[6]
+        LO1.update(LO1.Curr.Reg[0], spi_select);              // followed by Reg[0] (REQUIRED by specsheet)
         break;
       case SA.LO2_addr:
         LO = &LO2;
@@ -262,8 +256,8 @@ void loop() {
         Serial.print(Address);
         Serial.println(F(" not found"));
         break;
-
     }   /* End switch(Address) */
+
   }   /* End While serial available */
   COMMAND_FLAG = false;
 } /* End loop() */
