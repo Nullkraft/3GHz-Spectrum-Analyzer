@@ -255,7 +255,6 @@ void loop() {
         Serial.print(F("Requested Address:"));
         Serial.print(Address);
         Serial.println(F(" not found"));
-        break;
     }   /* End switch(Address) */
 
   }   /* End While serial available */
