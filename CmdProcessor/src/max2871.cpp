@@ -15,60 +15,61 @@ void MAX2871_LO::begin(uint8_t selectPin, bool first_init) {
   update(Curr.Reg[6], selectPin);   // Set mux tri-state to disable LO1 lock detect
 }
 
-void MAX2871_LO::set_NF_bits(uint32_t controlWord) {
+void MAX2871_LO::set_NF_bits(uint32_t reg) {
   // N and F:  Clear Reg[0], bits [22:3], before accepting new N and F words
   Curr.Reg[0] = Curr.Reg[0] & NF_clr;
   // N:  Mask and set bits [22:15] to program the new value for N
-  Curr.Reg[0] = Curr.Reg[0] | ((controlWord << 15) & N_set);
+  Curr.Reg[0] = Curr.Reg[0] | ((reg << 15) & N_set);
   // F:  Mask and set bits [14:3] to program the new value for F
-  Curr.Reg[0] = Curr.Reg[0] | ((controlWord >> 17) & F_set);
+  Curr.Reg[0] = Curr.Reg[0] | ((reg >> 17) & F_set);
 }
 
-void MAX2871_LO::set_M_bits(uint32_t controlWord) {
+void MAX2871_LO::set_M_bits(uint32_t reg) {
   // M:  Clear Reg[1], bits [14:3], before accepting a new M word
   Curr.Reg[1] = Curr.Reg[1] & M_clr;
   // M:  Mask and set bits[14:3] to program the new value for M
-  Curr.Reg[1] = Curr.Reg[1] | ((controlWord >> 5) & M_set);
+  Curr.Reg[1] = Curr.Reg[1] | ((reg >> 5) & M_set);
 }
 
-uint32_t MAX2871_LO::set_DLD(uint32_t dummyControlWord) {
+uint32_t MAX2871_LO::set_DLD(uint32_t dummyReg) {
   Curr.Reg[2] = Curr.Reg[2] | Mux_Set_DLD;  // Set MuxOut to Dig. Lock Det.
   return Curr.Reg[2];
 }
 
-uint32_t MAX2871_LO::set_TRI(uint32_t dummyControlWord) {
+uint32_t MAX2871_LO::set_TRI(uint32_t dummyReg) {
   Curr.Reg[2] = Curr.Reg[2] & Mux_Set_TRI;  // Set MuxOut to Tristate
   return Curr.Reg[2];
 }
 
-uint32_t MAX2871_LO::set_DIV_MODE(uint32_t controlWord) {
+uint32_t MAX2871_LO::set_DIV_MODE(uint32_t reg) {
   Curr.Reg[4] = Curr.Reg[4] & RFOUT_DIV_MASK;
   // Curr.Reg[4] &= RFOUT_DIV_MASK;
-  Curr.Reg[4] = (Curr.Reg[4] | (controlWord & !RFOUT_DIV_MASK));
+  Curr.Reg[4] = (Curr.Reg[4] | (reg & !RFOUT_DIV_MASK));
   // Curr.Reg[4] |= (controlWord & !RFOUT_DIV_MASK);
   return Curr.Reg[4];
 }
 
-uint32_t MAX2871_LO::set_p5dBm(uint32_t dummyControlWord) {
+uint32_t MAX2871_LO::set_p5dBm(uint32_t dummyReg) {
   Curr.Reg[4] = (Curr.Reg[4] & Power_Level_Mask) | pos5dBm;
   return Curr.Reg[4];
 }
 
-uint32_t MAX2871_LO::turn_off_RF(uint32_t dummyControlWord) {
+uint32_t MAX2871_LO::turn_off_RF(uint32_t dummyReg) {
   Curr.Reg[4] = Curr.Reg[4] & RFpower_off;
   return Curr.Reg[4];
 }
 
-uint32_t MAX2871_LO::set_n4dBm(uint32_t dummyControlWord) {
+uint32_t MAX2871_LO::set_n4dBm(uint32_t dummyReg) {
   Curr.Reg[4] = (Curr.Reg[4] & Power_Level_Mask) | neg4dBm;
   return Curr.Reg[4];
 }
-uint32_t MAX2871_LO::set_n1dBm(uint32_t dummyControlWord) {
+
+uint32_t MAX2871_LO::set_n1dBm(uint32_t dummyReg) {
   Curr.Reg[4] = (Curr.Reg[4] & Power_Level_Mask) | neg1dBm;
   return Curr.Reg[4];
 }
 
-uint32_t MAX2871_LO::set_p2dBm(uint32_t dummyControlWord) {
+uint32_t MAX2871_LO::set_p2dBm(uint32_t dummyReg) {
   Curr.Reg[4] = (Curr.Reg[4] & Power_Level_Mask) | pos2dBm;
   return Curr.Reg[4];
 }
