@@ -5,6 +5,7 @@
 #include <Arduino.h>    /* Needed for uint32_t */
 #endif
 #include <SPI.h>
+#include "synthesizer.h"
 
 
 /* Default register values for MAX2871 LO: Sets RFOout = 3630.0 MHz */
@@ -28,7 +29,7 @@ typedef struct adfRegisters {
                                };
 } adf4356registers;
 
-class ADF4356_LO {
+class ADF4356_LO : public LO {
   private:
     static constexpr int NUMBER_OF_FUNCTIONS = 7;
 
@@ -70,6 +71,14 @@ class ADF4356_LO {
 
     typedef uint32_t (ADF4356_LO::*CmdFunc)();  // Create a funcPtr type
 
+    // ADF4356 methods
+    void begin(uint8_t);
+    void set_N_bits(uint16_t);
+    uint32_t Execute(byte commandIndex, uint32_t regWord);
+    void update(uint32_t reg, uint8_t selectPin);
+
+  private:
+    uint32_t ADF4356Execute(byte commandIndex);
     /* Create an array of function pointers to replace the CmdProcessor.cpp
      * giant switch-case statements. Intialize adfCmds with all the
      * available commands
@@ -84,9 +93,6 @@ class ADF4356_LO {
       &ADF4356_LO::set_DLD,     // 6
     };
     
-    // ADF4356 methods
-    void begin(uint8_t);
-    void set_N_bits(uint16_t);
     uint32_t turn_off_RF();
     uint32_t set_n4dBm();
     uint32_t set_n1dBm();
@@ -94,10 +100,6 @@ class ADF4356_LO {
     uint32_t set_p5dBm();
     uint32_t set_TRI();
     uint32_t set_DLD();
-
-    uint32_t Execute(byte commandIndex);
-
-    void update(uint32_t reg, uint8_t selectPin);
 };
 
 

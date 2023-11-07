@@ -101,6 +101,13 @@ class MAX2871_LO {
     // Create a function pointer to use in the function pointer array
     typedef uint32_t (MAX2871_LO::*CmdFunc)(uint32_t);
 
+    void begin(uint8_t, bool);
+    void set_NF_bits(uint32_t);
+    void set_M_bits(uint32_t);
+    void update(uint32_t reg, uint8_t selectPin); // Write 4 bytes to chip register
+    uint32_t Execute(byte commandIndex, uint32_t controlWord);
+
+  private:
     // Create the function pointer array
     CmdFunc maxCmds[NUMBER_OF_FUNCTIONS] = {
       &MAX2871_LO::turn_off_RF,   // 0
@@ -113,9 +120,6 @@ class MAX2871_LO {
       &MAX2871_LO::set_DIV_MODE,  // 7
     };
 
-    void begin(uint8_t, bool);
-    void set_NF_bits(uint32_t);
-    void set_M_bits(uint32_t);
     /* dummyReg sets the function signatures so they all match.
      * If not, then more than one function-pointer-array would
      * be needed, negating the benefit of 'indexing' into the
@@ -129,9 +133,6 @@ class MAX2871_LO {
     uint32_t set_n1dBm(uint32_t dummyReg);
     uint32_t set_p2dBm(uint32_t dummyReg);
     uint32_t set_p5dBm(uint32_t dummyReg);
-
-    void update(uint32_t reg, uint8_t selectPin); // Write 4 bytes to chip register
-    uint32_t Execute(byte commandIndex, uint32_t controlWord);
 };
 
 

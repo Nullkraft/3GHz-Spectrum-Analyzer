@@ -28,7 +28,7 @@
 #include "max2871.h"
 #include "adf4356.h"
 #endif
-
+#include "synthesizer.h"
 
 /*           Serial Word with Command Flag:
     ________________________________________________
@@ -225,10 +225,10 @@ void loop() {
         break;
       case SA.LO1_addr:
         spi_select = SA.LO1_SEL;
-        LO1.set_N_bits(Data16);                        // Set the new INT_N bits into Register 0
-        regWord = LO1.Execute(adf4356CmdMap[Command]); // This selects from 1 of 7 adf4356 commands
-        LO1.update(regWord, spi_select);               // Write Reg[4] for set_TRI/set_DLD, ELSE Reg[6]
-        LO1.update(LO1.Curr.Reg[0], spi_select);       // followed by Reg[0] (REQUIRED by specsheet)
+        LO1.set_N_bits(Data16);                           // Set the new INT_N bits into Register 0
+        regWord = LO1.Execute(adf4356CmdMap[Command], 0); // This selects from 1 of 7 adf4356 commands
+        LO1.update(regWord, spi_select);                  // Write Reg[4] for set_TRI/set_DLD, ELSE Reg[6]
+        LO1.update(LO1.Curr.Reg[0], spi_select);          // followed by Reg[0] (REQUIRED by specsheet)
         break;
       case SA.LO2_addr:
         LO = &LO2;

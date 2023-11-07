@@ -1,5 +1,6 @@
 
 #include "adf4356.h"
+#include "synthesizer.h"
 
 void ADF4356_LO::begin(uint8_t selectPin) {
    update(Curr.Reg[4], selectPin);    // Enable LO1 lock detect
@@ -51,11 +52,8 @@ uint32_t ADF4356_LO::set_DLD() {
   return Curr.Reg[4];
 }
 
-uint32_t ADF4356_LO::Execute(byte commandIndex) {
-  if (commandIndex >= 0 && commandIndex < ADF4356_LO::NUMBER_OF_FUNCTIONS) {
-    return (this->*adfCmds[commandIndex])();
-  }
-  return 0xFFFF;    // You tried to use an undefined command
+uint32_t ADF4356_LO::Execute(byte commandIndex, uint32_t reg) {
+  return ADF4356Execute(commandIndex);
 }
 
 // Program a single register of the ADF4356 by sending and latching 4 bytes
@@ -70,3 +68,11 @@ void ADF4356_LO::update(uint32_t reg, uint8_t selectPin) {
   digitalWrite(selectPin, HIGH);
   SPI.end();
 }
+
+uint32_t ADF4356_LO::ADF4356Execute(byte commandIndex) {
+  if (commandIndex >= 0 && commandIndex < ADF4356_LO::NUMBER_OF_FUNCTIONS) {
+    return (this->*adfCmds[commandIndex])();
+  }
+  return 0xFFFF;    // You tried to use an undefined command
+}
+
