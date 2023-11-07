@@ -5,7 +5,7 @@
 #include <Arduino.h>    /* Needed for uint32_t */
 #endif
 #include <SPI.h>
-
+#include "synthesizer.h"
 
 /* Default register values for MAX2871 LO: Sets default RFOout = 3865.0 MHz */
 /* This correlates to an 80 MHz RFin value
@@ -42,7 +42,7 @@ typedef struct maxRegisters {
 } max2871Registers;
 
 
-class MAX2871_LO {
+class MAX2871_LO : public LO {
   private:
     static constexpr int NUMBER_OF_FUNCTIONS = 8;
 
