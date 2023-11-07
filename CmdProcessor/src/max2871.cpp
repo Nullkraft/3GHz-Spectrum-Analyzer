@@ -5,7 +5,7 @@
    register 5.                                                  Document Version: 19-7106; Rev 4; 6/20
 */
 void MAX2871_LO::begin(uint8_t selectPin, bool first_init) {
-  update(Curr.Reg[5], selectPin);   // First we program LO2 Register 5
+  update(Curr.Reg[5], selectPin);   // First we program Register 5
   if (first_init) {
     delay(20);  // Only if it's our first time must we wait 20 mSec
   }
@@ -31,26 +31,11 @@ void MAX2871_LO::set_M_bits(uint32_t reg) {
   Curr.Reg[1] = Curr.Reg[1] | ((reg >> 5) & M_set);
 }
 
-uint32_t MAX2871_LO::set_DLD(uint32_t dummyReg) {
-  Curr.Reg[2] = Curr.Reg[2] | Mux_Set_DLD;  // Set MuxOut to Dig. Lock Det.
-  return Curr.Reg[2];
-}
-
-uint32_t MAX2871_LO::set_TRI(uint32_t dummyReg) {
-  Curr.Reg[2] = Curr.Reg[2] & Mux_Set_TRI;  // Set MuxOut to Tristate
-  return Curr.Reg[2];
-}
-
 uint32_t MAX2871_LO::set_DIV_MODE(uint32_t reg) {
   Curr.Reg[4] = Curr.Reg[4] & RFOUT_DIV_MASK;
   // Curr.Reg[4] &= RFOUT_DIV_MASK;
   Curr.Reg[4] = (Curr.Reg[4] | (reg & !RFOUT_DIV_MASK));
   // Curr.Reg[4] |= (controlWord & !RFOUT_DIV_MASK);
-  return Curr.Reg[4];
-}
-
-uint32_t MAX2871_LO::set_p5dBm(uint32_t dummyReg) {
-  Curr.Reg[4] = (Curr.Reg[4] & Power_Level_Mask) | pos5dBm;
   return Curr.Reg[4];
 }
 
@@ -72,6 +57,21 @@ uint32_t MAX2871_LO::set_n1dBm(uint32_t dummyReg) {
 uint32_t MAX2871_LO::set_p2dBm(uint32_t dummyReg) {
   Curr.Reg[4] = (Curr.Reg[4] & Power_Level_Mask) | pos2dBm;
   return Curr.Reg[4];
+}
+
+uint32_t MAX2871_LO::set_p5dBm(uint32_t dummyReg) {
+  Curr.Reg[4] = (Curr.Reg[4] & Power_Level_Mask) | pos5dBm;
+  return Curr.Reg[4];
+}
+
+uint32_t MAX2871_LO::set_TRI(uint32_t dummyReg) {
+  Curr.Reg[2] = Curr.Reg[2] & Mux_Set_TRI;  // Set MuxOut to Tristate
+  return Curr.Reg[2];
+}
+
+uint32_t MAX2871_LO::set_DLD(uint32_t dummyReg) {
+  Curr.Reg[2] = Curr.Reg[2] | Mux_Set_DLD;  // Set MuxOut to Dig. Lock Det.
+  return Curr.Reg[2];
 }
 
 uint32_t MAX2871_LO::Execute(byte commandIndex, uint32_t controlWord) {
