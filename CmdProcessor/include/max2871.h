@@ -45,8 +45,13 @@ typedef struct maxRegisters {
 class MAX2871_LO : public LO {
   private:
     static constexpr int NUMBER_OF_FUNCTIONS = 8;
+    // The MAX2871 requires a 20 ms delay only on the first init
+    // See the begin() function
+    bool first_init;
 
   public:
+    MAX2871_LO() : first_init(true) {}  // Ctor initialzes first_init
+    
     max2871Registers Curr;  // Modifiable copy of the registers for LO3
 
     /* 6 bit mask of Embedded Data from serial Specific Command */
@@ -101,7 +106,7 @@ class MAX2871_LO : public LO {
     // Create a function pointer to use in the function pointer array
     typedef uint32_t (MAX2871_LO::*CmdFunc)(uint32_t);
 
-    void begin(uint8_t, bool);
+    void begin(uint8_t);
     void set_NF_bits(uint32_t);
     void set_M_bits(uint32_t);
     void update(uint32_t reg, uint8_t selectPin); // Write 4 bytes to chip register

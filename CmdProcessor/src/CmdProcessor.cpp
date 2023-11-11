@@ -275,11 +275,11 @@ void init_specann() {
   LO3.Curr.Reg[5] = 0x00400005;
   LO3.Curr.Reg[6] = 0x80005F42;  // Digital Lock Detect ON
 
-  LO3.begin(SA.LO3_SEL, true);
-  LO2.begin(SA.LO2_SEL, true);
+  LO3.begin(SA.LO3_SEL);
+  LO2.begin(SA.LO2_SEL);
   LO1.begin(SA.LO1_SEL);
   delay(20);
-  LO3.begin(SA.LO3_SEL, false);
-  LO2.begin(SA.LO2_SEL, false);
+  LO3.begin(SA.LO3_SEL);
+  LO2.begin(SA.LO2_SEL);
   LO1.begin(SA.LO1_SEL);
 }
