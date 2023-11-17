@@ -56,6 +56,9 @@ class ADF4356_LO : public LO {
     static constexpr uint32_t pos2dBm = 0x60;
     static constexpr uint32_t pos5dBm = 0x70;
 
+    /* R4<24:15> Set the RFOut Divider Mode from 1 to 1023 */
+    #define RFOUT_DIV_MASK 0xFF8FFFFF // const uint32_t RFOUT_DIV_MASK = 0xFF8FFFFF;  // 00700000;
+
     /*****  ----------------------- NOTE: --------------------------  *****/
     /***** | Enabling Tristate, Mux_Set_TRI, automatically disables | *****/
     /***** | Digital Lock Detect, Mux_Set_DLD, and vice versa.      | *****/
@@ -91,16 +94,19 @@ class ADF4356_LO : public LO {
       &ADF4356_LO::set_p5dBm,   // 4
       &ADF4356_LO::set_TRI,     // 5
       &ADF4356_LO::set_DLD,     // 6
+      // &ADF4356_LO::set_DIV_MODE // 7
+
     };
     
+    uint32_t set_DLD();
+    uint32_t set_TRI();
     uint32_t turn_off_RF();
     uint32_t set_n4dBm();
     uint32_t set_n1dBm();
     uint32_t set_p2dBm();
     uint32_t set_p5dBm();
-    uint32_t set_TRI();
-    uint32_t set_DLD();
-};
+    uint32_t set_DIV_MODE(uint32_t);
+  };
 
 
 #endif

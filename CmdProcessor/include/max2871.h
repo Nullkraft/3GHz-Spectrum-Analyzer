@@ -130,19 +130,15 @@ class MAX2871_LO : public LO {
      * be needed, negating the benefit of 'indexing' into the
      * array.
      */
-    uint32_t set_DLD(uint32_t dummyReg);
-    uint32_t set_TRI(uint32_t dummyReg);
+    uint32_t set_DLD(uint32_t);
+    uint32_t set_TRI(uint32_t);
+    uint32_t turn_off_RF(uint32_t);
+    uint32_t set_n4dBm(uint32_t);
+    uint32_t set_n1dBm(uint32_t);
+    uint32_t set_p2dBm(uint32_t);
+    uint32_t set_p5dBm(uint32_t);
+
     uint32_t set_DIV_MODE(uint32_t reg);
-    uint32_t turn_off_RF(uint32_t dummyReg);
-    uint32_t set_n4dBm(uint32_t dummyReg);
-    uint32_t set_n1dBm(uint32_t dummyReg);
-    uint32_t set_p2dBm(uint32_t dummyReg);
-    uint32_t set_p5dBm(uint32_t dummyReg);
 };
 
-
 #endif
-
-
-
-// Do LO power level commands next
