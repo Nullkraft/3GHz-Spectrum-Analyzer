@@ -47,6 +47,8 @@ z_Notes/
 Gerber*
 *MACOSX
 *odt
+.vscode/
+Schematics - Original Hand Drawn/
 Spur Analysis/
 Documentation/
 Acceptance_test_app/
