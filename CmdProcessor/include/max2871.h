@@ -37,7 +37,6 @@ typedef struct maxRegisters {
                                  0x00400005,  // 00400005 = R[5] 
                                  0x98005F42   // 98005F42 = R[2] Digital Lock detect ON --> MUX=Bits[28:26]
                                };
-//  uint16_t* RLO2_as_int = (uint16_t*)RLO2;
 } max2871Registers;
 
 class MAX2871_LO {
