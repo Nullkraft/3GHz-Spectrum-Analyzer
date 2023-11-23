@@ -28,7 +28,6 @@
 #include "max2871.h"
 #include "adf4356.h"
 #endif
-#include "synthesizer.h"
 
 /*           Serial Word with Command Flag:
     ________________________________________________

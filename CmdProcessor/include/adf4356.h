@@ -5,7 +5,6 @@
 #include <Arduino.h>    /* Needed for uint32_t */
 #endif
 #include <SPI.h>
-#include "synthesizer.h"
 
 
 /* Default register values for MAX2871 LO: Sets RFOout = 3630.0 MHz */
@@ -29,7 +28,7 @@ typedef struct adfRegisters {
                                };
 } adf4356registers;
 
-class ADF4356_LO : public LO {
+class ADF4356_LO {
   private:
     static constexpr int NUMBER_OF_FUNCTIONS = 7;
 
