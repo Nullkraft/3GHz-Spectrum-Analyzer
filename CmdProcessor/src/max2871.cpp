@@ -8,7 +8,7 @@ void MAX2871_LO::begin(uint8_t selectPin) {
   update(Curr.Reg[5], selectPin);   // First we program Register 5
   if (first_init) {
     delay(20);  // Only if it's our first time must we wait 20 mSec
-    first_init = false; // Next time delay() won't be called
+    first_init = false; // Ensure delay(20) is only called once
   }
   for (int x = 4; x >= 0; x--) {
     update(Curr.Reg[x], selectPin); // and Lock Detect is enabled on the Mux pin
