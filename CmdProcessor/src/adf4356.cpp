@@ -3,6 +3,7 @@
 #include "synthesizer.h"
 
 void ADF4356_LO::begin(uint8_t selectPin) {
+  // Program all 13 registers of the chip
    update(Curr.Reg[4], selectPin);    // Enable LO1 lock detect
    for (int x = 13; x >= 0; x--) {
      update(Curr.Reg[x], selectPin);  // Program LO1=3776.52 MHz with LD on Mux
