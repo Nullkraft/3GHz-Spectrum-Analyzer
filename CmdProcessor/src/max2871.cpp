@@ -34,9 +34,7 @@ void MAX2871_LO::set_M_bits(uint32_t reg) {
 
 uint32_t MAX2871_LO::set_DIV_MODE(uint32_t reg) {
   Curr.Reg[4] = Curr.Reg[4] & RFOUT_DIV_MASK;
-  // Curr.Reg[4] &= RFOUT_DIV_MASK;
   Curr.Reg[4] = (Curr.Reg[4] | (reg & !RFOUT_DIV_MASK));
-  // Curr.Reg[4] |= (controlWord & !RFOUT_DIV_MASK);
   return Curr.Reg[4];
 }
 

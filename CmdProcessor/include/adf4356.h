@@ -105,6 +105,7 @@ class ADF4356_LO : public LO {
     uint32_t set_n1dBm();
     uint32_t set_p2dBm();
     uint32_t set_p5dBm();
+
     uint32_t set_DIV_MODE(uint32_t);
   };
 
