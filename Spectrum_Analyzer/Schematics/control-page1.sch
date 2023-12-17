@@ -126,12 +126,12 @@ T 42450 73100 5 10 0 0 0 0 1
 device=Arduino Uno
 T 41850 73300 5 10 1 1 0 0 1
 refdes=U2
-T 42450 72800 5 10 0 0 0 0 1
-footprint=Feather
 T 41050 68900 5 10 1 1 0 0 1
 man-part-num=4884
 T 40550 68100 5 10 1 1 0 0 1
 description=Feather RP2040
+T 39950 68500 5 10 0 0 0 0 1
+footprint=Feather
 }
 N 47900 67300 48400 67300 4
 {
