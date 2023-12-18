@@ -5124,7 +5124,7 @@ Layer(1 "top" "copper")
 		[4.4465mm 12.7015mm] [105.0305mm 12.7015mm] [105.0305mm 78.4875mm] [4.4465mm 78.4875mm] 
 	)
 )
-Layer(2 "gnd_top" "copper")
+Layer(2 "inner_1" "copper")
 (
 	Line[14.8605mm 72.7725mm 14.2255mm 72.1375mm 20.00mil 12.00mil "clearline"]
 	Line[14.2255mm 72.1375mm 14.2255mm 65.1525mm 20.00mil 12.00mil "clearline"]
@@ -5228,7 +5228,7 @@ Layer(2 "gnd_top" "copper")
 		[4.4465mm 12.7015mm] [105.0305mm 12.7015mm] [105.0305mm 78.4875mm] [4.4465mm 78.4875mm] 
 	)
 )
-Layer(3 "gnd_bot" "copper")
+Layer(3 "inner_2" "copper")
 (
 	Line[24.7665mm 49.0235mm 31.2435mm 49.0235mm 15.00mil 12.00mil "clearline"]
 	Line[25.0205mm 45.5945mm 22.0995mm 47.7535mm 15.00mil 12.00mil "clearline"]
