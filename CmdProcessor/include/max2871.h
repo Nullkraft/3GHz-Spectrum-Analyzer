@@ -46,8 +46,6 @@ class MAX2871_LO {
     // See the begin() function
     bool first_init;
 
-
-
   public:
     MAX2871_LO() : first_init(true) {}  // Ctor initialzes first_init
     
@@ -106,13 +104,6 @@ class MAX2871_LO {
     typedef uint32_t (MAX2871_LO::*CmdFunc)(uint32_t);
 
     void begin(uint8_t);
-
-    void getNextControlCodes(uint32_t flash_address);
-    uint32_t flip_FMN();
-    uint16_t setFrequency(float);
-    void sweep(float start, float stop, float step);
-
-
     void set_NF_bits(uint32_t);
     void set_M_bits(uint32_t);
     void update(uint32_t reg, uint8_t selectPin); // Write 4 bytes to chip register

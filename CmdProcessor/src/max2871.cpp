@@ -1,28 +1,5 @@
 #include "max2871.h"
 
-
-void MAX2871_LO::getNextControlCodes(uint32_t flash_address) {
-  // read flash contents
-}
-
-
-uint32_t MAX2871_LO::flip_FMN() {
-  return 0xDEADBEEF;
-}
-
-
-uint16_t MAX2871_LO::setFrequency(float frequency){
-  return 0;
-}
-
-void MAX2871_LO::sweep(float start, float stop, float step){
-  float freq;
-  for (freq=start; freq<stop; freq+=step) {
-    setFrequency(freq);
-  }
-}
-
-
 /* IAW Manufacturer's PDF document "MAX2871 - 23.5MHz to 6000MHz Fractional/Integer-N Synthesizer/VCO"
    pg. 13 4-Wire Serial Interface during initialization there should be a 20mS delay after programming
    register 5.                                                  Document Version: 19-7106; Rev 4; 6/20
