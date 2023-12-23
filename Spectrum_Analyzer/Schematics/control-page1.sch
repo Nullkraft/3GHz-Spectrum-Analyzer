@@ -215,6 +215,8 @@ T 57200 69600 5 10 0 1 0 0 1
 documentation=https://www.mouser.com/ProductDetail/ISSI/IS66WVS4M8BLL-104NLI?qs=doiCPypUmgHfByEUFkOsAw==
 T 57200 69600 5 10 0 1 0 0 1
 footprint=SOIC_8_150mil
+T 57200 69600 5 10 0 0 0 0 1
+man-part-num=IS66WVS4M8ALL
 }
 N 57200 73000 54800 73000 4
 {
@@ -1677,4 +1679,6 @@ T 57392 68300 5 10 1 1 0 0 1
 device=FLASH
 T 57392 68600 5 10 0 0 0 0 1
 footprint=WSON_8
+T 57200 66400 5 10 0 0 0 0 1
+man-part-num=W25N01GVZEIG TR
 }
