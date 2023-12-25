@@ -449,14 +449,14 @@ C 16100 57700 1 0 0 Faraday-cage.sym
 {
 T 16100 58300 5 10 1 1 0 0 1
 refdes=Sh460
-T 16100 57700 5 10 0 1 0 0 1
+T 16100 57700 5 10 0 0 0 0 1
 footprint=Harwin_S097146R
 }
 C 16800 57700 1 0 0 Faraday-cage.sym
 {
 T 16800 58300 5 10 1 1 0 0 1
 refdes=Sh461
-T 16800 57700 5 10 0 1 0 0 1
+T 16800 57700 5 10 0 0 0 0 1
 footprint=Harwin_S097146R
 }
 C 14400 58700 1 0 0 Faraday-cage.sym
