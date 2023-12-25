@@ -9,7 +9,7 @@ Grid[5.00mil 0.0000 0.0000 1]
 PolyArea[3100.006200]
 Thermal[0.500000]
 DRC[3.50mil 4.00mil 3.50mil 6.00mil 7.87mil 3.50mil]
-Flags("showdrc,rubberband,nameonpcb,clearnew,newfullpoly,snappin,showmask,thindrawpoly")
+Flags("showdrc,rubberband,nameonpcb,clearnew,newfullpoly,snappin,thindrawpoly")
 Groups("1,c:2,s:3")
 Styles["Signal,10.00mil,36.00mil,20.00mil,6.00mil:Power,30.00mil,60.00mil,35.00mil,10.00mil:Fat,20.00mil,60.00mil,35.00mil,10.00mil:jclpcb,1.00mil,20.00mil,10.00mil,1.00mil"]
 Symbol[' ' 18.00mil]
@@ -850,7 +850,7 @@ Via[3280.00mil 790.00mil 20.00mil 0.0000 0.0000 10.00mil "" ""]
 Via[3260.00mil 790.00mil 20.00mil 0.0000 0.0000 10.00mil "" ""]
 Via[3240.00mil 790.00mil 20.00mil 0.0000 0.0000 10.00mil "" ""]
 Via[3220.00mil 790.00mil 20.00mil 0.0000 0.0000 10.00mil "" ""]
-Via[1235.00mil 1055.00mil 20.00mil 0.0000 0.0000 10.00mil "" "selected"]
+Via[1235.00mil 1055.00mil 20.00mil 0.0000 0.0000 10.00mil "" ""]
 Via[1135.00mil 1055.00mil 20.00mil 0.0000 0.0000 10.00mil "" ""]
 Via[1235.00mil 1015.00mil 20.00mil 0.0000 0.0000 10.00mil "" ""]
 Via[1235.00mil 975.00mil 20.00mil 0.0000 0.0000 10.00mil "" ""]
@@ -978,7 +978,7 @@ Element["" "1206" "C5" "22_uF" 3400.00mil 360.00mil -26.50mil -159.60mil 0 100 "
 
 Element["" "SOT223-H2" "U3" "unknown" 3310.00mil 715.00mil 215.00mil -120.00mil 0 100 ""]
 (
-	Pad[-26.00mil 122.00mil 26.00mil 122.00mil 2.2000mm 11.00mil 2.3778mm "GND" "2" "square"]
+	Pad[-26.00mil 122.00mil 26.00mil 122.00mil 2.2000mm 0.0000 2.1746mm "GND" "2" "square"]
 	Pad[-1.00mil -141.00mil -1.00mil -103.00mil 1.2000mm 13.00mil 1.2762mm "GND" "2" "square"]
 	Pad[90.00mil -141.00mil 90.00mil -103.00mil 1.2000mm 13.00mil 1.2762mm "Vin" "1" "square"]
 	Pad[-90.00mil -141.00mil -90.00mil -103.00mil 1.2000mm 13.00mil 1.2762mm "Vout" "3" "square"]
@@ -991,7 +991,7 @@ Element["" "SOT223-H2" "U3" "unknown" 3310.00mil 715.00mil 215.00mil -120.00mil 
 
 Element["" "SOT223-H2" "U2" "unknown" 1185.00mil 715.00mil 190.00mil -120.00mil 0 100 ""]
 (
-	Pad[-26.00mil 122.00mil 26.00mil 122.00mil 2.2000mm 11.00mil 2.3778mm "GND" "2" "square"]
+	Pad[-26.00mil 122.00mil 26.00mil 122.00mil 2.2000mm 0.0000 2.1746mm "GND" "2" "square"]
 	Pad[-1.00mil -141.00mil -1.00mil -103.00mil 1.2000mm 13.00mil 1.2762mm "GND" "2" "square"]
 	Pad[90.00mil -141.00mil 90.00mil -103.00mil 1.2000mm 13.00mil 1.2762mm "Vin" "1" "square"]
 	Pad[-90.00mil -141.00mil -90.00mil -103.00mil 1.2000mm 13.00mil 1.2762mm "Vout" "3" "square"]
