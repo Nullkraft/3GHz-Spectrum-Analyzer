@@ -2403,7 +2403,7 @@ Element["" "0603" "C350" "0.01_uF" 89.1555mm 55.2465mm 40.00mil -50.00mil 0 80 "
 Element["onsolder" "SO8" "U305" "unknown" 31.7515mm 69.8515mm 25.00mil 160.00mil 0 80 "onsolder"]
 (
 	Pad[-135.00mil 75.00mil -70.00mil 75.00mil 20.00mil 10.00mil 21.50mil "INM" "1" "onsolder,square"]
-	Pad[-135.00mil 25.00mil -70.00mil 25.00mil 20.00mil 10.00mil 20.00mil "COM" "2" "onsolder,square"]
+	Pad[-135.00mil 25.00mil -70.00mil 25.00mil 20.00mil 0.0000 20.00mil "COM" "2" "onsolder,square"]
 	Pad[-135.00mil -25.00mil -70.00mil -25.00mil 20.00mil 10.00mil 21.50mil "OFS" "3" "onsolder,square"]
 	Pad[-135.00mil -75.00mil -70.00mil -75.00mil 20.00mil 10.00mil 21.50mil "OUT" "4" "onsolder,square"]
 	Pad[70.00mil -75.00mil 135.00mil -75.00mil 20.00mil 10.00mil 21.50mil "INT" "5" "onsolder,square,edge2"]
@@ -3004,7 +3004,7 @@ Element["onsolder" "0603" "C334" "1.0_uF" 91.8225mm 46.8645mm -22.24mil -146.06m
 
 Element["onsolder" "0603" "C335" "1.0_uF" 96.9025mm 46.1025mm -0.4930mm -3.7950mm 1 80 "onsolder"]
 (
-	Pad[-4.92mil -25.59mil 4.92mil -25.59mil 29.52mil 0.0000 29.52mil "1" "1" "found,onsolder,square"]
+	Pad[-4.92mil -25.59mil 4.92mil -25.59mil 29.52mil 0.0000 29.52mil "1" "1" "onsolder,square"]
 	Pad[-4.92mil 25.59mil 4.92mil 25.59mil 29.52mil 12.00mil 35.52mil "2" "2" "onsolder,square"]
 
 	)
@@ -5825,8 +5825,7 @@ Layer(4 "bottom" "copper")
 	Line[99.5695mm 52.1985mm 99.5695mm 48.5155mm 10.00mil 12.00mil "clearline"]
 	Line[99.5695mm 48.5155mm 98.5535mm 47.4995mm 10.00mil 12.00mil "clearline"]
 	Line[98.5535mm 47.4995mm 98.5535mm 46.7525mm 10.00mil 12.00mil "clearline"]
-	Line[29.9735mm 70.4865mm 28.3225mm 70.4865mm 40.00mil 10.00mil ""]
-	Polygon("found,clearpoly,fullpoly")
+	Polygon("clearpoly,fullpoly")
 	(
 		[105.0305mm 78.4875mm] [4.4465mm 78.4875mm] [4.4465mm 12.7015mm] [105.0305mm 12.7015mm] 
 	)
