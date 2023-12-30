@@ -52,7 +52,7 @@ uint32_t regWord;    // Holds the register contents to be written to the selecte
 uint16_t Data16;  // 16 bits
 byte Command;
 byte Address;
-const byte AddressBits = 0x07;  // Mask to select 3 bits of 'Address' from serialWord[1]
+const byte AddressBits = 0x07;  // Mask out 3 bits of 'Register Address' from serialWord[1]
 const byte CommandFlag = 0xFF;  // Byte pattern to identify a 'Control Word'
 
 unsigned long start_PLL_Lock_time;

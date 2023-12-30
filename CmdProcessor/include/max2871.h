@@ -7,26 +7,6 @@
 #include <SPI.h>
 
 /* Default register values for MAX2871 LO: Sets default RFOout = 3865.0 MHz */
-/* This correlates to an 80 MHz RFin value
-    LO2 = 3865.0 MHz
-    Fractional Mode
-    MUX = TriState
-    DIVA = 1
-    N = 58
-    F = 2294
-    M = 4092
-    RFOut_A = OFF / 0dBm
-    RFOut_B =  ON / 5dBm
-*/
-/* Frequency 3551.0
- * 001AE6B0 = R[0]
- * 40017FE1 = R[1]
- * 80005F42 = R[2]
- * 04009F23 = R[3]
- * 638E83C4 = R[4]
- * 00400005 = R[5]
-*/
-
 typedef struct maxRegisters {
   static constexpr byte numRegisters = 7;
   uint32_t Reg[numRegisters] = { 0x001D47B0,  // 001D47B0 = R[0] N = Bits[30:15], F = Bits[14:3]
@@ -49,7 +29,7 @@ class MAX2871_LO {
   public:
     MAX2871_LO() : first_init(true) {}  // Ctor initialzes first_init
     
-    max2871Registers Curr;  // Modifiable copy of the registers for LO3
+    max2871Registers Curr;  // Read/Write copy of the registers
 
     /* 6 bit mask of Embedded Data from serial Specific Command */
     static constexpr short Data_Mask = 0x3F;
@@ -134,7 +114,6 @@ class MAX2871_LO {
     uint32_t set_n1dBm(uint32_t);
     uint32_t set_p2dBm(uint32_t);
     uint32_t set_p5dBm(uint32_t);
-
     uint32_t set_DIV_MODE(uint32_t reg);
 };
 
