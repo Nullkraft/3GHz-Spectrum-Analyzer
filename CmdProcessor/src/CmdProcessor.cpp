@@ -38,8 +38,8 @@
 */
 const uint8_t numBytesInSerialWord = 4;
 uint32_t serialWord;                                  // Serial Word as 32 bits
-uint8_t* serialWordAsBytes = (uint8_t*)&serialWord;   // Serial Word as a byte array
-uint16_t* serialWordAsInts = (uint16_t*)&serialWord;  // Serial Word as a int array
+uint8_t* serialWordAsBytes = reinterpret_cast<uint8_t*>(&serialWord);   // Serial Word as a byte array
+uint16_t* serialWordAsInts = reinterpret_cast<uint16_t*>(&serialWord);  // Serial Word as a int array
 
 // Command Flag 0xFF indicates that a new instruction was received by the Arduino
 bool COMMAND_FLAG = false;
@@ -179,6 +179,11 @@ void loop() {
       // Program the selected LO starting with the higher numbered registers first
       LO->update(LO->Curr.Reg[1], spi_select);
       LO->update(LO->Curr.Reg[0], spi_select);
+      // Usage example
+      // MAX2871_LO LO1, LO2, LO3;
+      // LO1.setFrequency(F, M, N, selectPinForLO1); // Specify the select pin for LO1
+      // LO2.setFrequency(F, M, N, selectPinForLO2); // Specify the select pin for LO2
+      // LO3.setFrequency(F, M, N, selectPinForLO3); // Specify the select pin for LO3
 
       // Wait for selected LO2 or LO3 to Lock
       start_PLL_Lock_time = micros();
@@ -220,7 +225,7 @@ void loop() {
        Specific commands occurs. */
     switch (Address) {
       case SA.Attenuator:
-        SA.updateAtten((uint8_t)Data16, SA.ATTEN_SEL);
+        SA.updateAtten(static_cast<uint8_t>(Data16), SA.ATTEN_SEL);
         break;
       case SA.LO1_addr:
         spi_select = SA.LO1_SEL;

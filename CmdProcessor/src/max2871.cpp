@@ -81,6 +81,66 @@ uint32_t MAX2871_LO::Execute(byte commandIndex, uint32_t controlWord) {
   return 0xFFFF;    // You tried to use an undefined command
 }
 
+void MAX2871_LO::setFrequency(uint16_t F, uint16_t M, uint8_t N, uint8_t selectPin) {
+    // Masking and shifting F and N for R[0]
+    uint32_t F_masked_shifted = (uint32_t)(F & 0xFFF) << 3;  // Mask and shift F
+    uint32_t N_masked_shifted = (uint32_t)(N & 0xFF) << 15;  // Mask and shift N
+
+    // Masking and shifting M for R[1]
+    uint32_t M_masked_shifted = (uint32_t)(M & 0xFFF) << 3;  // Mask and shift M
+
+    // Clearing the bits where F, M, and N will be placed, while keeping the other bits unchanged
+    Curr.Reg[0] &= ~(0xFFF << 3);  // Clear bits for F
+    Curr.Reg[0] &= ~(uint32_t(0xFF) << 15);  // Clear bits for N
+    Curr.Reg[1] &= ~(0xFFF << 3);  // Clear bits for M
+
+    // Setting the new values for F, M, and N
+    Curr.Reg[0] |= F_masked_shifted;  // Set new value for F
+    Curr.Reg[0] |= N_masked_shifted;  // Set new value for N
+    Curr.Reg[1] |= M_masked_shifted;  // Set new value for M
+
+    // Update the registers
+    update(Curr.Reg[0], selectPin); // Update R0
+    update(Curr.Reg[1], selectPin); // Update R1
+}
+
+void MAX2871_LO::FMN_from_freq(float target_freq_MHz, float ref_clock, uint16_t &F, uint16_t &M, uint8_t &N) {
+    float R = 2;
+    float Fpfd = ref_clock / R;
+    float max_error = pow(2, 32);
+    float Fvco = target_freq_MHz;
+
+    while (Fvco < 3000.0) {
+        Fvco *= 2;
+        if (Fvco >= 3000.0) {
+            break;
+        }
+    }
+
+    N = static_cast<uint8_t>(Fvco / Fpfd);
+    float Fract = Fvco / Fpfd - N;
+    float best_F = 0;
+    uint16_t best_M = 0;
+
+    for (int M_candidate = 4095; M_candidate > 1; --M_candidate) {
+        float F_candidate = Fract * M_candidate;
+        float err = abs(Fvco - (Fpfd * (N + F_candidate / M_candidate)));
+        if (err == 0) {
+            best_F = F_candidate;
+            best_M = M_candidate;
+            break;
+        }
+        if (err <= max_error) {
+            max_error = err;
+            best_F = F_candidate;
+            best_M = M_candidate;
+        }
+    }
+
+    F = static_cast<uint16_t>(round(best_F));
+    M = best_M;
+}
+
 // Program a single register of the selected LO by sending and latching 4 bytes
 void MAX2871_LO::update(uint32_t reg, uint8_t selectPin) {
   SPI.beginTransaction(SPISettings(spiMaxSpeed, MSBFIRST, SPI_MODE0));

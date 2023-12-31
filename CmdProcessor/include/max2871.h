@@ -6,20 +6,19 @@
 #endif
 #include <SPI.h>
 
-/* Default register values for MAX2871 LO: Sets default RFOout = 3865.0 MHz */
-typedef struct maxRegisters {
-  static constexpr byte numRegisters = 7;
-  uint32_t Reg[numRegisters] = { 0x001D47B0,  // 001D47B0 = R[0] N = Bits[30:15], F = Bits[14:3]
-                                 0x40017FE1,  // 40017FE1 = R[1] M = Bits[14:3]
-                                 0x80005F42,  // 80005F42 = R[2] Digital Lock detect OFF = MUX=Bits[28:26] = 110
-                                 0x04009F23,  // 04009F23 = R[3] Fast Lock enabled = Bits[16:15]
-                                 0x638E83C4,  // 638E83C4 = R[4] RFout_B enabled @ +5dBm / RFout_A disabled
-                                 0x00400005,  // 00400005 = R[5] 
-                                 0x98005F42   // 98005F42 = R[2] Digital Lock detect ON --> MUX=Bits[28:26]
-                               };
-} max2871Registers;
-
 class MAX2871_LO {
+  typedef struct maxRegisters {
+    static constexpr byte numRegisters = 7;
+    uint32_t Reg[numRegisters] = {0x001D47B0,  // R[0] N = Bits[30:15], F = Bits[14:3]
+                                  0x40017FE1,  // R[1] M = Bits[14:3]
+                                  0x80005F42,  // R[2] Digital Lock detect OFF
+                                  0x04009F23,  // R[3] Fast Lock enabled
+                                  0x638E83C4,  // R[4] RFout_B enabled @ +5dBm / RFout_A disabled
+                                  0x00400005,  // R[5]
+                                  0x98005F42   // R[6] Digital Lock detect ON
+                                };
+  } max2871Registers;
+
   private:
     static constexpr int NUMBER_OF_FUNCTIONS = 8;
     // The MAX2871 requires a 20 ms delay only on the first init
@@ -27,7 +26,9 @@ class MAX2871_LO {
     bool first_init;
 
   public:
-    MAX2871_LO() : first_init(true) {}  // Ctor initialzes first_init
+    MAX2871_LO() : first_init(true) {  // Ctor initialzes first_init
+      SPI.begin();
+    }
     
     max2871Registers Curr;  // Read/Write copy of the registers
 
@@ -86,6 +87,8 @@ class MAX2871_LO {
     void begin(uint8_t);
     void set_NF_bits(uint32_t);
     void set_M_bits(uint32_t);
+    void setFrequency(uint16_t F, uint16_t M, uint8_t N, uint8_t selectPin);
+    void FMN_from_freq(float target_freq_MHz, float ref_clock, uint16_t &F, uint16_t &M, uint8_t &N);
     void update(uint32_t reg, uint8_t selectPin); // Write 4 bytes to chip register
     uint32_t Execute(byte commandIndex, uint32_t controlWord);
 
