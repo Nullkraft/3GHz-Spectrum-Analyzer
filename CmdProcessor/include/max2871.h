@@ -87,6 +87,7 @@ class MAX2871_LO {
     void begin(uint8_t);
     void set_NF_bits(uint32_t);
     void set_M_bits(uint32_t);
+    void setFrequency(float frequency, float ref_clock, uint8_t selectPin);
     void setFrequency(uint16_t F, uint16_t M, uint8_t N, uint8_t selectPin);
     void FMN_from_freq(float target_freq_MHz, float ref_clock, uint16_t &F, uint16_t &M, uint8_t &N);
     void update(uint32_t reg, uint8_t selectPin); // Write 4 bytes to chip register

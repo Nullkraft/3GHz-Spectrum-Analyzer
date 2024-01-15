@@ -81,6 +81,15 @@ uint32_t MAX2871_LO::Execute(byte commandIndex, uint32_t controlWord) {
   return 0xFFFF;    // You tried to use an undefined command
 }
 
+void MAX2871_LO::setFrequency(float frequency, float ref_clock, uint8_t selectPin) {
+    uint16_t F;
+    uint16_t M;
+    uint8_t N;
+
+    FMN_from_freq(frequency, ref_clock, F, M, N);
+    setFrequency(F, M, N, selectPin);
+}
+
 void MAX2871_LO::setFrequency(uint16_t F, uint16_t M, uint8_t N, uint8_t selectPin) {
     // Masking and shifting F and N for R[0]
     uint32_t F_masked_shifted = (uint32_t)(F & 0xFFF) << 3;  // Mask and shift F
