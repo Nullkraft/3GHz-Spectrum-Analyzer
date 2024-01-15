@@ -1,13 +1,13 @@
 v 20201216 2
 C 68200 61800 1 0 0 header6-1.sym
 {
-T 67600 64550 5 10 0 0 0 0 1
+T 67600 64550 5 10 0 1 0 0 1
 device=HEADER6
 T 68500 64250 5 10 1 1 0 0 1
 refdes=J401
-T 68200 61800 5 10 0 0 0 0 1
+T 68200 61800 5 10 0 1 0 0 1
 footprint=sparkfun_11544
-T 67500 61600 5 10 0 0 0 0 1
+T 67500 61600 5 10 0 1 0 0 1
 man-part-num=11544
 T 68200 61800 5 10 0 1 0 0 1
 manufacturer=Sparkfun
@@ -38,20 +38,18 @@ T 59600 60100 5 10 1 1 0 0 1
 device=TPSM33625
 T 61600 60100 5 10 1 1 0 6 1
 refdes=U1
-T 60600 58900 5 10 0 0 0 0 1
+T 60600 58900 5 10 0 1 0 0 1
 footprint=TPSM33625
 T 60600 58900 5 10 0 1 0 0 1
 man-part-num=TPSM33625RDNR
-T 60600 58900 5 10 0 1 0 0 1
-documentation=https://www.digikey.com/en/products/detail/texas-instruments/TPSM33625RDNR/17395028?s=N4IgTCBcDaICoAUDKBZAzGgbGArAJQBEA5PEAXQF8g
 }
 C 55500 58900 1 90 0 capacitor-1_small.sym
 {
-T 54875 59025 5 10 0 0 90 0 1
+T 54875 59025 5 10 0 1 90 0 1
 device=CAPACITOR
 T 55600 59300 5 10 1 1 0 0 1
 refdes=C2
-T 55500 58900 5 10 0 0 0 0 1
+T 55500 58900 5 10 0 1 0 0 1
 footprint=0805
 T 55500 59000 5 10 1 1 0 0 1
 value=4.7uF
@@ -62,11 +60,11 @@ man-part-num=GRT21BR61H475ME13L
 }
 C 64000 58800 1 90 0 capacitor-1_small.sym
 {
-T 63375 58925 5 10 0 0 90 0 1
+T 63375 58925 5 10 0 1 90 0 1
 device=CAPACITOR
 T 64100 59200 5 10 1 1 0 0 1
 refdes=C4
-T 64000 58800 5 10 0 0 0 0 1
+T 64000 58800 5 10 0 1 0 0 1
 footprint=1206
 T 64100 58900 5 10 1 1 0 0 1
 value=22uF
@@ -75,13 +73,13 @@ man-part-num=CL31A226MOCLNNC
 }
 C 58800 58200 1 270 0 capacitor-1_small.sym
 {
-T 59425 58075 5 10 0 0 270 0 1
+T 59425 58075 5 10 0 1 270 0 1
 device=CAPACITOR
 T 58500 58000 5 10 1 1 0 0 1
 refdes=C7
 T 58500 57600 5 10 1 1 0 0 1
 value=1uF
-T 58800 58200 5 10 0 0 180 0 1
+T 58800 58200 5 10 0 1 180 0 1
 footprint=0402
 T 58800 58200 5 10 0 1 90 0 1
 man-part-num=GRM155R61C105MA12D
@@ -96,31 +94,27 @@ device=DRC_Directive
 }
 C 62800 56800 1 90 0 resistor-1.sym
 {
-T 62400 57100 5 10 0 0 90 0 1
+T 62400 57100 5 10 0 1 90 0 1
 device=RESISTOR
 T 62900 57300 5 10 1 1 0 0 1
 refdes=R3
-T 62800 56800 5 10 0 0 0 0 1
+T 62800 56800 5 10 0 1 0 0 1
 footprint=0402
 T 62900 57000 5 10 1 1 0 0 1
 value=10k
-T 62800 56800 5 10 0 1 0 0 1
-documentation=https://www.mouser.com/ProductDetail/YAGEO/RT0402FRE0710KL?qs=BXCcY9r%252B08Amup7nMFKW1g%3D%3D
 T 62800 56800 5 10 0 1 0 0 1
 man-part-num=RT0402FRE0710KL 
 }
 C 62800 58500 1 90 0 resistor-1.sym
 {
-T 62400 58800 5 10 0 0 90 0 1
+T 62400 58800 5 10 0 1 90 0 1
 device=RESISTOR
 T 62900 59000 5 10 1 1 0 0 1
 refdes=R2
-T 62800 58500 5 10 0 0 0 0 1
+T 62800 58500 5 10 0 1 0 0 1
 footprint=0402
 T 62900 58700 5 10 1 1 0 0 1
 value=64.9
-T 62800 58500 5 10 0 1 0 0 1
-documentation=https://www.mouser.com/ProductDetail/YAGEO/RT0402DRD0764K9L?qs=BXCcY9r%252B08AYvo23Y5cKPQ%3D%3D
 T 62800 58500 5 10 0 1 0 0 1
 man-part-num=RT0402DRD0764K9L 
 }
@@ -140,14 +134,6 @@ T 62000 58050 5 10 0 1 0 0 1
 netname=FB
 }
 N 55300 59700 59400 59700 4
-{
-T 55400 59750 5 10 0 1 0 0 1
-netname=Vin
-T 58750 59600 5 10 0 1 90 6 1
-netname=Vin
-T 59100 59750 5 10 0 1 0 0 1
-netname=Vin
-}
 N 59400 57200 59400 58000 4
 {
 T 59350 57400 5 10 1 1 90 0 1
@@ -162,13 +148,13 @@ device=DRC_Directive
 }
 C 58000 58900 1 90 0 capacitor-1_small.sym
 {
-T 57375 59025 5 10 0 0 90 0 1
+T 57375 59025 5 10 0 1 90 0 1
 device=CAPACITOR
 T 57200 59300 5 10 1 1 0 0 1
 refdes=C3
 T 57200 59000 5 10 1 1 0 0 1
 value=4.7uF
-T 58000 58900 5 10 0 0 0 0 1
+T 58000 58900 5 10 0 1 0 0 1
 footprint=0805
 T 57200 58800 5 10 1 1 0 0 1
 comment=50 VDC
@@ -176,18 +162,10 @@ T 58000 58900 5 10 0 1 0 0 1
 man-part-num=GRT21BR61H475ME13L
 }
 N 55400 59500 55400 59700 4
-{
-T 55350 59600 5 10 0 1 90 0 1
-netname=Vin
-}
 N 57900 59500 57900 59700 4
-{
-T 57850 59600 5 10 0 1 90 0 1
-netname=Vin
-}
 C 67700 56800 1 0 0 AZ1117CH2.sym
 {
-T 67000 57400 5 10 1 1 0 0 1
+T 67000 57400 5 10 0 1 0 0 1
 device=AZ1117CH2
 T 68400 57400 5 10 1 1 0 6 1
 refdes=U3
@@ -198,7 +176,7 @@ footprint=SOT223-H2
 }
 C 67600 59500 1 0 0 AZ1117CH2.sym
 {
-T 66900 60100 5 10 1 1 0 0 1
+T 66900 60100 5 10 0 1 0 0 1
 device=AZ1117CH2
 T 68300 60100 5 10 1 1 0 6 1
 refdes=U2
@@ -224,9 +202,9 @@ netname=+7.5VDC
 N 66400 57000 66700 57000 4
 C 68900 58800 1 90 0 capacitor-1_small.sym
 {
-T 68275 58925 5 10 0 0 90 0 1
+T 68275 58925 5 10 0 1 90 0 1
 device=CAPACITOR
-T 68900 58800 5 10 0 0 0 0 1
+T 68900 58800 5 10 0 1 0 0 1
 footprint=1206
 T 69000 59200 5 10 1 1 0 0 1
 refdes=C6
@@ -238,9 +216,9 @@ man-part-num=CL31A226MOCLNNC
 C 68700 58400 1 0 0 gnd-1.sym
 C 68900 56100 1 90 0 capacitor-1_small.sym
 {
-T 68275 56225 5 10 0 0 90 0 1
+T 68275 56225 5 10 0 1 90 0 1
 device=CAPACITOR
-T 68900 56100 5 10 0 0 0 0 1
+T 68900 56100 5 10 0 1 0 0 1
 footprint=1206
 T 69000 56500 5 10 1 1 0 0 1
 refdes=C9
@@ -254,13 +232,13 @@ C 66300 55700 1 0 0 gnd-1.sym
 N 66400 56700 66400 57000 4
 C 66500 58800 1 90 0 capacitor-1_small.sym
 {
-T 65875 58925 5 10 0 0 90 0 1
+T 65875 58925 5 10 0 1 90 0 1
 device=CAPACITOR
 T 66000 59200 5 10 1 1 0 0 1
 refdes=C8
 T 65800 58900 5 10 1 1 0 0 1
 value=22uF
-T 66500 58800 5 10 0 0 0 0 1
+T 66500 58800 5 10 0 1 0 0 1
 footprint=1206
 T 66500 58800 5 10 0 1 0 0 1
 man-part-num=CL31A226MOCLNNC
@@ -269,9 +247,9 @@ C 66300 58400 1 0 0 gnd-1.sym
 N 66400 59400 66400 59700 4
 C 66500 56100 1 90 0 capacitor-1_small.sym
 {
-T 65875 56225 5 10 0 0 90 0 1
+T 65875 56225 5 10 0 1 90 0 1
 device=CAPACITOR
-T 66500 56100 5 10 0 0 0 0 1
+T 66500 56100 5 10 0 1 0 0 1
 footprint=1206
 T 66000 56500 5 10 1 1 0 0 1
 refdes=C5
@@ -289,40 +267,38 @@ N 68800 56700 68800 57000 4
 N 68800 59700 68800 59400 4
 C 59000 58800 1 90 0 resistor-1.sym
 {
-T 58600 59100 5 10 0 0 90 0 1
+T 58600 59100 5 10 0 1 90 0 1
 device=RESISTOR
 T 58500 59400 5 10 1 1 0 0 1
 refdes=R1
-T 59000 58800 5 10 0 0 0 0 1
+T 59000 58800 5 10 0 1 0 0 1
 footprint=0402
 T 58300 59000 5 10 1 1 0 0 1
 value=100k
-T 59000 58800 5 10 0 1 0 0 1
-documentation=https://www.mouser.com/ProductDetail/YAGEO/RT0402FRE07100KL?qs=BXCcY9r%252B08CxTvf5JB1kiw%3D%3D
 T 59000 58800 5 10 0 1 0 0 1
 man-part-num=RT0402FRE07100KL 
 }
 N 58900 58500 59400 58500 4
 C 52100 59500 1 0 0 diode-1.sym
 {
-T 52500 60100 5 10 0 0 0 0 1
+T 52500 60100 5 10 0 1 0 0 1
 device=DIODE
 T 52400 60000 5 10 1 1 0 0 1
 refdes=D1
-T 52100 59500 5 10 0 0 0 0 1
+T 52100 59500 5 10 0 1 0 0 1
 footprint=DO220AA
-T 52100 59500 5 10 0 0 0 0 1
+T 52100 59500 5 10 0 1 0 0 1
 man-part-num=SS2P5HM3/84A
 }
 C 54400 59600 1 0 0 inductor-1.sym
 {
-T 54600 60100 5 10 0 0 0 0 1
+T 54600 60100 5 10 0 1 0 0 1
 device=INDUCTOR
 T 54500 59900 5 10 1 1 0 0 1
 refdes=L1
-T 54400 59600 5 10 0 0 0 0 1
+T 54400 59600 5 10 0 1 0 0 1
 footprint=INDC3225M
-T 54400 59600 5 10 0 0 0 0 1
+T 54400 59600 5 10 0 1 0 0 1
 man-part-num=ME3220-332MLC
 T 54900 59900 5 10 1 1 0 0 1
 value=3.3 uH
@@ -336,11 +312,11 @@ device=DRC_Directive
 }
 C 54400 58900 1 90 0 capacitor-1_small.sym
 {
-T 53775 59025 5 10 0 0 90 0 1
+T 53775 59025 5 10 0 1 90 0 1
 device=CAPACITOR
 T 54500 59300 5 10 1 1 0 0 1
 refdes=C1
-T 54400 58900 5 10 0 0 0 0 1
+T 54400 58900 5 10 0 1 0 0 1
 footprint=0805
 T 54400 59000 5 10 1 1 0 0 1
 value=4.7uF
@@ -351,13 +327,13 @@ man-part-num=GRT21BR61H475ME13L
 }
 C 65000 59600 1 0 0 inductor-1.sym
 {
-T 65200 60100 5 10 0 0 0 0 1
+T 65200 60100 5 10 0 1 0 0 1
 device=INDUCTOR
 T 65200 59900 5 10 1 1 0 0 1
 refdes=L2
-T 65000 59600 5 10 0 0 0 0 1
+T 65000 59600 5 10 0 1 0 0 1
 footprint=INDC3225M
-T 65000 59600 5 10 0 0 0 0 1
+T 65000 59600 5 10 0 1 0 0 1
 man-part-num=ME3220-332MLC
 T 65200 59500 5 10 1 1 0 0 1
 value=3.3uH
@@ -423,20 +399,18 @@ L 57700 55700 57900 55700 3 0 1 0 -1 -1
 L 58100 55700 58300 55700 3 0 1 0 -1 -1
 C 50300 64700 1 0 0 pwrjack-1.sym
 {
-T 50400 65200 5 10 0 0 0 0 1
+T 50400 65200 5 10 0 1 0 0 1
 device=PWRJACK
 T 50300 65200 5 10 1 1 0 0 1
 description=+12 VDC Power Jack
 T 50400 64500 5 10 1 1 0 0 1
 refdes=J1
-T 50300 64700 5 10 0 0 0 0 1
-graphical=1
 T 50300 64700 5 10 0 1 0 0 1
 man-part-num=721A
 T 50300 64700 5 10 0 1 0 0 1
 manufacturer=Switchcraft
-T 50300 64700 5 10 0 1 0 0 1
-documentation=https://www.mouser.com/ProductDetail/Switchcraft/721A?qs=fAHHVMwC%2BbgfcCr7UMISow==
+T 50300 64700 5 10 0 0 0 0 1
+graphical=1
 }
 C 50800 57600 1 0 0 gnd-1.sym
 B 50000 61600 4000 4100 3 0 1 0 -1 -1 0 -1 -1 -1 -1 -1
@@ -459,7 +433,7 @@ block_title=Power Board (+7.5V, +5V, + 3.3V)
 }
 C 53700 58800 1 90 0 resistor-1.sym
 {
-T 53300 59100 5 10 0 0 90 0 1
+T 53300 59100 5 10 0 1 90 0 1
 device=RESISTOR
 T 53100 59300 5 10 1 1 0 0 1
 refdes=R4
@@ -474,14 +448,12 @@ C 53500 58800 1 270 0 led-2.sym
 {
 T 53400 58500 5 10 1 1 180 0 1
 refdes=D2
-T 54100 58700 5 10 0 0 270 0 1
+T 54100 58700 5 10 0 1 270 0 1
 device=LED
 T 53500 58800 5 10 0 1 270 0 1
 man-part-num=155124RS73200
 T 53500 58800 5 10 0 1 270 0 1
 footprint=1305
-T 53500 58800 5 10 0 1 0 0 1
-documentation=https://www.digikey.com/en/products/detail/w%C3%BCrth-elektronik/155124rs73200/4490041
 }
 C 53500 57600 1 0 0 gnd-1.sym
 N 50900 58200 51100 58200 4
@@ -492,14 +464,12 @@ netname=+12_VDC
 }
 C 60100 61100 1 0 0 Faraday-cage.sym
 {
-T 60100 61900 5 10 0 0 0 0 1
+T 60100 61900 5 10 0 1 0 0 1
 device=SHEILD
 T 60200 61800 5 10 1 1 0 0 1
 refdes=Sh2
 T 60100 61100 5 10 0 1 0 0 1
 footprint=mask_clear
-T 60100 61100 5 10 0 1 0 0 1
-documentation=https://www.digikey.com/en/products/detail/harwin-inc/S0971-46R/4767777
 T 60100 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
 }
@@ -511,24 +481,22 @@ C 49200 58400 1 180 1 connector2-1.sym
 {
 T 49200 57600 5 10 1 1 180 6 1
 refdes=CONN3
-T 49200 58400 5 10 0 0 180 6 1
+T 49200 58400 5 10 0 1 180 6 1
 footprint=SM4_SIDE
-T 49200 58400 5 10 0 0 180 6 1
+T 49200 58400 5 10 0 1 180 6 1
 device=PWRJACK
 T 49200 58600 5 10 1 1 180 6 1
 description=+12 VDC
 T 49200 58400 5 10 0 1 0 0 1
 man-part-num=S2B-PH-SM4-TB
-T 49200 58400 5 10 0 1 0 0 1
-documentation=https://www.digikey.com/en/products/detail/jst-sales-america-inc/S2B-PH-SM4-TB/926655?s=N4IgTCBcDaIMpgEIFoAKAJZcCyAWZAKoiALoC+QA
 }
 C 49200 56900 1 180 1 connector2-1.sym
 {
 T 49200 56100 5 10 1 1 180 6 1
 refdes=CONN2
-T 49200 56900 5 10 0 0 180 6 1
+T 49200 56900 5 10 0 1 180 6 1
 footprint=SM4_SIDE
-T 49200 56900 5 10 0 0 180 6 1
+T 49200 56900 5 10 0 1 180 6 1
 device=PWRJACK
 T 49200 57100 5 10 1 1 180 6 1
 description=+12 VDC
@@ -536,68 +504,58 @@ T 49000 55900 5 10 1 1 180 6 1
 comment=*OPTIONAL*
 T 49200 56900 5 10 0 1 0 0 1
 man-part-num=S2B-PH-SM4-TB
-T 49200 56900 5 10 0 1 0 0 1
-documentation=https://www.digikey.com/en/products/detail/jst-sales-america-inc/S2B-PH-SM4-TB/926655?s=N4IgTCBcDaIMpgEIFoAKAJZcCyAWZAKoiALoC+QA
 }
 C 51300 63700 1 0 1 switch-spst-1.sym
 {
-T 50900 64400 5 10 0 0 0 6 1
+T 50900 64400 5 10 0 1 0 6 1
 device=SPST
 T 51600 64000 5 10 1 1 0 6 1
 description=Power Switch
 T 51200 63500 5 10 1 1 0 6 1
 refdes=SW1
-T 51300 63700 5 10 0 0 0 6 1
-graphical=1
 T 51300 63700 5 10 0 1 0 0 1
 man-part-num=25002 SW
-T 51300 63700 5 10 0 1 0 0 1
-documentation=https://www.mpja.com/SPST-On-Off-Toggle-Switch-4A/productinfo/25002+SW/
-T 51300 63700 5 10 0 1 0 0 1
+T 51300 63800 5 10 1 1 0 0 1
 comment=12.2mm hole
+T 51300 63700 5 10 0 0 0 0 1
+graphical=1
 }
 C 49200 59200 1 0 0 connector2-1.sym
 {
 T 49200 59000 5 10 1 1 0 0 1
 refdes=CONN1
-T 49200 59200 5 10 0 0 0 0 1
+T 49200 59200 5 10 0 1 0 0 1
 footprint=SM4_SIDE
-T 49200 59200 5 10 0 0 0 0 1
+T 49200 59200 5 10 0 1 0 0 1
 device=PWRSW
 T 49200 60000 5 10 1 1 0 0 1
 description=PWR SWITCH
 T 49200 59200 5 10 0 1 0 0 1
 man-part-num=S2B-PH-SM4-TB
-T 49200 59200 5 10 0 1 0 0 1
-documentation=https://www.digikey.com/en/products/detail/jst-sales-america-inc/S2B-PH-SM4-TB/926655?s=N4IgTCBcDaIMpgEIFoAKAJZcCyAWZAKoiALoC+QA
 }
 C 53000 65200 1 180 1 header2-1.sym
 {
-T 54000 64950 5 10 0 0 180 6 1
+T 54000 64950 5 10 0 1 180 6 1
 device=HEADER2
 T 53300 65300 5 10 1 1 0 0 1
 refdes=P1
-T 53000 65200 5 10 0 0 0 0 1
-graphical=1
-T 53000 65200 5 10 0 1 0 0 1
-documentation=https://www.sparkfun.com/products/8670
 T 53000 65200 5 10 0 1 0 0 1
 man-part-num=PRT-08670
+T 53000 65200 5 10 0 0 0 0 1
+graphical=1
 }
 N 51100 59400 50900 59400 4
 N 50900 59700 52100 59700 4
 C 53000 63100 1 0 0 header2-1.sym
 {
-T 54000 63350 5 10 0 0 0 0 1
+T 54000 63350 5 10 0 1 0 0 1
 device=HEADER2
 T 53300 64100 5 10 1 1 180 6 1
 refdes=P2
-T 53000 63100 5 10 0 0 180 6 1
-graphical=1
 T 53000 63100 5 10 0 1 0 0 1
 man-part-num=PRT-08670
-T 53000 63100 5 10 0 1 0 0 1
-documentation=https://www.sparkfun.com/products/8670
+T 53000 63100 5 10 0 0 0 0 1
+graphical=1
 }
 N 51300 63700 53000 63700 4
 N 50300 63300 53000 63300 4
@@ -616,79 +574,67 @@ N 50300 63300 50300 63700 4
 N 50300 63700 50500 63700 4
 C 60700 61100 1 0 0 Faraday-cage.sym
 {
-T 60700 61900 5 10 0 0 0 0 1
+T 60700 61900 5 10 0 1 0 0 1
 device=SHEILD
 T 60800 61800 5 10 1 1 0 0 1
 refdes=Sh5
 T 60700 61100 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 60700 61100 5 10 0 1 0 0 1
-documentation=https://www.digikey.com/en/products/detail/harwin-inc/S0971-46R/4767777
-T 60700 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
 }
 C 61300 61100 1 0 0 Faraday-cage.sym
 {
-T 61300 61900 5 10 0 0 0 0 1
+T 61300 61900 5 10 0 1 0 0 1
 device=SHEILD
 T 61400 61800 5 10 1 1 0 0 1
 refdes=Sh6
 T 61300 61100 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 61300 61100 5 10 0 1 0 0 1
-documentation=https://www.digikey.com/en/products/detail/harwin-inc/S0971-46R/4767777
-T 61300 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
 }
 C 61900 61100 1 0 0 Faraday-cage.sym
 {
-T 61900 61900 5 10 0 0 0 0 1
+T 61900 61900 5 10 0 1 0 0 1
 device=SHEILD
 T 62000 61800 5 10 1 1 0 0 1
 refdes=Sh7
 T 61900 61100 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 61900 61100 5 10 0 1 0 0 1
-documentation=https://www.digikey.com/en/products/detail/harwin-inc/S0971-46R/4767777
-T 61900 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
 }
 C 62500 61100 1 0 0 Faraday-cage.sym
 {
-T 62500 61900 5 10 0 0 0 0 1
+T 62500 61900 5 10 0 1 0 0 1
 device=SHEILD
 T 62600 61800 5 10 1 1 0 0 1
 refdes=Sh8
 T 62500 61100 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 62500 61100 5 10 0 1 0 0 1
-documentation=https://www.digikey.com/en/products/detail/harwin-inc/S0971-46R/4767777
-T 62500 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
 }
 C 63100 61100 1 0 0 Faraday-cage.sym
 {
-T 63100 61900 5 10 0 0 0 0 1
+T 63100 61900 5 10 0 1 0 0 1
 device=SHEILD
 T 63200 61800 5 10 1 1 0 0 1
 refdes=Sh9
 T 63100 61100 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 63100 61100 5 10 0 1 0 0 1
-documentation=https://www.digikey.com/en/products/detail/harwin-inc/S0971-46R/4767777
-T 63100 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
 }
 C 63700 61100 1 0 0 Faraday-cage.sym
 {
-T 63700 61900 5 10 0 0 0 0 1
+T 63700 61900 5 10 0 1 0 0 1
 device=SHEILD
 T 63800 61800 5 10 1 1 0 0 1
 refdes=Sh10
 T 63700 61100 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
-T 63700 61100 5 10 0 1 0 0 1
-documentation=https://www.digikey.com/en/products/detail/harwin-inc/S0971-46R/4767777
 T 63700 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
 }
