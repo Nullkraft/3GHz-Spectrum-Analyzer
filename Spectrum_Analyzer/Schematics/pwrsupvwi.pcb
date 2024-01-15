@@ -5,7 +5,7 @@ FileVersion[20091103]
 
 PCB["Power Supply Board" 4130.00mil 2900.00mil]
 
-Grid[5.00mil 0.0000 0.0000 1]
+Grid[1.00mil 0.0000 0.0000 1]
 PolyArea[3100.006200]
 Thermal[0.500000]
 DRC[3.50mil 4.00mil 3.50mil 6.00mil 7.87mil 3.50mil]
@@ -785,7 +785,7 @@ Symbol['~' 12.00mil]
 	SymbolLine[20.00mil 35.00mil 25.00mil 30.00mil 8.00mil]
 )
 Attribute("PCB::grid::unit" "mil")
-Attribute("PCB::grid::size" "5.00mil")
+Attribute("PCB::grid::size" "1.00mil")
 Via[205.00mil 285.00mil 225.00mil 0.0000 235.00mil 125.00mil "" "lock"]
 Via[205.00mil 2635.00mil 225.00mil 0.0000 235.00mil 125.00mil "" "lock"]
 Via[3925.00mil 2635.00mil 225.00mil 0.0000 235.50mil 125.00mil "" "lock"]
@@ -958,7 +958,7 @@ Via[2170.00mil 2645.00mil 20.00mil 0.0000 0.0000 10.00mil "" ""]
 Via[2170.00mil 2590.00mil 20.00mil 0.0000 0.0000 10.00mil "" ""]
 Via[2170.00mil 2495.00mil 20.00mil 0.0000 0.0000 10.00mil "" ""]
 
-Element["" "1206" "C9" "22_uF" 3220.00mil 360.00mil -31.50mil -156.50mil 0 100 ""]
+Element["" "1206" "C9" "22uF" 3220.00mil 360.00mil -31.50mil -156.50mil 0 100 ""]
 (
 	Pad[-11.81mil -59.05mil 11.81mil -59.05mil 51.18mil 12.00mil 57.18mil "1" "1" "square"]
 	Pad[-11.81mil 59.05mil 11.81mil 59.05mil 51.18mil 16.00mil 57.18mil "2" "2" "square"]
@@ -967,7 +967,7 @@ Element["" "1206" "C9" "22_uF" 3220.00mil 360.00mil -31.50mil -156.50mil 0 100 "
 
 	)
 
-Element["" "1206" "C5" "22_uF" 3400.00mil 360.00mil -26.50mil -159.60mil 0 100 ""]
+Element["" "1206" "C5" "22uF" 3400.00mil 360.00mil -26.50mil -159.60mil 0 100 ""]
 (
 	Pad[-11.81mil -59.05mil 11.81mil -59.05mil 51.18mil 12.00mil 57.18mil "1" "1" "square"]
 	Pad[-11.81mil 59.05mil 11.81mil 59.05mil 51.18mil 16.00mil 57.18mil "2" "2" "square"]
@@ -1002,7 +1002,7 @@ Element["" "SOT223-H2" "U2" "unknown" 1185.00mil 715.00mil 190.00mil -120.00mil 
 
 	)
 
-Element["" "1206" "C6" "22_uF" 1095.00mil 360.00mil -31.50mil -156.50mil 0 100 ""]
+Element["" "1206" "C6" "22uF" 1095.00mil 360.00mil -31.50mil -156.50mil 0 100 ""]
 (
 	Pad[-11.81mil -59.05mil 11.81mil -59.05mil 51.18mil 12.00mil 57.18mil "1" "1" "square"]
 	Pad[-11.81mil 59.05mil 11.81mil 59.05mil 51.18mil 16.00mil 57.18mil "2" "2" "square"]
@@ -1011,7 +1011,7 @@ Element["" "1206" "C6" "22_uF" 1095.00mil 360.00mil -31.50mil -156.50mil 0 100 "
 
 	)
 
-Element["" "1206" "C8" "22_uF" 1275.00mil 360.00mil -25.55mil -155.55mil 0 100 ""]
+Element["" "1206" "C8" "22uF" 1275.00mil 360.00mil -25.55mil -155.55mil 0 100 ""]
 (
 	Pad[-11.81mil -59.05mil 11.81mil -59.05mil 51.18mil 12.00mil 57.18mil "1" "1" "square"]
 	Pad[-11.81mil 59.05mil 11.81mil 59.05mil 51.18mil 16.00mil 57.18mil "2" "2" "square"]
@@ -1020,7 +1020,7 @@ Element["" "1206" "C8" "22_uF" 1275.00mil 360.00mil -25.55mil -155.55mil 0 100 "
 
 	)
 
-Element["" "1206" "R4" "470_?" 94.2581mm 2230.00mil -1.3563mm -116.50mil 0 100 ""]
+Element["" "1206" "R4" "470" 94.2581mm 2230.00mil -1.3563mm -116.50mil 0 100 ""]
 (
 	Pad[59.05mil -11.81mil 59.05mil 11.81mil 51.18mil 20.00mil 57.18mil "1" "1" "square"]
 	Pad[-59.05mil -11.81mil -59.05mil 11.81mil 51.18mil 20.00mil 57.18mil "2" "2" "square"]
@@ -1071,7 +1071,7 @@ Element["" "DO220AA" "D1" "unknown" 2052.50mil 1840.00mil 25.00mil -80.00mil 0 1
 
 	)
 
-Element["" "INDC3225M" "L2" "3.3_uH" 77.1649mm 2430.00mil -0.9649mm -3.7589mm 0 100 ""]
+Element["" "INDC3225M" "L2" "3.3uH" 77.1649mm 2430.00mil -0.9649mm -3.7589mm 0 100 ""]
 (
 	Pad[-62.99mil -25.59mil -62.99mil 25.59mil 59.05mil 20.00mil 65.05mil "1" "1" "square"]
 	Pad[62.99mil -25.59mil 62.99mil 25.59mil 59.05mil 20.00mil 65.05mil "2" "2" "square"]
@@ -1080,7 +1080,7 @@ Element["" "INDC3225M" "L2" "3.3_uH" 77.1649mm 2430.00mil -0.9649mm -3.7589mm 0 
 
 	)
 
-Element["" "0805" "C3" "4.7_uF" 2630.00mil 2550.00mil -32.36mil -2.4691mm 0 100 ""]
+Element["" "0805" "C3" "4.7uF" 2630.00mil 2550.00mil -32.36mil -2.4691mm 0 100 ""]
 (
 	Pad[35.43mil -3.93mil 35.43mil 3.93mil 51.18mil 0.0000 51.18mil "1" "1" "square"]
 	Pad[-35.43mil -3.93mil -35.43mil 3.93mil 51.18mil 20.00mil 61.18mil "2" "2" "square"]
@@ -1115,9 +1115,9 @@ Element["" "TPSM33625" "U1" "unknown" 2505.00mil 59.0309mm 3.1127mm -92.00mil 0 
 	Pad[-36.70mil -1.8365mm -36.70mil -38.80mil 0.2500mm 7.00mil 0.3508mm "BOOT" "7" "square"]
 	Pad[-17.00mil -1.8365mm -17.00mil -38.80mil 0.2500mm 7.00mil 0.3508mm "SW" "6" "square"]
 	Pad[-68.60mil -69.90mil -68.60mil -40.20mil 0.3700mm 7.00mil 0.4708mm "VCC" "8" "square"]
-	Pad[29.20mil -38.40mil 66.70mil -38.40mil 1.0998mm 7.00mil 1.2006mm "SW" "5" "square,edge2"]
-	Pad[29.20mil 38.40mil 66.70mil 38.40mil 1.0998mm 7.00mil 1.2006mm "VOUT" "4" "square,edge2"]
-	Pad[-38.70mil 0.0000 77.30mil 0.0000 0.5600mm 0.0000 0.5700mm "GND" "10" "square,edge2"]
+	Pad[29.20mil -38.40mil 66.70mil -38.40mil 1.0998mm 7.00mil 1.1498mm "SW" "5" "square,edge2"]
+	Pad[29.20mil 38.40mil 66.70mil 38.40mil 1.0998mm 7.00mil 1.1498mm "VOUT" "4" "square,edge2"]
+	Pad[-38.70mil 0.0000 77.30mil 0.0000 0.5600mm 0.0000 0.5192mm "GND" "10" "square,edge2"]
 	ElementLine [-0.30mil -0.30mil 0.30mil 0.30mil 0.0010mm]
 	ElementLine [-0.30mil 0.30mil 0.30mil -0.30mil 0.0010mm]
 	ElementLine [-97.50mil -85.70mil -2.0904mm -85.70mil 10.00mil]
@@ -1132,14 +1132,14 @@ Element["" "TPSM33625" "U1" "unknown" 2505.00mil 59.0309mm 3.1127mm -92.00mil 0 
 
 	)
 
-Element["" "0402" "R2" "64.9_?" 2345.00mil 57.2529mm -0.4217mm -2.3145mm 0 100 ""]
+Element["" "0402" "R2" "64.9" 2345.00mil 57.2529mm -0.4217mm -2.3145mm 0 100 ""]
 (
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 20.00mil 29.68mil "1" "1" "square"]
 	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 20.00mil 29.68mil "2" "2" "square"]
 
 	)
 
-Element["" "0402" "C7" "1_uF" 2435.00mil 55.4561mm 0.9367mm -33.38mil 0 100 ""]
+Element["" "0402" "C7" "1uF" 2435.00mil 55.4561mm 0.9367mm -33.38mil 0 100 ""]
 (
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 20.00mil 29.68mil "1" "1" "square"]
 	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 0.0000 19.68mil "2" "2" "square"]
@@ -1153,7 +1153,7 @@ Element["" "0402" "R3" "10k" 2345.00mil 59.7929mm -0.5408mm 0.6398mm 0 100 ""]
 
 	)
 
-Element["" "1206" "C4" "22_uF" 2270.00mil 58.6499mm -0.8776mm -4.0424mm 0 100 ""]
+Element["" "1206" "C4" "22uF" 2270.00mil 58.6499mm -0.8776mm -4.0424mm 0 100 ""]
 (
 	Pad[-11.81mil 59.05mil 11.81mil 59.05mil 51.18mil 0.0000 51.18mil "1" "1" "square"]
 	Pad[-11.81mil -59.05mil 11.81mil -59.05mil 51.18mil 20.00mil 61.18mil "2" "2" "square"]
@@ -1171,7 +1171,7 @@ Element["" "INDC3225M" "L1" "3.3_uH" 1990.00mil 58.7499mm -3.3649mm -31.50mil 0 
 
 	)
 
-Element["" "0805" "C2" "4.7_uF" 49.0111mm 63.1949mm -3.4379mm -0.8541mm 0 100 ""]
+Element["" "0805" "C2" "4.7uF" 49.0111mm 63.1949mm -3.4379mm -0.8541mm 0 100 ""]
 (
 	Pad[-35.43mil -3.93mil -35.43mil 3.93mil 51.18mil 12.00mil 57.18mil "1" "1" "square"]
 	Pad[35.43mil -3.93mil 35.43mil 3.93mil 51.18mil 12.00mil 57.18mil "2" "2" "square"]
@@ -1180,7 +1180,7 @@ Element["" "0805" "C2" "4.7_uF" 49.0111mm 63.1949mm -3.4379mm -0.8541mm 0 100 ""
 
 	)
 
-Element["" "0805" "C1" "4.7_uF" 1930.00mil 54.3049mm -3.3540mm -0.8899mm 0 100 ""]
+Element["" "0805" "C1" "4.7uF" 1930.00mil 54.3049mm -3.3540mm -0.8899mm 0 100 ""]
 (
 	Pad[-35.43mil -3.93mil -35.43mil 3.93mil 51.18mil 12.00mil 57.18mil "1" "1" "square"]
 	Pad[35.43mil -3.93mil 35.43mil 3.93mil 51.18mil 12.00mil 57.18mil "2" "2" "square"]
