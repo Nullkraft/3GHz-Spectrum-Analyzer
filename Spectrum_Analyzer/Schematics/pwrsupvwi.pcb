@@ -1050,15 +1050,6 @@ Element["" "1305" "D2" "unknown" 3975.00mil 1836.80mil -93.20mil 99.60mil 0 100 
 
 	)
 
-Element["onsolder,lock" "mask_clear" "Sh2" "unknown" 2065.00mil 1420.00mil -1560.00mil 960.00mil 0 100 "onsolder"]
-(
-	Pad[-685.00mil 0.0000 685.00mil 0.0000 1750.00mil 0.0000 1750.00mil "1" "1" "onsolder,square,lock,edge2"]
-	ElementLine [-1970.00mil -420.00mil -1565.00mil -420.00mil 10.00mil]
-	ElementLine [-1565.00mil -420.00mil -1565.00mil -880.00mil 10.00mil]
-	ElementLine [-1565.00mil -880.00mil -1970.00mil -880.00mil 10.00mil]
-
-	)
-
 Element["" "DO220AA" "D1" "unknown" 2052.50mil 1840.00mil 25.00mil -80.00mil 0 100 ""]
 (
 	Pad[100.00mil 65.00mil 105.00mil 65.00mil 100.00mil 15.00mil 107.00mil "2" "2" "square"]
@@ -1575,7 +1566,6 @@ NetList()
 		Connect("J401-4")
 		Connect("J401-6")
 		Connect("R3-1")
-		Connect("Sh2-1")
 		Connect("Sh5-1")
 		Connect("Sh6-1")
 		Connect("Sh7-1")

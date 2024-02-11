@@ -8,9 +8,9 @@ refdes=J401
 T 68200 61800 5 10 0 1 0 0 1
 footprint=sparkfun_11544
 T 67500 61600 5 10 0 1 0 0 1
-man-part-num=11544
-T 68200 61800 5 10 0 1 0 0 1
-manufacturer=Sparkfun
+man-part-num=PRT-11544
+T 68200 61800 5 10 0 0 0 0 1
+manufacturer=sparkfun
 }
 C 67900 63700 1 270 0 gnd-1.sym
 N 66600 64000 68200 64000 4
@@ -42,6 +42,8 @@ T 60600 58900 5 10 0 1 0 0 1
 footprint=TPSM33625
 T 60600 58900 5 10 0 1 0 0 1
 man-part-num=TPSM33625RDNR
+T 60600 58900 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 55500 58900 1 90 0 capacitor-1_small.sym
 {
@@ -57,6 +59,8 @@ T 55500 58800 5 10 1 1 0 0 1
 comment=50 VDC
 T 55500 58900 5 10 0 1 0 0 1
 man-part-num=GRT21BR61H475ME13L
+T 55500 58900 5 10 0 0 0 0 1
+manufacturer=DigiKey
 }
 C 64000 58800 1 90 0 capacitor-1_small.sym
 {
@@ -70,6 +74,8 @@ T 64100 58900 5 10 1 1 0 0 1
 value=22uF
 T 64000 58800 5 10 0 1 0 0 1
 man-part-num=CL31A226MOCLNNC
+T 64000 58800 5 10 0 0 0 0 1
+manufacturer=DigiKey
 }
 C 58800 58200 1 270 0 capacitor-1_small.sym
 {
@@ -83,6 +89,8 @@ T 58800 58200 5 10 0 1 180 0 1
 footprint=0402
 T 58800 58200 5 10 0 1 90 0 1
 man-part-num=GRM155R61C105MA12D
+T 58800 58200 5 10 0 0 0 0 1
+manufacturer=Mouser
 }
 C 60600 57200 1 0 0 gnd-1.sym
 C 62400 59500 1 180 0 nc-left-1.sym
@@ -104,6 +112,8 @@ T 62900 57000 5 10 1 1 0 0 1
 value=10k
 T 62800 56800 5 10 0 1 0 0 1
 man-part-num=RT0402FRE0710KL 
+T 62800 56800 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 62800 58500 1 90 0 resistor-1.sym
 {
@@ -117,6 +127,8 @@ T 62900 58700 5 10 1 1 0 0 1
 value=64.9
 T 62800 58500 5 10 0 1 0 0 1
 man-part-num=RT0402DRD0764K9L 
+T 62800 58500 5 10 0 1 0 0 1
+manufacturer=DigiKey
 }
 C 63800 58500 1 0 0 gnd-1.sym
 C 57800 58600 1 0 0 gnd-1.sym
@@ -160,6 +172,8 @@ T 57200 58800 5 10 1 1 0 0 1
 comment=50 VDC
 T 58000 58900 5 10 0 1 0 0 1
 man-part-num=GRT21BR61H475ME13L
+T 58000 58900 5 10 0 0 0 0 1
+manufacturer=DigiKey
 }
 N 55400 59500 55400 59700 4
 N 57900 59500 57900 59700 4
@@ -173,6 +187,8 @@ T 65500 57500 5 10 0 1 0 0 1
 man-part-num=AZ1117CH2-3.3TRG1
 T 67700 56800 5 10 0 1 0 0 1
 footprint=SOT223-H2
+T 67700 56800 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 67600 59500 1 0 0 AZ1117CH2.sym
 {
@@ -184,6 +200,8 @@ T 67600 59500 5 10 0 1 0 0 1
 man-part-num=AZ1117CH2-5.0TRG1
 T 67600 59500 5 10 0 1 0 0 1
 footprint=SOT223-H2
+T 67600 59500 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 68600 57000 1 0 0 3.3V-plus-1.sym
 N 68800 57000 68700 57000 4
@@ -212,6 +230,8 @@ T 69000 58900 5 10 1 1 0 0 1
 value=22uF
 T 68900 58800 5 10 0 1 0 0 1
 man-part-num=CL31A226MOCLNNC
+T 68900 58800 5 10 0 0 0 0 1
+manufacturer=DigiKey
 }
 C 68700 58400 1 0 0 gnd-1.sym
 C 68900 56100 1 90 0 capacitor-1_small.sym
@@ -226,6 +246,8 @@ T 69000 56200 5 10 1 1 0 0 1
 value=22uF
 T 68900 56100 5 10 0 1 0 0 1
 man-part-num=CL31A226MOCLNNC
+T 68900 56100 5 10 0 0 0 0 1
+manufacturer=DigiKey
 }
 C 68700 55700 1 0 0 gnd-1.sym
 C 66300 55700 1 0 0 gnd-1.sym
@@ -242,6 +264,8 @@ T 66500 58800 5 10 0 1 0 0 1
 footprint=1206
 T 66500 58800 5 10 0 1 0 0 1
 man-part-num=CL31A226MOCLNNC
+T 66500 58800 5 10 0 0 0 0 1
+manufacturer=DigiKey
 }
 C 66300 58400 1 0 0 gnd-1.sym
 N 66400 59400 66400 59700 4
@@ -257,6 +281,8 @@ T 65800 56200 5 10 1 1 0 0 1
 value=22uF
 T 66500 56100 5 10 0 1 0 0 1
 man-part-num=CL31A226MOCLNNC
+T 66500 56100 5 10 0 0 0 0 1
+manufacturer=DigiKey
 }
 N 66400 56100 66400 56000 4
 N 66400 58800 66400 58700 4
@@ -277,6 +303,8 @@ T 58300 59000 5 10 1 1 0 0 1
 value=100k
 T 59000 58800 5 10 0 1 0 0 1
 man-part-num=RT0402FRE07100KL 
+T 59000 58800 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 N 58900 58500 59400 58500 4
 C 52100 59500 1 0 0 diode-1.sym
@@ -289,6 +317,8 @@ T 52100 59500 5 10 0 1 0 0 1
 footprint=DO220AA
 T 52100 59500 5 10 0 1 0 0 1
 man-part-num=SS2P5HM3/84A
+T 52100 59500 5 10 0 0 0 0 1
+manufacturer=DigiKey
 }
 C 54400 59600 1 0 0 inductor-1.sym
 {
@@ -302,6 +332,8 @@ T 54400 59600 5 10 0 1 0 0 1
 man-part-num=ME3220-332MLC
 T 54900 59900 5 10 1 1 0 0 1
 value=3.3 uH
+T 54400 59600 5 10 0 0 0 0 1
+manufacturer=Coilcraft
 }
 C 62400 58400 1 180 0 nc-left-1.sym
 {
@@ -324,6 +356,8 @@ T 54400 58800 5 10 1 1 0 0 1
 comment=50 VDC
 T 54400 58900 5 10 0 1 0 0 1
 man-part-num=GRT21BR61H475ME13L
+T 54400 58900 5 10 0 0 0 0 1
+manufacturer=DigiKey
 }
 C 65000 59600 1 0 0 inductor-1.sym
 {
@@ -337,6 +371,8 @@ T 65000 59600 5 10 0 1 0 0 1
 man-part-num=ME3220-332MLC
 T 65200 59500 5 10 1 1 0 0 1
 value=3.3uH
+T 65000 59600 5 10 0 0 0 0 1
+manufacturer=Coilcraft
 }
 N 53000 59700 54400 59700 4
 C 55300 58600 1 0 0 gnd-1.sym
@@ -407,8 +443,8 @@ T 50400 64500 5 10 1 1 0 0 1
 refdes=J1
 T 50300 64700 5 10 0 1 0 0 1
 man-part-num=721A
-T 50300 64700 5 10 0 1 0 0 1
-manufacturer=Switchcraft
+T 50300 64700 5 10 0 0 0 0 1
+manufacturer=Mouser
 T 50300 64700 5 10 0 0 0 0 1
 graphical=1
 }
@@ -443,6 +479,8 @@ T 53700 58800 5 10 0 1 90 0 1
 footprint=1206
 T 53100 59000 5 10 1 1 0 0 1
 value=470
+T 53700 58800 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 53500 58800 1 270 0 led-2.sym
 {
@@ -454,6 +492,8 @@ T 53500 58800 5 10 0 1 270 0 1
 man-part-num=155124RS73200
 T 53500 58800 5 10 0 1 270 0 1
 footprint=1305
+T 53500 58800 5 10 0 0 0 0 1
+manufacturer=DigiKey
 }
 C 53500 57600 1 0 0 gnd-1.sym
 N 50900 58200 51100 58200 4
@@ -462,18 +502,7 @@ N 51100 59400 51100 56700 4
 T 51300 58450 5 10 1 1 0 0 1
 netname=+12_VDC
 }
-C 60100 61100 1 0 0 Faraday-cage.sym
-{
-T 60100 61900 5 10 0 1 0 0 1
-device=SHEILD
-T 60200 61800 5 10 1 1 0 0 1
-refdes=Sh2
-T 60100 61100 5 10 0 1 0 0 1
-footprint=mask_clear
-T 60100 61100 5 10 0 1 0 0 1
-man-part-num=S0971-46R
-}
-N 60300 61600 64400 61600 4
+N 60900 61600 64900 61600 4
 C 64300 61300 1 0 0 gnd-1.sym
 N 50900 56700 51100 56700 4
 C 50800 56100 1 0 0 gnd-1.sym
@@ -489,6 +518,8 @@ T 49200 58600 5 10 1 1 180 6 1
 description=+12 VDC
 T 49200 58400 5 10 0 1 0 0 1
 man-part-num=S2B-PH-SM4-TB
+T 49200 58400 5 10 0 0 0 0 1
+manufacturer=DigiKey
 }
 C 49200 56900 1 180 1 connector2-1.sym
 {
@@ -504,6 +535,8 @@ T 49000 55900 5 10 1 1 180 6 1
 comment=*OPTIONAL*
 T 49200 56900 5 10 0 1 0 0 1
 man-part-num=S2B-PH-SM4-TB
+T 49200 56900 5 10 0 0 0 0 1
+manufacturer=DigiKey
 }
 C 51300 63700 1 0 1 switch-spst-1.sym
 {
@@ -519,6 +552,8 @@ T 51300 63800 5 10 1 1 0 0 1
 comment=12.2mm hole
 T 51300 63700 5 10 0 0 0 0 1
 graphical=1
+T 51300 63700 5 10 0 1 0 0 1
+manufacturer=MPJA.com
 }
 C 49200 59200 1 0 0 connector2-1.sym
 {
@@ -532,6 +567,8 @@ T 49200 60000 5 10 1 1 0 0 1
 description=PWR SWITCH
 T 49200 59200 5 10 0 1 0 0 1
 man-part-num=S2B-PH-SM4-TB
+T 49200 59200 5 10 0 0 0 0 1
+manufacturer=DigiKey
 }
 C 53000 65200 1 180 1 header2-1.sym
 {
@@ -543,6 +580,8 @@ T 53000 65200 5 10 0 1 0 0 1
 man-part-num=PRT-08670
 T 53000 65200 5 10 0 0 0 0 1
 graphical=1
+T 53000 65200 5 10 0 1 0 0 1
+manufacturer=sparkfun
 }
 N 51100 59400 50900 59400 4
 N 50900 59700 52100 59700 4
@@ -556,6 +595,8 @@ T 53000 63100 5 10 0 1 0 0 1
 man-part-num=PRT-08670
 T 53000 63100 5 10 0 0 0 0 1
 graphical=1
+T 53000 63100 5 10 0 1 0 0 1
+manufacturer=sparkfun
 }
 N 51300 63700 53000 63700 4
 N 50300 63300 53000 63300 4
@@ -582,6 +623,8 @@ T 60700 61100 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 60700 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 60700 61100 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 61300 61100 1 0 0 Faraday-cage.sym
 {
@@ -593,6 +636,8 @@ T 61300 61100 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 61300 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 61300 61100 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 61900 61100 1 0 0 Faraday-cage.sym
 {
@@ -604,6 +649,8 @@ T 61900 61100 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 61900 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 61900 61100 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 62500 61100 1 0 0 Faraday-cage.sym
 {
@@ -615,6 +662,8 @@ T 62500 61100 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 62500 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 62500 61100 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 63100 61100 1 0 0 Faraday-cage.sym
 {
@@ -626,6 +675,8 @@ T 63100 61100 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 63100 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 63100 61100 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 63700 61100 1 0 0 Faraday-cage.sym
 {
@@ -637,6 +688,8 @@ T 63700 61100 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 63700 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 63700 61100 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 N 58900 58700 59300 58700 4
 N 59300 58700 59300 59100 4
