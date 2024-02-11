@@ -45,6 +45,10 @@ T 55400 60500 5 10 0 1 0 0 1
 description=Included w/ Adafruit parts
 T 56000 60900 5 10 0 0 0 0 1
 footprint=JUMPER6
+T 56000 60900 5 10 0 1 0 0 1
+man-part-num=SSA-118-W-T
+T 56000 60900 5 10 0 1 0 0 1
+manufacturer=DigiKey
 }
 C 55700 62800 1 270 0 gnd-1.sym
 N 54400 63100 56000 63100 4
@@ -77,6 +81,10 @@ T 61200 60500 5 10 0 1 0 0 1
 description=Included w/ Adafruit parts
 T 61800 60900 5 10 0 0 0 0 1
 footprint=JUMPER6
+T 61800 60900 5 10 0 1 0 0 1
+man-part-num=SSA-118-W-T
+T 61800 60900 5 10 0 1 0 0 1
+manufacturer=DigiKey
 }
 C 61500 61600 1 270 0 gnd-1.sym
 C 61300 61000 1 0 0 nc-left-1.sym
@@ -119,6 +127,10 @@ T 49500 74800 5 10 0 0 0 0 1
 device=ARDUINO_UNO_HEADER32
 T 48200 67100 5 10 0 1 0 0 1
 footprint=Header_Arduino
+T 48200 67100 5 10 0 1 0 0 1
+man-part-num=SSA-118-W-T
+T 48200 67100 5 10 0 1 0 0 1
+manufacturer=DigiKey
 }
 C 39900 68500 1 0 0 Adafruit_feather.sym
 {
@@ -126,12 +138,14 @@ T 42400 73100 5 10 0 0 0 0 1
 device=Arduino Uno
 T 41800 73300 5 10 1 1 0 0 1
 refdes=U2
-T 41000 68900 5 10 1 1 0 0 1
-man-part-num=4884
+T 41000 68900 5 10 0 1 0 0 1
+man-part-num=485-4884
 T 40500 68100 5 10 1 1 0 0 1
 description=Feather RP2040
 T 39900 68500 5 10 0 0 0 0 1
 footprint=Feather
+T 39900 68500 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 N 47900 67300 48400 67300 4
 {
@@ -217,6 +231,10 @@ T 57200 69800 5 10 0 1 0 0 1
 footprint=SOIC_8_150mil
 T 57200 68500 5 10 0 0 0 0 1
 man-part-num=IS66WVS4M8ALL
+T 57200 69800 5 10 0 1 0 0 1
+value=32mbit
+T 57200 69800 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 N 57200 72800 54800 72800 4
 {
@@ -244,12 +262,14 @@ T 66595 60900 5 10 1 1 0 0 1
 device=+2.5V ADC Reference
 T 66792 62900 5 10 0 1 0 0 1
 footprint=SOT23
-T 66664 60700 5 10 1 1 0 0 1
+T 66664 60700 5 10 0 1 0 0 1
 man-part-num=LM4040CYM3-2.5TR
+T 66700 61400 5 10 0 1 0 0 1
+manufacturer=DigiKey
 }
 C 63700 71400 1 0 0 ADS7826.sym
 {
-T 64042 70900 5 10 1 1 0 0 1
+T 64042 70900 5 10 0 1 0 0 1
 man-part-num=ADS7826IDRBT 
 T 65195 73000 5 10 1 1 0 0 1
 refdes=U1
@@ -257,10 +277,12 @@ T 63892 73600 5 10 0 0 0 0 1
 footprint=SON_8
 T 64500 73000 5 10 1 1 0 0 1
 device=ADC
+T 63700 71400 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 63700 66600 1 0 0 ADS7826.sym
 {
-T 64042 66100 5 10 1 1 0 0 1
+T 64042 66100 5 10 0 1 0 0 1
 man-part-num=ADS7826IDRBT 
 T 65195 68200 5 10 1 1 0 0 1
 refdes=U4
@@ -268,6 +290,8 @@ T 63892 68800 5 10 0 0 0 0 1
 footprint=SON_8
 T 64500 68200 5 10 1 1 0 0 1
 device=ADC
+T 63700 66600 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 63400 66000 1 0 0 gnd-1.sym
 N 63700 67000 63500 67000 4
@@ -333,6 +357,8 @@ T 62850 67950 5 10 1 1 0 0 1
 refdes=R4
 T 63250 67950 5 10 1 1 0 0 1
 value=5 Ω
+T 62800 67700 5 10 0 1 0 0 1
+manufacturer=DigiKey
 }
 C 62500 68100 1 0 0 gnd-1.sym
 N 63500 68500 63700 68500 4
@@ -356,6 +382,8 @@ T 62850 72750 5 10 1 1 0 0 1
 refdes=R1
 T 63350 72750 5 10 1 1 0 0 1
 value=5 Ω
+T 62800 72500 5 10 0 1 0 0 1
+manufacturer=DigiKey
 }
 C 62500 72900 1 0 0 gnd-1.sym
 N 63500 73300 63700 73300 4
@@ -404,10 +432,12 @@ T 40200 67300 5 10 0 0 0 0 1
 footprint=Adafruit_Metro_Mini
 T 41900 66300 5 10 1 1 0 0 1
 refdes=U6
-T 41000 63900 5 10 1 1 0 0 1
-man-part-num=2590
+T 41000 63900 5 10 0 1 0 0 1
+man-part-num=485-2590
 T 40600 61700 5 10 1 1 0 0 1
 description=Metro Mini 328
+T 39900 62100 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 N 42500 63300 43050 63300 4
 {
@@ -813,6 +843,8 @@ T 59800 71100 5 10 0 1 180 0 1
 footprint=0402
 T 59800 71100 5 10 0 1 180 0 1
 man-part-num=885012205037
+T 59800 71100 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 60100 70900 1 90 0 gnd-1.sym
 C 66500 67900 1 180 0 capacitor-1_small.sym
@@ -827,6 +859,8 @@ T 66500 67900 5 10 0 0 90 0 1
 footprint=0603
 T 66500 67900 5 10 0 0 90 0 1
 man-part-num=GRM188R61C106MA73D
+T 66500 67900 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 N 59000 71000 59200 71000 4
 N 59100 71200 59100 71000 4
@@ -846,6 +880,8 @@ T 65900 72800 5 10 1 1 0 0 1
 refdes=C4
 T 66300 72800 5 10 1 1 0 0 1
 value=10 uF
+T 66500 72700 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 N 65700 72600 65900 72600 4
 C 65800 61600 1 270 0 capacitor-1_small.sym
@@ -860,6 +896,8 @@ T 65300 61400 5 10 1 1 0 0 1
 refdes=C8
 T 65300 61000 5 10 1 1 0 0 1
 value=0.1 uF
+T 65800 61600 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 63500 73400 1 180 0 capacitor-1_small.sym
 {
@@ -873,6 +911,8 @@ T 63500 73400 5 10 0 1 180 0 1
 footprint=0402
 T 63500 73400 5 10 0 1 180 0 1
 man-part-num=885012205037
+T 63500 73400 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 63500 68600 1 180 0 capacitor-1_small.sym
 {
@@ -886,6 +926,8 @@ T 63500 68600 5 10 0 1 180 0 1
 footprint=0402
 T 63500 68600 5 10 0 1 180 0 1
 man-part-num=885012205037
+T 63500 68600 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 56300 70900 1 0 0 resistor-1.sym
 {
@@ -899,6 +941,8 @@ T 56500 70725 5 10 1 1 0 0 1
 value=100 Ω
 T 56300 70900 5 10 0 1 0 0 1
 footprint=0402
+T 56300 70900 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 N 37300 63000 37400 63000 4
 {
@@ -932,6 +976,8 @@ T 56500 67825 5 10 1 1 0 0 1
 value=100 Ω
 T 57200 68200 5 10 0 1 180 0 1
 footprint=0402
+T 57200 68200 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 37400 62900 1 0 0 resistor-1.sym
 {
@@ -945,6 +991,8 @@ T 38050 63075 5 10 1 1 0 0 1
 value=100 Ω
 T 37400 62900 5 10 0 1 0 0 1
 footprint=0402
+T 37400 62900 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 37400 62600 1 0 0 resistor-1.sym
 {
@@ -958,6 +1006,8 @@ T 38050 62775 5 10 1 1 0 0 1
 value=100 Ω
 T 37400 62600 5 10 0 1 0 0 1
 footprint=0402
+T 37400 62600 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 37400 62300 1 0 0 resistor-1.sym
 {
@@ -971,6 +1021,8 @@ T 38050 62475 5 10 1 1 0 0 1
 value=100 Ω
 T 37400 62300 5 10 0 1 0 0 1
 footprint=0402
+T 37400 62300 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 37400 62000 1 0 0 resistor-1.sym
 {
@@ -984,6 +1036,8 @@ T 38050 62175 5 10 1 1 0 0 1
 value=100 Ω
 T 37400 62000 5 10 0 1 0 0 1
 footprint=0402
+T 37400 62000 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 N 38300 63000 39900 63000 4
 {
@@ -1017,6 +1071,8 @@ T 44150 65825 5 10 1 1 0 0 1
 value=0 Ω
 T 43650 65600 5 10 0 1 0 0 1
 footprint=WN2A_0805
+T 43650 65600 5 10 0 1 0 0 1
+manufacturer=DigiKey
 }
 N 42500 65700 43650 65700 4
 {
@@ -1057,6 +1113,8 @@ T 51900 71225 5 10 1 1 0 0 1
 value=100 Ω
 T 51300 71000 5 10 0 1 0 0 1
 footprint=0402
+T 51300 71000 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 N 51300 71100 50900 71100 4
 {
@@ -1075,6 +1133,8 @@ T 51900 70425 5 10 1 1 0 0 1
 value=100 Ω
 T 51300 70600 5 10 0 1 0 0 1
 footprint=0402
+T 51300 70600 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 51400 68400 1 0 0 resistor-1.sym
 {
@@ -1088,6 +1148,8 @@ T 52000 68625 5 10 1 1 0 0 1
 value=100 Ω
 T 51400 68400 5 10 0 1 0 0 1
 footprint=0402
+T 51400 68400 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 65800 71300 1 0 0 resistor-1.sym
 {
@@ -1101,6 +1163,8 @@ T 66000 71125 5 10 1 1 0 0 1
 value=100 Ω
 T 65800 71300 5 10 0 1 0 0 1
 footprint=0402
+T 65800 71300 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 65800 66500 1 0 0 resistor-1.sym
 {
@@ -1114,6 +1178,8 @@ T 66000 66325 5 10 1 1 0 0 1
 value=100 Ω
 T 65800 66500 5 10 0 1 0 0 1
 footprint=0402
+T 65800 66500 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 N 51300 70700 50900 70700 4
 {
@@ -1141,6 +1207,8 @@ T 51200 72600 5 10 0 1 0 0 1
 footprint=0402
 T 51200 72600 5 10 0 0 0 0 1
 man-part-num=ERJ-2GEJ101X
+T 51200 72600 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 51200 72200 1 0 0 resistor-1.sym
 {
@@ -1154,6 +1222,8 @@ T 51200 72200 5 10 0 1 0 0 1
 footprint=0402
 T 51200 72200 5 10 0 0 0 0 1
 man-part-num=ERJ-2GEJ101X
+T 51200 72200 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 51200 71800 1 0 0 resistor-1.sym
 {
@@ -1167,6 +1237,8 @@ T 51200 71800 5 10 0 1 0 0 1
 footprint=0402
 T 51200 71800 5 10 0 0 0 0 1
 man-part-num=ERJ-2GEJ101X
+T 51200 71800 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 N 39400 71800 39900 71800 4
 {
@@ -1203,6 +1275,8 @@ T 58100 73400 5 10 0 1 180 0 1
 footprint=0402
 T 58100 73400 5 10 0 0 180 0 1
 man-part-num=ERJ-2GEJ101X
+T 58100 73400 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 N 57200 73300 54800 73300 4
 {
@@ -1221,6 +1295,8 @@ T 58100 72900 5 10 0 1 180 0 1
 footprint=0402
 T 58100 72900 5 10 0 0 180 0 1
 man-part-num=ERJ-2GEJ101X
+T 58100 72900 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 58100 72400 1 180 0 resistor-1.sym
 {
@@ -1234,6 +1310,8 @@ T 58100 72400 5 10 0 1 180 0 1
 footprint=0402
 T 58100 72400 5 10 0 0 180 0 1
 man-part-num=ERJ-2GEJ101X
+T 58100 72400 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 N 60400 70200 59000 70200 4
 {
@@ -1321,6 +1399,8 @@ T 37300 65000 5 10 0 1 270 0 1
 footprint=0402
 T 37300 65000 5 10 0 1 270 0 1
 man-part-num=885012205037
+T 37300 65000 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 N 56700 66400 60400 66400 4
 {
@@ -1478,6 +1558,8 @@ T 51900 69825 5 10 1 1 0 0 1
 value=100 Ω
 T 51300 69600 5 10 0 1 0 0 1
 footprint=0402
+T 51300 69600 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 N 51300 69700 50900 69700 4
 C 36200 67300 1 0 0 switch-pushbutton-no-1.sym
@@ -1488,6 +1570,10 @@ T 36600 67900 5 10 0 0 0 0 1
 device=SWITCH_PUSHBUTTON_NO
 T 36200 67300 5 10 0 1 0 0 1
 footprint=SM4_SIDE
+T 36200 67300 5 10 0 1 0 0 1
+man-part-num=S2B-PH-SM4-TB
+T 36200 67300 5 10 0 1 0 0 1
+manufacturer=DigiKey
 }
 C 35800 66700 1 0 0 gnd-1.sym
 N 36200 67300 35900 67300 4
@@ -1519,6 +1605,8 @@ T 37700 67025 5 10 1 1 0 0 1
 value=100 Ω
 T 37500 67200 5 10 0 1 0 0 1
 footprint=0402
+T 37500 67200 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 N 37500 67300 37200 67300 4
 C 48600 62400 1 0 0 Faraday-cage.sym
@@ -1529,6 +1617,10 @@ T 48600 63000 5 10 1 1 0 0 1
 refdes=Sh1
 T 48600 62400 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
+T 48600 62400 5 10 0 1 0 0 1
+man-part-num=S0971-46R
+T 48600 62400 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 N 51200 62900 48000 62900 4
 N 48000 62900 48000 61100 4
@@ -1543,6 +1635,10 @@ T 51000 63000 5 10 1 1 0 0 1
 refdes=Sh5
 T 51000 62400 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
+T 51000 62400 5 10 0 1 0 0 1
+man-part-num=S0971-46R
+T 51000 62400 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 50400 62400 1 0 0 Faraday-cage.sym
 {
@@ -1552,6 +1648,10 @@ T 50400 63000 5 10 1 1 0 0 1
 refdes=Sh4
 T 50400 62400 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
+T 50400 62400 5 10 0 1 0 0 1
+man-part-num=S0971-46R
+T 50400 62400 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 49800 62400 1 0 0 Faraday-cage.sym
 {
@@ -1561,6 +1661,10 @@ T 49800 63000 5 10 1 1 0 0 1
 refdes=Sh3
 T 49800 62400 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
+T 49800 62400 5 10 0 1 0 0 1
+man-part-num=S0971-46R
+T 49800 62400 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 49200 62400 1 0 0 Faraday-cage.sym
 {
@@ -1570,6 +1674,10 @@ T 49200 63000 5 10 1 1 0 0 1
 refdes=Sh2
 T 49200 62400 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
+T 49200 62400 5 10 0 1 0 0 1
+man-part-num=S0971-46R
+T 49200 62400 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 48600 61500 1 0 0 Faraday-cage.sym
 {
@@ -1579,6 +1687,10 @@ T 48600 61500 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 48600 62100 5 10 1 1 0 0 1
 refdes=Sh6
+T 48600 61500 5 10 0 1 0 0 1
+man-part-num=S0971-46R
+T 48600 61500 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 51000 61500 1 0 0 Faraday-cage.sym
 {
@@ -1588,6 +1700,10 @@ T 51000 61500 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 51000 62100 5 10 1 1 0 0 1
 refdes=Sh10
+T 51000 61500 5 10 0 1 0 0 1
+man-part-num=S0971-46R
+T 51000 61500 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 50400 61500 1 0 0 Faraday-cage.sym
 {
@@ -1597,6 +1713,10 @@ T 50400 61500 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 50400 62100 5 10 1 1 0 0 1
 refdes=Sh9
+T 50400 61500 5 10 0 1 0 0 1
+man-part-num=S0971-46R
+T 50400 61500 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 49800 61500 1 0 0 Faraday-cage.sym
 {
@@ -1606,6 +1726,10 @@ T 49800 61500 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 49800 62100 5 10 1 1 0 0 1
 refdes=Sh8
+T 49800 61500 5 10 0 1 0 0 1
+man-part-num=S0971-46R
+T 49800 61500 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 49200 61500 1 0 0 Faraday-cage.sym
 {
@@ -1615,6 +1739,10 @@ T 49200 61500 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 49200 62100 5 10 1 1 0 0 1
 refdes=Sh7
+T 49200 61500 5 10 0 1 0 0 1
+man-part-num=S0971-46R
+T 49200 61500 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 49200 60600 1 0 0 Faraday-cage.sym
 {
@@ -1624,6 +1752,10 @@ T 49200 60600 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 49200 61200 5 10 1 1 0 0 1
 refdes=Sh11
+T 49200 60600 5 10 0 1 0 0 1
+man-part-num=S0971-46R
+T 49200 60600 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 51000 60600 1 0 0 Faraday-cage.sym
 {
@@ -1633,6 +1765,10 @@ T 51000 60600 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 51000 61200 5 10 1 1 0 0 1
 refdes=Sh14
+T 51000 60600 5 10 0 1 0 0 1
+man-part-num=S0971-46R
+T 51000 60600 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 50400 60600 1 0 0 Faraday-cage.sym
 {
@@ -1642,6 +1778,10 @@ T 50400 60600 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 50400 61200 5 10 1 1 0 0 1
 refdes=Sh13
+T 50400 60600 5 10 0 1 0 0 1
+man-part-num=S0971-46R
+T 50400 60600 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 49800 60600 1 0 0 Faraday-cage.sym
 {
@@ -1651,6 +1791,10 @@ T 49800 60600 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 49800 61200 5 10 1 1 0 0 1
 refdes=Sh12
+T 49800 60600 5 10 0 1 0 0 1
+man-part-num=S0971-46R
+T 49800 60600 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 57200 66600 1 0 0 WSON_8_6mm.sym
 {
@@ -1662,6 +1806,8 @@ T 57392 68800 5 10 0 0 0 0 1
 footprint=WSON_8
 T 57200 66900 5 10 0 0 0 0 1
 man-part-num=W25N01GVZEIG TR
+T 57200 66600 5 10 0 1 0 0 1
+manufacturer=DigiKey
 }
 N 59200 68100 59000 68100 4
 {
@@ -1680,6 +1826,8 @@ T 59200 67800 5 10 1 1 0 0 1
 refdes=C5
 T 59600 67800 5 10 1 1 0 0 1
 value=0.1 uF
+T 59800 68200 5 10 0 1 0 0 1
+manufacturer=Mouser
 }
 C 60100 68000 1 90 0 gnd-1.sym
 N 59100 68300 59100 68100 4

@@ -1721,7 +1721,7 @@ Element["" "WSON_8" "U5" "unknown" 1185.00mil 690.00mil -157.00mil -193.00mil 0 
 
 	)
 
-Element["" "SOIC_8_150mil" "U3" "unknown" 745.00mil 690.00mil -70.00mil -170.00mil 0 100 ""]
+Element["" "SOIC_8_150mil" "U3" "32mbit" 745.00mil 690.00mil -70.00mil -170.00mil 0 100 ""]
 (
 	Pad[-115.00mil 75.00mil -95.00mil 75.00mil 30.00mil 14.00mil 36.00mil "VSS" "4" "square"]
 	Pad[-115.00mil -75.00mil -95.00mil -75.00mil 30.00mil 14.00mil 36.00mil "_CE_" "1" "square"]
