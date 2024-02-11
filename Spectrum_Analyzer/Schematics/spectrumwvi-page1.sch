@@ -121,7 +121,7 @@ refdes=R105
 T 52300 70000 5 10 0 1 90 0 1
 footprint=0805
 T 51700 69600 5 10 1 1 0 0 1
-value=51
+value=1
 T 52300 70000 5 10 0 1 90 0 1
 man-part-num=CRCW08051R00JNEA
 }
@@ -134,7 +134,7 @@ refdes=R104
 T 50700 70000 5 10 0 1 90 0 1
 footprint=0805
 T 50100 69600 5 10 1 1 0 0 1
-value=51
+value=1
 T 50700 70000 5 10 0 1 90 0 1
 man-part-num=CRCW08051R00JNEA
 }
