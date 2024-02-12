@@ -14,8 +14,10 @@ class SpecAnn {
   private:
     #define NUM_MISC_FUNCTIONS 4
     #define NUM_CLK_FUNCTIONS 3
+    MAX2871_LO lo;
 
   public:
+    SpecAnn();  //Ctor
     // Status codes use the 4 msbits of the 16 bit ADC return values
     // const int start_noise_floor = 0xD0;  // First in the series of ADC noise-floor readings
     // const int end_noise_floor   = 0xE0;  // Last in the series of ADC noise-floor readings

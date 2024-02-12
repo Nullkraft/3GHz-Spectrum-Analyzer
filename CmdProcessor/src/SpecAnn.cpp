@@ -1,5 +1,9 @@
 #include "SpecAnn.h"
 
+SpecAnn::SpecAnn() {
+  // lo.begin(SpecAnn::LO2_SEL);
+}
+
 // Program the Digital Attenuator by sending and latching a single byte
 void SpecAnn::updateAtten(uint8_t level, uint8_t selectPin) {
   level = level & ATTEN_Data_Mask;
