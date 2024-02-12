@@ -67,7 +67,7 @@ uint8_t* ampl_byte = (uint8_t*)&a2dAmplitude;
 uint8_t adc_pin;
 
 // Spectrum Analyzer command-&-control
-SPECANN SA = SPECANN();
+SpecAnn SA = SpecAnn();
 
 // Assign reference designators from the schematic to the circuit components
 ADF4356_LO LO1 = ADF4356_LO();

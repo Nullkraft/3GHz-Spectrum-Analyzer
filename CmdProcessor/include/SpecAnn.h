@@ -10,7 +10,7 @@
  * ADC_value of 193 ≈ 0.488/0.002536
 */
 
-class SPECANN {
+class SpecAnn {
   private:
     #define NUM_MISC_FUNCTIONS 4
     #define NUM_CLK_FUNCTIONS 3
@@ -59,26 +59,26 @@ class SPECANN {
 
     void updateAtten(uint8_t reg, uint8_t selectPin);
 
-    typedef void (SPECANN::*MiscFuncs)();
+    typedef void (SpecAnn::*MiscFuncs)();
     void miscExecute(uint8_t);
 
     // Array of function-pointers containing the
     // 'Spectrum Analyzer miscellenious functions'
     MiscFuncs miscCmds[NUM_MISC_FUNCTIONS] = {
-        &SPECANN::builtinLEDOff, // Command number 0
-        &SPECANN::builtinLEDOn,  // Command number 1
-        &SPECANN::version,       // Command number 2
-        &SPECANN::end_sweep_ack, // Command number 3
+        &SpecAnn::builtinLEDOff, // Command number 0
+        &SpecAnn::builtinLEDOn,  // Command number 1
+        &SpecAnn::version,       // Command number 2
+        &SpecAnn::end_sweep_ack, // Command number 3
     };
 
-    typedef void (SPECANN::*RefClockFuncs)();
+    typedef void (SpecAnn::*RefClockFuncs)();
     void clkExecute(uint8_t);
 
     // function-pointer array for clock selection functions
     RefClockFuncs refClockCmds[NUM_CLK_FUNCTIONS] = {
-        &SPECANN::all_ref_off,  // Command number 0
-        &SPECANN::ref_LO,       // Command number 1
-        &SPECANN::ref_HI,       // Command number 2
+        &SpecAnn::all_ref_off,  // Command number 0
+        &SpecAnn::ref_LO,       // Command number 1
+        &SpecAnn::ref_HI,       // Command number 2
     };
 };
 
