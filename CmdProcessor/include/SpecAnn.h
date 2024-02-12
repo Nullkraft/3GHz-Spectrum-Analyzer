@@ -2,6 +2,7 @@
 #define _SPECANN_
 
 #include <Arduino.h>
+#include <max2871.h>  // driver
 #include <SPI.h>
 
 /* Vref = 2.595  Volts/ADC_bit == 0.002536 Volts
