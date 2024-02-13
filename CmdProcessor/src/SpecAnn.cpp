@@ -2,6 +2,23 @@
 
 SpecAnn::SpecAnn() {
   // lo.begin(SpecAnn::LO2_SEL);
+  ref_LO();
+  // Presets for LO3
+  LO3.Curr.Reg[0] = 0x002081C8;  // LO3 = 270 MHz with 66 MHz ref clock
+  LO3.Curr.Reg[1] = 0x400103E9;
+  LO3.Curr.Reg[2] = 0x98005F42;  // Digital Lock Detect ON
+  LO3.Curr.Reg[3] = 0x00001F23;
+  LO3.Curr.Reg[4] = 0x63CE803C;
+  LO3.Curr.Reg[5] = 0x00400005;
+  LO3.Curr.Reg[6] = 0x80005F42;  // Digital Lock Detect ON
+
+  // LO3.begin(LO3_SEL);
+  // LO2.begin(LO2_SEL);
+  // LO1.begin(LO1_SEL);
+  // delay(20);
+  // ptrLO3->begin(LO3_SEL);
+  // LO2.begin(LO2_SEL);
+  // LO1.begin(LO1_SEL);
 }
 
 // Program the Digital Attenuator by sending and latching a single byte

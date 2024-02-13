@@ -25,8 +25,8 @@
 #ifdef PLATFORMIO
 #include <Arduino.h>
 #include "SpecAnn.h"
-#include "max2871.h"
-#include "adf4356.h"
+// #include "max2871.h"
+// #include "adf4356.h"
 #endif
 
 /*           Serial Word with Command Flag:
@@ -69,11 +69,11 @@ uint8_t adc_pin;
 // Spectrum Analyzer command-&-control
 SpecAnn SA = SpecAnn();
 
-// Assign reference designators from the schematic to the circuit components
-ADF4356_LO LO1 = ADF4356_LO();
-MAX2871_LO LO2 = MAX2871_LO();
-MAX2871_LO LO3 = MAX2871_LO();
-MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
+// // Assign reference designators from the schematic to the circuit components
+// ADF4356_LO* LO1 = SA.ptrLO1;
+// MAX2871_LO* LO2 = SA.ptrLO2;
+// MAX2871_LO* LO3 = SA.ptrLO3;
+// MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
 
 /* Command-to-Function Mapping:
  * 
@@ -173,12 +173,12 @@ void loop() {
     else if (!COMMAND_FLAG) {    // An LO2 or LO3 Instruction has arrived...
       // This is where we set the frequency of LO2 or LO3
       // M:  Set R[1], bits[14:3] to program the new value for M
-      LO->set_M_bits(serialWord);
+      SA.LO->set_M_bits(serialWord);
       // N & F:  Set bits R[0], bits[22:15] for new N, and R[0], bits[14:3] for new F
-      LO->set_NF_bits(serialWord);
+      SA.LO->set_NF_bits(serialWord);
       // Program the selected LO starting with the higher numbered registers first
-      LO->update(LO->Curr.Reg[1], spi_select);
-      LO->update(LO->Curr.Reg[0], spi_select);
+      SA.LO->update(SA.LO->Curr.Reg[1], spi_select);
+      SA.LO->update(SA.LO->Curr.Reg[0], spi_select);
       // Usage example
       // MAX2871_LO LO1, LO2, LO3;
       // LO1.setFrequency(F, M, N, selectPinForLO1); // Specify the select pin for LO1
@@ -229,24 +229,26 @@ void loop() {
         break;
       case SA.LO1_addr:
         spi_select = SA.LO1_SEL;
-        LO1.set_N_bits(Data16);                           // Set the new INT_N bits into Register 0
-        regWord = LO1.Execute(adf4356CmdMap[Command], 0); // This selects from 1 of 7 adf4356 commands
-        LO1.update(regWord, spi_select);                  // Write Reg[4] for set_TRI/set_DLD, ELSE Reg[6]
-        LO1.update(LO1.Curr.Reg[0], spi_select);          // followed by Reg[0] (REQUIRED by specsheet)
+        SA.LO1.set_N_bits(Data16);                            // Set the new INT_N bits into Register 0
+        // LO1->set_N_bits(Data16);                           // Set the new INT_N bits into Register 0
+        regWord = SA.LO1.Execute(adf4356CmdMap[Command], 0);  // This selects from 1 of 7 adf4356 commands
+        SA.LO1.update(regWord, spi_select);                   // Write Reg[4] for set_TRI/set_DLD, ELSE Reg[6]
+        SA.LO1.update(SA.LO1.Curr.Reg[0], spi_select);        // followed by Reg[0] (REQUIRED by specsheet)
         break;
       case SA.LO2_addr:
-        LO = &LO2;
+        SA.LO = SA.ptrLO2;
+        // LO = SA.ptrLO2;
         spi_select = SA.LO2_SEL;
         adc_pin = SA.ADC_SEL_315;
-        regWord = LO->Execute(max2871CmdMap[Command], serialWord);
-        LO->update(regWord, spi_select);  // Update LO2 registers
+        regWord = SA.LO->Execute(max2871CmdMap[Command], serialWord);
+        SA.LO->update(regWord, spi_select);  // Update LO2 registers
         break;
       case SA.LO3_addr:
-        LO = &LO3;
+        SA.LO = SA.ptrLO3;
         spi_select = SA.LO3_SEL;
         adc_pin = SA.ADC_SEL_045;
-        regWord = LO->Execute(max2871CmdMap[Command], serialWord);
-        LO->update(regWord, spi_select);  // Update LO3 registers
+        regWord = SA.LO->Execute(max2871CmdMap[Command], serialWord);
+        SA.LO->update(regWord, spi_select);  // Update LO3 registers
         break;
       case SA.RefClock:
         SA.clkExecute(Command);
@@ -269,21 +271,11 @@ void loop() {
     Initialize IC's LO1, LO2 and LO3 by programming them twice IAW manufacturer's specsheet
 */
 void init_specann() {
-  SA.ref_LO();
-  // Presets for LO3
-  LO3.Curr.Reg[0] = 0x002081C8;  // LO3 = 270 MHz with 66 MHz ref clock
-  LO3.Curr.Reg[1] = 0x400103E9;
-  LO3.Curr.Reg[2] = 0x98005F42;  // Digital Lock Detect ON
-  LO3.Curr.Reg[3] = 0x00001F23;
-  LO3.Curr.Reg[4] = 0x63CE803C;
-  LO3.Curr.Reg[5] = 0x00400005;
-  LO3.Curr.Reg[6] = 0x80005F42;  // Digital Lock Detect ON
-
-  LO3.begin(SA.LO3_SEL);
-  LO2.begin(SA.LO2_SEL);
-  LO1.begin(SA.LO1_SEL);
+  SA.LO3.begin(SA.LO3_SEL);
+  SA.LO2.begin(SA.LO2_SEL);
+  SA.LO1.begin(SA.LO1_SEL);
   delay(20);
-  LO3.begin(SA.LO3_SEL);
-  LO2.begin(SA.LO2_SEL);
-  LO1.begin(SA.LO1_SEL);
+  SA.LO3.begin(SA.LO3_SEL);
+  SA.LO2.begin(SA.LO2_SEL);
+  SA.LO1.begin(SA.LO1_SEL);
 }

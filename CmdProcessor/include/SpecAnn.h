@@ -2,6 +2,7 @@
 #define _SPECANN_
 
 #include <Arduino.h>
+#include <adf4356.h>  // driver
 #include <max2871.h>  // driver
 #include <SPI.h>
 
@@ -14,11 +15,15 @@ class SpecAnn {
   private:
     #define NUM_MISC_FUNCTIONS 4
     #define NUM_CLK_FUNCTIONS 3
-    MAX2871_LO LO1;
-    MAX2871_LO LO2;
-    MAX2871_LO LO3;
 
   public:
+    ADF4356_LO LO1;
+    ADF4356_LO* ptrLO1 = &LO1;
+    MAX2871_LO LO2;
+    MAX2871_LO* ptrLO2 = &LO2;
+    MAX2871_LO LO3;
+    MAX2871_LO* ptrLO3 = &LO3;
+    MAX2871_LO* LO;
     SpecAnn();  //Ctor
     // Status codes use the 4 msbits of the 16 bit ADC return values
     // const int start_noise_floor = 0xD0;  // First in the series of ADC noise-floor readings
@@ -42,7 +47,7 @@ class SpecAnn {
     //static constexpr uint8_t SPI_MISO  = 12;   // Reserved by the SPI Library
     //static constexpr uint8_t SPI_CLOCK = 13;   // Reserved by the SPI Library
 
-    // Addresses for selecting the various hardware ICs
+    // Command Word Addresses of all the hardware Integrated Circuit chips
     // TODO: Create the list in a config file that remains with the project files.
     static constexpr uint8_t Attenuator = 0;
     static constexpr uint8_t LO1_addr = 1;
