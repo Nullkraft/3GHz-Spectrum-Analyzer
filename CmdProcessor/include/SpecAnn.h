@@ -14,7 +14,9 @@ class SpecAnn {
   private:
     #define NUM_MISC_FUNCTIONS 4
     #define NUM_CLK_FUNCTIONS 3
-    MAX2871_LO lo;
+    MAX2871_LO LO1;
+    MAX2871_LO LO2;
+    MAX2871_LO LO3;
 
   public:
     SpecAnn();  //Ctor
