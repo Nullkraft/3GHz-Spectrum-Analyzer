@@ -18,11 +18,13 @@ void SpecAnn::updateAtten(uint8_t level, uint8_t selectPin) {
 // dummyLevel and dummyPin are placeholders so we can
 // create a single function-pointer array
 void SpecAnn::builtinLEDOn() {
-    digitalWrite(LED_BUILTIN, HIGH);
+  digitalWrite(LED_BUILTIN, HIGH);
+  Serial.print(F("Called builtin_LED_On"));
 }
 
 void SpecAnn::builtinLEDOff() {
-    digitalWrite(LED_BUILTIN, LOW);
+  digitalWrite(LED_BUILTIN, LOW);
+  Serial.print(F("Called builtin_LED_Off"));
 }
 
 void SpecAnn::version() {
