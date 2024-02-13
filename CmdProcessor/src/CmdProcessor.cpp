@@ -25,8 +25,6 @@
 #ifdef PLATFORMIO
 #include <Arduino.h>
 #include "SpecAnn.h"
-// #include "max2871.h"
-// #include "adf4356.h"
 #endif
 
 /*           Serial Word with Command Flag:
@@ -69,12 +67,6 @@ uint8_t adc_pin;
 // Spectrum Analyzer command-&-control
 SpecAnn SA = SpecAnn();
 
-// // Assign reference designators from the schematic to the circuit components
-// ADF4356_LO* LO1 = SA.ptrLO1;
-// MAX2871_LO* LO2 = SA.ptrLO2;
-// MAX2871_LO* LO3 = SA.ptrLO3;
-// MAX2871_LO* LO;  // Allows a single function to select and operate on LO2 or LO3
-
 /* Command-to-Function Mapping:
  * 
  * Each instruction found in the API ('Instruction List XXX.ods') has an
@@ -96,6 +88,7 @@ enum loCmdList{GERERAL, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, CHANGE_FREQ, TRI, DLD
 enum arduinoCmdList{LED_OFF, LED_ON, VERSION, BEGIN_SWEEP, };
 enum ckCmdLIst{ALL_OFF, REF_LO_ON, REF_HI_ON, };
 
+// Command map declarations
 uint8_t max2871CmdMap[] {NA, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, NA, TRI, DLD, DIV_MODE };
 uint8_t adf4356CmdMap[] {NA, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, NA, TRI, DLD };
 uint8_t arduinoCmdMap[] {LED_OFF, LED_ON, VERSION, BEGIN_SWEEP };
