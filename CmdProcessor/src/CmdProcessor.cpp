@@ -67,32 +67,41 @@ uint8_t adc_pin;
 // Spectrum Analyzer command-&-control
 SpecAnn SA = SpecAnn();
 
-/* Command-to-Function Mapping:
- * 
- * Each instruction found in the API ('Instruction List XXX.ods') has an
- * associated Address and Command. The Address identifies the component
- * and the Command identifies the action to be performed.
- * 
- * The 'Command Number' is found in the API document and is 5 bits long.
- * It is ideal as an index into one of the xxxYYYYCmnMap[] arrays. The
- * CmdMap arrays decouple the API Command Number from the layout of the
- * function-pointer arrays found in the max2871.h and adf4356.h files.
- * 
- * The enums provide descriptive command names for the function-pointer
- * arrays instead of using the Command Numbers.
- * 
- * For a list of available commands and their corresponding functions, refer
- * to the Execute() function in max2871.h and the Execute() function in adf4356.h.
- */
-enum loCmdList{GERERAL, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, CHANGE_FREQ, TRI, DLD, DIV_MODE, NA=30, };
-enum arduinoCmdList{LED_OFF, LED_ON, VERSION, BEGIN_SWEEP, };
-enum ckCmdLIst{ALL_OFF, REF_LO_ON, REF_HI_ON, };
-
 // Command map declarations
-uint8_t max2871CmdMap[] {NA, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, NA, TRI, DLD, DIV_MODE };
-uint8_t adf4356CmdMap[] {NA, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, NA, TRI, DLD };
-uint8_t arduinoCmdMap[] {LED_OFF, LED_ON, VERSION, BEGIN_SWEEP };
-uint8_t clkCmdMap[] {ALL_OFF, REF_LO_ON, REF_HI_ON};
+uint8_t max2871CmdMap[] {
+  SpecAnn::NA,
+  SpecAnn::RFOFF,
+  SpecAnn::N4DBM,
+  SpecAnn::N1DBM,
+  SpecAnn::P2DBM,
+  SpecAnn::P5DBM,
+  SpecAnn::NA,
+  SpecAnn::TRI,
+  SpecAnn::DLD,
+  SpecAnn::DIV_MODE
+  };
+uint8_t adf4356CmdMap[] {
+  SpecAnn::NA,
+  SpecAnn::RFOFF,
+  SpecAnn::N4DBM,
+  SpecAnn::N1DBM,
+  SpecAnn::P2DBM,
+  SpecAnn::P5DBM,
+  SpecAnn::NA,
+  SpecAnn::TRI,
+  SpecAnn::DLD
+  };
+uint8_t arduinoCmdMap[] {
+  SpecAnn::LED_OFF,
+  SpecAnn::LED_ON,
+  SpecAnn::VERSION,
+  SpecAnn::BEGIN_SWEEP
+  };
+uint8_t clkCmdMap[] {
+  SpecAnn::ALL_OFF,
+  SpecAnn::REF_LO_ON,
+  SpecAnn::REF_HI_ON
+  };
 
 uint8_t hi_byte;
 uint8_t lo_byte;

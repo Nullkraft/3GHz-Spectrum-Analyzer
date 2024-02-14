@@ -17,6 +17,27 @@ class SpecAnn {
     #define NUM_CLK_FUNCTIONS 3
 
   public:
+    /* Command-to-Function Mapping:
+    *
+    * Each instruction found in the API ('Instruction List XXX.ods') has an
+    * associated Address and Command. The Address identifies the component
+    * and the Command identifies the action to be performed.
+    *
+    * The 'Command Number' is found in the API document and is 5 bits long.
+    * It is ideal as an index into one of the xxxYYYYCmnMap[] arrays. The
+    * CmdMap arrays decouple the API Command Number from the layout of the
+    * function-pointer arrays found in the max2871.h and adf4356.h files.
+    *
+    * The enums provide descriptive command names for the function-pointer
+    * arrays instead of using the Command Numbers.
+    *
+    * For a list of available commands and their corresponding functions, refer
+    * to the Execute() function in max2871.h and the Execute() function in adf4356.h.
+    */
+    enum loCmdList{GERERAL, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, CHANGE_FREQ, TRI, DLD, DIV_MODE, NA=30, };
+    enum arduinoCmdList{LED_OFF, LED_ON, VERSION, BEGIN_SWEEP, };
+    enum ckCmdLIst{ALL_OFF, REF_LO_ON, REF_HI_ON, };
+
     ADF4356_LO LO1;
     ADF4356_LO* ptrLO1 = &LO1;
     MAX2871_LO LO2;
