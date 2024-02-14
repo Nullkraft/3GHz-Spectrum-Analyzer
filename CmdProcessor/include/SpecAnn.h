@@ -38,6 +38,22 @@ class SpecAnn {
     enum arduinoCmdList{LED_OFF, LED_ON, VERSION, BEGIN_SWEEP, };
     enum ckCmdLIst{ALL_OFF, REF_LO_ON, REF_HI_ON, };
 
+    // Command map declarations
+    uint8_t max2871CmdMap[10] {
+      SpecAnn::NA, SpecAnn::RFOFF, SpecAnn::N4DBM, SpecAnn::N1DBM, SpecAnn::P2DBM,
+      SpecAnn::P5DBM, SpecAnn::NA, SpecAnn::TRI, SpecAnn::DLD, SpecAnn::DIV_MODE
+      };
+    uint8_t SpecAnn::adf4356CmdMap[9] {
+      SpecAnn::NA, SpecAnn::RFOFF, SpecAnn::N4DBM, SpecAnn::N1DBM, SpecAnn::P2DBM,
+      SpecAnn::P5DBM, SpecAnn::NA, SpecAnn::TRI, SpecAnn::DLD
+      };
+    uint8_t arduinoCmdMap[4] {
+      SpecAnn::LED_OFF, SpecAnn::LED_ON, SpecAnn::VERSION, SpecAnn::BEGIN_SWEEP
+      };
+    uint8_t clkCmdMap[3] {
+      SpecAnn::ALL_OFF, SpecAnn::REF_LO_ON, SpecAnn::REF_HI_ON
+      };
+
     ADF4356_LO LO1;
     ADF4356_LO* ptrLO1 = &LO1;
     MAX2871_LO LO2;

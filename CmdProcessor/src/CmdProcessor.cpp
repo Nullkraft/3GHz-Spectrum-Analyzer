@@ -67,42 +67,6 @@ uint8_t adc_pin;
 // Spectrum Analyzer command-&-control
 SpecAnn SA = SpecAnn();
 
-// Command map declarations
-uint8_t max2871CmdMap[] {
-  SpecAnn::NA,
-  SpecAnn::RFOFF,
-  SpecAnn::N4DBM,
-  SpecAnn::N1DBM,
-  SpecAnn::P2DBM,
-  SpecAnn::P5DBM,
-  SpecAnn::NA,
-  SpecAnn::TRI,
-  SpecAnn::DLD,
-  SpecAnn::DIV_MODE
-  };
-uint8_t adf4356CmdMap[] {
-  SpecAnn::NA,
-  SpecAnn::RFOFF,
-  SpecAnn::N4DBM,
-  SpecAnn::N1DBM,
-  SpecAnn::P2DBM,
-  SpecAnn::P5DBM,
-  SpecAnn::NA,
-  SpecAnn::TRI,
-  SpecAnn::DLD
-  };
-uint8_t arduinoCmdMap[] {
-  SpecAnn::LED_OFF,
-  SpecAnn::LED_ON,
-  SpecAnn::VERSION,
-  SpecAnn::BEGIN_SWEEP
-  };
-uint8_t clkCmdMap[] {
-  SpecAnn::ALL_OFF,
-  SpecAnn::REF_LO_ON,
-  SpecAnn::REF_HI_ON
-  };
-
 uint8_t hi_byte;
 uint8_t lo_byte;
 int LOCKED;
@@ -233,7 +197,7 @@ void loop() {
         spi_select = SA.LO1_SEL;
         SA.LO1.set_N_bits(Data16);                            // Set the new INT_N bits into Register 0
         // LO1->set_N_bits(Data16);                           // Set the new INT_N bits into Register 0
-        regWord = SA.LO1.Execute(adf4356CmdMap[Command], 0);  // This selects from 1 of 7 adf4356 commands
+        regWord = SA.LO1.Execute(SA.adf4356CmdMap[Command], 0);  // This selects from 1 of 7 adf4356 commands
         SA.LO1.update(regWord, spi_select);                   // Write Reg[4] for set_TRI/set_DLD, ELSE Reg[6]
         SA.LO1.update(SA.LO1.Curr.Reg[0], spi_select);        // followed by Reg[0] (REQUIRED by specsheet)
         break;
@@ -242,21 +206,21 @@ void loop() {
         // LO = SA.ptrLO2;
         spi_select = SA.LO2_SEL;
         adc_pin = SA.ADC_SEL_315;
-        regWord = SA.LO->Execute(max2871CmdMap[Command], serialWord);
+        regWord = SA.LO->Execute(SA.max2871CmdMap[Command], serialWord);
         SA.LO->update(regWord, spi_select);  // Update LO2 registers
         break;
       case SA.LO3_addr:
         SA.LO = SA.ptrLO3;
         spi_select = SA.LO3_SEL;
         adc_pin = SA.ADC_SEL_045;
-        regWord = SA.LO->Execute(max2871CmdMap[Command], serialWord);
+        regWord = SA.LO->Execute(SA.max2871CmdMap[Command], serialWord);
         SA.LO->update(regWord, spi_select);  // Update LO3 registers
         break;
       case SA.RefClock:
         SA.clkExecute(Command);
         break;
       case SA.MISC_addr:
-        SA.miscExecute(arduinoCmdMap[Command]);
+        SA.miscExecute(SA.arduinoCmdMap[Command]);
         break;
       default:
         Serial.print(F("Requested Address:"));
