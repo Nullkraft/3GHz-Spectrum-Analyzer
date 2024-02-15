@@ -93,7 +93,7 @@ void setup() {
   digitalWrite(LED_BUILTIN, LOW);  // Make sure the LED is off
 
   SA.updateAtten(0x0, SA.ATTEN_SEL);   // Set 0dB on the digital attenuator
-  init_specann();
+  SA.init_specann();
 }
 
 
@@ -232,16 +232,3 @@ void loop() {
   COMMAND_FLAG = false;
 } /* End loop() */
 
-
-/* Starting with one of the MAX2871 chips makes initializing LO1 much more consistent.  Why?
-    Initialize IC's LO1, LO2 and LO3 by programming them twice IAW manufacturer's specsheet
-*/
-void init_specann() {
-  SA.LO3.begin(SA.LO3_SEL);
-  SA.LO2.begin(SA.LO2_SEL);
-  SA.LO1.begin(SA.LO1_SEL);
-  delay(20);
-  SA.LO3.begin(SA.LO3_SEL);
-  SA.LO2.begin(SA.LO2_SEL);
-  SA.LO1.begin(SA.LO1_SEL);
-}

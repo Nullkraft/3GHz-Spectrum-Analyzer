@@ -43,7 +43,7 @@ class SpecAnn {
       SpecAnn::NA, SpecAnn::RFOFF, SpecAnn::N4DBM, SpecAnn::N1DBM, SpecAnn::P2DBM,
       SpecAnn::P5DBM, SpecAnn::NA, SpecAnn::TRI, SpecAnn::DLD, SpecAnn::DIV_MODE
       };
-    uint8_t SpecAnn::adf4356CmdMap[9] {
+    uint8_t adf4356CmdMap[9] {
       SpecAnn::NA, SpecAnn::RFOFF, SpecAnn::N4DBM, SpecAnn::N1DBM, SpecAnn::P2DBM,
       SpecAnn::P5DBM, SpecAnn::NA, SpecAnn::TRI, SpecAnn::DLD
       };
@@ -94,6 +94,7 @@ class SpecAnn {
     static constexpr uint8_t MISC_addr = 7;
 
     /*********** HARDWARE DEFINITIONS END *******/
+    void init_specann();
     void builtinLEDOff();
     void builtinLEDOn();
     void version();
@@ -111,10 +112,10 @@ class SpecAnn {
     // Array of function-pointers containing the
     // 'Spectrum Analyzer miscellenious functions'
     MiscFuncs miscCmds[NUM_MISC_FUNCTIONS] = {
-        &SpecAnn::builtinLEDOff, // Command number 0
-        &SpecAnn::builtinLEDOn,  // Command number 1
-        &SpecAnn::version,       // Command number 2
-        &SpecAnn::end_sweep_ack, // Command number 3
+      &SpecAnn::builtinLEDOff, // Command number 0
+      &SpecAnn::builtinLEDOn,  // Command number 1
+      &SpecAnn::version,       // Command number 2
+      &SpecAnn::end_sweep_ack, // Command number 3
     };
 
     typedef void (SpecAnn::*RefClockFuncs)();
@@ -122,10 +123,12 @@ class SpecAnn {
 
     // function-pointer array for clock selection functions
     RefClockFuncs refClockCmds[NUM_CLK_FUNCTIONS] = {
-        &SpecAnn::all_ref_off,  // Command number 0
-        &SpecAnn::ref_LO,       // Command number 1
-        &SpecAnn::ref_HI,       // Command number 2
+      &SpecAnn::all_ref_off,  // Command number 0
+      &SpecAnn::ref_LO,       // Command number 1
+      &SpecAnn::ref_HI,       // Command number 2
     };
+
+
 };
 
 #endif  // _SPECANN_

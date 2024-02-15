@@ -11,14 +11,19 @@ SpecAnn::SpecAnn() {
   LO3.Curr.Reg[4] = 0x63CE803C;
   LO3.Curr.Reg[5] = 0x00400005;
   LO3.Curr.Reg[6] = 0x80005F42;  // Digital Lock Detect ON
+}
 
-  // LO3.begin(LO3_SEL);
-  // LO2.begin(LO2_SEL);
-  // LO1.begin(LO1_SEL);
-  // delay(20);
-  // ptrLO3->begin(LO3_SEL);
-  // LO2.begin(LO2_SEL);
-  // LO1.begin(LO1_SEL);
+/* Starting with one of the MAX2871 chips makes initializing LO1 much more consistent. Why?
+   Initialize IC's LO1, LO2 and LO3 by programming them twice IAW manufacturer's specsheet
+*/
+void SpecAnn::init_specann() {
+  LO1.begin(LO1_SEL);
+  LO2.begin(LO2_SEL);
+  LO3.begin(LO3_SEL);
+  delay(20);
+  LO1.begin(LO1_SEL);
+  LO2.begin(LO2_SEL);
+  LO3.begin(LO3_SEL);
 }
 
 // Program the Digital Attenuator by sending and latching a single byte
