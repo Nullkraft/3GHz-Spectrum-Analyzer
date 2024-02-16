@@ -44,7 +44,7 @@ uint8_t* serialWordAsBytes = reinterpret_cast<uint8_t*>(&serialWord);   // Seria
 uint16_t* serialWordAsInts = reinterpret_cast<uint16_t*>(&serialWord);  // Serial Word as a int array
 
 /* All the values required by the spi_write() command */
-uint8_t spi_select;  // Currently selected LO (1, 2 or 3) that is to be programmed
+// uint8_t spi_select;  // Currently selected LO (1, 2 or 3) that is to be programmed
 uint32_t regWord;    // Holds the register contents to be written to the selected device
 
 //*** Parsed values from the incoming 32 bit serial word ***
@@ -142,8 +142,8 @@ void loop() {
       // N & F:  Set bits R[0], bits[22:15] for new N, and R[0], bits[14:3] for new F
       SA.LO->set_NF_bits(serialWord);
       // Program the selected LO starting with the higher numbered registers first
-      SA.LO->update(SA.LO->Curr.Reg[1], spi_select);
-      SA.LO->update(SA.LO->Curr.Reg[0], spi_select);
+      SA.LO->update(SA.LO->Curr.Reg[1], SA.spi_select);
+      SA.LO->update(SA.LO->Curr.Reg[0], SA.spi_select);
       // Usage example
       // MAX2871_LO LO1, LO2, LO3;
       // LO1.setFrequency(F, M, N, selectPinForLO1); // Specify the select pin for LO1
@@ -193,25 +193,22 @@ void loop() {
         SA.updateAtten(static_cast<uint8_t>(Data16), SA.ATTEN_SEL);
         break;
       case SA.LO1_addr:
-        spi_select = SA.LO1_SEL;
+        SA.spi_select = SA.LO1_SEL;
         SA.LO1.set_N_bits(Data16);                              // Set the new INT_N bits into Register 0
         regWord = SA.LO1.Execute(SA.adf4356CmdMap[Command], 0); // This selects from 1 of 7 adf4356 commands
-        SA.LO1.update(regWord, spi_select);                     // Write Reg[4] for set_TRI/set_DLD, ELSE Reg[6]
-        SA.LO1.update(SA.LO1.Curr.Reg[0], spi_select);          // followed by Reg[0] (REQUIRED by specsheet)
+        SA.LO1.update(regWord, SA.spi_select);                     // Write Reg[4] for set_TRI/set_DLD, ELSE Reg[6]
+        SA.LO1.update(SA.LO1.Curr.Reg[0], SA.spi_select);          // followed by Reg[0] (REQUIRED by specsheet)
         break;
       case SA.LO2_addr:
-        SA.LO = SA.ptrLO2;        // Make LO2 active
-        spi_select = SA.LO2_SEL;  // Select the pin for the MAX2871 used for LO2
         adc_pin = SA.ADC_SEL_315; // Select the ADC that reads the output of the LO2 RF path
-        regWord = SA.LO->Execute(SA.max2871CmdMap[Command], serialWord);  
-        SA.LO->update(regWord, spi_select);  // Update LO2 registers
+        SA.spi_select = SA.LO2_SEL;  // Select the pin for the MAX2871 used for LO2
+        SA.updateLORegisters(SA.ptrLO2, SA.LO2_SEL, Command, serialWord);
         break;
       case SA.LO3_addr:
-        SA.LO = SA.ptrLO3;
-        spi_select = SA.LO3_SEL;
         adc_pin = SA.ADC_SEL_045;
-        regWord = SA.LO->Execute(SA.max2871CmdMap[Command], serialWord);
-        SA.LO->update(regWord, spi_select);  // Update LO3 registers
+        /***** TODO: Why can't I feed SA.LO3_SEL directly into updateLORegisters() *****/
+        SA.spi_select = SA.LO3_SEL;
+        SA.updateLORegisters(SA.ptrLO3, SA.LO3_SEL, Command, serialWord);
         break;
       case SA.RefClock:
         SA.clkExecute(Command);

@@ -37,6 +37,7 @@ class SpecAnn {
     enum loCmdList{GERERAL, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, CHANGE_FREQ, TRI, DLD, DIV_MODE, NA=30, };
     enum arduinoCmdList{LED_OFF, LED_ON, VERSION, BEGIN_SWEEP, };
     enum ckCmdLIst{ALL_OFF, REF_LO_ON, REF_HI_ON, };
+    uint8_t spi_select;
 
     // Command map declarations
     uint8_t max2871CmdMap[10] {
@@ -61,6 +62,7 @@ class SpecAnn {
     MAX2871_LO LO3;
     MAX2871_LO* ptrLO3 = &LO3;
     MAX2871_LO* LO;
+
     SpecAnn();  //Ctor
     // Status codes use the 4 msbits of the 16 bit ADC return values
     // const int start_noise_floor = 0xD0;  // First in the series of ADC noise-floor readings
@@ -104,6 +106,7 @@ class SpecAnn {
     void ref_LO();
     void ref_HI();
 
+    void updateLORegisters(MAX2871_LO* loPtr, uint8_t spiSelect, uint8_t command, uint32_t serialWord);
     void updateAtten(uint8_t reg, uint8_t selectPin);
 
     typedef void (SpecAnn::*MiscFuncs)();
