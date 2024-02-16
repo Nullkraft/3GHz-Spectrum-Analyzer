@@ -27,10 +27,8 @@ void SpecAnn::init_specann() {
 }
 
 void SpecAnn::updateLORegisters(MAX2871_LO* LoPtr, uint8_t spiSelect, uint8_t command, uint32_t serialWord) {
-  LO = LoPtr;
-  uint8_t spi_select = spiSelect;
-  uint32_t regWord = LO->Execute(max2871CmdMap[command], serialWord);
-  LO->update(regWord, spi_select);
+  uint32_t regWord = LoPtr->Execute(max2871CmdMap[command], serialWord);
+  LO->update(regWord, spiSelect);
 }
 
 // Program the Digital Attenuator by sending and latching a single byte
