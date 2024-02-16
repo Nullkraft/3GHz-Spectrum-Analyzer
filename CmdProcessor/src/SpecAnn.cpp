@@ -79,8 +79,8 @@ void SpecAnn::all_ref_off() {
 }
 // Turn on low freq reference clock, Ref1, and turn off high freq reference clock, Ref2
 void SpecAnn::ref_LO() {
-  digitalWrite(REF_HI_SEL, LOW);
   digitalWrite(REF_LO_SEL, HIGH);
+  digitalWrite(REF_HI_SEL, LOW);
 }
 // Turn on high freq reference clock, Ref2, and turn off low freq reference clock, Ref1
 void SpecAnn::ref_HI() {
