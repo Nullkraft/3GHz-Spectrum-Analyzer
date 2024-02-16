@@ -44,7 +44,6 @@ uint8_t* serialWordAsBytes = reinterpret_cast<uint8_t*>(&serialWord);   // Seria
 uint16_t* serialWordAsInts = reinterpret_cast<uint16_t*>(&serialWord);  // Serial Word as a int array
 
 /* All the values required by the spi_write() command */
-// uint8_t spi_select;  // Currently selected LO (1, 2 or 3) that is to be programmed
 uint32_t regWord;    // Holds the register contents to be written to the selected device
 
 //*** Parsed values from the incoming 32 bit serial word ***
