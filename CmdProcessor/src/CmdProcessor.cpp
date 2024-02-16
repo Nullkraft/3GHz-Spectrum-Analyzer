@@ -200,10 +200,10 @@ void loop() {
         SA.LO1.update(SA.LO1.Curr.Reg[0], spi_select);          // followed by Reg[0] (REQUIRED by specsheet)
         break;
       case SA.LO2_addr:
-        SA.LO = SA.ptrLO2;
-        spi_select = SA.LO2_SEL;
-        adc_pin = SA.ADC_SEL_315;
-        regWord = SA.LO->Execute(SA.max2871CmdMap[Command], serialWord);
+        SA.LO = SA.ptrLO2;        // Make LO2 active
+        spi_select = SA.LO2_SEL;  // Select the pin for the MAX2871 used for LO2
+        adc_pin = SA.ADC_SEL_315; // Select the ADC that reads the output of the LO2 RF path
+        regWord = SA.LO->Execute(SA.max2871CmdMap[Command], serialWord);  
         SA.LO->update(regWord, spi_select);  // Update LO2 registers
         break;
       case SA.LO3_addr:
