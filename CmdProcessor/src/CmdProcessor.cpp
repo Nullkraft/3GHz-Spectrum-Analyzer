@@ -27,6 +27,10 @@
 #include "SpecAnn.h"
 #endif
 
+/////////// SERIAL COMMUNICATION PROTOCOL ///////////
+#define SER_TIMEOUT 200 // Serial port gives up trying to read after 200 mSec
+bool useBinary = true;  // Set this to true for binary mode, false for ASCII mode
+
 /*           Serial Word with Command Flag:
     ________________________________________________
    [       Embedded      | Instr- |Addr.|  Command  ]  NOTE: Command Flag
@@ -39,40 +43,35 @@ uint32_t serialWord;                                  // Serial Word as 32 bits
 uint8_t* serialWordAsBytes = reinterpret_cast<uint8_t*>(&serialWord);   // Serial Word as a byte array
 uint16_t* serialWordAsInts = reinterpret_cast<uint16_t*>(&serialWord);  // Serial Word as a int array
 
-// Command Flag 0xFF indicates that a new instruction was received by the Arduino
-bool COMMAND_FLAG = false;
-
 /* All the values required by the spi_write() command */
 uint8_t spi_select;  // Currently selected LO (1, 2 or 3) that is to be programmed
 uint32_t regWord;    // Holds the register contents to be written to the selected device
 
-/*** Parsed values from the incoming 32 bit serial word ***/
+//*** Parsed values from the incoming 32 bit serial word ***
+bool COMMAND_FLAG = false;  // Set to true when Command Flag 0xFF indicates a new instruction
 uint16_t Data16;  // 16 bits
 byte Command;
 byte Address;
 const byte AddressBits = 0x07;  // Mask out 3 bits of 'Register Address' from serialWord[1]
 const byte CommandFlag = 0xFF;  // Byte pattern to identify a 'Control Word'
+uint8_t hi_byte;
+uint8_t lo_byte;
+/////////// END SERIAL COMMUNICATION PROTOCOL ///////////
 
+///////// Move to SpecAnn.h /////////
 unsigned long start_PLL_Lock_time;
-
-#define SER_TIMEOUT 200 // Serial port gives up trying to read after 200 mSec
-bool useBinary = true;  // Set this to true for binary mode, false for ASCII mode
-
-bool DEBUG = false;
-
+const int PLL_Lock_timeout = 500; // usec. Use 195 for testing some failures to lock.
+int LOCKED;
 volatile uint16_t a2dAmplitude;
 uint8_t* ampl_byte = (uint8_t*)&a2dAmplitude;
 uint8_t adc_pin;
+/////////////////////////////////////
 
-// Spectrum Analyzer command-&-control
+bool DEBUG = false;
+
+// A new Spectrum Analyzer
 SpecAnn SA = SpecAnn();
 
-uint8_t hi_byte;
-uint8_t lo_byte;
-int LOCKED;
-const int PLL_Lock_timeout = 500; // usec. Use 195 for testing some failures to lock.
-
-void init_specann();
 
 /******** SETUP *********************************************************************/
 void setup() {
@@ -195,15 +194,13 @@ void loop() {
         break;
       case SA.LO1_addr:
         spi_select = SA.LO1_SEL;
-        SA.LO1.set_N_bits(Data16);                            // Set the new INT_N bits into Register 0
-        // LO1->set_N_bits(Data16);                           // Set the new INT_N bits into Register 0
-        regWord = SA.LO1.Execute(SA.adf4356CmdMap[Command], 0);  // This selects from 1 of 7 adf4356 commands
-        SA.LO1.update(regWord, spi_select);                   // Write Reg[4] for set_TRI/set_DLD, ELSE Reg[6]
-        SA.LO1.update(SA.LO1.Curr.Reg[0], spi_select);        // followed by Reg[0] (REQUIRED by specsheet)
+        SA.LO1.set_N_bits(Data16);                              // Set the new INT_N bits into Register 0
+        regWord = SA.LO1.Execute(SA.adf4356CmdMap[Command], 0); // This selects from 1 of 7 adf4356 commands
+        SA.LO1.update(regWord, spi_select);                     // Write Reg[4] for set_TRI/set_DLD, ELSE Reg[6]
+        SA.LO1.update(SA.LO1.Curr.Reg[0], spi_select);          // followed by Reg[0] (REQUIRED by specsheet)
         break;
       case SA.LO2_addr:
         SA.LO = SA.ptrLO2;
-        // LO = SA.ptrLO2;
         spi_select = SA.LO2_SEL;
         adc_pin = SA.ADC_SEL_315;
         regWord = SA.LO->Execute(SA.max2871CmdMap[Command], serialWord);

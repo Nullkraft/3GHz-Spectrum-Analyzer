@@ -90,28 +90,29 @@ uint32_t MAX2871_LO::Execute(byte commandIndex, uint32_t controlWord) {
 //     setFrequency(F, M, N, selectPin);
 // }
 
-// void MAX2871_LO::setFrequency(uint16_t F, uint16_t M, uint8_t N, uint8_t selectPin) {
-//     // Masking and shifting F and N for R[0]
-//     uint32_t F_masked_shifted = (uint32_t)(F & 0xFFF) << 3;  // Mask and shift F
-//     uint32_t N_masked_shifted = (uint32_t)(N & 0xFF) << 15;  // Mask and shift N
+/*
+void MAX2871_LO::setFrequency(uint16_t F, uint16_t M, uint8_t N, uint8_t selectPin) {
+    // Masking and shifting F and N for R[0]
+    uint32_t F_masked_shifted = (uint32_t)(F & 0xFFF) << 3;  // Mask and shift F
+    uint32_t N_masked_shifted = (uint32_t)(N & 0xFF) << 15;  // Mask and shift N
 
-//     // Masking and shifting M for R[1]
-//     uint32_t M_masked_shifted = (uint32_t)(M & 0xFFF) << 3;  // Mask and shift M
+    // Masking and shifting M for R[1]
+    uint32_t M_masked_shifted = (uint32_t)(M & 0xFFF) << 3;  // Mask and shift M
 
-//     // Clearing the bits where F, M, and N will be placed, while keeping the other bits unchanged
-//     Curr.Reg[0] &= ~(0xFFF << 3);  // Clear bits for F
-//     Curr.Reg[0] &= ~(uint32_t(0xFF) << 15);  // Clear bits for N
-//     Curr.Reg[1] &= ~(0xFFF << 3);  // Clear bits for M
+    // Clearing the bits where F, M, and N will be placed, while keeping the other bits unchanged
+    Curr.Reg[0] &= ~(0xFFF << 3);  // Clear bits for F
+    Curr.Reg[0] &= ~(uint32_t(0xFF) << 15);  // Clear bits for N
+    Curr.Reg[1] &= ~(0xFFF << 3);  // Clear bits for M
 
-//     // Setting the new values for F, M, and N
-//     Curr.Reg[0] |= F_masked_shifted;  // Set new value for F
-//     Curr.Reg[0] |= N_masked_shifted;  // Set new value for N
-//     Curr.Reg[1] |= M_masked_shifted;  // Set new value for M
+    // Setting the new values for F, M, and N
+    Curr.Reg[0] |= F_masked_shifted;  // Set new value for F
+    Curr.Reg[0] |= N_masked_shifted;  // Set new value for N
+    Curr.Reg[1] |= M_masked_shifted;  // Set new value for M
 
-//     // Update the registers
-//     update(Curr.Reg[0], selectPin); // Update R0
-//     update(Curr.Reg[1], selectPin); // Update R1
-// }
+    // Update the registers
+    update(Curr.Reg[0], selectPin); // Update R0
+    update(Curr.Reg[1], selectPin); // Update R1
+} */
 
 void MAX2871_LO::FMN_from_freq(float target_freq_MHz, float ref_clock, uint16_t &F, uint16_t &M, uint8_t &N) {
     float R = 2;
