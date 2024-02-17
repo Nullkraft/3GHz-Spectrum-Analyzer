@@ -47,7 +47,7 @@ uint16_t* serialWordAsInts = reinterpret_cast<uint16_t*>(&serialWord);  // Seria
 uint32_t regWord;    // Holds the register contents to be written to the selected device
 
 //*** Parsed values from the incoming 32 bit serial word ***
-bool COMMAND_FLAG = false;  // Set to true when Command Flag 0xFF indicates a new instruction
+// bool COMMAND_FLAG = false;  // Set to true when Command Flag 0xFF indicates a new instruction
 uint16_t Data16;  // 16 bits
 byte Command;
 byte Address;
@@ -70,7 +70,8 @@ bool DEBUG = false;
 
 // A new Spectrum Analyzer
 SpecAnn SA = SpecAnn();
-
+// A new CmdObj
+CmdObj CO = CmdObj();
 
 /******** SETUP *********************************************************************/
 void setup() {
@@ -109,10 +110,6 @@ void loop() {
       }
     }
 
-    if (serialWordAsBytes[0] == CommandFlag) {
-      COMMAND_FLAG = true;
-    }
-
     /******** COMMAND FLAG **************************************************************
      * If a Command Flag is found then parse the 3 upper bytes into Data, Command and Address
      * There are 4 bytes in an Instruction Word:
@@ -128,13 +125,14 @@ void loop() {
      * Command is copied, masked, and shifted from serialWord Byte[1] bits[15:11], and
      * Address is also copied, masked, and shifted from serialWord Byte[1] bits[10:8].
     */
-    if (COMMAND_FLAG) {
-      Data16 = serialWordAsInts[1];   // Copy 2 upper bytes to Data16
-      Command = serialWordAsBytes[1] >> 3;
-      Address = serialWordAsBytes[1] & AddressBits;
-      COMMAND_FLAG = false;
+    if (serialWordAsBytes[0] == CommandFlag) {
+      // COMMAND_FLAG = true;
+      CO.parseSerialWord(serialWord);
+      Data16 = CO.getData();
+      Command = CO.getCommand();
+      Address = CO.getAddress();
     }
-    else if (!COMMAND_FLAG) {    // An LO2 or LO3 Instruction has arrived...
+    else {    // An LO2 or LO3 Instruction has arrived...
       // This is where we set the frequency of LO2 or LO3
       // M:  Set R[1], bits[14:3] to program the new value for M
       SA.LO->set_M_bits(serialWord);
@@ -222,6 +220,6 @@ void loop() {
     }   /* End switch(Address) */
 
   }   /* End While serial available */
-  COMMAND_FLAG = false;
+  // COMMAND_FLAG = false;
 } /* End loop() */
 
