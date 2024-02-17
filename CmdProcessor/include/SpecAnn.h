@@ -25,21 +25,22 @@ class CmdObj {
       +---------------------+--------+-----+-----------+
       [ xxxx_xxxx_xxxx_xxxx | xxxx_x | xxx | 1111_1111 ]
     */
-    const uint8_t numBytesInSerialWord = 4;
+    // const uint8_t numBytesInSerialWord = 4;
     uint32_t serialWord;                                  // Serial Word as 32 bits
-    uint8_t* serialWordAsBytes = reinterpret_cast<uint8_t*>(&serialWord);   // Serial Word as array with 4 bytes
-    uint16_t* serialWordAsInts = reinterpret_cast<uint16_t*>(&serialWord);  // Serial Word as array with 2 ints
+    // uint8_t* serialWordAsBytes = reinterpret_cast<uint8_t*>(&serialWord);   // Serial Word as array with 4 bytes
+    // uint16_t* serialWordAsInts = reinterpret_cast<uint16_t*>(&serialWord);  // Serial Word as array with 2 ints
 
   public:
-    CmdObj() : Data16(0), Command(0), Address(0) {}
+    // CmdObj() : Data16(0), Command(0), Address(0) {}
+    CmdObj() {}
 
     // serialWord is 32 bits
     void parseSerialWord(uint32_t serialWord) {
-      uint8_t newAddress = serialWordAsBytes[1] & AddressMask;   // Mask out the lsb 3-bit Address
-      if ((newAddress <= 4) || (newAddress == 7)) {    // Reserves addresses 5 and 6
+      uint8_t newAddress = (serialWord >> 8) & AddressMask;   // Mask out the lsb 3-bit Address
+      if ((newAddress <= 4) || (newAddress == 7)) { // Reserves addresses 5 and 6
         Address = newAddress;
-        Command = serialWordAsBytes[1] & 0xF8;  // Mask out the msb 5-bit Command
-        Data16 = serialWordAsInts[1];           // Mask out the upper 16-bit Data
+        Command = (serialWord >> 11) & 0x1F;        // Mask out the msb 5-bits to Command
+        Data16 = serialWord >> 16;                  // Shift the upper 16-bits to Data
       } else {
         // Invalid Address
       }

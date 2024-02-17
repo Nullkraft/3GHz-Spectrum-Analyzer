@@ -47,7 +47,6 @@ uint16_t* serialWordAsInts = reinterpret_cast<uint16_t*>(&serialWord);  // Seria
 uint32_t regWord;    // Holds the register contents to be written to the selected device
 
 //*** Parsed values from the incoming 32 bit serial word ***
-// bool COMMAND_FLAG = false;  // Set to true when Command Flag 0xFF indicates a new instruction
 uint16_t Data16;  // 16 bits
 byte Command;
 byte Address;
@@ -106,27 +105,15 @@ void loop() {
       // ASCII Communication for testing Mike's code:
       serialWord = Serial.parseInt();
       if (serialWord == 0) {    // Serial timed out on SER_TIMEOUT
-        continue;  // This will just skip to the next iteration of the loop
+        continue;
       }
     }
 
-    /******** COMMAND FLAG **************************************************************
+     /******** COMMAND FLAG **************************************************************
      * If a Command Flag is found then parse the 3 upper bytes into Data, Command and Address
      * There are 4 bytes in an Instruction Word:
-     * Bits serialWord[31:16] are Data
-     * Bits serialWord[15:11] are the Command to be performed
-     * Bits serialWord[10:8] are the address of the chip to be programmed
-     * The serial word can be accessed as a single 32 bit value called serialWord, or as
-     * a 2 word array of 16 bit values accessed by using serialWordAsInts[1 or 0], or as
-     * a 4 word array of 8 bit values accessed by using serialWordAsBytes[3, 2, 1, or 0].
-     * Since serialWordAsBytes[0] is already used to set the COMMAND_FLAG we just ignore it.
-     * So that just leaves the upper 3 bytes to process.
-     * Data16 is copied from the upper 16 bits of serialWordAsInts[1],
-     * Command is copied, masked, and shifted from serialWord Byte[1] bits[15:11], and
-     * Address is also copied, masked, and shifted from serialWord Byte[1] bits[10:8].
-    */
+     */
     if (serialWordAsBytes[0] == CommandFlag) {
-      // COMMAND_FLAG = true;
       CO.parseSerialWord(serialWord);
       Data16 = CO.getData();
       Command = CO.getCommand();
@@ -220,6 +207,5 @@ void loop() {
     }   /* End switch(Address) */
 
   }   /* End While serial available */
-  // COMMAND_FLAG = false;
 } /* End loop() */
 
