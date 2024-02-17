@@ -114,7 +114,7 @@ void loop() {
      * There are 4 bytes in an Instruction Word:
      */
     if (serialWordAsBytes[0] == CommandFlag) {
-      CO.parseSerialWord(serialWord);
+      CO.parseSpecificInstruction(serialWord);
       Data16 = CO.getData();
       Command = CO.getCommand();
       Address = CO.getAddress();

@@ -35,7 +35,7 @@ class CmdObj {
     CmdObj() {}
 
     // serialWord is 32 bits
-    void parseSerialWord(uint32_t serialWord) {
+    void parseSpecificInstruction(uint32_t serialWord) {
       uint8_t newAddress = (serialWord >> 8) & AddressMask;   // Mask out the lsb 3-bit Address
       if ((newAddress <= 4) || (newAddress == 7)) { // Reserves addresses 5 and 6
         Address = newAddress;
