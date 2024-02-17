@@ -11,6 +11,45 @@
  * ADC_value of 193 ≈ 0.488/0.002536
 */
 
+class CmdObj {
+  private:
+    uint16_t Data16;  // 16 bits
+    byte Command;
+    byte Address;
+    const byte AddressMask = 0x07;  // Mask out 3 bits of 'Register Address' from serialWord[1]
+    const byte CommandFlag = 0xFF;  // Byte pattern to identify a 'Control Word'
+    /*           Serial Word with Command Flag:
+      +------------------------------------------------+
+      |       Embedded      | Instr- |Addr.|  Command  |  NOTE: Command Flag
+      |       Data          | uction |     |   Flag    |        always = 0xFF
+      +---------------------+--------+-----+-----------+
+      [ xxxx_xxxx_xxxx_xxxx | xxxx_x | xxx | 1111_1111 ]
+    */
+    const uint8_t numBytesInSerialWord = 4;
+    uint32_t serialWord;                                  // Serial Word as 32 bits
+    uint8_t* serialWordAsBytes = reinterpret_cast<uint8_t*>(&serialWord);   // Serial Word as array with 4 bytes
+    uint16_t* serialWordAsInts = reinterpret_cast<uint16_t*>(&serialWord);  // Serial Word as array with 2 ints
+
+  public:
+    CmdObj() : Data16(0), Command(0), Address(0) {}
+
+    // serialWord is 32 bits
+    void parseSerialWord(uint32_t serialWord) {
+      uint8_t newAddress = serialWordAsBytes[1] & AddressMask;   // Mask out the lsb 3-bit Address
+      if ((newAddress <= 4) || (newAddress == 7)) {    // Reserves addresses 5 and 6
+        Address = newAddress;
+        Command = serialWordAsBytes[1] & 0xF8;  // Mask out the msb 5-bit Command
+        Data16 = serialWordAsInts[1];           // Mask out the upper 16-bit Data
+      } else {
+        // Invalid Address
+      }
+    }
+
+    uint16_t getData() const { return Data16; }
+    uint16_t getCommand() const { return Command; }
+    uint16_t getAddress() const { return Address; }
+};
+
 class SpecAnn {
   private:
     #define NUM_MISC_FUNCTIONS 4
@@ -64,7 +103,6 @@ class SpecAnn {
     MAX2871_LO* ptrLO3 = &LO3;
     MAX2871_LO* LO;
 
-    SpecAnn();  //Ctor
     // Status codes use the 4 msbits of the 16 bit ADC return values
     // const int start_noise_floor = 0xD0;  // First in the series of ADC noise-floor readings
     // const int end_noise_floor   = 0xE0;  // Last in the series of ADC noise-floor readings
@@ -97,6 +135,8 @@ class SpecAnn {
     static constexpr uint8_t MISC_addr = 7;
 
     /*********** HARDWARE DEFINITIONS END *******/
+    SpecAnn();  //Ctor
+
     void init_specann();
     void builtinLEDOff();
     void builtinLEDOn();
