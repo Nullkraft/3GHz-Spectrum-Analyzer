@@ -27,7 +27,7 @@ class MAX2871_LO {
 
   public:
     MAX2871_LO() : first_init(true) {  // Ctor initialzes first_init
-      SPI.begin();
+      // SPI.begin();   // BUG: Causes Arduino LED to stop working
     }
     
     max2871Registers Curr;  // Read/Write copy of the registers
