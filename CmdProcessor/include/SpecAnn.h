@@ -17,6 +17,8 @@ class SpecAnn {
     #define NUM_CLK_FUNCTIONS 3
 
   public:
+    uint8_t spi_select;   // Chip selected for SPI programming
+
     /* Command-to-Function Mapping:
     *
     * Each instruction found in the API ('Instruction List XXX.ods') has an
@@ -37,7 +39,6 @@ class SpecAnn {
     enum loCmdList{GERERAL, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, CHANGE_FREQ, TRI, DLD, DIV_MODE, NA=30, };
     enum arduinoCmdList{LED_OFF, LED_ON, VERSION, BEGIN_SWEEP, };
     enum ckCmdLIst{ALL_OFF, REF_LO_ON, REF_HI_ON, };
-    uint8_t spi_select;
 
     // Command map declarations
     uint8_t max2871CmdMap[10] {
