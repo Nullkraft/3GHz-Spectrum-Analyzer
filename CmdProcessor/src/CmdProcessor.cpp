@@ -126,11 +126,6 @@ void loop() {
       // Program the selected LO starting with the higher numbered registers first
       SA.LO->update(SA.LO->Curr.Reg[1], SA.spi_select);
       SA.LO->update(SA.LO->Curr.Reg[0], SA.spi_select);
-      // Usage example
-      // MAX2871_LO LO1, LO2, LO3;
-      // LO1.setFrequency(F, M, N, selectPinForLO1); // Specify the select pin for LO1
-      // LO2.setFrequency(F, M, N, selectPinForLO2); // Specify the select pin for LO2
-      // LO3.setFrequency(F, M, N, selectPinForLO3); // Specify the select pin for LO3
 
       // Wait for selected LO2 or LO3 to Lock
       start_PLL_Lock_time = micros();
