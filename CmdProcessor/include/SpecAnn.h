@@ -13,9 +13,9 @@
 
 class CmdObj {
   private:
-    uint16_t Data16;  // 16 bits
-    byte Command;
-    byte Address;
+    uint16_t data;  // 16 bits
+    byte cmd;
+    byte addr;
     const byte AddressMask = 0x07;  // Mask out 3 bits of 'Register Address' from serialWord[1]
     const byte CommandFlag = 0xFF;  // Byte pattern to identify a 'Control Word'
     /*           Serial Word with Command Flag:
@@ -31,24 +31,24 @@ class CmdObj {
     // uint16_t* serialWordAsInts = reinterpret_cast<uint16_t*>(&serialWord);  // Serial Word as array with 2 ints
 
   public:
-    // CmdObj() : Data16(0), Command(0), Address(0) {}
+    // CmdObj() : data(0), cmd(0), addr(0) {}
     CmdObj() {}
 
     // serialWord is 32 bits
     void parseSpecificInstruction(uint32_t serialWord) {
-      uint8_t newAddress = (serialWord >> 8) & AddressMask;   // Mask out the lsb 3-bit Address
-      if ((newAddress <= 4) || (newAddress == 7)) { // Reserves addresses 5 and 6
-        Address = newAddress;
-        Command = (serialWord >> 11) & 0x1F;        // Mask out the msb 5-bits to Command
-        Data16 = serialWord >> 16;                  // Shift the upper 16-bits to Data
+      uint8_t newAddr = (serialWord >> 8) & AddressMask;   // Mask out the lsb 3-bit Address
+      if ((newAddr <= 4) || (newAddr == 7)) { // Reserves addresses 5 and 6
+        addr = newAddr;
+        cmd = (serialWord >> 11) & 0x1F;        // Mask out the msb 5-bits to cmd
+        data = serialWord >> 16;                  // Shift the upper 16-bits to Data
       } else {
         // Invalid Address
       }
     }
 
-    uint16_t getData() const { return Data16; }
-    uint16_t getCommand() const { return Command; }
-    uint16_t getAddress() const { return Address; }
+    uint16_t getData() const { return data; }
+    uint16_t getCommand() const { return cmd; }
+    uint16_t getAddress() const { return addr; }
 };
 
 class SpecAnn {
