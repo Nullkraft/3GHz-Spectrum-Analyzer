@@ -11,7 +11,7 @@
  * ADC_value of 193 ≈ 0.488/0.002536
 */
 
-class CmdObj {
+class SpecificInstruction {
   private:
     uint16_t data;  // 16 bits
     byte cmd;
@@ -31,8 +31,8 @@ class CmdObj {
     // uint16_t* serialWordAsInts = reinterpret_cast<uint16_t*>(&serialWord);  // Serial Word as array with 2 ints
 
   public:
-    // CmdObj() : data(0), cmd(0), addr(0) {}
-    CmdObj() {}
+    // SpecificInstruction() : data(0), cmd(0), addr(0) {}
+    SpecificInstruction() {}
 
     // serialWord is 32 bits
     void parseSpecificInstruction(uint32_t serialWord) {

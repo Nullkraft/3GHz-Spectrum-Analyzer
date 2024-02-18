@@ -69,8 +69,8 @@ bool DEBUG = false;
 
 // A new Spectrum Analyzer
 SpecAnn SA = SpecAnn();
-// A new CmdObj
-CmdObj CO = CmdObj();
+// A new SpecificInstruction
+SpecificInstruction SpInstr = SpecificInstruction();
 
 /******** SETUP *********************************************************************/
 void setup() {
@@ -114,10 +114,10 @@ void loop() {
      * There are 4 bytes in an Instruction Word:
      */
     if (serialWordAsBytes[0] == CommandFlag) {
-      CO.parseSpecificInstruction(serialWord);
-      Data16 = CO.getData();
-      Command = CO.getCommand();
-      Address = CO.getAddress();
+      SpInstr.parseSpecificInstruction(serialWord);
+      Data16 = SpInstr.getData();
+      Command = SpInstr.getCommand();
+      Address = SpInstr.getAddress();
     }
     else {    // An LO2 or LO3 Instruction has arrived...
       // This is where we set the frequency of LO2 or LO3
