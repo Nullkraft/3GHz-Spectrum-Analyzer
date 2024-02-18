@@ -107,18 +107,53 @@ void loop() {
       }
     }
 
-     /******** COMMAND FLAG **************************************************************
-     * If a Command Flag is found then parse the 3 upper bytes into Data, Command and Address
-     * There are 4 bytes in an Instruction Word:
-     */
+    /* Specific Instructions:
+        Page 2 of "Interface Standard 5 - Spectrum Analyzer.odt"
+    */
     if (serialWordAsBytes[0] == CommandFlag) {
       SpInstr.parseSpecificInstruction(serialWord);
       Data16 = SpInstr.getData();
       Command = SpInstr.getCommand();
       Address = SpInstr.getAddress();
+      /* Hardware selection and operation */
+      switch (Address) {
+        case SA.Attenuator:
+          SA.updateAtten(static_cast<uint8_t>(Data16), SA.ATTEN_SEL);
+          break;
+        case SA.LO1_addr:
+          SA.spi_select = SA.LO1_SEL;
+          SA.LO1.set_N_bits(Data16);                              // Set the new INT_N bits into Register 0
+          regWord = SA.LO1.Execute(SA.adf4356CmdMap[Command], 0); // This selects from 1 of 7 adf4356 commands
+          SA.LO1.update(regWord, SA.spi_select);                     // Write Reg[4] for set_TRI/set_DLD, ELSE Reg[6]
+          SA.LO1.update(SA.LO1.Curr.Reg[0], SA.spi_select);          // followed by Reg[0] (REQUIRED by specsheet)
+          break;
+        case SA.LO2_addr:
+          adc_pin = SA.ADC_SEL_315; // Select the ADC that reads the output of the LO2 RF path
+          SA.spi_select = SA.LO2_SEL;  // Select the pin for the MAX2871 used for LO2
+          SA.updateLORegisters(SA.ptrLO2, SA.LO2_SEL, Command, serialWord);
+          break;
+        case SA.LO3_addr:
+          adc_pin = SA.ADC_SEL_045;
+          /***** TODO: Why can't I feed SA.LO3_SEL directly into updateLORegisters() *****/
+          SA.spi_select = SA.LO3_SEL;
+          SA.updateLORegisters(SA.ptrLO3, SA.LO3_SEL, Command, serialWord);
+          break;
+        case SA.RefClock:
+          SA.clkExecute(Command);
+          break;
+        case SA.MISC_addr:
+          SA.miscExecute(SA.arduinoCmdMap[Command]);
+          break;
+        default:
+          Serial.print(F("Requested Address:"));
+          Serial.print(Address);
+          Serial.println(F(" not found"));
+      }   /* End switch(Address) */
     }
-    else {    // An LO2 or LO3 Instruction has arrived...
-      // This is where we set the frequency of LO2 or LO3
+    /* General LO Instructions:
+        Page 9 of "Interface Standard 5 - Spectrum Analyzer.odt" */
+      // Programs LO2 or LO3 to the requested LO frequency.
+    else {
       // M:  Set R[1], bits[14:3] to program the new value for M
       SA.LO->set_M_bits(serialWord);
       // N & F:  Set bits R[0], bits[22:15] for new N, and R[0], bits[14:3] for new F
@@ -161,43 +196,6 @@ void loop() {
       Serial.write(hi_byte);  // Big Endian
       Serial.write(lo_byte);
     }
-
-    /******** SPECTRUM ANALYZER INSTRUCTIONS **********************************************/
-    /* Hardware selection and operations. This is where the processing of
-       Specific commands occurs. */
-    switch (Address) {
-      case SA.Attenuator:
-        SA.updateAtten(static_cast<uint8_t>(Data16), SA.ATTEN_SEL);
-        break;
-      case SA.LO1_addr:
-        SA.spi_select = SA.LO1_SEL;
-        SA.LO1.set_N_bits(Data16);                              // Set the new INT_N bits into Register 0
-        regWord = SA.LO1.Execute(SA.adf4356CmdMap[Command], 0); // This selects from 1 of 7 adf4356 commands
-        SA.LO1.update(regWord, SA.spi_select);                     // Write Reg[4] for set_TRI/set_DLD, ELSE Reg[6]
-        SA.LO1.update(SA.LO1.Curr.Reg[0], SA.spi_select);          // followed by Reg[0] (REQUIRED by specsheet)
-        break;
-      case SA.LO2_addr:
-        adc_pin = SA.ADC_SEL_315; // Select the ADC that reads the output of the LO2 RF path
-        SA.spi_select = SA.LO2_SEL;  // Select the pin for the MAX2871 used for LO2
-        SA.updateLORegisters(SA.ptrLO2, SA.LO2_SEL, Command, serialWord);
-        break;
-      case SA.LO3_addr:
-        adc_pin = SA.ADC_SEL_045;
-        /***** TODO: Why can't I feed SA.LO3_SEL directly into updateLORegisters() *****/
-        SA.spi_select = SA.LO3_SEL;
-        SA.updateLORegisters(SA.ptrLO3, SA.LO3_SEL, Command, serialWord);
-        break;
-      case SA.RefClock:
-        SA.clkExecute(Command);
-        break;
-      case SA.MISC_addr:
-        SA.miscExecute(SA.arduinoCmdMap[Command]);
-        break;
-      default:
-        Serial.print(F("Requested Address:"));
-        Serial.print(Address);
-        Serial.println(F(" not found"));
-    }   /* End switch(Address) */
 
   }   /* End While serial available */
 } /* End loop() */
