@@ -16,7 +16,8 @@ class SpecificInstruction {
     uint16_t data;  // 16 bits
     byte cmd;
     byte addr;
-    const byte AddressMask = 0x07;  // Mask out 3 bits of 'Register Address' from serialWord[1]
+    const byte addrMask = 0x07;  // Mask out 3 bits of 'Register Address' from serialWord[1]
+    const byte cmdMask = 0x1F;      // Mask out the upper 5-bits for cmd
   public:
     // SpecificInstruction() : data(0), cmd(0), addr(0) {}
     SpecificInstruction() {}
@@ -28,12 +29,12 @@ class SpecificInstruction {
       [ xxxx_xxxx_xxxx_xxxx | xxxx_x | xxx | 1111_1111 ] 
     */
     void parseSpecificInstruction(uint32_t serialWord) {
-      uint8_t newAddr = (serialWord >> 8) & AddressMask;   // Mask out the lsb 3-bit Address
+      uint8_t newAddr = (serialWord >> 8) & addrMask;   // Mask out the lsb 3-bit Address
       if ((newAddr <= 4) || (newAddr == 7)) { // Reserves addresses 5 and 6
       // if ((newAddr <= 4)) { // Use this 'if statement' for testing 'Invalid Address' error
         addr = newAddr;
-        cmd = (serialWord >> 11) & 0x1F;  // Mask out the upper 5-bits to cmd
-        data = serialWord >> 16;          // Shift the upper 16-bits down into data
+        cmd = (serialWord >> 11) & cmdMask;
+        data = serialWord >> 16;            // Shift the upper 16-bits down into data
       } else {
         Serial.print("Invalid Address, <");
         Serial.print(newAddr);
