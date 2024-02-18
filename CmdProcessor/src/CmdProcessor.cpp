@@ -41,7 +41,6 @@ bool useBinary = true;  // Set this to true for binary mode, false for ASCII mod
 const uint8_t numBytesInSerialWord = 4;
 uint32_t serialWord;                                  // Serial Word as 32 bits
 uint8_t* serialWordAsBytes = reinterpret_cast<uint8_t*>(&serialWord);   // Serial Word as a byte array
-uint16_t* serialWordAsInts = reinterpret_cast<uint16_t*>(&serialWord);  // Serial Word as a int array
 
 /* All the values required by the spi_write() command */
 uint32_t regWord;    // Holds the register contents to be written to the selected device
@@ -50,7 +49,6 @@ uint32_t regWord;    // Holds the register contents to be written to the selecte
 uint16_t Data16;  // 16 bits
 byte Command;
 byte Address;
-const byte AddressBits = 0x07;  // Mask out 3 bits of 'Register Address' from serialWord[1]
 const byte CommandFlag = 0xFF;  // Byte pattern to identify a 'Control Word'
 uint8_t hi_byte;
 uint8_t lo_byte;

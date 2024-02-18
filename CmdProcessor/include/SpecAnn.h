@@ -17,32 +17,29 @@ class SpecificInstruction {
     byte cmd;
     byte addr;
     const byte AddressMask = 0x07;  // Mask out 3 bits of 'Register Address' from serialWord[1]
-    const byte CommandFlag = 0xFF;  // Byte pattern to identify a 'Control Word'
+  public:
+    // SpecificInstruction() : data(0), cmd(0), addr(0) {}
+    SpecificInstruction() {}
     /*           Serial Word with Command Flag:
       +------------------------------------------------+
       |       Embedded      | Instr- |Addr.|  Command  |  NOTE: Command Flag
       |       Data          | uction |     |   Flag    |        always = 0xFF
       +---------------------+--------+-----+-----------+
-      [ xxxx_xxxx_xxxx_xxxx | xxxx_x | xxx | 1111_1111 ]
+      [ xxxx_xxxx_xxxx_xxxx | xxxx_x | xxx | 1111_1111 ] 
     */
-    // const uint8_t numBytesInSerialWord = 4;
-    uint32_t serialWord;                                  // Serial Word as 32 bits
-    // uint8_t* serialWordAsBytes = reinterpret_cast<uint8_t*>(&serialWord);   // Serial Word as array with 4 bytes
-    // uint16_t* serialWordAsInts = reinterpret_cast<uint16_t*>(&serialWord);  // Serial Word as array with 2 ints
-
-  public:
-    // SpecificInstruction() : data(0), cmd(0), addr(0) {}
-    SpecificInstruction() {}
-
-    // serialWord is 32 bits
     void parseSpecificInstruction(uint32_t serialWord) {
       uint8_t newAddr = (serialWord >> 8) & AddressMask;   // Mask out the lsb 3-bit Address
       if ((newAddr <= 4) || (newAddr == 7)) { // Reserves addresses 5 and 6
+      // if ((newAddr <= 4)) { // Use this 'if statement' for testing 'Invalid Address' error
         addr = newAddr;
-        cmd = (serialWord >> 11) & 0x1F;        // Mask out the msb 5-bits to cmd
-        data = serialWord >> 16;                  // Shift the upper 16-bits to Data
+        cmd = (serialWord >> 11) & 0x1F;  // Mask out the upper 5-bits to cmd
+        data = serialWord >> 16;          // Shift the upper 16-bits down into data
       } else {
-        // Invalid Address
+        Serial.print("Invalid Address, <");
+        Serial.print(newAddr);
+        Serial.print(">, found in Specific Instruction <");
+        Serial.print(serialWord);
+        Serial.print(">");
       }
     }
 
