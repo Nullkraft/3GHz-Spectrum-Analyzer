@@ -18,9 +18,13 @@ class SpecificInstruction {
     byte addr;
     const byte addrMask = 0x07;  // Mask out 3 bits of 'Register Address' from serialWord[1]
     const byte cmdMask = 0x1F;      // Mask out the upper 5-bits for cmd
+    /* All the values required by the spi_write() command */
+    uint32_t regWord;    // Holds the register contents to be written to the selected device
+
   public:
     // SpecificInstruction() : data(0), cmd(0), addr(0) {}
     SpecificInstruction() {}
+
     /*           Serial Word with Command Flag:
       +------------------------------------------------+
       |       Embedded      | Instr- |Addr.|  Command  |  NOTE: Command Flag
@@ -47,7 +51,20 @@ class SpecificInstruction {
     uint16_t getData() const { return data; }
     uint16_t getCommand() const { return cmd; }
     uint16_t getAddress() const { return addr; }
+
 };
+
+
+
+
+
+// General LO Instructions
+class GeneralInstruction {
+  // 
+};
+
+
+
 
 class SpecAnn {
   private:
@@ -135,7 +152,6 @@ class SpecAnn {
 
     /*********** HARDWARE DEFINITIONS END *******/
     SpecAnn();  //Ctor
-
     void init_specann();
     void builtinLEDOff();
     void builtinLEDOn();
