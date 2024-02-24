@@ -2,13 +2,12 @@ Create a Bill Of Material (BOM) from shematics
 
 Open the terminal and enter the following commands :
 
-   - cd /Document_of_your_project
+   - cd /your_project
+
    - touch attribs : create a file that will contain the attributes you want to include in the BOM
+
    - touch bom.txt : Create the txt file
-   - cat bom.txt : see a preview of bom.txt
-   - cat attribs : see which attribs you have added
-   - vi attribs : then press i to go in insertion mode
-   - and write the 'options' you want to add at your build of material. (value, footprint) Refdes is automatically added.
-   - when you finish presse enter, ESC and write :wq use to get out of vi attribs
-   - gnetlist -g bom2 -o bom.txt NiX1-V1-MB.sch (actual name of the file)
-   - Your Bill Of Material is created
+
+   - edit attribs to see what you want to add at your build. (value, footprint) Refdes is automatically added.
+
+   - gnetlist -g bom2 -o bom.txt NiX1-V1-MB.sch (or the name of the actual file)
