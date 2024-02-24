@@ -73,6 +73,7 @@ class SpecAnn {
 
   public:
     uint8_t spi_select;   // Chip selected for SPI programming
+    uint8_t adc_pin;
 
     /* Command-to-Function Mapping:
     *

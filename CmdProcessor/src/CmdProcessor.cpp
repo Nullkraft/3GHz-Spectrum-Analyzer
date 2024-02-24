@@ -60,7 +60,7 @@ const int PLL_Lock_timeout = 500; // usec. Use 195 for testing some failures to 
 int LOCKED;
 volatile uint16_t a2dAmplitude;
 uint8_t* ampl_byte = (uint8_t*)&a2dAmplitude;
-uint8_t adc_pin;
+// uint8_t adc_pin;
 /////////////////////////////////////
 
 bool DEBUG = false;
@@ -68,7 +68,7 @@ bool DEBUG = false;
 // A new Spectrum Analyzer
 SpecAnn SA = SpecAnn();
 // A new SpecificInstruction
-SpecificInstruction SpInstr = SpecificInstruction();
+SpecificInstruction SpecificInstr = SpecificInstruction();
 
 /******** SETUP *********************************************************************/
 void setup() {
@@ -111,10 +111,10 @@ void loop() {
         Page 2 of "Interface Standard 5 - Spectrum Analyzer.odt"
     */
     if (serialWordAsBytes[0] == CommandFlag) {
-      SpInstr.parseSpecificInstruction(serialWord);
-      Data16 = SpInstr.getData();
-      Command = SpInstr.getCommand();
-      Address = SpInstr.getAddress();
+      SpecificInstr.parseSpecificInstruction(serialWord);
+      Data16 = SpecificInstr.getData();
+      Command = SpecificInstr.getCommand();
+      Address = SpecificInstr.getAddress();
       /* Hardware selection and operation */
       switch (Address) {
         case SA.Attenuator:
@@ -128,12 +128,12 @@ void loop() {
           SA.LO1.update(SA.LO1.Curr.Reg[0], SA.spi_select);          // followed by Reg[0] (REQUIRED by specsheet)
           break;
         case SA.LO2_addr:
-          adc_pin = SA.ADC_SEL_315; // Select the ADC that reads the output of the LO2 RF path
+          SA.adc_pin = SA.ADC_SEL_315; // Select the ADC that reads the output of the LO2 RF path
           SA.spi_select = SA.LO2_SEL;  // Select the pin for the MAX2871 used for LO2
           SA.updateLORegisters(SA.ptrLO2, SA.LO2_SEL, Command, serialWord);
           break;
         case SA.LO3_addr:
-          adc_pin = SA.ADC_SEL_045;
+          SA.adc_pin = SA.ADC_SEL_045;
           /***** TODO: Why can't I feed SA.LO3_SEL directly into updateLORegisters() *****/
           SA.spi_select = SA.LO3_SEL;
           SA.updateLORegisters(SA.ptrLO3, SA.LO3_SEL, Command, serialWord);
@@ -166,10 +166,10 @@ void loop() {
       start_PLL_Lock_time = micros();
       while (true) {
         LOCKED = digitalRead(SA.PLL_MUX);  // Check the mux pin to see if we get a lock
-        analogRead(adc_pin);  // HACK to prime the ADC. Fix the ADC input impedance?
+        analogRead(SA.adc_pin);  // HACK to prime the ADC. Fix the ADC input impedance?
         //  We either get a lock or we check for a timeout.
         if (LOCKED) {
-          a2dAmplitude = analogRead(adc_pin);
+          a2dAmplitude = analogRead(SA.adc_pin);
           hi_byte = ampl_byte[1];
           lo_byte = ampl_byte[0];
           break;
@@ -181,7 +181,7 @@ void loop() {
          * for sending a variety of 'messages' embedded in the amplitude data.
         */
         if ((micros()-start_PLL_Lock_time) > PLL_Lock_timeout) {
-          a2dAmplitude = analogRead(adc_pin);
+          a2dAmplitude = analogRead(SA.adc_pin);
           hi_byte = ampl_byte[1] | SA.failed_to_lock;  // Send failure report to PC
           lo_byte = ampl_byte[0];
           break;
