@@ -1,0 +1,15 @@
+A video about Burgi's Numbers (Which lead to logarithm's)
+
+https://www.youtube.com/watch?v=A9WY_HZUK8Q
+
+
+Problem:
+To find the values for F, M, and N we find it necessary to loop through
+4093 (From 2 to 4095) numbers for M. 
+
+Question:
+Is it possible to use a logarithm, or Burgi's numbers to more quickly
+find the correct value for M?
+
+What about a binary-space-partition algorithm?
+
