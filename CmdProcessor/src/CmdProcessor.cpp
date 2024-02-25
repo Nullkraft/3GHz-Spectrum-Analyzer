@@ -105,6 +105,7 @@ void loop() {
       if (serialWord == 0) {    // Serial timed out on SER_TIMEOUT
         continue;
       }
+      Serial.print();
     }
 
     /* Specific Instructions:
