@@ -1,7 +1,6 @@
 #ifndef _SPECANN_
 #define _SPECANN_
 
-// #include <Arduino.h>
 #include <adf4356.h>  // driver
 #include <max2871.h>  // driver
 #include <SPI.h>
