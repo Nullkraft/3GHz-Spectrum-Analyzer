@@ -29,7 +29,7 @@
 
 /////////// SERIAL COMMUNICATION PROTOCOL ///////////
 #define SER_TIMEOUT 200 // Serial port gives up trying to read after 200 mSec
-bool useBinary = true;  // Set this to true for binary mode, false for ASCII mode
+bool useBinary = false;  // Set this to true for binary mode, false for ASCII mode
 
 /*           Serial Word with Command Flag:
     ________________________________________________
@@ -105,7 +105,6 @@ void loop() {
       if (serialWord == 0) {    // Serial timed out on SER_TIMEOUT
         continue;
       }
-      Serial.print();
     }
 
     /* Specific Instructions:
