@@ -1,8 +1,8 @@
 #ifndef _MAX2871_
 #define _MAX2871_
 
-#include <Arduino.h>
-#include <SPI.h>
+// #include <Arduino.h>
+// #include <SPI.h>
 
 class MAX2871_LO {
   typedef struct maxRegisters {

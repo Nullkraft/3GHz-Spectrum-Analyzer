@@ -1,8 +1,8 @@
 #ifndef _ADF4356_
 #define _ADF4356_
 
-#include <Arduino.h>
-#include <SPI.h>
+// #include <Arduino.h>
+// #include <SPI.h>
 
 
 /* Default register values for MAX2871 LO: Sets RFOout = 3630.0 MHz */
