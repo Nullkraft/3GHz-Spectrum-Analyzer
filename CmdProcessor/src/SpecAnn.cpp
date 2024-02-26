@@ -1,5 +1,7 @@
 #include "SpecAnn.h"
 
+uint8_t SpecAnn::select_pin = 255;
+
 SpecAnn::SpecAnn() {
   // lo.begin(SpecAnn::LO2_SEL);
   ref_LO();
@@ -26,21 +28,22 @@ void SpecAnn::init_specann() {
   LO3.begin(LO3_SEL);
 }
 
-void SpecAnn::updateLORegisters(MAX2871_LO* LoPtr, uint8_t spiSelect, uint8_t command, uint32_t serialWord) {
+void SpecAnn::updateLORegisters(MAX2871_LO* LoPtr, uint8_t selectPin, uint8_t command, uint32_t serialWord) {
   LO = LoPtr;
-  uint8_t spi_select = spiSelect;
+  SpecAnn::select_pin = selectPin;  // Update global static select_pin to selected chip
   uint32_t regWord = LO->Execute(max2871CmdMap[command], serialWord);
-  LO->update(regWord, spi_select);
+  LO->update(regWord, SpecAnn::select_pin);
 }
 
 // Program the Digital Attenuator by sending and latching a single byte
 void SpecAnn::updateAtten(uint8_t level, uint8_t selectPin) {
+  SpecAnn::select_pin = selectPin;  // Update global static select_pin to selected chip
   level = level & ATTEN_Data_Mask;
   SPI.beginTransaction(SPISettings(16000000, LSBFIRST, SPI_MODE0));
   SPI.begin();
   SPI.transfer(level);
-  digitalWrite(selectPin, HIGH);
-  digitalWrite(selectPin, LOW);
+  digitalWrite(SpecAnn::select_pin, HIGH);
+  digitalWrite(SpecAnn::select_pin, LOW);
   SPI.end();
 }
 

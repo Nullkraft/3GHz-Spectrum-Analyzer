@@ -72,7 +72,7 @@ class SpecAnn {
     #define NUM_CLK_FUNCTIONS 3
 
   public:
-    uint8_t select_pin;   // Chip selected for programming
+    static uint8_t select_pin;   // Chip selected for programming
     uint8_t adc_pin;
 
     /* Command-to-Function Mapping:
@@ -163,8 +163,8 @@ class SpecAnn {
     void ref_LO();
     void ref_HI();
 
-    void updateLORegisters(MAX2871_LO* loPtr, uint8_t select_pin, uint8_t command, uint32_t serialWord);
-    void updateAtten(uint8_t reg, uint8_t select_pin);
+    void updateLORegisters(MAX2871_LO* loPtr, uint8_t selectPin, uint8_t command, uint32_t serialWord);
+    void updateAtten(uint8_t reg, uint8_t selectPin);
 
     typedef void (SpecAnn::*MiscFuncs)();
     void miscExecute(uint8_t);
