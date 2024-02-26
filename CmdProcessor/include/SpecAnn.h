@@ -123,10 +123,9 @@ class SpecAnn {
     // Status codes use the 4 msbits of the 16 bit ADC return values
     // const int start_noise_floor = 0xD0;  // First in the series of ADC noise-floor readings
     // const int end_noise_floor   = 0xE0;  // Last in the series of ADC noise-floor readings
-    static constexpr int failed_to_lock = 0xF0;  // VCO Failed to lock
+    static constexpr int failed_to_lock = 0xF0;  // VCO Failed to lock message
 
-    // BitMask for programming the registers of the Attenuator IC
-    static constexpr uint16_t ATTEN_Data_Mask = 0x7F;  // 7 bits of Embedded Data
+    static constexpr uint16_t ATTEN_Data_Mask = 0x7F;  // 7 bit mask for programming the Attenuator
 
     /*********** ARDUINO PIN DEFINITIONS ***********/
     static constexpr uint8_t LO1_SEL = A3;
