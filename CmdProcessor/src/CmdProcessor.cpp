@@ -20,12 +20,9 @@
        or LO3 Specific Command.
 */
 
-#include <SPI.h>
-
-#ifdef PLATFORMIO
 #include <Arduino.h>
+#include <SPI.h>
 #include "SpecAnn.h"
-#endif
 
 /////////// SERIAL COMMUNICATION PROTOCOL ///////////
 #define SER_TIMEOUT 200 // Serial port gives up trying to read after 200 mSec
