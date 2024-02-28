@@ -1,6 +1,8 @@
 #ifndef _MAX2871_
 #define _MAX2871_
 
+#include <SPI.h>
+
 class MAX2871_LO {
   typedef struct maxRegisters {
     static constexpr byte numRegisters = 7;

@@ -174,8 +174,8 @@ void loop() {
         /* Trigger the timeout if we don't get a lock. We still want the amplitude
          * data so a 'failure to lock' warning is appended to the data so that the
          * user is notified that the amplitude may not be exact.
-         * The ADC will eventually be a 12 bit device. That means there are 4 bits
-         * for sending a variety of 'messages' embedded in the amplitude data.
+         * The ADC will eventually be a 12 bit device. The remaining 4 bits can be
+         * used for sending a variety of messages embedded with the amplitude data.
         */
         if ((micros()-start_PLL_Lock_time) > PLL_Lock_timeout) {
           a2dAmplitude = analogRead(SA.adc_pin);
