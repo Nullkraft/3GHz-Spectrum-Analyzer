@@ -20,7 +20,7 @@ void ADF4356_LO::set_N_bits(uint16_t Data16)
 
 uint32_t ADF4356_LO::set_DIV_MODE(uint32_t reg) {
   Curr.Reg[4] = Curr.Reg[4] & RFOUT_DIV_MASK;
-  Curr.Reg[4] = (Curr.Reg[4] | (reg & !RFOUT_DIV_MASK));
+  Curr.Reg[4] = (Curr.Reg[4] | (reg & ~RFOUT_DIV_MASK));
   return Curr.Reg[4];
 }
 
@@ -77,7 +77,7 @@ void ADF4356_LO::update(uint32_t reg, uint8_t selectPin) {
 }
 
 uint32_t ADF4356_LO::ADF4356Execute(byte commandIndex) {
-  if (commandIndex >= 0 && commandIndex < ADF4356_LO::NUMBER_OF_FUNCTIONS) {
+  if (commandIndex < ADF4356_LO::NUMBER_OF_FUNCTIONS) {
     return (this->*adfCmds[commandIndex])();
   }
   return 0xFFFF;    // You tried to use an undefined command

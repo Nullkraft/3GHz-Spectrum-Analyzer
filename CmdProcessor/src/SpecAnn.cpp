@@ -92,14 +92,14 @@ void SpecAnn::ref_HI() {
 }
 
 void SpecAnn::clkExecute(uint8_t commandIndex) {
-  if (commandIndex >= 0 && commandIndex < NUM_CLK_FUNCTIONS) {
+  if (commandIndex < NUM_CLK_FUNCTIONS) {
     (this->*refClockCmds[commandIndex])();
   }
 }
 
 // Select the miscCmds function to be executed
 void SpecAnn::miscExecute(uint8_t commandIndex) {
-  if (commandIndex >= 0 && commandIndex < NUM_MISC_FUNCTIONS) {
+  if (commandIndex < NUM_MISC_FUNCTIONS) {
     // Call the function 
     (this->*miscCmds[commandIndex])();
   }

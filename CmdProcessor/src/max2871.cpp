@@ -34,7 +34,7 @@ void MAX2871_LO::set_M_bits(uint32_t reg) {
 
 uint32_t MAX2871_LO::set_DIV_MODE(uint32_t reg) {
   Curr.Reg[4] = Curr.Reg[4] & RFOUT_DIV_MASK;
-  Curr.Reg[4] = (Curr.Reg[4] | (reg & !RFOUT_DIV_MASK));
+  Curr.Reg[4] = (Curr.Reg[4] | (reg & ~RFOUT_DIV_MASK));
   return Curr.Reg[4];
 }
 
@@ -75,7 +75,7 @@ uint32_t MAX2871_LO::set_DLD(uint32_t) {
 
 // uint32_t MAX2871_LO::Execute(byte commandIndex, uint32_t controlWord) {
 uint32_t MAX2871_LO::Execute(byte commandIndex, uint32_t controlWord) {
-  if (commandIndex >= 0 && commandIndex < MAX2871_LO::NUMBER_OF_FUNCTIONS) {
+  if (commandIndex < MAX2871_LO::NUMBER_OF_FUNCTIONS) {
     return (this->*maxCmds[commandIndex])(controlWord);
   }
   return 0xFFFF;    // You tried to use an undefined command
