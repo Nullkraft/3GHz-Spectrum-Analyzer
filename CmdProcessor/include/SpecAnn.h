@@ -21,8 +21,8 @@ class SpecificInstruction {
     uint32_t regWord;    // Holds the register contents to be written to the selected device
 
   public:
-    // SpecificInstruction() : data(0), cmd(0), addr(0) {}
-    SpecificInstruction() {}
+    SpecificInstruction() : data(0), cmd(0), addr(0), regWord(0) {}
+    // SpecificInstruction() {}
 
     /*           Serial Word with Command Flag:
       +------------------------------------------------+
@@ -71,8 +71,8 @@ class SpecAnn {
     #define NUM_CLK_FUNCTIONS 3
 
   public:
-    static uint8_t select_pin;   // Chip selected for programming
-    uint8_t adc_pin;
+    static uint8_t select_pin;  // Chip selected for programming
+    uint8_t adc_pin = 99;       // Intialize to an invalid pin
 
     /* Command-to-Function Mapping:
     *
@@ -117,7 +117,7 @@ class SpecAnn {
     MAX2871_LO* ptrLO2 = &LO2;
     MAX2871_LO LO3;
     MAX2871_LO* ptrLO3 = &LO3;
-    MAX2871_LO* LO;
+    MAX2871_LO* LO = ptrLO3;
 
     // Status codes use the 4 msbits of the 16 bit ADC return values
     // const int start_noise_floor = 0xD0;  // First in the series of ADC noise-floor readings
