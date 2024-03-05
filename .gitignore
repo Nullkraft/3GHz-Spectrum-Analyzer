@@ -54,6 +54,7 @@ Documentation/
 Acceptance_test_app/
 *code-workspace
 Review/
+platformio.ini
 *net
 3D Drawings/
 *gerber*
@@ -64,3 +65,5 @@ BOM's/
 .pio
 .vscode/
 build/
+.cache/
+*ods
