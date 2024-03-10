@@ -45,9 +45,9 @@ uint8_t* serialWordAsBytes = reinterpret_cast<uint8_t*>(&serialWord);   // Seria
 // uint32_t regWord;    // Holds the register contents to be written to the selected device
 
 //*** Parsed values from the incoming 32 bit serial word ***
-uint16_t Data16;  // 16 bits
-byte cmdIdx;
-byte Address;
+// uint16_t Data16;  // 16 bits
+// byte cmdIdx;
+// byte Address;
 const byte CommandFlag = 0xFF;  // Byte pattern to identify a 'Control Word'
 uint8_t hi_byte;
 uint8_t lo_byte;
@@ -66,8 +66,8 @@ bool DEBUG = false;
 
 // A new Spectrum Analyzer
 SpecAnn SA = SpecAnn();
-// A new SpecificInstruction
-SpecificInstruction SpecificInstr = SpecificInstruction();
+// // A new SpecificInstruction
+// SpecificInstruction SpecificInstr = SpecificInstruction();
 
 /******** SETUP *********************************************************************/
 void setup() {
@@ -110,53 +110,13 @@ void loop() {
         Page 2 of "Interface Standard 5 - Spectrum Analyzer.odt"
     */
     if (serialWordAsBytes[0] == CommandFlag) {
-      SpecificInstr.parseSpecificInstruction(serialWord);
-      Data16 = SpecificInstr.getData();
-      cmdIdx = SpecificInstr.getCommand();
-      Address = SpecificInstr.getAddress();
+      // SpecificInstr.parseSpecificInstruction(serialWord);
+      // Data16 = SpecificInstr.getData();
+      // cmdIdx = SpecificInstr.getCommand();
+      // Address = SpecificInstr.getAddress();
       /* Hardware selection and operation */
-      SA.programHW(Data16, Address, cmdIdx, serialWord);
-      /*
-      switch (Address) {
-        case SA.Attenuator:
-          SA.updateAtten(static_cast<uint8_t>(Data16), SA.ATTEN_SEL);
-          break;
-        case SA.LO1_addr:
-          SA.select_pin = SA.LO1_SEL;
-          SA.LO1.set_N_bits(Data16);                              // Set the new INT_N bits into Register 0
-          regWord = SA.LO1.Execute(SA.adf4356CmdMap[cmdIdx], 0); // This selects from 1 of 7 adf4356 commands
-          SA.LO1.update(regWord, SA.select_pin);                     // Write Reg[4] for set_TRI/set_DLD, ELSE Reg[6]
-          SA.LO1.update(SA.LO1.Curr.Reg[0], SA.select_pin);          // followed by Reg[0] (REQUIRED by specsheet)
-          break;
-        case SA.LO2_addr:
-          SA.adc_pin = SA.ADC_SEL_315; // Select the ADC that reads the output of the LO2 RF path
-          SA.select_pin = SA.LO2_SEL;  // Select the pin for the MAX2871 used for LO2
-          SA.updateLORegisters(SA.ptrLO2, SA.LO2_SEL, cmdIdx, serialWord);
-          break;
-        case SA.LO3_addr:
-          SA.adc_pin = SA.ADC_SEL_045;
-          // ***** TODO: Why can't I feed SA.LO3_SEL directly into updateLORegisters() *****
-          SA.select_pin = SA.LO3_SEL;
-          SA.updateLORegisters(SA.ptrLO3, SA.LO3_SEL, cmdIdx, serialWord);
-          break;
-        case SA.RefClock:
-          SA.clkExecute(cmdIdx);
-          break;
-        case SA.MISC_addr:
-          
-          // &SpecAnn::builtinLEDOff, // cmdIdx 0
-          // &SpecAnn::builtinLEDOn,  // cmdIdx 1
-          // &SpecAnn::version,       // cmdIdx 2
-          // &SpecAnn::end_sweep_ack, // cmdIdx 3
-          
-          SA.miscExecute(SA.arduinoCmdMap[cmdIdx]);
-          break;
-        default:
-          Serial.print(F("Requested Address:"));
-          Serial.print(Address);
-          Serial.println(F(" not found"));
-      }   // End switch(Address)
-      */
+      SA.programHW(serialWord);
+      // SA.programHW(Data16, Address, cmdIdx, serialWord);
     }
     /* General LO Instructions:
         Page 9 of "Interface Standard 5 - Spectrum Analyzer.odt" */

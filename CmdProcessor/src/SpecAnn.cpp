@@ -97,7 +97,12 @@ void SpecAnn::miscExecute(uint8_t commandIndex) {
   }
 }
 
-void SpecAnn::programHW(uint16_t Data16, byte Address, byte cmdIdx, uint32_t serialWord) {
+void SpecAnn::programHW(uint32_t serialWord) {
+  SpecificInstr.parseSpecificInstruction(serialWord);
+  uint16_t Data16 = SpecificInstr.getData();
+  byte cmdIdx = SpecificInstr.getCommand();
+  byte Address = SpecificInstr.getAddress();
+
   switch (Address) {
     case Attenuator:
       updateAtten(static_cast<uint8_t>(Data16), ATTEN_SEL);
@@ -124,12 +129,6 @@ void SpecAnn::programHW(uint16_t Data16, byte Address, byte cmdIdx, uint32_t ser
       clkExecute(cmdIdx);
       break;
     case MISC_addr:
-      /*
-      &SpecAnn::builtinLEDOff, // cmdIdx 0
-      &SpecAnn::builtinLEDOn,  // cmdIdx 1
-      &SpecAnn::version,       // cmdIdx 2
-      &SpecAnn::end_sweep_ack, // cmdIdx 3
-      */
       miscExecute(arduinoCmdMap[cmdIdx]);
       break;
     default:
