@@ -29,22 +29,24 @@
 bool useBinary = true;  // Set this to true for binary mode, false for ASCII mode
 
 /*           Serial Word with Command Flag:
-    ________________________________________________
-   [       Embedded      | Instr- |Addr.|  Command  ]  NOTE: Command Flag
-   [       Data          | uction |     |   Flag    ]        always = 0xFF
-   [---------------------+--------+-----+-----------]
-   [ xxxx_xxxx_xxxx_xxxx | xxxx_x | xxx | 1111_1111 ]
+     _________________________________________________
+   /_____________________/________/_____/____________/|
+   |       Embedded      | Instr- |Addr.|  Command  | | NOTE: Command Flag
+   |       Data          | uction |     |   Flag    | |        always = 0xFF
+   |---------------------+--------+-----+-----------| |
+   | xxxx_xxxx_xxxx_xxxx | xxxx_x | xxx | 1111_1111 | |
+   |________________________________________________|/
 */
 const uint8_t numBytesInSerialWord = 4;
 uint32_t serialWord;                                  // Serial Word as 32 bits
 uint8_t* serialWordAsBytes = reinterpret_cast<uint8_t*>(&serialWord);   // Serial Word as a byte array
 
-/* All the values required by the spi_write() command */
-uint32_t regWord;    // Holds the register contents to be written to the selected device
+// /* All the values required by the spi_write() command */
+// uint32_t regWord;    // Holds the register contents to be written to the selected device
 
 //*** Parsed values from the incoming 32 bit serial word ***
 uint16_t Data16;  // 16 bits
-byte Command;
+byte cmdIdx;
 byte Address;
 const byte CommandFlag = 0xFF;  // Byte pattern to identify a 'Control Word'
 uint8_t hi_byte;
@@ -110,9 +112,11 @@ void loop() {
     if (serialWordAsBytes[0] == CommandFlag) {
       SpecificInstr.parseSpecificInstruction(serialWord);
       Data16 = SpecificInstr.getData();
-      Command = SpecificInstr.getCommand();
+      cmdIdx = SpecificInstr.getCommand();
       Address = SpecificInstr.getAddress();
       /* Hardware selection and operation */
+      SA.programHW(Data16, Address, cmdIdx, serialWord);
+      /*
       switch (Address) {
         case SA.Attenuator:
           SA.updateAtten(static_cast<uint8_t>(Data16), SA.ATTEN_SEL);
@@ -120,32 +124,39 @@ void loop() {
         case SA.LO1_addr:
           SA.select_pin = SA.LO1_SEL;
           SA.LO1.set_N_bits(Data16);                              // Set the new INT_N bits into Register 0
-          regWord = SA.LO1.Execute(SA.adf4356CmdMap[Command], 0); // This selects from 1 of 7 adf4356 commands
+          regWord = SA.LO1.Execute(SA.adf4356CmdMap[cmdIdx], 0); // This selects from 1 of 7 adf4356 commands
           SA.LO1.update(regWord, SA.select_pin);                     // Write Reg[4] for set_TRI/set_DLD, ELSE Reg[6]
           SA.LO1.update(SA.LO1.Curr.Reg[0], SA.select_pin);          // followed by Reg[0] (REQUIRED by specsheet)
           break;
         case SA.LO2_addr:
           SA.adc_pin = SA.ADC_SEL_315; // Select the ADC that reads the output of the LO2 RF path
           SA.select_pin = SA.LO2_SEL;  // Select the pin for the MAX2871 used for LO2
-          SA.updateLORegisters(SA.ptrLO2, SA.LO2_SEL, Command, serialWord);
+          SA.updateLORegisters(SA.ptrLO2, SA.LO2_SEL, cmdIdx, serialWord);
           break;
         case SA.LO3_addr:
           SA.adc_pin = SA.ADC_SEL_045;
-          /***** TODO: Why can't I feed SA.LO3_SEL directly into updateLORegisters() *****/
+          // ***** TODO: Why can't I feed SA.LO3_SEL directly into updateLORegisters() *****
           SA.select_pin = SA.LO3_SEL;
-          SA.updateLORegisters(SA.ptrLO3, SA.LO3_SEL, Command, serialWord);
+          SA.updateLORegisters(SA.ptrLO3, SA.LO3_SEL, cmdIdx, serialWord);
           break;
         case SA.RefClock:
-          SA.clkExecute(Command);
+          SA.clkExecute(cmdIdx);
           break;
         case SA.MISC_addr:
-          SA.miscExecute(SA.arduinoCmdMap[Command]);
+          
+          // &SpecAnn::builtinLEDOff, // cmdIdx 0
+          // &SpecAnn::builtinLEDOn,  // cmdIdx 1
+          // &SpecAnn::version,       // cmdIdx 2
+          // &SpecAnn::end_sweep_ack, // cmdIdx 3
+          
+          SA.miscExecute(SA.arduinoCmdMap[cmdIdx]);
           break;
         default:
           Serial.print(F("Requested Address:"));
           Serial.print(Address);
           Serial.println(F(" not found"));
-      }   /* End switch(Address) */
+      }   // End switch(Address)
+      */
     }
     /* General LO Instructions:
         Page 9 of "Interface Standard 5 - Spectrum Analyzer.odt" */

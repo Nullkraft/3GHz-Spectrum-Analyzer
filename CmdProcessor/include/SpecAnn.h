@@ -1,8 +1,8 @@
 #ifndef _SPECANN_
 #define _SPECANN_
 
-#include <adf4356.h>  // driver
-#include <max2871.h>  // driver
+#include "adf4356.h"  // driver
+#include "max2871.h"  // driver
 #include <SPI.h>
 
 /* Vref = 2.595  Volts/ADC_bit == 0.002536 Volts
@@ -21,16 +21,18 @@ class SpecificInstruction {
     uint32_t regWord;    // Holds the register contents to be written to the selected device
 
   public:
-    // SpecificInstruction() : data(0), cmd(0), addr(0) {}
-    SpecificInstruction() {}
+    SpecificInstruction() : data(0), cmd(0), addr(0), regWord(0) {}
+    // SpecificInstruction() {}
 
-    /*           Serial Word with Command Flag:
-      +------------------------------------------------+
-      |       Embedded      | Instr- |Addr.|  Command  |  NOTE: Command Flag
-      |       Data          | uction |     |   Flag    |        always = 0xFF
-      +---------------------+--------+-----+-----------+
-      [ xxxx_xxxx_xxxx_xxxx | xxxx_x | xxx | 1111_1111 ] 
-    */
+/*           Serial Word with Command Flag:
+      ________________________________________________
+    /________________________________________________/|
+   |       Embedded      | Instr- |Addr.|  Command  | | NOTE: Command Flag
+   |       Data          | uction |     |   Flag    | |        always = 0xFF
+   |---------------------+--------+-----+-----------| |
+   | xxxx_xxxx_xxxx_xxxx | xxxx_x | xxx | 1111_1111 | |
+   |________________________________________________|/
+*/
     void parseSpecificInstruction(uint32_t serialWord) {
       uint8_t newAddr = (serialWord >> 8) & addrMask;   // Mask out the lsb 3-bit Address
       if ((newAddr <= 4) || (newAddr == 7)) { // Reserves addresses 5 and 6
@@ -50,11 +52,7 @@ class SpecificInstruction {
     uint16_t getData() const { return data; }
     uint16_t getCommand() const { return cmd; }
     uint16_t getAddress() const { return addr; }
-
 };
-
-
-
 
 
 // General LO Instructions
@@ -63,33 +61,33 @@ class GeneralInstruction {
 };
 
 
-
-
 class SpecAnn {
   private:
     #define NUM_MISC_FUNCTIONS 4
     #define NUM_CLK_FUNCTIONS 3
+    /* All the values required by the spi_write() command */
+    uint32_t regWord;    // Holds the register contents to be written to the selected device
 
   public:
-    static uint8_t select_pin;   // Chip selected for programming
-    uint8_t adc_pin;
+    static uint8_t select_pin;  // Chip selected for programming
+    uint8_t adc_pin = 99;       // Intialize to an invalid pin
 
     /* Command-to-Function Mapping:
-    *
-    * Each instruction found in the API ('Instruction List XXX.ods') has an
-    * associated Address and Command. The Address identifies the component
-    * and the Command identifies the action to be performed.
-    *
-    * The 'Command Number' is found in the API document and is 5 bits long.
-    * It is ideal as an index into one of the xxxYYYYCmnMap[] arrays. The
-    * CmdMap arrays decouple the API Command Number from the layout of the
-    * function-pointer arrays found in the max2871.h and adf4356.h files.
-    *
-    * The enums provide descriptive command names for the function-pointer
-    * arrays instead of using the Command Numbers.
-    *
-    * For a list of available commands and their corresponding functions, refer
-    * to the Execute() function in max2871.h and the Execute() function in adf4356.h.
+    
+     Each instruction found in the API ('Instruction List XXX.ods') has an
+     associated Address and Command. The Address identifies the component
+     and the Command identifies the action to be performed.
+    
+     The 'Command Number' is found in the API document and is 5 bits long.
+     It is ideal as an index into one of the xxxYYYYCmnMap[] arrays. The
+     CmdMap arrays decouple the API Command Number from the layout of the
+     function-pointer arrays found in the max2871.h and adf4356.h files.
+    
+     The enums provide descriptive command names for the function-pointer
+     arrays instead of using the Command Numbers.
+    
+     For a list of available commands and their corresponding functions, refer
+     to the Execute() function in max2871.h and the Execute() function in adf4356.h.
     */
     enum loCmdList{GERERAL, RFOFF, N4DBM, N1DBM, P2DBM, P5DBM, CHANGE_FREQ, TRI, DLD, DIV_MODE, NA=30, };
     enum arduinoCmdList{LED_OFF, LED_ON, VERSION, BEGIN_SWEEP, };
@@ -117,7 +115,7 @@ class SpecAnn {
     MAX2871_LO* ptrLO2 = &LO2;
     MAX2871_LO LO3;
     MAX2871_LO* ptrLO3 = &LO3;
-    MAX2871_LO* LO;
+    MAX2871_LO* LO = ptrLO3;
 
     // Status codes use the 4 msbits of the 16 bit ADC return values
     // const int start_noise_floor = 0xD0;  // First in the series of ADC noise-floor readings
@@ -166,14 +164,15 @@ class SpecAnn {
 
     typedef void (SpecAnn::*MiscFuncs)();
     void miscExecute(uint8_t);
+    void programHW(uint16_t data, byte address, byte cmdIdx, uint32_t serialWord);
 
     // Array of function-pointers containing the
     // 'Spectrum Analyzer miscellenious functions'
     MiscFuncs miscCmds[NUM_MISC_FUNCTIONS] = {
-      &SpecAnn::builtinLEDOff, // Command number 0
-      &SpecAnn::builtinLEDOn,  // Command number 1
-      &SpecAnn::version,       // Command number 2
-      &SpecAnn::end_sweep_ack, // Command number 3
+      &SpecAnn::builtinLEDOff, // Command idx 0
+      &SpecAnn::builtinLEDOn,  // Command idx 1
+      &SpecAnn::version,       // Command idx 2
+      &SpecAnn::end_sweep_ack, // Command idx 3
     };
 
     typedef void (SpecAnn::*RefClockFuncs)();
