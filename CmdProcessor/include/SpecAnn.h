@@ -22,8 +22,6 @@ class SpecificInstruction {
 
   public:
     SpecificInstruction() : data(0), cmd(0), addr(0), regWord(0) {}
-    // SpecificInstruction() {}
-
 /*           Serial Word with Command Flag:
       ________________________________________________
     /________________________________________________/|

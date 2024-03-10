@@ -44,10 +44,6 @@ uint8_t* serialWordAsBytes = reinterpret_cast<uint8_t*>(&serialWord);   // Seria
 // /* All the values required by the spi_write() command */
 // uint32_t regWord;    // Holds the register contents to be written to the selected device
 
-//*** Parsed values from the incoming 32 bit serial word ***
-// uint16_t Data16;  // 16 bits
-// byte cmdIdx;
-// byte Address;
 const byte CommandFlag = 0xFF;  // Byte pattern to identify a 'Control Word'
 uint8_t hi_byte;
 uint8_t lo_byte;
