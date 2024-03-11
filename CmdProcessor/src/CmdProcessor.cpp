@@ -59,8 +59,12 @@ bool DEBUG = false;
 
 // A new Spectrum Analyzer
 SpecAnn SA = SpecAnn();
-// // A new SpecificInstruction
-// SpecificInstruction SpecificInstr = SpecificInstruction();
+// A new SpecificInstruction
+SpecificInstruction SpecificInstr = SpecificInstruction();
+uint16_t Data16;
+byte cmdIdx;
+byte Address;
+
 
 /******** SETUP *********************************************************************/
 void setup() {
@@ -101,7 +105,11 @@ void loop() {
 
     // Specific Instructions: Pg 2 of "Interface Standard 5 - Spectrum Analyzer.odt"
     if (serialWordAsBytes[0] == CommandFlag) {
-      SA.programHW(serialWord);
+      SpecificInstr.parseSpecificInstruction(serialWord);
+      Data16 = SpecificInstr.getData();
+      cmdIdx = SpecificInstr.getCommand();
+      Address = SpecificInstr.getAddress();
+      SA.programHW(Data16, cmdIdx, Address, serialWord);
     }
     // General LO Instructions: Pg 9 of "Interface Standard 5 - Spectrum Analyzer.odt"
     // Programs the selected MAX2871 for LO2 or LO3 to the requested LO frequency.

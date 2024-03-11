@@ -97,12 +97,7 @@ void SpecAnn::miscExecute(uint8_t commandIndex) {
   }
 }
 
-void SpecAnn::programHW(uint32_t serialWord) {
-  SpecificInstr.parseSpecificInstruction(serialWord);
-  uint16_t Data16 = SpecificInstr.getData();
-  byte cmdIdx = SpecificInstr.getCommand();
-  byte Address = SpecificInstr.getAddress();
-
+void SpecAnn::programHW(uint16_t Data16, byte cmdIdx, byte Address, uint32_t serialWord) {
   switch (Address) {
     case Attenuator:
       updateAtten(static_cast<uint8_t>(Data16), ATTEN_SEL);

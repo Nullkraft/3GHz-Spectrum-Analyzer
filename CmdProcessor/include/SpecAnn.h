@@ -65,9 +65,6 @@ class SpecAnn {
     #define NUM_CLK_FUNCTIONS 3
     /* All the values required by the spi_write() command */
     uint32_t regWord;    // Holds the register contents to be written to the selected device
-    // A new SpecificInstruction
-    SpecificInstruction SpecificInstr = SpecificInstruction();
-
 
   public:
     static uint8_t select_pin;  // Chip selected for programming
@@ -165,7 +162,7 @@ class SpecAnn {
 
     typedef void (SpecAnn::*MiscFuncs)();
     void miscExecute(uint8_t);
-    void programHW(uint32_t serialWord);
+    void programHW(uint16_t Data16, byte cmdIdx, byte Address, uint32_t serialWord);
 
     // Array of function-pointers containing the
     // 'Spectrum Analyzer miscellenious functions'
