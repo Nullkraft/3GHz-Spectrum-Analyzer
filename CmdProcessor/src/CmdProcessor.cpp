@@ -41,9 +41,6 @@ const uint8_t numBytesInSerialWord = 4;
 uint32_t serialWord;                                  // Serial Word as 32 bits
 uint8_t* serialWordAsBytes = reinterpret_cast<uint8_t*>(&serialWord);   // Serial Word as a byte array
 
-// /* All the values required by the spi_write() command */
-// uint32_t regWord;    // Holds the register contents to be written to the selected device
-
 const byte CommandFlag = 0xFF;  // Byte pattern to identify a 'Control Word'
 uint8_t hi_byte;
 uint8_t lo_byte;
@@ -102,21 +99,12 @@ void loop() {
       }
     }
 
-    /* Specific Instructions:
-        Page 2 of "Interface Standard 5 - Spectrum Analyzer.odt"
-    */
+    // Specific Instructions: Pg 2 of "Interface Standard 5 - Spectrum Analyzer.odt"
     if (serialWordAsBytes[0] == CommandFlag) {
-      // SpecificInstr.parseSpecificInstruction(serialWord);
-      // Data16 = SpecificInstr.getData();
-      // cmdIdx = SpecificInstr.getCommand();
-      // Address = SpecificInstr.getAddress();
-      /* Hardware selection and operation */
       SA.programHW(serialWord);
-      // SA.programHW(Data16, Address, cmdIdx, serialWord);
     }
-    /* General LO Instructions:
-        Page 9 of "Interface Standard 5 - Spectrum Analyzer.odt" */
-      // Programs LO2 or LO3 to the requested LO frequency.
+    // General LO Instructions: Pg 9 of "Interface Standard 5 - Spectrum Analyzer.odt"
+    // Programs the selected MAX2871 for LO2 or LO3 to the requested LO frequency.
     else {
       // M:  Set R[1], bits[14:3] to program the new value for M
       SA.LO->set_M_bits(serialWord);

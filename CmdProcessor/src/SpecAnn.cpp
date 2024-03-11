@@ -115,15 +115,14 @@ void SpecAnn::programHW(uint32_t serialWord) {
       LO1.update(LO1.Curr.Reg[0], select_pin);          // followed by Reg[0] (REQUIRED by specsheet)
       break;
     case LO2_addr:
-      adc_pin = ADC_SEL_315; // Select the ADC that reads the output of the LO2 RF path
-      select_pin = LO2_SEL;  // Select the pin for the MAX2871 used for LO2
-      updateLORegisters(ptrLO2, LO2_SEL, cmdIdx, serialWord);
+      adc_pin = ADC_SEL_315;  // Select the ADC that reads the output of the LO2 RF path
+      select_pin = LO2_SEL;   // ALWAYS keep track of the currently selected chip
+      updateLORegisters(ptrLO2, select_pin, cmdIdx, serialWord);
       break;
     case LO3_addr:
-      adc_pin = ADC_SEL_045;
-      /***** TODO: Why can't I feed SA.LO3_SEL directly into updateLORegisters() *****/
-      select_pin = LO3_SEL;
-      updateLORegisters(ptrLO3, LO3_SEL, cmdIdx, serialWord);
+      adc_pin = ADC_SEL_045;  // Select the ADC that reads the output of the LO3 RF path
+      select_pin = LO3_SEL;   // ALWAYS keep track of the currently selected chip
+      updateLORegisters(ptrLO3, select_pin, cmdIdx, serialWord);
       break;
     case RefClock:
       clkExecute(cmdIdx);
