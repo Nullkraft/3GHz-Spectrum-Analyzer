@@ -47,8 +47,6 @@ void SpecAnn::updateAtten(uint8_t level, uint8_t selectPin) {
   SPI.end();
 }
 
-// dummyLevel and dummyPin are placeholders so we can
-// create a single function-pointer array
 void SpecAnn::builtinLEDOn() {
   digitalWrite(LED_BUILTIN, HIGH);
   Serial.print(F("Called builtin_LED_On"));
@@ -67,12 +65,6 @@ void SpecAnn::version() {
 void SpecAnn::end_sweep_ack() {
   Serial.write(0xFF);
   Serial.write(0xFF);
-  for (int i=3; i<3; i++) {
-    builtinLEDOn();
-    delay(250);
-    builtinLEDOff();
-    delay(500);
-  }
 }
 
 // Turn both ref_clocks off
@@ -105,4 +97,37 @@ void SpecAnn::miscExecute(uint8_t commandIndex) {
   }
 }
 
-
+void SpecAnn::programHW(uint16_t Data16, byte cmdIdx, byte Address, uint32_t serialWord) {
+  switch (Address) {
+    case Attenuator:
+      updateAtten(static_cast<uint8_t>(Data16), ATTEN_SEL);
+      break;
+    case LO1_addr:
+      select_pin = LO1_SEL;
+      LO1.set_N_bits(Data16);                           // Set the new INT_N bits into Register 0
+      regWord = LO1.Execute(adf4356CmdMap[cmdIdx], 0);  // This selects from 1 of 7 adf4356 commands
+      LO1.update(regWord, select_pin);                  // Write Reg[4] for set_TRI/set_DLD, ELSE Reg[6]
+      LO1.update(LO1.Curr.Reg[0], select_pin);          // followed by Reg[0] (REQUIRED by specsheet)
+      break;
+    case LO2_addr:
+      adc_pin = ADC_SEL_315;  // Select the ADC that reads the output of the LO2 RF path
+      select_pin = LO2_SEL;   // ALWAYS keep track of the currently selected chip
+      updateLORegisters(ptrLO2, select_pin, cmdIdx, serialWord);
+      break;
+    case LO3_addr:
+      adc_pin = ADC_SEL_045;  // Select the ADC that reads the output of the LO3 RF path
+      select_pin = LO3_SEL;   // ALWAYS keep track of the currently selected chip
+      updateLORegisters(ptrLO3, select_pin, cmdIdx, serialWord);
+      break;
+    case RefClock:
+      clkExecute(cmdIdx);
+      break;
+    case MISC_addr:
+      miscExecute(arduinoCmdMap[cmdIdx]);
+      break;
+    default:
+      Serial.print(F("Requested Address:"));
+      Serial.print(Address);
+      Serial.println(F(" not found"));
+  }   /* End switch(Address) */
+}
