@@ -29,7 +29,7 @@
 bool useBinary = true;  // Set this to true for binary mode, false for ASCII mode
 
 /*           Serial Word with Command Flag:
-     _________________________________________________
+    ,_________________________________________________,
    /_____________________/________/_____/____________/|
    |       Embedded      | Instr- |Addr.|  Command  | | NOTE: Command Flag
    |       Data          | uction |     |   Flag    | |        always = 0xFF
