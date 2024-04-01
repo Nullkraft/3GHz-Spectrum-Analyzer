@@ -29,13 +29,13 @@
 bool useBinary = true;  // Set this to true for binary mode, false for ASCII mode
 
 /*           Serial Word with Command Flag:
-    ,_________________________________________________,
-   /_____________________/________/_____/____________/|
-   |       Embedded      | Instr- |Addr.|  Command  | | NOTE: Command Flag
-   |       Data          | uction |     |   Flag    | |        always = 0xFF
-   |---------------------+--------+-----+-----------| |
-   | xxxx_xxxx_xxxx_xxxx | xxxx_x | xxx | 1111_1111 | |
-   |________________________________________________|/
+    ,__________________________________________________,
+   /_____________________/_________/_____/____________/|
+   |       Embedded      | Command |Addr.|  Command  | | NOTE: Command Flag
+   |       Data          |         |     |   Flag    | |        always = 0xFF
+   |---------------------+---------+-----+-----------| |
+   | xxxx_xxxx_xxxx_xxxx | xxxx_x  | xxx | 1111_1111 | |
+   |_________________________________________________|/
 */
 const uint8_t numBytesInSerialWord = 4;
 uint32_t serialWord;                                  // Serial Word as 32 bits
