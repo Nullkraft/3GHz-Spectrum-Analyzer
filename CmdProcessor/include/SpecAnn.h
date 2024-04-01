@@ -145,6 +145,19 @@ class SpecAnn {
     static constexpr uint8_t RefClock = 4;
     static constexpr uint8_t MISC_addr = 7;
 
+    ///////// Move to SpecAnn.h /////////
+    unsigned long start_PLL_Lock_time;
+    const int PLL_Lock_timeout = 500; // usec. Use 195 for testing some failures to lock.
+    int LOCKED;
+    volatile uint16_t a2dAmplitude;
+    uint8_t* ampl_byte = (uint8_t*)&a2dAmplitude;
+    // uint8_t adc_pin;
+    /////////////////////////////////////
+    uint8_t hi_byte;
+    uint8_t lo_byte;
+    
+    bool DEBUG = false;
+
     /*********** HARDWARE DEFINITIONS END *******/
     SpecAnn();  //Ctor
     void init_specann();
@@ -162,7 +175,8 @@ class SpecAnn {
 
     typedef void (SpecAnn::*MiscFuncs)();
     void miscExecute(uint8_t);
-    void programHW(uint16_t Data16, byte cmdIdx, byte Address, uint32_t serialWord);
+    void selectHW(uint16_t Data16, byte cmdIdx, byte Address, uint32_t serialWord);
+    uint16_t programHW(uint32_t serialWord);
 
     // Array of function-pointers containing the
     // 'Spectrum Analyzer miscellenious functions'

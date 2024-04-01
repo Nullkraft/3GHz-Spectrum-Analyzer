@@ -97,7 +97,7 @@ void SpecAnn::miscExecute(uint8_t commandIndex) {
   }
 }
 
-void SpecAnn::programHW(uint16_t Data16, byte cmdIdx, byte Address, uint32_t serialWord) {
+void SpecAnn::selectHW(uint16_t Data16, byte cmdIdx, byte Address, uint32_t serialWord) {
   switch (Address) {
     case Attenuator:
       updateAtten(static_cast<uint8_t>(Data16), ATTEN_SEL);
@@ -130,4 +130,50 @@ void SpecAnn::programHW(uint16_t Data16, byte cmdIdx, byte Address, uint32_t ser
       Serial.print(Address);
       Serial.println(F(" not found"));
   }   /* End switch(Address) */
+}
+
+uint16_t SpecAnn::programHW(uint32_t serialWord) {
+    // M:  Set R[1], bits[14:3] to program the new value for M
+  LO->set_M_bits(serialWord);
+  // N & F:  Set bits R[0], bits[22:15] for new N, and R[0], bits[14:3] for new F
+  LO->set_NF_bits(serialWord);
+  // Program the selected LO starting with the higher numbered registers first
+  LO->update(LO->Curr.Reg[1], select_pin);
+  LO->update(LO->Curr.Reg[0], select_pin);
+
+  // Wait for selected LO2 or LO3 to Lock
+  start_PLL_Lock_time = micros();
+  while (true) {
+    LOCKED = digitalRead(PLL_MUX);  // Check the mux pin to see if we get a lock
+    analogRead(adc_pin);  // HACK to prime the ADC. Fix the ADC input impedance?
+    //  We either get a lock or we check for a timeout.
+    if (LOCKED) {
+      a2dAmplitude = analogRead(adc_pin);
+      hi_byte = ampl_byte[1];
+      lo_byte = ampl_byte[0];
+      break;
+    }
+    /* Trigger the timeout if we don't get a lock. We still want the amplitude
+      * data so a 'failure to lock' warning is appended to the data so that the
+      * user is notified that the amplitude may not be exact.
+      * The ADC will eventually be a 12 bit device. The remaining 4 bits can be
+      * used for sending a variety of messages embedded with the amplitude data.
+    */
+    if ((micros()-start_PLL_Lock_time) > PLL_Lock_timeout) {
+      a2dAmplitude = analogRead(adc_pin);
+      hi_byte = ampl_byte[1] | failed_to_lock;  // Send failure report to PC
+      lo_byte = ampl_byte[0];
+      break;
+    }
+    // Bypass the lock detect when debugging the Arduino by itself.
+    if (DEBUG) {
+      delayMicroseconds(100);
+      break;
+    }
+  }
+  // Send the amplitude as individual bytes from the ADC to the PC for plotting
+  Serial.write(hi_byte);  // Big Endian
+  Serial.write(lo_byte);
+  return 0;
+  // return (hi_byte + lo_byte);
 }

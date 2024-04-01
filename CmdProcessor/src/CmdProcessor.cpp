@@ -40,22 +40,22 @@ bool useBinary = true;  // Set this to true for binary mode, false for ASCII mod
 const uint8_t numBytesInSerialWord = 4;
 uint32_t serialWord;                                  // Serial Word as 32 bits
 uint8_t* serialWordAsBytes = reinterpret_cast<uint8_t*>(&serialWord);   // Serial Word as a byte array
-
 const byte CommandFlag = 0xFF;  // Byte pattern to identify a 'Control Word'
+
 uint8_t hi_byte;
 uint8_t lo_byte;
+uint16_t responseWord;
+uint8_t* resp_byte = (uint8_t*)&responseWord;
 /////////// END SERIAL COMMUNICATION PROTOCOL ///////////
 
 ///////// Move to SpecAnn.h /////////
-unsigned long start_PLL_Lock_time;
-const int PLL_Lock_timeout = 500; // usec. Use 195 for testing some failures to lock.
-int LOCKED;
+// unsigned long start_PLL_Lock_time;
+// const int PLL_Lock_timeout = 500; // usec. Use 195 for testing some failures to lock.
+// int LOCKED;
 volatile uint16_t a2dAmplitude;
 uint8_t* ampl_byte = (uint8_t*)&a2dAmplitude;
 // uint8_t adc_pin;
 /////////////////////////////////////
-
-bool DEBUG = false;
 
 // A new Spectrum Analyzer
 SpecAnn SA = SpecAnn();
@@ -109,54 +109,16 @@ void loop() {
       Data16 = SpecificInstr.getData();
       cmdIdx = SpecificInstr.getCommand();
       Address = SpecificInstr.getAddress();
-      SA.programHW(Data16, cmdIdx, Address, serialWord);
+      SA.selectHW(Data16, cmdIdx, Address, serialWord);
     }
     // General LO Instructions: Pg 9 of "Interface Standard 5 - Spectrum Analyzer.odt"
     // Programs the selected MAX2871 for LO2 or LO3 to the requested LO frequency.
     else {
-      // M:  Set R[1], bits[14:3] to program the new value for M
-      SA.LO->set_M_bits(serialWord);
-      // N & F:  Set bits R[0], bits[22:15] for new N, and R[0], bits[14:3] for new F
-      SA.LO->set_NF_bits(serialWord);
-      // Program the selected LO starting with the higher numbered registers first
-      SA.LO->update(SA.LO->Curr.Reg[1], SA.select_pin);
-      SA.LO->update(SA.LO->Curr.Reg[0], SA.select_pin);
-
-      // Wait for selected LO2 or LO3 to Lock
-      start_PLL_Lock_time = micros();
-      while (true) {
-        LOCKED = digitalRead(SA.PLL_MUX);  // Check the mux pin to see if we get a lock
-        analogRead(SA.adc_pin);  // HACK to prime the ADC. Fix the ADC input impedance?
-        //  We either get a lock or we check for a timeout.
-        if (LOCKED) {
-          a2dAmplitude = analogRead(SA.adc_pin);
-          hi_byte = ampl_byte[1];
-          lo_byte = ampl_byte[0];
-          break;
-        }
-        /* Trigger the timeout if we don't get a lock. We still want the amplitude
-         * data so a 'failure to lock' warning is appended to the data so that the
-         * user is notified that the amplitude may not be exact.
-         * The ADC will eventually be a 12 bit device. The remaining 4 bits can be
-         * used for sending a variety of messages embedded with the amplitude data.
-        */
-        if ((micros()-start_PLL_Lock_time) > PLL_Lock_timeout) {
-          a2dAmplitude = analogRead(SA.adc_pin);
-          hi_byte = ampl_byte[1] | SA.failed_to_lock;  // Send failure report to PC
-          lo_byte = ampl_byte[0];
-          break;
-        }
-        // Bypass the lock detect when debugging the Arduino by itself.
-        if (DEBUG) {
-          delayMicroseconds(100);
-          break;
-        }
-      }
-      // Send the amplitude as individual bytes from the ADC to the PC for plotting
-      Serial.write(hi_byte);  // Big Endian
-      Serial.write(lo_byte);
+      responseWord = SA.programHW(serialWord);
     }
 
+    // Serial.write(resp_byte[1]);
+    // Serial.write(resp_byte[0]);
   }   /* End While serial available */
 } /* End loop() */
 
