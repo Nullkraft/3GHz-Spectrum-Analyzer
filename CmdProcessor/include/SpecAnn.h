@@ -147,7 +147,7 @@ class SpecAnn {
 
     ///////// Move to SpecAnn.h /////////
     unsigned long start_PLL_Lock_time;
-    const int PLL_Lock_timeout = 500; // usec. Use 195 for testing some failures to lock.
+    const unsigned long int PLL_Lock_timeout = 500; // usec. Use 195 for testing some failures to lock.
     int LOCKED;
     volatile uint16_t a2dAmplitude;
     uint8_t* ampl_byte = (uint8_t*)&a2dAmplitude;
