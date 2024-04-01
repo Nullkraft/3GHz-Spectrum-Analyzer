@@ -172,8 +172,5 @@ uint16_t SpecAnn::programHW(uint32_t serialWord) {
     }
   }
   // Send the amplitude as individual bytes from the ADC to the PC for plotting
-  Serial.write(hi_byte);  // Big Endian
-  Serial.write(lo_byte);
-  return 0;
-  // return (hi_byte + lo_byte);
+  return (hi_byte<<8) + lo_byte;
 }
