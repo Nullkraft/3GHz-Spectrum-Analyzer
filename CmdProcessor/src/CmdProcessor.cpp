@@ -46,6 +46,7 @@ uint8_t hi_byte;
 uint8_t lo_byte;
 uint16_t responseWord;
 uint8_t* resp_byte = (uint8_t*)&responseWord;
+bool sendIt = false;  // Guard flag to only send NEW data to the PC application
 /////////// END SERIAL COMMUNICATION PROTOCOL ///////////
 
 ///////// Move to SpecAnn.h /////////
@@ -115,10 +116,14 @@ void loop() {
     // Programs the selected MAX2871 for LO2 or LO3 to the requested LO frequency.
     else {
       responseWord = SA.programHW(serialWord);
+      sendIt = true;
     }
 
-    // Serial.write(resp_byte[1]);
-    // Serial.write(resp_byte[0]);
+    if (sendIt == true) {
+      Serial.write(resp_byte[1]);
+      Serial.write(resp_byte[0]);
+      sendIt = false;
+    }
   }   /* End While serial available */
 } /* End loop() */
 
