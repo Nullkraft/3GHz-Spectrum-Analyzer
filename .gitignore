@@ -1,40 +1,39 @@
+# Application project files
+.pio
+.vscode/
+build/
+.cache/
+*MACOSX
+
+# Some security concerns
+*[pP]password*
+*[lL]ogin*
+*[rR]eceipts*
+.directory
+
+# Backup files
 *~
+*.backup
+*bak*
+*save
+
 Punch\ list
 Prospectives/
 Spec_Sheets/
 SpecSheets/
 images/
 [aA]rchive/
-*[pP]password*
-*[lL]ogin*
-*[rR]eceipts*
-.directory
 ADI_PLL_Sim/
-*bak*
 *cmd
 *sch#
 *sym#
-*.backup
 *page[45]A.sch
 *png
 *pdf
 *zip
 *csv
-*save
-Supplier BOM's
-Schematics/Gerbers
-Testing_FreeBasic_with_readBytes
 Schematics/Board Assembly.ods
 315 MHz filter bandwidth.txt
-Arduino software/Acceptance_test_app/
-Arduino software/Ardiuno_Com_Test_N/
-Arduino software/CmdProcessor_initializes/
-Arduino software/MAX2871_Load_5/
-Arduino software/MAX2871_Load_Word_115200_5/
-Arduino software/Project1_Load_1000p0_9/
-Arduino software/Project1_Load_146p52_13/
-Arduino software/Project1_Load_3000p0_9/
-Arduino to Ver 2.0.00 Synthesizer Pinouts.ods
 Design_Info/ADF4356 Programming info.odt
 Design_Info/Frequency map.ods
 MAX2871 100 MHz RFout Register settings.txt
@@ -45,7 +44,6 @@ steps to program V2.0.0.00 board.txt
 zTemp/
 z_Notes/
 Gerber*
-*MACOSX
 *odt
 .vscode/
 Schematics - Original Hand Drawn/
@@ -62,9 +60,5 @@ LO2 Range.txt
 Todo*
 Calibrating the Spectrum Analzyer.txt
 BOM's/
-.pio
-.vscode/
-build/
-.cache/
 *ods
 *Instruction List 5-Jan-2023 6.ods*
