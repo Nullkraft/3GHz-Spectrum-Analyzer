@@ -121,7 +121,7 @@ refdes=R105
 T 52300 70000 5 10 0 1 90 0 1
 footprint=0805
 T 51700 69600 5 10 1 1 0 0 1
-value=1
+value=1 R
 T 52300 70000 5 10 0 1 90 0 1
 man-part-num=CRCW08051R00JNEA
 }
@@ -134,7 +134,7 @@ refdes=R104
 T 50700 70000 5 10 0 1 90 0 1
 footprint=0805
 T 50100 69600 5 10 1 1 0 0 1
-value=1
+value=1 R
 T 50700 70000 5 10 0 1 90 0 1
 man-part-num=CRCW08051R00JNEA
 }
@@ -291,7 +291,7 @@ refdes=R111
 T 46400 58900 5 10 0 1 0 0 1
 footprint=0402
 T 46600 58700 5 10 1 1 0 0 1
-value=18
+value=18 R
 T 46400 58900 5 10 0 1 0 0 1
 man-part-num=CRCW040218R0JNED
 }
@@ -304,7 +304,7 @@ refdes=R108
 T 45900 58600 5 10 0 1 270 0 1
 footprint=0402
 T 45500 57900 5 10 1 1 0 0 1
-value=300
+value=300 R
 T 45900 58600 5 10 0 1 0 0 1
 man-part-num=CRCW0402300RFKED
 }
@@ -317,7 +317,7 @@ refdes=R110
 T 47500 58600 5 10 0 1 270 0 1
 footprint=0402
 T 47800 57900 5 10 1 1 0 0 1
-value=300
+value=300 R
 T 47500 58600 5 10 0 1 0 0 1
 man-part-num=CRCW0402300RFKED
 }
@@ -387,7 +387,7 @@ man-part-num=CRCW04021K00FKEDC
 T 34800 61400 5 10 1 1 180 0 1
 refdes=R115
 T 34800 61200 5 10 1 1 180 0 1
-value=1.0 K
+value=1 K
 }
 C 41900 67900 1 0 0 gnd-1.sym
 C 42800 68600 1 0 0 gnd-1.sym
@@ -577,7 +577,7 @@ man-part-num=CRCW040230R1FKED
 T 45500 66300 5 10 1 1 0 0 1
 refdes=R119
 T 45500 66100 5 10 1 1 0 0 1
-value=30.1R
+value=30.1 R
 }
 C 44400 66900 1 0 0 gnd-1.sym
 C 36200 71400 1 270 1 capacitor-1_small.sym
@@ -1132,7 +1132,7 @@ man-part-num=CRCW04020000ZSTD
 T 55900 65100 5 10 1 1 0 0 1
 refdes=R122
 T 56100 64600 5 10 1 1 0 0 1
-value=0
+value=0 R
 }
 C 55600 64500 1 270 0 resistor-1.sym
 {
@@ -1176,7 +1176,7 @@ man-part-num=CRCW04020000ZSTD
 T 53400 59200 5 10 1 1 0 0 1
 refdes=R121
 T 53500 58700 5 10 1 1 0 0 1
-value=0
+value=0 R
 }
 C 52700 58600 1 270 0 resistor-1.sym
 {
