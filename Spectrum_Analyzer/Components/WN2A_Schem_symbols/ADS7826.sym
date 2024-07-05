@@ -81,8 +81,18 @@ refdes=U?
 T 192 1600 8 10 1 1 0 0 1
 device=ADC
 T 192 2100 8 10 0 0 0 0 1
-footprint=SON_8
+footprint=VSON_3mm
 T 192 1900 8 10 0 0 0 0 1
 documentation=https://www.ti.com/product/ADS7826
 T 342 -500 8 10 1 1 0 0 1
 man-part-num=ADS7826IDRBT 
+P 800 1300 800 1100 1 0 0
+{
+T 955 1245 5 10 1 1 0 6 1
+pinnumber=9
+T 400 1250 5 10 0 1 0 0 1
+pintype=pwr
+T 850 1050 5 10 1 1 0 0 1
+pinlabel=GND
+}
+C 700 800 1 0 0 gnd-1.sym
