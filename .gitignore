@@ -1,9 +1,13 @@
-# Application project files
+# Application project files and folders
+*net
+.cache/
 .pio
 .vscode/
 build/
-.cache/
+*workspace
 *MACOSX
+__pycache__
+CmdProcessor/.gitignore
 
 # Some security concerns
 *[pP]password*
@@ -13,52 +17,35 @@ build/
 
 # Backup files
 *~
-*.backup
 *bak*
 *save
 
-Punch\ list
-Prospectives/
-Spec_Sheets/
+# Folders
+Design Documents/
+3D Drawings/
 SpecSheets/
-images/
-[aA]rchive/
-ADI_PLL_Sim/
+
+# File types
 *cmd
 *sch#
 *sym#
-*page[45]A.sch
 *png
 *pdf
 *zip
 *csv
-Schematics/Board Assembly.ods
-315 MHz filter bandwidth.txt
-Design_Info/ADF4356 Programming info.odt
-Design_Info/Frequency map.ods
-MAX2871 100 MHz RFout Register settings.txt
-SA_BlockDiagram.tif
-Schematics/Arduino/
-Sprectrum Analyzer Programming Notes.txt
-steps to program V2.0.0.00 board.txt
-zTemp/
-z_Notes/
-Gerber*
-*odt
-.vscode/
-Schematics - Original Hand Drawn/
-Spur Analysis/
-Documentation/
-Acceptance_test_app/
-*code-workspace
-Review/
-platformio.ini
-*net
-3D Drawings/
 *gerber*
-LO2 Range.txt
-Todo*
+*odt
+
+# Files with 'scratch' in the name are for testing new features
+*scratch*
+
+# Various files containing information and notes
 Calibrating the Spectrum Analzyer.txt
+LO2 Range.txt
+Next steps.txt
+Gerber mods when using JLCPCB.txt
+Percent error when M equals 125.ods
 BOM's/
-*ods
-*Instruction List 5-Jan-2023 6.ods*
+Block_Diagram.sch
+Updates for V4.0 Spectrum Analyzer boards & circuits.txt
+tools/
