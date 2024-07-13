@@ -1,8 +1,9 @@
 # Application project files and folders
 *net
 .cache/
-.pio
 .vscode/
+.pio
+platformio.ini
 build/
 *workspace
 *MACOSX
