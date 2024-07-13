@@ -118,7 +118,9 @@ class SpecAnn {
     // Status codes use the 4 msbits of the 16 bit ADC return values
     // const int start_noise_floor = 0xD0;  // First in the series of ADC noise-floor readings
     // const int end_noise_floor   = 0xE0;  // Last in the series of ADC noise-floor readings
-    static constexpr int failed_to_lock = 0xF0;  // VCO Failed to lock message
+    static constexpr int failedToLock = 0xF000;   // VCO Failed to lock message
+    static constexpr int rleCountPacket = 0xE000; // Data contains Run Line Encoding (RLE) count
+    static constexpr uint16_t rleIncremented = 0xD000; // RLE count was incremented - No action required (Internal use only)
 
     static constexpr uint16_t ATTEN_Data_Mask = 0x7F;  // 7 bit mask for programming the Attenuator
 
@@ -149,6 +151,8 @@ class SpecAnn {
     unsigned long start_PLL_Lock_time;
     const unsigned long int PLL_Lock_timeout = 500; // usec. Use 195 for testing some failures to lock.
     int LOCKED;
+    // Declare external RLE count variable
+    uint16_t rleCount;
     volatile uint16_t a2dAmplitude;
     uint8_t* ampl_byte = (uint8_t*)&a2dAmplitude;
     // uint8_t adc_pin;

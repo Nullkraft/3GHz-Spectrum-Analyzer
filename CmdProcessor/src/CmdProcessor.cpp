@@ -66,8 +66,7 @@ uint16_t Data16;
 byte cmdIdx;
 byte Address;
 
-
-/******** SETUP *********************************************************************/
+// MARK: SETUP( ) ********
 void setup() {
   #ifndef ARDUINO_SAMD_ZERO
     analogReference(EXTERNAL);
@@ -90,40 +89,63 @@ void setup() {
 }
 
 
-/******** MAIN LOOP ******************************************************************/
+// MARK: LOOP( ) ********
+uint16_t rleCount = 0;  // Initialize the external RLE count variable
+
 void loop() {
-  while (Serial.available()) {
-    if (useBinary) {
-      // Binary Communication for normal usage:
-      Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);  // serialWord == serialWordAsBytes
-    } else {
-      // ASCII Communication for testing Mike's code:
-      serialWord = Serial.parseInt();
-      if (serialWord == 0) {    // Serial timed out on SER_TIMEOUT
-        continue;
-      }
-    }
+    while (Serial.available()) {
+        if (useBinary) {
+            // Binary Communication for normal usage:
+            Serial.readBytes(serialWordAsBytes, numBytesInSerialWord);  // serialWord == serialWordAsBytes
+        } else {
+            // ASCII Communication for testing Mike's code:
+            serialWord = Serial.parseInt();
+            if (serialWord == 0) {    // Serial timed out on SER_TIMEOUT
+                continue;
+            }
+        }
 
-    // Specific Instructions: Pg 2 of "Interface Standard 5 - Spectrum Analyzer.odt"
-    if (serialWordAsBytes[0] == CommandFlag) {
-      SpecificInstr.parseSpecificInstruction(serialWord);
-      Data16 = SpecificInstr.getData();
-      cmdIdx = SpecificInstr.getCommand();
-      Address = SpecificInstr.getAddress();
-      SA.selectHW(Data16, cmdIdx, Address, serialWord);
-    }
-    // General LO Instructions: Pg 9 of "Interface Standard 5 - Spectrum Analyzer.odt"
-    // Programs the selected MAX2871 for LO2 or LO3 to the requested LO frequency.
-    else {
-      responseWord = SA.programHW(serialWord);
-      sendIt = true;
-    }
+        // Specific Instructions: Pg 2 of "Interface Standard 5 - Spectrum Analyzer.odt"
+        if (serialWordAsBytes[0] == CommandFlag) {
+            SpecificInstr.parseSpecificInstruction(serialWord);
+            Data16 = SpecificInstr.getData();
+            cmdIdx = SpecificInstr.getCommand();
+            Address = SpecificInstr.getAddress();
+            SA.selectHW(Data16, cmdIdx, Address, serialWord);
+        }
+        // General LO Instructions: Pg 9 of "Interface Standard 5 - Spectrum Analyzer.odt"
+        // Programs the selected MAX2871 for LO2 or LO3 to the requested LO frequency.
+        else {
+            responseWord = SA.programHW(serialWord);
+            sendIt = true;
+        }
 
-    if (sendIt == true) {
-      Serial.write(resp_byte[1]);
-      Serial.write(resp_byte[0]);
-      sendIt = false;
-    }
-  }   /* End While serial available */
+        if (sendIt == true) {
+            if (responseWord != 0) {
+                // Check if responseWord indicates an incremented RLE count
+                if (responseWord == SA.rleIncremented) {
+                    sendIt = false;  // Do not send the incremented RLE count message
+                    continue;
+                }
+
+                // If rleCount exists, send the RLE count first
+                if (rleCount > 0) {
+                    uint16_t encodedRLE = SA.rleCountPacket | rleCount;
+                    resp_byte[1] = encodedRLE >> 8;
+                    resp_byte[0] = encodedRLE & 0xFF;
+                    Serial.write(resp_byte[1]);
+                    Serial.write(resp_byte[0]);
+                    rleCount = 0;  // Reset the RLE count after sending
+                }
+
+                // Send the actual responseWord
+                resp_byte[1] = responseWord >> 8;
+                resp_byte[0] = responseWord & 0xFF;
+                Serial.write(resp_byte[1]);
+                Serial.write(resp_byte[0]);
+            }
+            sendIt = false;
+        }
+    }   /* End While serial available */
 } /* End loop() */
 
