@@ -17,9 +17,9 @@ refdes=U102
 T 54095 66100 5 10 1 1 0 0 1
 device=MIXER
 T 55600 65100 5 10 0 1 90 0 1
-footprint=SIM83+
-T 55600 65100 5 10 0 1 90 0 1
 man-part-num=SIM-762H+
+T 55600 65100 5 10 0 0 0 0 1
+footprint=SIM83+
 }
 C 36500 57500 1 0 0 PE43711.sym
 {
