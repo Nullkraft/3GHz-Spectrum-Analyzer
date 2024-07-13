@@ -331,7 +331,7 @@ footprint=INDC3225M
 T 54400 59600 5 10 0 1 0 0 1
 man-part-num=ME3220-332MLC
 T 54900 59900 5 10 1 1 0 0 1
-value=3.3 uH
+value=3.3uH
 T 54400 59600 5 10 0 0 0 0 1
 manufacturer=Coilcraft
 }
