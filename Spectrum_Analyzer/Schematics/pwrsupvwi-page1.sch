@@ -5,12 +5,12 @@ T 67600 64550 5 10 0 1 0 0 1
 device=HEADER6
 T 68500 64250 5 10 1 1 0 0 1
 refdes=J401
-T 68200 61800 5 10 0 1 0 0 1
-footprint=sparkfun_11544
 T 67500 61600 5 10 0 1 0 0 1
 man-part-num=PRT-11544
 T 68200 61800 5 10 0 0 0 0 1
 manufacturer=sparkfun
+T 68200 61800 5 10 0 0 0 0 1
+footprint=sparkfun_11544
 }
 C 67900 63700 1 270 0 gnd-1.sym
 N 66600 64000 68200 64000 4
