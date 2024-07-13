@@ -775,9 +775,9 @@ refdes=U303
 T 23295 66900 5 10 1 1 0 0 1
 device=LTC5562F
 T 23500 64700 5 10 0 1 0 0 1
-footprint=QFN104EP
-T 23500 64700 5 10 0 1 0 0 1
 man-part-num=LTC5562IUC#TRMPBF
+T 23500 64700 5 10 0 0 0 0 1
+footprint=QFN104EP
 }
 C 22900 65800 1 0 0 capacitor-1_small.sym
 {
