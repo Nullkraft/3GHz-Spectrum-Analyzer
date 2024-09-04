@@ -20,7 +20,7 @@ pinnumber=3
 T -200 550 5 10 0 1 0 0 1
 pintype=io
 T 300 650 5 10 1 1 0 0 1
-netname=\_WP
+netname=\_WP\_
 }
 P 0 1100 200 1100 1 0 0
 {
@@ -38,7 +38,7 @@ pinnumber=1
 T -200 1350 5 10 0 1 0 0 1
 pintype=io
 T 300 1450 5 10 1 1 0 0 1
-netname=\_CS
+netname=\_CS\_
 }
 P 1800 1500 1600 1500 1 0 0
 {
@@ -56,7 +56,7 @@ pinnumber=7
 T 2000 950 5 10 0 1 0 6 1
 pintype=io
 T 1500 1050 5 10 1 1 0 6 1
-netname=\_HOLD
+netname=\_HOLD\_
 }
 P 1800 700 1600 700 1 0 0
 {

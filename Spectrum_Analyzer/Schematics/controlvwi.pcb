@@ -9,7 +9,7 @@ Grid[5.00mil 0.0000 0.0000 1]
 PolyArea[3100.006200]
 Thermal[0.500000]
 DRC[3.50mil 4.00mil 3.50mil 6.00mil 7.87mil 3.50mil]
-Flags("showdrc,rubberband,nameonpcb,clearnew,newfullpoly,snappin,thindrawpoly")
+Flags("showdrc,nameonpcb,clearnew,newfullpoly,snappin,thindrawpoly")
 Groups("1,c:2,s:3")
 Styles["Signal,15.00mil,36.00mil,20.00mil,6.00mil:Power,25.00mil,60.00mil,35.00mil,10.00mil:Fat,80.00mil,60.00mil,35.00mil,6.00mil:jclpcb,8.07mil,35.00mil,20.00mil,2.00mil"]
 Symbol[' ' 18.00mil]
@@ -1771,25 +1771,25 @@ Element["" "0603" "C4" "10_uF" 715.00mil 990.00mil -26.50mil -106.50mil 0 100 ""
 
 Element["" "VSON_3mm" "U4" "unknown" 29.8110mm 33.4833mm -1.7628mm -4.4978mm 0 100 ""]
 (
-	Pad[0.3900mm -2.3300mm 3.6100mm -2.3300mm 0.2300mm 5.60mil 0.3222mm "" "9" "square,edge2"]
-	Pad[0.3900mm -1.6700mm 3.6100mm -1.6700mm 0.2300mm 5.60mil 0.3222mm "" "9" "square,edge2"]
-	Pad[1.6800mm -0.5500mm 1.6800mm -0.4400mm 0.3200mm 5.60mil 0.4122mm "" "2" "square,edge2"]
-	Pad[2.3200mm -0.5500mm 2.3200mm -0.4400mm 0.3200mm 5.60mil 0.4122mm "" "3" "square,edge2"]
-	Pad[1.6800mm -3.5600mm 1.6800mm -3.4500mm 0.3200mm 5.60mil 0.4122mm "" "7" "square"]
-	Pad[2.3200mm -3.5600mm 2.3200mm -3.4500mm 0.3200mm 5.60mil 0.4122mm "" "6" "square"]
-	Pad[1.8700mm -2.0000mm 2.1300mm -2.0000mm 1.5000mm 5.60mil 1.5922mm "" "9" "square,edge2"]
-	Pad[1.0300mm -0.5500mm 1.0300mm -0.4400mm 0.3200mm 5.60mil 0.4122mm "" "1" "square,edge2"]
-	Pad[1.0300mm -3.5600mm 1.0300mm -3.4500mm 0.3200mm 5.60mil 0.4122mm "+3.3V" "8" "square"]
-	Pad[2.9700mm -3.5600mm 2.9700mm -3.4500mm 0.3200mm 5.60mil 0.4122mm "" "5" "square"]
-	Pad[2.9700mm -0.5500mm 2.9700mm -0.4400mm 0.3200mm 5.60mil 0.4122mm "" "4" "square,edge2"]
-	Pad[1.6800mm -0.7400mm 1.6800mm -0.7000mm 0.3200mm 5.60mil 0.4122mm "" "2" "edge2"]
-	Pad[2.3200mm -0.7400mm 2.3200mm -0.7000mm 0.3200mm 5.60mil 0.4122mm "" "3" "edge2"]
-	Pad[1.6800mm -3.3000mm 1.6800mm -3.2600mm 0.3200mm 5.60mil 0.4122mm "" "7" ""]
-	Pad[2.3200mm -3.3000mm 2.3200mm -3.2600mm 0.3200mm 5.60mil 0.4122mm "" "6" ""]
-	Pad[1.0300mm -0.7400mm 1.0300mm -0.7000mm 0.3200mm 5.60mil 0.4122mm "" "1" "edge2"]
-	Pad[1.0300mm -3.3000mm 1.0300mm -3.2600mm 0.3200mm 5.60mil 0.4122mm "+3.3V" "8" ""]
-	Pad[2.9700mm -0.7400mm 2.9700mm -0.7000mm 0.3200mm 5.60mil 0.4122mm "" "4" "edge2"]
-	Pad[2.9700mm -3.3000mm 2.9700mm -3.2600mm 0.3200mm 5.60mil 0.4122mm "" "5" ""]
+	Pad[0.3900mm -2.3300mm 3.6100mm -2.3300mm 0.2300mm 5.60mil 0.3222mm "GND" "9" "square,edge2"]
+	Pad[0.3900mm -1.6700mm 3.6100mm -1.6700mm 0.2300mm 5.60mil 0.3222mm "GND" "9" "square,edge2"]
+	Pad[1.6800mm -0.5500mm 1.6800mm -0.4400mm 0.3200mm 5.60mil 0.4122mm "IN+" "2" "square,edge2"]
+	Pad[2.3200mm -0.5500mm 2.3200mm -0.4400mm 0.3200mm 5.60mil 0.4122mm "IN-" "3" "square,edge2"]
+	Pad[1.6800mm -3.5600mm 1.6800mm -3.4500mm 0.3200mm 5.60mil 0.4122mm "DCLOCK" "7" "square"]
+	Pad[2.3200mm -3.5600mm 2.3200mm -3.4500mm 0.3200mm 5.60mil 0.4122mm "DOUT" "6" "square"]
+	Pad[1.8700mm -2.0000mm 2.1300mm -2.0000mm 1.5000mm 5.60mil 1.5922mm "GND" "9" "square,edge2"]
+	Pad[1.0300mm -0.5500mm 1.0300mm -0.4400mm 0.3200mm 5.60mil 0.4122mm "REF" "1" "square,edge2"]
+	Pad[1.0300mm -3.5600mm 1.0300mm -3.4500mm 0.3200mm 5.60mil 0.4122mm "VDD" "8" "square"]
+	Pad[2.9700mm -3.5600mm 2.9700mm -3.4500mm 0.3200mm 5.60mil 0.4122mm "_CS_/ SHDN" "5" "square"]
+	Pad[2.9700mm -0.5500mm 2.9700mm -0.4400mm 0.3200mm 5.60mil 0.4122mm "GND" "4" "square,edge2"]
+	Pad[1.6800mm -0.7400mm 1.6800mm -0.7000mm 0.3200mm 5.60mil 0.4122mm "IN+" "2" "edge2"]
+	Pad[2.3200mm -0.7400mm 2.3200mm -0.7000mm 0.3200mm 5.60mil 0.4122mm "IN-" "3" "edge2"]
+	Pad[1.6800mm -3.3000mm 1.6800mm -3.2600mm 0.3200mm 5.60mil 0.4122mm "DCLOCK" "7" ""]
+	Pad[2.3200mm -3.3000mm 2.3200mm -3.2600mm 0.3200mm 5.60mil 0.4122mm "DOUT" "6" ""]
+	Pad[1.0300mm -0.7400mm 1.0300mm -0.7000mm 0.3200mm 5.60mil 0.4122mm "REF" "1" "edge2"]
+	Pad[1.0300mm -3.3000mm 1.0300mm -3.2600mm 0.3200mm 5.60mil 0.4122mm "VDD" "8" ""]
+	Pad[2.9700mm -0.7400mm 2.9700mm -0.7000mm 0.3200mm 5.60mil 0.4122mm "GND" "4" "edge2"]
+	Pad[2.9700mm -3.3000mm 2.9700mm -3.2600mm 0.3200mm 5.60mil 0.4122mm "_CS_/ SHDN" "5" ""]
 	ElementLine [0.0000 0.0000 0.0000 0.0000 6.00mil]
 	ElementLine [3.6800mm -3.6800mm 3.6800mm -2.7800mm 6.00mil]
 	ElementLine [0.3200mm -3.6800mm 0.3200mm -2.7800mm 6.00mil]
@@ -1804,25 +1804,25 @@ Element["" "VSON_3mm" "U4" "unknown" 29.8110mm 33.4833mm -1.7628mm -4.4978mm 0 1
 
 Element["" "VSON_3mm" "U1" "unknown" 18.1270mm 33.4833mm -1.4453mm -4.5613mm 0 100 ""]
 (
-	Pad[0.3900mm -2.3300mm 3.6100mm -2.3300mm 0.2300mm 5.60mil 0.3222mm "" "9" "square,edge2"]
-	Pad[0.3900mm -1.6700mm 3.6100mm -1.6700mm 0.2300mm 5.60mil 0.3222mm "" "9" "square,edge2"]
-	Pad[1.6800mm -0.5500mm 1.6800mm -0.4400mm 0.3200mm 5.60mil 0.4122mm "" "2" "square,edge2"]
-	Pad[2.3200mm -0.5500mm 2.3200mm -0.4400mm 0.3200mm 5.60mil 0.4122mm "" "3" "square,edge2"]
-	Pad[1.6800mm -3.5600mm 1.6800mm -3.4500mm 0.3200mm 5.60mil 0.4122mm "" "7" "square"]
-	Pad[2.3200mm -3.5600mm 2.3200mm -3.4500mm 0.3200mm 5.60mil 0.4122mm "" "6" "square"]
-	Pad[1.8700mm -2.0000mm 2.1300mm -2.0000mm 1.5000mm 5.60mil 1.5922mm "" "9" "square,edge2"]
-	Pad[1.0300mm -0.5500mm 1.0300mm -0.4400mm 0.3200mm 5.60mil 0.4122mm "" "1" "square,edge2"]
-	Pad[1.0300mm -3.5600mm 1.0300mm -3.4500mm 0.3200mm 5.60mil 0.4122mm "" "8" "square"]
-	Pad[2.9700mm -3.5600mm 2.9700mm -3.4500mm 0.3200mm 5.60mil 0.4122mm "" "5" "square"]
-	Pad[2.9700mm -0.5500mm 2.9700mm -0.4400mm 0.3200mm 5.60mil 0.4122mm "" "4" "square,edge2"]
-	Pad[1.6800mm -0.7400mm 1.6800mm -0.7000mm 0.3200mm 5.60mil 0.4122mm "" "2" "edge2"]
-	Pad[2.3200mm -0.7400mm 2.3200mm -0.7000mm 0.3200mm 5.60mil 0.4122mm "" "3" "edge2"]
-	Pad[1.6800mm -3.3000mm 1.6800mm -3.2600mm 0.3200mm 5.60mil 0.4122mm "" "7" ""]
-	Pad[2.3200mm -3.3000mm 2.3200mm -3.2600mm 0.3200mm 5.60mil 0.4122mm "" "6" ""]
-	Pad[1.0300mm -0.7400mm 1.0300mm -0.7000mm 0.3200mm 5.60mil 0.4122mm "" "1" "edge2"]
-	Pad[1.0300mm -3.3000mm 1.0300mm -3.2600mm 0.3200mm 5.60mil 0.4122mm "" "8" ""]
-	Pad[2.9700mm -0.7400mm 2.9700mm -0.7000mm 0.3200mm 5.60mil 0.4122mm "" "4" "edge2"]
-	Pad[2.9700mm -3.3000mm 2.9700mm -3.2600mm 0.3200mm 5.60mil 0.4122mm "" "5" ""]
+	Pad[0.3900mm -2.3300mm 3.6100mm -2.3300mm 0.2300mm 5.60mil 0.3222mm "GND" "9" "square,edge2"]
+	Pad[0.3900mm -1.6700mm 3.6100mm -1.6700mm 0.2300mm 5.60mil 0.3222mm "GND" "9" "square,edge2"]
+	Pad[1.6800mm -0.5500mm 1.6800mm -0.4400mm 0.3200mm 5.60mil 0.4122mm "IN+" "2" "square,edge2"]
+	Pad[2.3200mm -0.5500mm 2.3200mm -0.4400mm 0.3200mm 5.60mil 0.4122mm "IN-" "3" "square,edge2"]
+	Pad[1.6800mm -3.5600mm 1.6800mm -3.4500mm 0.3200mm 5.60mil 0.4122mm "DCLOCK" "7" "square"]
+	Pad[2.3200mm -3.5600mm 2.3200mm -3.4500mm 0.3200mm 5.60mil 0.4122mm "DOUT" "6" "square"]
+	Pad[1.8700mm -2.0000mm 2.1300mm -2.0000mm 1.5000mm 5.60mil 1.5922mm "GND" "9" "square,edge2"]
+	Pad[1.0300mm -0.5500mm 1.0300mm -0.4400mm 0.3200mm 5.60mil 0.4122mm "REF" "1" "square,edge2"]
+	Pad[1.0300mm -3.5600mm 1.0300mm -3.4500mm 0.3200mm 5.60mil 0.4122mm "VDD" "8" "square"]
+	Pad[2.9700mm -3.5600mm 2.9700mm -3.4500mm 0.3200mm 5.60mil 0.4122mm "_CS_/ SHDN" "5" "square"]
+	Pad[2.9700mm -0.5500mm 2.9700mm -0.4400mm 0.3200mm 5.60mil 0.4122mm "GND" "4" "square,edge2"]
+	Pad[1.6800mm -0.7400mm 1.6800mm -0.7000mm 0.3200mm 5.60mil 0.4122mm "IN+" "2" "edge2"]
+	Pad[2.3200mm -0.7400mm 2.3200mm -0.7000mm 0.3200mm 5.60mil 0.4122mm "IN-" "3" "edge2"]
+	Pad[1.6800mm -3.3000mm 1.6800mm -3.2600mm 0.3200mm 5.60mil 0.4122mm "DCLOCK" "7" ""]
+	Pad[2.3200mm -3.3000mm 2.3200mm -3.2600mm 0.3200mm 5.60mil 0.4122mm "DOUT" "6" ""]
+	Pad[1.0300mm -0.7400mm 1.0300mm -0.7000mm 0.3200mm 5.60mil 0.4122mm "REF" "1" "edge2"]
+	Pad[1.0300mm -3.3000mm 1.0300mm -3.2600mm 0.3200mm 5.60mil 0.4122mm "VDD" "8" ""]
+	Pad[2.9700mm -0.7400mm 2.9700mm -0.7000mm 0.3200mm 5.60mil 0.4122mm "GND" "4" "edge2"]
+	Pad[2.9700mm -3.3000mm 2.9700mm -3.2600mm 0.3200mm 5.60mil 0.4122mm "_CS_/ SHDN" "5" ""]
 	ElementLine [0.0000 0.0000 0.0000 0.0000 6.00mil]
 	ElementLine [3.6800mm -3.6800mm 3.6800mm -2.7800mm 6.00mil]
 	ElementLine [0.3200mm -3.6800mm 0.3200mm -2.7800mm 6.00mil]
@@ -2447,6 +2447,8 @@ NetList()
 		Connect("U1-8")
 		Connect("U3-8")
 		Connect("U4-8")
+		Connect("U5-3")
+		Connect("U5-7")
 		Connect("U5-8")
 	)
 	Net("+5V" "(unknown)")
@@ -2465,13 +2467,13 @@ NetList()
 		Connect("U2-13")
 		Connect("U6-16")
 	)
-	Net("\\_SEL_ADC_1" "(unknown)")
+	Net("\\_SEL_ADC_1\\_" "(unknown)")
 	(
 		Connect("R14-2")
 		Connect("U2-4")
 		Connect("U6-4")
 	)
-	Net("\\_SEL_ADC_2" "(unknown)")
+	Net("\\_SEL_ADC_2\\_" "(unknown)")
 	(
 		Connect("R15-2")
 		Connect("U2-3")
@@ -2732,30 +2734,30 @@ NetList()
 	)
 	Net("unnamed_net14" "(unknown)")
 	(
-		Connect("C6-1")
-		Connect("R4-2")
-		Connect("U4-1")
-	)
-	Net("unnamed_net15" "(unknown)")
-	(
 		Connect("C3-1")
 		Connect("R1-2")
 		Connect("U1-1")
 	)
-	Net("unnamed_net16" "(unknown)")
-	(
-		Connect("R5-1")
-		Connect("U5-1")
-	)
-	Net("unnamed_net17" "(unknown)")
+	Net("unnamed_net15" "(unknown)")
 	(
 		Connect("R14-1")
 		Connect("U1-5")
 	)
-	Net("unnamed_net18" "(unknown)")
+	Net("unnamed_net16" "(unknown)")
+	(
+		Connect("C6-1")
+		Connect("R4-2")
+		Connect("U4-1")
+	)
+	Net("unnamed_net17" "(unknown)")
 	(
 		Connect("R15-1")
 		Connect("U4-5")
+	)
+	Net("unnamed_net18" "(unknown)")
+	(
+		Connect("R5-1")
+		Connect("U5-1")
 	)
 	Net("unnamed_net19" "(unknown)")
 	(
