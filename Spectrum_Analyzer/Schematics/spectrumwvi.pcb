@@ -2005,7 +2005,7 @@ Element["onsolder" "0402" "C312" "0.1_uF" 76.5825mm 41.6575mm -1.8276mm -0.8864m
 
 	)
 
-Element["onsolder" "MAX2871" "U307" "unknown" 90.5525mm 41.2765mm 50.00mil 210.00mil 0 80 "onsolder"]
+Element["onsolder" "MAX2871" "U307" "unknown" 90.5525mm 41.2765mm 20.00mil 195.00mil 0 80 "onsolder"]
 (
 	Pad[1.7500mm -2.8200mm 1.7500mm -2.1700mm 0.3000mm 12.00mil 0.4016mm "REG" "24" "onsolder,square"]
 	Pad[1.2500mm -2.8200mm 1.2500mm -2.1700mm 0.3000mm 12.00mil 0.4016mm "Bias_Fil" "23" "onsolder,square"]
