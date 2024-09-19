@@ -5,7 +5,7 @@ FileVersion[20091103]
 
 PCB["3 GHz Spectrum Analyzer" 4140.00mil 2770.00mil]
 
-Grid[5.00mil 0.0015mm 0.0015mm 1]
+Grid[5.00mil 0.0015mm 0.0015mm 0]
 PolyArea[3100.006200]
 Thermal[0.500000]
 DRC[3.50mil 4.00mil 3.50mil 6.00mil 7.87mil 5.00mil]
@@ -2881,22 +2881,6 @@ Element["" "Harwin_S097146R" "Sh418" "unknown" 69.7495mm 27.1675mm 1.3473mm 1.66
 
 	)
 
-Element["" "Harwin_S097146R" "Sh419" "unknown" 57.4325mm 27.1675mm 1.3153mm 1.6659mm 0 80 ""]
-(
-	Pad[4.9500mm 0.1240mm 5.3500mm 0.1240mm 0.2500mm 0.0000 0.0000 "1" "1" "square,edge2"]
-	Pad[4.9500mm 1.4240mm 5.3500mm 1.4240mm 0.2500mm 0.0000 0.0000 "1" "1" "square,edge2"]
-	Pad[0.9500mm 0.1240mm 1.3500mm 0.1240mm 0.2500mm 0.0000 0.0000 "1" "1" "square"]
-	Pad[0.9500mm 1.4240mm 1.3500mm 1.4240mm 0.2500mm 0.0000 0.0000 "1" "1" "square"]
-	Pad[2.9500mm 0.1240mm 3.3500mm 0.1240mm 0.2500mm 0.0000 0.0000 "1" "1" "square"]
-	Pad[2.9500mm 1.4240mm 3.3500mm 1.4240mm 0.2500mm 0.0000 0.0000 "1" "1" "square"]
-	Pad[6.2000mm 0.5740mm 6.2000mm 0.9740mm 0.2500mm 0.0000 0.0000 "1" "1" "square"]
-	Pad[0.1000mm 0.5740mm 0.1000mm 0.9740mm 0.2500mm 0.0000 0.0000 "1" "1" "square"]
-	Pad[4.7500mm 0.7740mm 5.5500mm 0.7740mm 1.2000mm 12.00mil 1.2000mm "1" "1" "square,edge2"]
-	Pad[3.0500mm 0.7740mm 3.2500mm 0.7740mm 1.2000mm 12.00mil 1.2000mm "1" "1" "square"]
-	Pad[0.7500mm 0.7740mm 1.5500mm 0.7740mm 1.2000mm 12.00mil 1.2000mm "1" "1" "square"]
-
-	)
-
 Element["" "0603" "C120" "0.01 uF" 72.6455mm 22.3535mm -1.0134mm 3.1380mm 1 80 ""]
 (
 	Pad[0.5004mm 0.4332mm 0.6254mm 0.2168mm 29.52mil 0.0000 35.52mil "1" "1" "square,edge2"]
@@ -4650,6 +4634,22 @@ Element["onsolder" "Harwin_S097146R" "Sh411" "unknown" 71.1973mm 48.4259mm -0.05
 	ElementLine [0.0000 0.0000 0.0000 0.0000 1.00mil]
 
 	)
+
+Element["" "Harwin_S097146R" "Sh419" "unknown" 57.3543mm 27.1421mm 0.6030mm 65.00mil 0 100 ""]
+(
+	Pad[0.8254mm 0.7994mm 1.6254mm 0.7994mm 1.2000mm 12.00mil 1.5048mm "1" "1" "square"]
+	Pad[3.1262mm 0.7994mm 3.3262mm 0.7994mm 1.2000mm 12.00mil 1.5048mm "1" "1" "square,edge2"]
+	Pad[4.8262mm 0.7994mm 5.6262mm 0.7994mm 1.2000mm 12.00mil 1.5048mm "1" "1" "square,edge2"]
+	Pad[6.3068mm 0.6655mm 6.3068mm 0.9347mm 15.00mil 0.0000 15.00mil "1" "1" "square"]
+	Pad[0.1448mm 0.6655mm 0.1448mm 0.9347mm 15.00mil 0.0000 15.00mil "1" "1" "square"]
+	Pad[5.0902mm 1.4884mm 211.00mil 1.4884mm 15.00mil 0.0000 15.00mil "1" "1" "square,edge2"]
+	Pad[3.0937mm 1.4884mm 3.3630mm 1.4884mm 15.00mil 0.0000 15.00mil "1" "1" "square,edge2"]
+	Pad[43.00mil 1.4884mm 1.3614mm 1.4884mm 15.00mil 0.0000 15.00mil "1" "1" "square"]
+	Pad[5.0902mm 0.1118mm 211.00mil 0.1118mm 15.00mil 0.0000 15.00mil "1" "1" "square,edge2"]
+	Pad[3.0937mm 0.1118mm 3.3630mm 0.1118mm 15.00mil 0.0000 15.00mil "1" "1" "square,edge2"]
+	Pad[43.00mil 0.1118mm 1.3614mm 0.1118mm 15.00mil 0.0000 15.00mil "1" "1" "square"]
+
+	)
 Layer(1 "top" "copper")
 (
 	Line[43.0169mm 12.8285mm 43.2709mm 13.0317mm 8.00mil 12.00mil ""]
@@ -5252,11 +5252,9 @@ Layer(2 "inner_1" "copper")
 	Line[72.0105mm 17.7815mm 72.0105mm 15.1145mm 10.00mil 10.00mil "clearline"]
 	Line[49.5315mm 7.3675mm 64.3905mm 7.3675mm 20.00mil 12.00mil "clearline"]
 	Line[64.3905mm 7.3675mm 65.0255mm 6.7325mm 20.00mil 12.00mil "clearline"]
-	Line[5.4015mm 41.6015mm 5.6015mm 41.4015mm 0.0500mm 0.0000 ""]
-	Line[5.4015mm 41.4015mm 5.6015mm 41.6015mm 0.0500mm 0.0000 ""]
 	Line[90.5017mm 59.9455mm 90.2985mm 60.1487mm 1.00mil 10.00mil "clearline"]
 	Line[90.5017mm 60.1487mm 90.2985mm 59.9455mm 1.00mil 10.00mil "clearline"]
-	Polygon("clearpoly,fullpoly")
+	Polygon("found,clearpoly,fullpoly")
 	(
 		[2.1605mm 2.1605mm] [102.7445mm 2.1605mm] [102.7445mm 67.9465mm] [2.1605mm 67.9465mm] 
 	)
