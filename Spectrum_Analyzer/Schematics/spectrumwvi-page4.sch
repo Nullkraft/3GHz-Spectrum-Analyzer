@@ -293,63 +293,63 @@ C 12400 61400 1 0 0 Faraday-cage.sym
 T 12400 62000 5 10 1 1 0 0 1
 refdes=Sh410
 T 12400 61400 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
-T 12400 61400 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 12400 61400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 13100 61400 1 0 0 Faraday-cage.sym
 {
 T 13100 62000 5 10 1 1 0 0 1
 refdes=Sh411
 T 13100 61400 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
-T 13100 61400 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 13100 61400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 13800 61400 1 0 0 Faraday-cage.sym
 {
-T 13800 61400 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 13800 62000 5 10 1 1 0 0 1
 refdes=Sh412
 T 13800 61400 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 13800 61400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 14500 61400 1 0 0 Faraday-cage.sym
 {
-T 14500 61400 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 14500 62000 5 10 1 1 0 0 1
 refdes=Sh413
 T 14500 61400 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 14500 61400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 15200 61400 1 0 0 Faraday-cage.sym
 {
-T 15200 61400 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 15200 62000 5 10 1 1 0 0 1
 refdes=Sh414
 T 15200 61400 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 15200 61400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 15900 61400 1 0 0 Faraday-cage.sym
 {
-T 15900 61400 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 15900 62000 5 10 1 1 0 0 1
 refdes=Sh415
 T 15900 61400 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 15900 61400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 16600 61400 1 0 0 Faraday-cage.sym
 {
-T 16600 61400 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 16600 62000 5 10 1 1 0 0 1
 refdes=Sh416
 T 16600 61400 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 16600 61400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 17300 61400 1 0 0 Faraday-cage.sym
 {
@@ -371,103 +371,103 @@ man-part-num=S0971-46R
 }
 C 18700 61400 1 0 0 Faraday-cage.sym
 {
-T 18700 61400 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 18700 62000 5 10 1 1 0 0 1
 refdes=Sh419
 T 18700 61400 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 18700 61400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 N 12600 60900 20100 60900 4
 C 12400 60400 1 0 0 Faraday-cage.sym
 {
-T 12400 60400 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 12400 61000 5 10 1 1 0 0 1
 refdes=Sh420
 T 12400 60400 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 12400 60400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 13100 60400 1 0 0 Faraday-cage.sym
 {
-T 13100 60400 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 13100 61000 5 10 1 1 0 0 1
 refdes=Sh421
 T 13100 60400 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 13100 60400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 13800 60400 1 0 0 Faraday-cage.sym
 {
-T 13800 60400 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 13800 61000 5 10 1 1 0 0 1
 refdes=Sh422
 T 13800 60400 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 13800 60400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 14500 60400 1 0 0 Faraday-cage.sym
 {
-T 14500 60400 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 14500 61000 5 10 1 1 0 0 1
 refdes=Sh423
 T 14500 60400 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 14500 60400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 15200 60400 1 0 0 Faraday-cage.sym
 {
-T 15200 60400 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 15200 61000 5 10 1 1 0 0 1
 refdes=Sh424
 T 15200 60400 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 15200 60400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 15900 60400 1 0 0 Faraday-cage.sym
 {
-T 15900 60400 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 15900 61000 5 10 1 1 0 0 1
 refdes=Sh425
 T 15900 60400 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 15900 60400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 16600 60400 1 0 0 Faraday-cage.sym
 {
-T 16600 60400 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 16600 61000 5 10 1 1 0 0 1
 refdes=Sh426
 T 16600 60400 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 16600 60400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 17300 60400 1 0 0 Faraday-cage.sym
 {
-T 17300 60400 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 17300 61000 5 10 1 1 0 0 1
 refdes=Sh427
 T 17300 60400 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 17300 60400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 18000 60400 1 0 0 Faraday-cage.sym
 {
-T 18000 60400 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 18000 61000 5 10 1 1 0 0 1
 refdes=Sh428
 T 18000 60400 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 18000 60400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 18700 60400 1 0 0 Faraday-cage.sym
 {
-T 18700 60400 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 18700 61000 5 10 1 1 0 0 1
 refdes=Sh429
 T 18700 60400 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 18700 60400 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 N 20100 58200 20100 61900 4
 C 19400 60400 1 0 0 Faraday-cage.sym
@@ -493,100 +493,102 @@ C 16100 57700 1 0 0 Faraday-cage.sym
 {
 T 16100 58300 5 10 1 1 0 0 1
 refdes=Sh460
-T 16100 57700 5 10 0 0 0 0 1
-footprint=Harwin_S097146R
 T 16100 57700 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 16100 57700 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 16800 57700 1 0 0 Faraday-cage.sym
 {
 T 16800 58300 5 10 1 1 0 0 1
 refdes=Sh461
-T 16800 57700 5 10 0 0 0 0 1
-footprint=Harwin_S097146R
 T 16800 57700 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 16800 57700 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 14400 58700 1 0 0 Faraday-cage.sym
 {
 T 14400 59300 5 10 1 1 0 0 1
 refdes=Sh451
 T 14400 58700 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
-T 14400 58700 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 14400 58700 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 17500 57700 1 0 0 Faraday-cage.sym
 {
 T 17500 58300 5 10 1 1 0 0 1
 refdes=Sh462
 T 17500 57700 5 10 0 1 0 0 1
+man-part-num=S0971-46R
+T 17500 57700 5 10 0 1 0 0 1
 footprint=Harwin_S097146R
 T 17500 57700 5 10 0 1 0 0 1
-man-part-num=S0971-46R
+footprint=Harwin_S097146R
 }
 C 15100 58700 1 0 0 Faraday-cage.sym
 {
 T 15100 59300 5 10 1 1 0 0 1
 refdes=Sh452
 T 15100 58700 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
-T 15100 58700 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 15100 58700 5 10 0 0 0 0 1
+footprint=Harwin_S097146R
 }
 C 15800 58700 1 0 0 Faraday-cage.sym
 {
 T 15800 59300 5 10 1 1 0 0 1
 refdes=Sh453
 T 15800 58700 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
-T 15800 58700 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 15800 58700 5 10 0 0 0 0 1
+footprint=Harwin_S097146R
 }
 C 16500 58700 1 0 0 Faraday-cage.sym
 {
 T 16500 59300 5 10 1 1 0 0 1
 refdes=Sh454
 T 16500 58700 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
-T 16500 58700 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 16500 58700 5 10 0 0 0 0 1
+footprint=Harwin_S097146R
 }
 C 17200 58700 1 0 0 Faraday-cage.sym
 {
-T 17200 58700 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 17200 59300 5 10 1 1 0 0 1
 refdes=Sh455
 T 17200 58700 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 17200 58700 5 10 0 0 0 0 1
+footprint=Harwin_S097146R
 }
 C 17900 58700 1 0 0 Faraday-cage.sym
 {
-T 17900 58700 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 17900 59300 5 10 1 1 0 0 1
 refdes=Sh456
 T 17900 58700 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 17900 58700 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 14000 57700 1 0 0 Faraday-cage.sym
 {
-T 14000 57700 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 14000 58300 5 10 1 1 0 0 1
 refdes=Sh457
 T 14000 57700 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 14000 57700 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 14700 57700 1 0 0 Faraday-cage.sym
 {
-T 14700 57700 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
 T 14700 58300 5 10 1 1 0 0 1
 refdes=Sh458
 T 14700 57700 5 10 0 1 0 0 1
 man-part-num=S0971-46R
+T 14700 57700 5 10 0 1 0 0 1
+footprint=Harwin_S097146R
 }
 C 15400 57700 1 0 0 Faraday-cage.sym
 {
