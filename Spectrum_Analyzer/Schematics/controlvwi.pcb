@@ -2368,6 +2368,7 @@ Layer(3 "outline" "outline")
 )
 Layer(4 "bottom silk" "silk")
 (
+	Text[2010.00mil 875.00mil 0 100 "CHANGE THE MINI TO +3.3V BEFORE SOLDERING!!!" "clearline,onsolder"]
 )
 Layer(5 "top silk" "silk")
 (
