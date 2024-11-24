@@ -9,7 +9,8 @@ declare sub Rules
 'declare sub HelpMe
 
 Start:
-screen 20 : color 15,1 :cls
+'screen 20 : 
+color 16,2 :cls
 print "LO_CALC_1.bas LO Calculation Program for LO1,LO2 and LO3"
 print " The purpose of this program is to find viable LO frequencies for the RF Spectrum Analyser"
 input " For Help, enter h, if not, just <enter> ";AnsStr 
@@ -31,7 +32,7 @@ if GuardBand=0 then GuardBand=1.8
 input "The File to be saved will be called 'LO_Calcs_1.txt' unless you enter a new name";FilenameStr
 if FilenameStr="" then FilenameStr="LO_Calcs_1.txt"
 open "LO_Calcs_1.txt" for output as #gg
-R=2: Fpfd1=Fref1/R : Fpfd2=Fref2/R
+R=1: Fpfd1=Fref1/R : Fpfd2=Fref2/R
 
 y=1 :RF=RF1
 do until RF>RF2
@@ -56,38 +57,38 @@ loop
 sub Rules 'enter RF,Fpfd. Find an LO1 and IF1 freq to meet criteria if possible
 x=0 :Stoploop=0
 
-do   
-LOstart=x*Fpfd   
-x=x+1
-loop until LOstart>3400 'above IF1 PassBand frequency LOstart depends on Fpfd
-'LOstart will typically be 3630 for Fpfd=30MHz and 3650 for Fpfd=50MHz. Dependent on Fpfd
+  do   
+  LOstart=x*Fpfd   
+  x=x+1
+  loop until LOstart>3400 'above IF1 PassBand frequency LOstart depends on Fpfd
+  'LOstart will typically be 3630 for Fpfd=30MHz and 3650 for Fpfd=50MHz. Dependent on Fpfd
 
-x=0 :LO1=LOstart :OldDelta=0 :Delta=0
-do until LO1>6800 or Stoploop=1
-IF1=LO1-RF 
-if (IF1<3300) or (IF1>3900) then goto GetAnother ' not valid IF1 freq. Out of IF1 Band
+  x=0 :LO1=LOstart :OldDelta=0 :Delta=0
+  do until LO1>6800 or Stoploop=1
+  IF1=LO1-RF 
+  if (IF1<3300) or (IF1>3900) then goto GetAnother ' not valid IF1 freq. Out of IF1 Band
 
- PfdHarmL=Fpfd*int(IF1/Fpfd) :PfdHarmH= PfdHarmL+Fpfd
- DeltaL=abs(IF1-PfdHarmL)  : DeltaH=abs(PfdHarmH-IF1)
+   PfdHarmL=Fpfd*int(IF1/Fpfd) :PfdHarmH= PfdHarmL+Fpfd
+   DeltaL=abs(IF1-PfdHarmL)  : DeltaH=abs(PfdHarmH-IF1)
 
-Delta=DeltaH  'preset
-if DeltaL<Delta then Delta=DeltaL 'Delta now is the lessor(i.e. worst) of the two
+  Delta=DeltaH  'preset
+  if DeltaL<Delta then Delta=DeltaL 'Delta now is the lesser (i.e. worst) of the two
 
-if Delta>GuardBand and Delta>OldDelta then 
-     OldDelta=Delta
-     BestLO1=LO1
-  end if  
-BestIF1=BestLO1-RF    
+  if Delta>GuardBand and Delta>OldDelta then 
+       OldDelta=Delta
+       BestLO1=LO1
+    end if  
+  BestIF1=BestLO1-RF    
 
-GetAnother:
-if LO1>6800 then Stoploop=1
-LO1=LO1+Fpfd 'LO1 is Int-N , so add Fpfd to find next the frequency
-loop
-if Delta<Guardband then
-      Okay="** NG **"
-      else
-      Okay=""
-      end if
+  GetAnother:
+  if LO1>6000 then Stoploop=1
+  LO1=LO1+Fpfd 'LO1 is Int-N , so add Fpfd to find the next frequency
+  loop
+  if Delta<Guardband then
+        Okay="** NG **"
+        else
+        Okay=""
+        end if
 end sub 
 
    
