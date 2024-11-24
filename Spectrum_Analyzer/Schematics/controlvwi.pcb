@@ -2425,6 +2425,7 @@ Layer(5 "top silk" "silk")
 	Text[3175.00mil 335.00mil 0 100 "(G) +3.3V" "clearline"]
 	Text[1180.00mil 2245.00mil 3 100 "PWR_DET" "clearline"]
 	Text[3620.00mil 2490.00mil 0 100 "RESET" "clearline"]
+	Text[2040.00mil 1495.00mil 0 100 "CHANGE THE MINI TO +3.3V BEFORE SOLDERING!!!" "clearline"]
 )
 NetList()
 (
