@@ -1379,7 +1379,6 @@ Layer(1 "top" "copper")
 	Line[3310.00mil 645.00mil 3310.00mil 545.00mil 15.00mil 12.00mil ""]
 	Line[3280.00mil 595.00mil 3340.00mil 595.00mil 15.00mil 12.00mil ""]
 	Line[3385.00mil 1400.00mil 3000.00mil 1785.00mil 30.00mil 20.00mil "clearline"]
-	Line[3000.00mil 1785.00mil 1605.00mil 1785.00mil 30.00mil 20.00mil "clearline"]
 	Line[3965.00mil 1240.00mil 3965.00mil 1640.00mil 30.00mil 20.00mil "clearline"]
 	Line[3965.00mil 1640.00mil 3870.00mil 1735.00mil 30.00mil 20.00mil "clearline"]
 	Line[3870.00mil 1735.00mil 3550.00mil 1735.00mil 30.00mil 20.00mil "clearline"]
@@ -1421,20 +1420,14 @@ Layer(1 "top" "copper")
 	Line[3250.00mil 2035.00mil 3250.00mil 2395.00mil 30.00mil 20.00mil "clearline"]
 	Line[3250.00mil 2395.00mil 3215.00mil 2430.00mil 30.00mil 20.00mil "clearline"]
 	Line[3215.00mil 2430.00mil 78.7648mm 2430.00mil 30.00mil 20.00mil "clearline"]
-	Line[190.00mil 1660.00mil 190.00mil 2310.00mil 30.00mil 20.00mil "clearline"]
-	Line[190.00mil 2310.00mil 565.00mil 2685.00mil 30.00mil 20.00mil "clearline"]
+	Line[190.00mil 1620.00mil 190.00mil 2310.00mil 30.00mil 20.00mil "clearline"]
+	Line[190.00mil 2310.00mil 560.00mil 2680.00mil 30.00mil 20.00mil "clearline"]
 	Line[2488.00mil 2378.10mil 2488.00mil 2418.00mil 10.00mil 11.00mil "clearline"]
 	Line[2525.40mil 60.7048mm 2525.40mil 2410.40mil 10.00mil 11.00mil "clearline"]
 	Line[2525.40mil 2410.40mil 2535.00mil 2420.00mil 10.00mil 11.00mil "clearline"]
 	Line[3600.00mil 37.5600mm 88.1700mm 37.5600mm 30.00mil 20.00mil "clearline"]
 	Line[3045.00mil 1905.00mil 88.1700mm 37.5600mm 30.00mil 20.00mil "clearline"]
 	Line[90.1900mm 1400.00mil 3385.00mil 1400.00mil 30.00mil 20.00mil "clearline"]
-	Line[550.00mil 1600.00mil 250.00mil 1600.00mil 30.00mil 20.00mil "clearline"]
-	Line[250.00mil 1600.00mil 190.00mil 1660.00mil 30.00mil 20.00mil "clearline"]
-	Line[16.0970mm 38.6400mm 11.9060mm 38.6400mm 10.00mil 12.00mil ""]
-	Line[550.00mil 1490.00mil 550.00mil 1555.00mil 10.00mil 12.00mil ""]
-	Line[30.8540mm 55.5600mm 30.8540mm 59.7510mm 10.00mil 12.00mil ""]
-	Line[30.0600mm 57.6870mm 31.7110mm 57.6870mm 10.00mil 12.00mil ""]
 	Line[1750.00mil 360.00mil 1750.00mil 280.00mil 15.00mil 12.00mil ""]
 	Line[1720.00mil 320.00mil 1780.00mil 320.00mil 15.00mil 12.00mil ""]
 	Line[1950.00mil 360.00mil 1950.00mil 280.00mil 15.00mil 12.00mil ""]
@@ -1450,10 +1443,17 @@ Layer(1 "top" "copper")
 	Line[4015.00mil 711.80mil 4015.00mil 751.80mil 15.00mil 12.00mil ""]
 	Line[3810.00mil 850.00mil 4015.00mil 850.00mil 20.00mil 20.00mil "clearline"]
 	Line[3691.90mil 850.00mil 3555.00mil 850.00mil 20.00mil 20.00mil "clearline"]
-	Line[1605.00mil 1785.00mil 1295.00mil 2095.00mil 30.00mil 20.00mil "clearline"]
-	Line[1295.00mil 2095.00mil 1295.00mil 2625.00mil 30.00mil 20.00mil "clearline"]
-	Line[1295.00mil 2625.00mil 1235.00mil 2685.00mil 30.00mil 20.00mil "clearline"]
-	Line[1235.00mil 2685.00mil 565.00mil 2685.00mil 30.00mil 20.00mil "clearline"]
+	Line[1170.00mil 2680.00mil 560.00mil 2680.00mil 30.00mil 20.00mil "clearline"]
+	Line[3000.00mil 1785.00mil 38.6010mm 45.3680mm 30.00mil 20.00mil "clearline"]
+	Line[30.8540mm 53.1150mm 30.8540mm 66.5770mm 30.00mil 20.00mil "clearline"]
+	Line[30.8540mm 66.5770mm 1170.00mil 2680.00mil 30.00mil 20.00mil "clearline"]
+	Line[30.8540mm 53.1150mm 38.6010mm 45.3680mm 30.00mil 20.00mil "clearline"]
+	Line[550.00mil 38.6400mm 7.3340mm 38.6400mm 30.00mil 20.00mil "clearline"]
+	Line[7.3340mm 38.6400mm 190.00mil 1620.00mil 30.00mil 20.00mil "clearline"]
+	Line[630.00mil 1600.00mil 470.00mil 1600.00mil 10.00mil 12.00mil ""]
+	Line[550.00mil 1570.00mil 550.00mil 1630.00mil 10.00mil 12.00mil ""]
+	Line[32.8540mm 55.6550mm 32.8540mm 59.7190mm 10.00mil 12.00mil ""]
+	Line[32.0920mm 57.6870mm 33.6160mm 57.6870mm 10.00mil 12.00mil ""]
 	Polygon("clearpoly,fullpoly")
 	(
 		[90.00mil 90.00mil] [4040.00mil 90.00mil] [4040.00mil 2750.00mil] [90.00mil 2750.00mil] 
@@ -1529,8 +1529,8 @@ NetList()
 	Net("+12_VDC" "(unknown)")
 	(
 		Connect("CONN1-2")
-		Connect("CONN2-2")
-		Connect("CONN3-2")
+		Connect("CONN2-1")
+		Connect("CONN3-1")
 	)
 	Net("FB" "(unknown)")
 	(
@@ -1549,8 +1549,8 @@ NetList()
 		Connect("C7-2")
 		Connect("C8-1")
 		Connect("C9-1")
-		Connect("CONN2-1")
-		Connect("CONN3-1")
+		Connect("CONN2-2")
+		Connect("CONN3-2")
 		Connect("D2-2")
 		Connect("J401-2")
 		Connect("J401-4")
