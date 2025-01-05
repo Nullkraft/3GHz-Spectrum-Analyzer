@@ -1501,6 +1501,7 @@ Layer(5 "top silk" "silk")
 	Text[1595.00mil 100.00mil 0 100 "+5V" "clearline"]
 	Text[1770.00mil 100.00mil 0 100 "+7.5V" "clearline"]
 	Text[1985.00mil 100.00mil 0 100 "+3.3V" "clearline"]
+	Text[3250.00mil 2430.00mil 0 100 "+7.5 VDC" "clearline"]
 )
 NetList()
 (
