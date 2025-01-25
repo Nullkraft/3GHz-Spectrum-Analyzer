@@ -227,14 +227,14 @@ T 57195 71400 5 10 1 1 0 0 1
 device=SDRAM
 T 57200 69800 5 10 0 1 0 0 1
 documentation=https://www.mouser.com/ProductDetail/ISSI/IS66WVS4M8BLL-104NLI?qs=doiCPypUmgHfByEUFkOsAw==
-T 57200 69800 5 10 0 1 0 0 1
-footprint=SOIC_8_150mil
 T 57400 69100 5 10 1 1 0 0 1
 man-part-num=IS66WVS4M8ALL
 T 57200 69800 5 10 0 1 0 0 1
 value=32mbit
 T 57200 69800 5 10 0 1 0 0 1
 manufacturer=Mouser
+T 57200 69800 5 10 0 1 0 0 1
+footprint=SOIC_8_150mil
 }
 N 57200 72800 54800 72800 4
 {
