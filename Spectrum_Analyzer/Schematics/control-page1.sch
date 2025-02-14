@@ -226,9 +226,9 @@ refdes=U3
 T 57195 71400 5 10 1 1 0 0 1
 device=SDRAM
 T 57200 69800 5 10 0 1 0 0 1
-documentation=https://www.mouser.com/ProductDetail/ISSI/IS66WVS4M8BLL-104NLI?qs=doiCPypUmgHfByEUFkOsAw==
+documentation=https://www.mouser.com/datasheet/2/198/66_67WVS4M8ALL_BLL-2933425.pdf
 T 57400 69100 5 10 1 1 0 0 1
-man-part-num=IS66WVS4M8ALL
+man-part-num=IS66WVS4M8BLL
 T 57200 69800 5 10 0 1 0 0 1
 value=32mbit
 T 57200 69800 5 10 0 1 0 0 1
