@@ -9,6 +9,8 @@ T 42700 58400 5 10 0 1 0 0 1
 footprint=LFCN3000D+
 T 42700 58400 5 10 0 1 0 0 1
 man-part-num=LFCN3000D+
+T 42700 58400 5 10 0 0 0 0 1
+comment=Passband: DC --> 3600 MHz (Low-pass)
 }
 C 55600 65100 1 90 0 MCL-SIM-83+.sym
 {
@@ -1219,6 +1221,8 @@ T 49300 58400 5 10 0 1 0 0 1
 footprint=LFCN3000D+
 T 49300 58400 5 10 0 1 0 0 1
 man-part-num=LFCN3000D+
+T 49300 58400 5 10 0 0 0 0 1
+comment=Passband: DC --> 3600 MHz (Low-pass)
 }
 N 47300 59000 49300 59000 4
 C 50000 58100 1 0 0 gnd-1.sym
