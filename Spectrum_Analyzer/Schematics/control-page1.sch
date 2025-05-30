@@ -917,9 +917,9 @@ device=RESISTOR
 T 56500 71125 5 10 1 1 0 0 1
 refdes=R3
 T 56300 70900 5 10 0 0 0 0 1
-man-part-num=ERJ-2GEJ101X
+man-part-num=ERJ-2GEJ102X
 T 56500 70725 5 10 1 1 0 0 1
-value=100 Ω
+value=1 kΩ
 T 56300 70900 5 10 0 1 0 0 1
 footprint=0402
 T 56300 70900 5 10 0 1 0 0 1
@@ -952,9 +952,9 @@ device=RESISTOR
 T 56500 68225 5 10 1 1 0 0 1
 refdes=R5
 T 57200 68200 5 10 0 0 180 0 1
-man-part-num=ERJ-2GEJ101X
+man-part-num=ERJ-2GEJ102X
 T 56500 67825 5 10 1 1 0 0 1
-value=100 Ω
+value=1 kΩ
 T 57200 68200 5 10 0 1 180 0 1
 footprint=0402
 T 57200 68200 5 10 0 1 0 0 1
@@ -967,9 +967,9 @@ device=RESISTOR
 T 37300 63075 5 10 1 1 0 0 1
 refdes=R6
 T 37400 62900 5 10 0 0 0 0 1
-man-part-num=ERJ-2GEJ101X
+man-part-num=ERJ-2GEJ102X
 T 38050 63075 5 10 1 1 0 0 1
-value=100 Ω
+value=1 kΩ
 T 37400 62900 5 10 0 1 0 0 1
 footprint=0402
 T 37400 62900 5 10 0 1 0 0 1
@@ -982,9 +982,9 @@ device=RESISTOR
 T 37300 62775 5 10 1 1 0 0 1
 refdes=R7
 T 37400 62600 5 10 0 0 0 0 1
-man-part-num=ERJ-2GEJ101X
+man-part-num=ERJ-2GEJ102X
 T 38050 62775 5 10 1 1 0 0 1
-value=100 Ω
+value=1 kΩ
 T 37400 62600 5 10 0 1 0 0 1
 footprint=0402
 T 37400 62600 5 10 0 1 0 0 1
@@ -997,9 +997,9 @@ device=RESISTOR
 T 37300 62475 5 10 1 1 0 0 1
 refdes=R8
 T 37400 62300 5 10 0 0 0 0 1
-man-part-num=ERJ-2GEJ101X
+man-part-num=ERJ-2GEJ102X
 T 38050 62475 5 10 1 1 0 0 1
-value=100 Ω
+value=1 kΩ
 T 37400 62300 5 10 0 1 0 0 1
 footprint=0402
 T 37400 62300 5 10 0 1 0 0 1
@@ -1012,9 +1012,9 @@ device=RESISTOR
 T 37300 62175 5 10 1 1 0 0 1
 refdes=R9
 T 37400 62000 5 10 0 0 0 0 1
-man-part-num=ERJ-2GEJ101X
+man-part-num=ERJ-2GEJ102X
 T 38050 62175 5 10 1 1 0 0 1
-value=100 Ω
+value=1 kΩ
 T 37400 62000 5 10 0 1 0 0 1
 footprint=0402
 T 37400 62000 5 10 0 1 0 0 1
@@ -1089,9 +1089,9 @@ device=RESISTOR
 T 51400 71225 5 10 1 1 0 0 1
 refdes=R11
 T 51300 71000 5 10 0 0 0 0 1
-man-part-num=ERJ-2GEJ101X
+man-part-num=ERJ-2GEJ102X
 T 51900 71225 5 10 1 1 0 0 1
-value=100 Ω
+value=1 kΩ
 T 51300 71000 5 10 0 1 0 0 1
 footprint=0402
 T 51300 71000 5 10 0 1 0 0 1
@@ -1109,9 +1109,9 @@ device=RESISTOR
 T 51400 70425 5 10 1 1 0 0 1
 refdes=R12
 T 51300 70600 5 10 0 0 0 0 1
-man-part-num=ERJ-2GEJ101X
+man-part-num=ERJ-2GEJ102X
 T 51900 70425 5 10 1 1 0 0 1
-value=100 Ω
+value=1 kΩ
 T 51300 70600 5 10 0 1 0 0 1
 footprint=0402
 T 51300 70600 5 10 0 1 0 0 1
@@ -1124,9 +1124,9 @@ device=RESISTOR
 T 51500 68625 5 10 1 1 0 0 1
 refdes=R13
 T 51400 68400 5 10 0 0 0 0 1
-man-part-num=ERJ-2GEJ101X
+man-part-num=ERJ-2GEJ102X
 T 52000 68625 5 10 1 1 0 0 1
-value=100 Ω
+value=1 kΩ
 T 51400 68400 5 10 0 1 0 0 1
 footprint=0402
 T 51400 68400 5 10 0 1 0 0 1
@@ -1139,9 +1139,9 @@ device=RESISTOR
 T 66000 71525 5 10 1 1 0 0 1
 refdes=R14
 T 65800 71300 5 10 0 0 0 0 1
-man-part-num=ERJ-2GEJ101X
+man-part-num=ERJ-2GEJ102X
 T 66000 71125 5 10 1 1 0 0 1
-value=100 Ω
+value=1 kΩ
 T 65800 71300 5 10 0 1 0 0 1
 footprint=0402
 T 65800 71300 5 10 0 1 0 0 1
@@ -1154,9 +1154,9 @@ device=RESISTOR
 T 66000 66725 5 10 1 1 0 0 1
 refdes=R15
 T 65800 66500 5 10 0 0 0 0 1
-man-part-num=ERJ-2GEJ101X
+man-part-num=ERJ-2GEJ102X
 T 66000 66325 5 10 1 1 0 0 1
-value=100 Ω
+value=1 kΩ
 T 65800 66500 5 10 0 1 0 0 1
 footprint=0402
 T 65800 66500 5 10 0 1 0 0 1
@@ -1183,11 +1183,11 @@ device=RESISTOR
 T 51250 72925 5 10 1 1 0 0 1
 refdes=R16
 T 51650 72925 5 10 1 1 0 0 1
-value=100 Ω
+value=1 kΩ
 T 51200 72700 5 10 0 1 0 0 1
 footprint=0402
 T 51200 72700 5 10 0 0 0 0 1
-man-part-num=ERJ-2GEJ101X
+man-part-num=ERJ-2GEJ102X
 T 51200 72700 5 10 0 1 0 0 1
 manufacturer=Mouser
 }
@@ -1213,11 +1213,11 @@ device=RESISTOR
 T 51250 71925 5 10 1 1 0 0 1
 refdes=R18
 T 51650 71925 5 10 1 1 0 0 1
-value=100 Ω
+value=1 kΩ
 T 51200 71700 5 10 0 1 0 0 1
 footprint=0402
 T 51200 71700 5 10 0 0 0 0 1
-man-part-num=ERJ-2GEJ101X
+man-part-num=ERJ-2GEJ102X
 T 51200 71700 5 10 0 1 0 0 1
 manufacturer=Mouser
 }
@@ -1249,11 +1249,11 @@ device=RESISTOR
 T 57150 73425 5 10 1 1 0 0 1
 refdes=R19
 T 57550 73425 5 10 1 1 0 0 1
-value=100 Ω
+value=1 kΩ
 T 58100 73400 5 10 0 1 180 0 1
 footprint=0402
 T 58100 73400 5 10 0 0 180 0 1
-man-part-num=ERJ-2GEJ101X
+man-part-num=ERJ-2GEJ102X
 T 58100 73400 5 10 0 1 0 0 1
 manufacturer=Mouser
 }
@@ -1269,11 +1269,11 @@ device=RESISTOR
 T 57150 72925 5 10 1 1 0 0 1
 refdes=R21
 T 57650 72925 5 10 1 1 0 0 1
-value=100 Ω
+value=1 kΩ
 T 58100 72900 5 10 0 1 180 0 1
 footprint=0402
 T 58100 72900 5 10 0 0 180 0 1
-man-part-num=ERJ-2GEJ101X
+man-part-num=ERJ-2GEJ102X
 T 58100 72900 5 10 0 1 0 0 1
 manufacturer=Mouser
 }
@@ -1284,11 +1284,11 @@ device=RESISTOR
 T 57150 72425 5 10 1 1 0 0 1
 refdes=R20
 T 57650 72425 5 10 1 1 0 0 1
-value=100 Ω
+value=1 kΩ
 T 58100 72400 5 10 0 1 180 0 1
 footprint=0402
 T 58100 72400 5 10 0 0 180 0 1
-man-part-num=ERJ-2GEJ101X
+man-part-num=ERJ-2GEJ102X
 T 58100 72400 5 10 0 1 0 0 1
 manufacturer=Mouser
 }
@@ -1532,9 +1532,9 @@ device=RESISTOR
 T 51400 69825 5 10 1 1 0 0 1
 refdes=R22
 T 51300 69600 5 10 0 0 0 0 1
-man-part-num=ERJ-2GEJ101X
+man-part-num=ERJ-2GEJ102X
 T 51900 69825 5 10 1 1 0 0 1
-value=100 Ω
+value=1 kΩ
 T 51300 69600 5 10 0 1 0 0 1
 footprint=0402
 T 51300 69600 5 10 0 1 0 0 1
@@ -1579,9 +1579,9 @@ device=RESISTOR
 T 37700 67275 5 10 1 1 0 0 1
 refdes=R23
 T 37500 67000 5 10 0 0 0 0 1
-man-part-num=ERJ-2GEJ101X
+man-part-num=ERJ-2GEJ102X
 T 37700 66825 5 10 1 1 0 0 1
-value=100 Ω
+value=1 kΩ
 T 37500 67000 5 10 0 1 0 0 1
 footprint=0402
 T 37500 67000 5 10 0 1 0 0 1

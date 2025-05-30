@@ -904,63 +904,63 @@ Element["" "SOT23" "U7" "unknown" 940.00mil 1650.00mil 50.00mil -38.00mil 0 100 
 
 	)
 
-Element["" "0402" "R3" "100 ?" 3125.00mil 450.00mil 30.00mil -0.7658mm 0 100 ""]
+Element["" "0402" "R3" "1_k?" 3125.00mil 450.00mil 30.00mil -0.7658mm 0 100 ""]
 (
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
 
 	)
 
-Element["" "0402" "R5" "100 ?" 3065.00mil 450.00mil -90.00mil -0.7658mm 0 100 ""]
+Element["" "0402" "R5" "1_k?" 3065.00mil 450.00mil -90.00mil -0.7658mm 0 100 ""]
 (
 	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
 
 	)
 
-Element["" "0402" "R6" "100 ?" 2680.00mil 450.00mil 30.00mil -0.7658mm 0 100 ""]
+Element["" "0402" "R6" "1_k?" 2680.00mil 450.00mil 30.00mil -0.7658mm 0 100 ""]
 (
 	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
 
 	)
 
-Element["" "0402" "R7" "100 ?" 2620.00mil 450.15mil -10.00mil -2.4168mm 0 100 ""]
+Element["" "0402" "R7" "1_k?" 2620.00mil 450.15mil -10.00mil -2.4168mm 0 100 ""]
 (
 	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
 
 	)
 
-Element["" "0402" "R8" "100 ?" 2560.00mil 450.15mil -50.00mil -2.4168mm 0 100 ""]
+Element["" "0402" "R8" "1_k?" 2560.00mil 450.15mil -50.00mil -2.4168mm 0 100 ""]
 (
 	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
 
 	)
 
-Element["" "0402" "R9" "100 ?" 2500.00mil 450.00mil -90.00mil -0.7658mm 0 100 ""]
+Element["" "0402" "R9" "1_k?" 2500.00mil 450.00mil -90.00mil -0.7658mm 0 100 ""]
 (
 	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
 
 	)
 
-Element["" "0402" "R13" "100 ?" 1720.00mil 1970.00mil -3.4859mm -31.50mil 0 100 ""]
+Element["" "0402" "R13" "1_k?" 1720.00mil 1970.00mil -3.4859mm -31.50mil 0 100 ""]
 (
 	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
 
 	)
 
-Element["" "0402" "R14" "100 ?" 1720.00mil 1830.00mil -3.4859mm -41.50mil 0 100 ""]
+Element["" "0402" "R14" "1_k?" 1720.00mil 1830.00mil -3.4859mm -41.50mil 0 100 ""]
 (
 	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
 
 	)
 
-Element["" "0402" "R15" "100 ?" 43.6842mm 1900.00mil -136.50mil -31.50mil 0 100 ""]
+Element["" "0402" "R15" "1_k?" 43.6842mm 1900.00mil -136.50mil -31.50mil 0 100 ""]
 (
 	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
@@ -976,28 +976,28 @@ Element["" "WN2A_0805" "R2" "0_?" 2570.00mil 1170.00mil -140.00mil -30.00mil 0 1
 
 	)
 
-Element["" "0402" "R19" "100 ?" 1720.00mil 740.00mil -145.00mil -20.00mil 0 100 ""]
+Element["" "0402" "R19" "1_k?" 1720.00mil 740.00mil -145.00mil -20.00mil 0 100 ""]
 (
 	Pad[-0.3998mm -0.0998mm -0.3998mm 0.0998mm 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[0.3998mm -0.0998mm 0.3998mm 0.0998mm 19.68mil 20.00mil 25.68mil "2" "2" "square"]
 
 	)
 
-Element["" "0402" "R21" "100 ?" 1720.00mil 600.00mil -145.00mil -30.00mil 0 100 ""]
+Element["" "0402" "R21" "1_k?" 1720.00mil 600.00mil -145.00mil -30.00mil 0 100 ""]
 (
 	Pad[-0.3998mm -0.0998mm -0.3998mm 0.0998mm 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[15.74mil -0.0998mm 15.74mil 0.0998mm 19.68mil 20.00mil 25.68mil "2" "2" "square"]
 
 	)
 
-Element["" "0402" "R20" "100 ?" 1720.00mil 670.00mil -145.00mil -30.00mil 0 100 ""]
+Element["" "0402" "R20" "1_k?" 1720.00mil 670.00mil -145.00mil -30.00mil 0 100 ""]
 (
 	Pad[-0.3998mm -0.0998mm -0.3998mm 0.0998mm 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[0.3998mm -0.0998mm 0.3998mm 0.0998mm 19.68mil 20.00mil 25.68mil "2" "2" "square"]
 
 	)
 
-Element["" "0402" "R16" "100 ?" 3760.00mil 2215.00mil 50.00mil -29.26mil 0 100 ""]
+Element["" "0402" "R16" "1_k?" 3760.00mil 2215.00mil 50.00mil -29.26mil 0 100 ""]
 (
 	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
@@ -1011,35 +1011,35 @@ Element["" "0402" "R17" "1_k?" 3760.00mil 2155.00mil 1.2662mm -0.7658mm 0 100 ""
 
 	)
 
-Element["" "0402" "R18" "100 ?" 3760.00mil 2095.00mil 1.2888mm -30.00mil 0 100 ""]
+Element["" "0402" "R18" "1_k?" 3760.00mil 2095.00mil 1.2888mm -30.00mil 0 100 ""]
 (
 	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
 
 	)
 
-Element["" "0402" "R11" "100 ?" 2805.00mil 2120.00mil -30.00mil 3.5748mm 1 100 ""]
+Element["" "0402" "R11" "1_k?" 2805.00mil 2120.00mil -30.00mil 3.5748mm 1 100 ""]
 (
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
 
 	)
 
-Element["" "0402" "R12" "100 ?" 2735.00mil 2120.00mil -0.7394mm 3.5522mm 1 100 ""]
+Element["" "0402" "R12" "1_k?" 2735.00mil 2120.00mil -0.7394mm 3.5522mm 1 100 ""]
 (
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
 
 	)
 
-Element["" "0402" "R22" "100_?" 2875.00mil 2120.00mil -31.50mil 141.50mil 1 100 ""]
+Element["" "0402" "R22" "1_k?" 2875.00mil 2120.00mil -31.50mil 141.50mil 1 100 ""]
 (
 	Pad[-3.93mil 15.74mil 3.93mil 15.74mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[-3.93mil -15.74mil 3.93mil -15.74mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
 
 	)
 
-Element["" "0402" "R23" "100_?" 3760.00mil 2275.00mil 50.50mil -29.50mil 0 100 ""]
+Element["" "0402" "R23" "1_k?" 3760.00mil 2275.00mil 50.50mil -29.50mil 0 100 ""]
 (
 	Pad[-15.74mil -3.93mil -15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "1" "1" "square"]
 	Pad[15.74mil -3.93mil 15.74mil 3.93mil 19.68mil 20.00mil 25.68mil "2" "2" "square"]
