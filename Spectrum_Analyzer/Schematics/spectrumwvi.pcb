@@ -2252,7 +2252,7 @@ Element["onsolder" "0603" "C335" "1.0_uF" 94.6165mm 35.5615mm -0.4930mm -3.7950m
 
 	)
 
-Element["onsolder" "0603" "C338" "1.0_uF" 94.9975mm 37.9745mm 1.3000mm 5.00mil 0 80 "onsolder"]
+Element["onsolder" "0603" "C338" "1.0_uF" 94.9975mm 37.9745mm 1.3000mm 25.00mil 0 80 "onsolder"]
 (
 	Pad[25.59mil -4.92mil 25.59mil 4.92mil 29.52mil 0.0000 29.52mil "1" "1" "onsolder,square"]
 	Pad[-25.59mil -4.92mil -25.59mil 4.92mil 29.52mil 12.00mil 35.52mil "2" "2" "onsolder,square"]
@@ -2319,7 +2319,7 @@ Element["onsolder" "0805" "R315" "51_R" 85.2185mm 42.0385mm -1.4336mm 2.9726mm 0
 
 	)
 
-Element["onsolder" "0603" "C344" "0.01_uF" 95.7595mm 39.7525mm 0.6405mm -18.50mil 0 80 "onsolder"]
+Element["onsolder" "0603" "C344" "0.01_uF" 95.7595mm 39.7525mm 1.2755mm 21.50mil 0 80 "onsolder"]
 (
 	Pad[-25.59mil -4.92mil -25.59mil 4.92mil 29.52mil 12.00mil 35.52mil "1" "1" "onsolder,square"]
 	Pad[25.59mil -4.92mil 25.59mil 4.92mil 29.52mil 0.0000 29.52mil "2" "2" "onsolder,square"]
