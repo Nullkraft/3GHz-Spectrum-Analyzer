@@ -23,7 +23,7 @@ CmdProcessor/.gitignore
 *backup
 
 # Folders
-Design Documents/
+*[dD]ocuments/
 3D Drawings/
 SpecSheets/
 
