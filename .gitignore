@@ -11,7 +11,7 @@ __pycache__
 CmdProcessor/.gitignore
 
 # Some security concerns
-*[pP]password*
+*[pP]assword*
 *[lL]ogin*
 *[rR]eceipts*
 .directory
