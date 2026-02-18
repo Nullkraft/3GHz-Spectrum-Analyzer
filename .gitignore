@@ -26,6 +26,7 @@ CmdProcessor/.gitignore
 *[dD]ocuments/
 3D Drawings/
 SpecSheets/
+Review/
 
 # File types
 *cmd
