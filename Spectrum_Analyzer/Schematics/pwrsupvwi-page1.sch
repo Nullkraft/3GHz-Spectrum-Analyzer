@@ -189,6 +189,8 @@ T 68700 56800 5 10 0 1 0 0 1
 footprint=SOT223-H2
 T 68700 56800 5 10 0 1 0 0 1
 manufacturer=Mouser
+T 68700 56800 5 10 0 0 0 0 1
+comment=2-18-26 Fixed part number from AZ1117CD2-3.3TRG1 to AZ1117CH2-3.3TRG1
 }
 C 68600 59500 1 0 0 AZ1117CH2.sym
 {
@@ -202,6 +204,8 @@ T 68600 59500 5 10 0 1 0 0 1
 footprint=SOT223-H2
 T 68600 59500 5 10 0 1 0 0 1
 manufacturer=Mouser
+T 68600 59500 5 10 0 0 0 0 1
+comment=2-18-26 Fixed part number from AZ1117CD2-5.0TRG1 to AZ1117CH2-5.0TRG1
 }
 C 69600 57000 1 0 0 3.3V-plus-1.sym
 N 69800 57000 69700 57000 4
