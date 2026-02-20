@@ -595,11 +595,11 @@ device=SHEILD
 T 60800 61800 5 10 1 1 0 0 1
 refdes=Sh5
 T 60700 61100 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
-T 60700 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
 T 60700 61100 5 10 0 1 0 0 1
 manufacturer=Mouser
+T 60700 61100 5 10 0 0 0 0 1
+footprint=Harwin_S097146R
 }
 C 61300 61100 1 0 0 Faraday-cage.sym
 {
@@ -608,11 +608,11 @@ device=SHEILD
 T 61400 61800 5 10 1 1 0 0 1
 refdes=Sh6
 T 61300 61100 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
-T 61300 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
 T 61300 61100 5 10 0 1 0 0 1
 manufacturer=Mouser
+T 61300 61100 5 10 0 0 0 0 1
+footprint=Harwin_S097146R
 }
 C 61900 61100 1 0 0 Faraday-cage.sym
 {
@@ -621,11 +621,11 @@ device=SHEILD
 T 62000 61800 5 10 1 1 0 0 1
 refdes=Sh7
 T 61900 61100 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
-T 61900 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
 T 61900 61100 5 10 0 1 0 0 1
 manufacturer=Mouser
+T 61900 61100 5 10 0 0 0 0 1
+footprint=Harwin_S097146R
 }
 C 62500 61100 1 0 0 Faraday-cage.sym
 {
@@ -634,11 +634,11 @@ device=SHEILD
 T 62600 61800 5 10 1 1 0 0 1
 refdes=Sh8
 T 62500 61100 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
-T 62500 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
 T 62500 61100 5 10 0 1 0 0 1
 manufacturer=Mouser
+T 62500 61100 5 10 0 0 0 0 1
+footprint=Harwin_S097146R
 }
 C 63100 61100 1 0 0 Faraday-cage.sym
 {
@@ -647,11 +647,11 @@ device=SHEILD
 T 63200 61800 5 10 1 1 0 0 1
 refdes=Sh9
 T 63100 61100 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
-T 63100 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
 T 63100 61100 5 10 0 1 0 0 1
 manufacturer=Mouser
+T 63100 61100 5 10 0 0 0 0 1
+footprint=Harwin_S097146R
 }
 C 63700 61100 1 0 0 Faraday-cage.sym
 {
@@ -660,11 +660,11 @@ device=SHEILD
 T 63800 61800 5 10 1 1 0 0 1
 refdes=Sh10
 T 63700 61100 5 10 0 1 0 0 1
-footprint=Harwin_S097146R
-T 63700 61100 5 10 0 1 0 0 1
 man-part-num=S0971-46R
 T 63700 61100 5 10 0 1 0 0 1
 manufacturer=Mouser
+T 63700 61100 5 10 0 0 0 0 1
+footprint=Harwin_S097146R
 }
 N 58900 58700 59300 58700 4
 N 59300 58700 59300 59100 4
