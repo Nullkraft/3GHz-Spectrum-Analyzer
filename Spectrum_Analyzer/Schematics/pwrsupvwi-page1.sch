@@ -39,11 +39,11 @@ device=TPSM33625
 T 61600 60100 5 10 1 1 0 6 1
 refdes=U1
 T 60600 58900 5 10 0 1 0 0 1
-footprint=TPSM33625
-T 60600 58900 5 10 0 1 0 0 1
 man-part-num=TPSM33625RDNR
 T 60600 58900 5 10 0 1 0 0 1
 manufacturer=Mouser
+T 60600 58900 5 10 0 0 0 0 1
+footprint=TPSM33625-2
 }
 C 55500 58900 1 90 0 capacitor-1_small.sym
 {
