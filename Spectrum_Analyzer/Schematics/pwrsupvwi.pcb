@@ -5,7 +5,7 @@ FileVersion[20091103]
 
 PCB["Power Supply Board" 4130.00mil 2900.00mil]
 
-Grid[10.00mil 0.0000 0.0000 1]
+Grid[10.00mil 0.0000 0.0000 0]
 PolyArea[3100.006200]
 Thermal[0.500000]
 DRC[3.50mil 4.00mil 3.50mil 6.00mil 0.1999mm 3.50mil]
@@ -1050,31 +1050,10 @@ Element["" "0805" "C3" "4.7uF" 2630.00mil 2550.00mil -0.8219mm -2.4691mm 0 100 "
 
 	)
 
-Element["" "0402" "R1" "100k" 2440.00mil 2480.00mil -0.5847mm 0.6921mm 0 100 ""]
-(
-	Pad[-0.0998mm -0.3998mm 0.0998mm -0.3998mm 0.4999mm 20.00mil 0.6523mm "1" "1" "square"]
-	Pad[-0.0998mm 0.3998mm 0.0998mm 0.3998mm 0.4999mm 20.00mil 0.6523mm "2" "2" "square"]
-
-	)
-
-Element["" "0402" "R2" "64.9k" 2345.00mil 57.2529mm -0.7130mm -1.0782mm 1 100 ""]
-(
-	Pad[-0.0998mm 0.3998mm 0.0998mm 0.3998mm 0.4999mm 20.00mil 0.7539mm "1" "1" "square"]
-	Pad[-0.0998mm -0.3998mm 0.0998mm -0.3998mm 0.4999mm 20.00mil 0.7539mm "2" "2" "square"]
-
-	)
-
 Element["" "0402" "C7" "1uF" 2435.00mil 55.4561mm 0.8351mm -1.5845mm 0 100 ""]
 (
 	Pad[-0.0998mm 0.3998mm 0.0998mm 0.3998mm 0.4999mm 20.00mil 0.7539mm "1" "1" "square"]
 	Pad[-0.0998mm -0.3998mm 0.0998mm -0.3998mm 0.4999mm 0.0000 0.4999mm "2" "2" "square"]
-
-	)
-
-Element["" "0402" "R3" "10k" 2345.00mil 59.7929mm -0.7051mm 2.4699mm 1 100 ""]
-(
-	Pad[-0.0998mm 0.3998mm 0.0998mm 0.3998mm 0.4999mm 0.0000 0.4999mm "1" "1" "square"]
-	Pad[-0.0998mm -0.3998mm 0.0998mm -0.3998mm 0.4999mm 20.00mil 0.7539mm "2" "2" "square"]
 
 	)
 
@@ -1397,6 +1376,39 @@ Element["" "Harwin_S097146R" "Sh5" "unknown" 54.2590mm 61.5610mm -1.5830mm -2.07
 	ElementLine [0.0200mm 0.0200mm -0.0200mm -0.0200mm 1.00mil]
 
 	)
+
+Element["" "0402-2" "R3" "10k" 2345.00mil 2358.00mil -30.00mil 100.00mil 1 100 ""]
+(
+	Pad[0.2500mm -0.5000mm 0.2500mm -0.3000mm 0.2500mm 7.00mil 0.3500mm "2" "2" "square"]
+	Pad[0.2500mm 0.3000mm 0.2500mm 0.5000mm 0.2500mm 0.0000 0.3500mm "1" "1" "square,edge2"]
+	Pad[-0.2500mm -0.5000mm -0.2500mm -0.3000mm 0.2500mm 7.00mil 0.3500mm "2" "2" "square"]
+	Pad[-0.2500mm 0.3000mm -0.2500mm 0.5000mm 0.2500mm 0.0000 0.3500mm "1" "1" "square,edge2"]
+	Pad[-0.2000mm 0.5000mm 0.2000mm 0.5000mm 0.3500mm 0.0000 0.4500mm "1" "1" "square"]
+	Pad[-0.2000mm -0.5000mm 0.2000mm -0.5000mm 0.3500mm 7.00mil 0.4500mm "2" "2" "square"]
+
+	)
+
+Element["" "0402-2" "R1" "100k" 2440.00mil 63.0922mm -30.00mil 30.00mil 0 100 ""]
+(
+	Pad[-0.2500mm 0.3000mm -0.2500mm 0.5000mm 0.2500mm 7.00mil 0.3500mm "2" "2" "square,edge2"]
+	Pad[-0.2500mm -0.5000mm -0.2500mm -0.3000mm 0.2500mm 7.00mil 0.3500mm "1" "1" "square"]
+	Pad[0.2500mm 0.3000mm 0.2500mm 0.5000mm 0.2500mm 7.00mil 0.3500mm "2" "2" "square,edge2"]
+	Pad[0.2500mm -0.5000mm 0.2500mm -0.3000mm 0.2500mm 7.00mil 0.3500mm "1" "1" "square"]
+	Pad[-0.2000mm -0.5000mm 0.2000mm -0.5000mm 0.3500mm 7.00mil 0.4500mm "1" "1" "square"]
+	Pad[-0.2000mm 0.5000mm 0.2000mm 0.5000mm 0.3500mm 7.00mil 0.4500mm "2" "2" "square"]
+
+	)
+
+Element["" "0402-2" "R2" "64.9k" 2345.00mil 2258.00mil -30.00mil -50.00mil 1 100 ""]
+(
+	Pad[0.2500mm -0.5000mm 0.2500mm -0.3000mm 0.2500mm 7.00mil 0.3500mm "2" "2" "square"]
+	Pad[0.2500mm 0.3000mm 0.2500mm 0.5000mm 0.2500mm 7.00mil 0.3500mm "1" "1" "square,edge2"]
+	Pad[-0.2500mm -0.5000mm -0.2500mm -0.3000mm 0.2500mm 7.00mil 0.3500mm "2" "2" "square"]
+	Pad[-0.2500mm 0.3000mm -0.2500mm 0.5000mm 0.2500mm 7.00mil 0.3500mm "1" "1" "square,edge2"]
+	Pad[-0.2000mm 0.5000mm 0.2000mm 0.5000mm 0.3500mm 7.00mil 0.4500mm "1" "1" "square"]
+	Pad[-0.2000mm -0.5000mm 0.2000mm -0.5000mm 0.3500mm 7.00mil 0.4500mm "2" "2" "square"]
+
+	)
 Layer(1 "top" "copper")
 (
 	Line[1275.00mil 270.00mil 1275.00mil 330.00mil 15.00mil 12.00mil ""]
@@ -1443,7 +1455,7 @@ Layer(1 "top" "copper")
 	Line[2450.00mil 59.0309mm 2486.00mil 2324.00mil 10.00mil 10.00mil ""]
 	Line[2345.30mil 58.5305mm 2345.00mil 58.5229mm 10.00mil 10.00mil "clearline"]
 	Line[2345.30mil 58.5305mm 61.7842mm 58.5305mm 10.00mil 8.00mil "clearline"]
-	Line[2345.00mil 57.6527mm 2345.00mil 59.3931mm 10.00mil 10.00mil "clearline"]
+	Line[2345.00mil 57.8531mm 2345.00mil 59.3931mm 10.00mil 10.00mil "clearline"]
 	Line[2345.00mil 2145.00mil 2345.00mil 56.8531mm 10.00mil 10.00mil "clearline"]
 	Line[2404.60mil 59.5313mm 61.7842mm 59.5313mm 10.00mil 12.00mil ""]
 	Line[2436.40mil 55.8914mm 2436.40mil 2269.00mil 10.00mil 12.00mil "clearline"]
@@ -1454,7 +1466,7 @@ Layer(1 "top" "copper")
 	Line[2468.30mil 2378.10mil 2468.30mil 2401.70mil 10.00mil 10.00mil "clearline"]
 	Line[2468.30mil 2401.70mil 2440.00mil 2430.00mil 10.00mil 10.00mil "clearline"]
 	Line[2440.00mil 2430.00mil 2440.00mil 62.5922mm 10.00mil 10.00mil "clearline"]
-	Line[2440.00mil 63.3918mm 2440.00mil 2550.00mil 10.00mil 10.00mil "clearline"]
+	Line[2440.00mil 63.5922mm 2440.00mil 2550.00mil 10.00mil 10.00mil "clearline"]
 	Line[47.3601mm 63.1949mm 48.8841mm 63.1949mm 15.00mil 12.00mil ""]
 	Line[48.1221mm 62.3059mm 48.1221mm 64.0839mm 15.00mil 12.00mil ""]
 	Line[1865.00mil 54.3049mm 1925.00mil 54.3049mm 15.00mil 12.00mil ""]
