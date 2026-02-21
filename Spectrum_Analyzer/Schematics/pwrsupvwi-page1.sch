@@ -318,11 +318,11 @@ device=DIODE
 T 52400 60000 5 10 1 1 0 0 1
 refdes=D1
 T 52100 59500 5 10 0 1 0 0 1
-footprint=DO220AA
-T 52100 59500 5 10 0 1 0 0 1
 man-part-num=SS2P5HM3/84A
 T 52100 59500 5 10 0 0 0 0 1
 manufacturer=DigiKey
+T 52100 59500 5 10 0 0 0 0 1
+footprint=DO220AA-2
 }
 C 54400 59600 1 0 0 inductor-1.sym
 {
