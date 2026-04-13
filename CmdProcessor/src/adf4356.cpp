@@ -1,6 +1,6 @@
 
 #include "adf4356.h"
-#include "synthesizer.h"
+// #include "synthesizer.h"
 
 void ADF4356_LO::begin(uint8_t selectPin) {
   // Program all 13 registers of the chip
