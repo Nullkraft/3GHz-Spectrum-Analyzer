@@ -53,3 +53,8 @@ Block_Diagram.sch
 Updates for V4.0 Spectrum Analyzer boards & circuits.txt
 tools/
 SRAM*
+MCU API/
+CmdProcessor/.codex
+CmdProcessor/Equations for Finding LO1, LO2, and LO3.txt
+CmdProcessor/Gen 4 Python Learning Project.md
+CmdProcessor/junk.cpp
