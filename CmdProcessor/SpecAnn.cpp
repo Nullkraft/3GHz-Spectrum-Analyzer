@@ -58,7 +58,7 @@ void SpecAnn::builtinLEDOff() {
 }
 
 void SpecAnn::version() {
-  Serial.print(F("- WN2A Spectrum Analyzer CmdProcessor Oct. 2023"));
+  Serial.print(F("- WN2A Spectrum Analyzer, git branch gen3-adf4356, Oct. 2023"));
 }
 
 // Send the end-of-sweep acknowledgement back to the controller
