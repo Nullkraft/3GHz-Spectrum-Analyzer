@@ -1,48 +1,37 @@
 *~
-Punch\ list
-Prospectives/
-Spec_Sheets/
-images/
-[aA]rchive/
-*[pP]password*
-*[lL]ogin*
-*[rR]eceipts*
-.directory
-ADI_PLL_Sim/
 *save
-*bak*
-*cmd
-*sch#
-*sym#
-*.backup
-*page[45]A.sch
-*png
-*pdf
 *zip
-Supplier BOM's
-Schematics/Gerbers
-Testing_FreeBasic_with_readBytes
-Schematics/Board Assembly.ods
-315 MHz filter bandwidth.txt
-Arduino software/Acceptance_test_app/
-Arduino software/Ardiuno_Com_Test_N/
-Arduino software/CmdProcessor_initializes/
-Arduino software/MAX2871_Load_5/
-Arduino software/MAX2871_Load_Word_115200_5/
-Arduino software/Project1_Load_1000p0_9/
-Arduino software/Project1_Load_146p52_13/
-Arduino software/Project1_Load_3000p0_9/
-Arduino to Ver 2.0.00 Synthesizer Pinouts.ods
-Design_Info/ADF4356 Programming info.odt
-Design_Info/Frequency map.ods
-MAX2871 100 MHz RFout Register settings.txt
-SA_BlockDiagram.tif
-Schematics/Arduino/
-Sprectrum Analyzer Programming Notes.txt
-steps to program V2.0.0.00 board.txt
-zTemp/
-Gerber*
-*MACOSX
-*odt
-Spur Analysis/
-Documentation/
+
+CmdProcessor/.pio/
+CmdProcessor/.cache/
+CmdProcessor/build/
+CmdProcessor/.codex
+CmdProcessor/.vscode/
+.vscode/
+
+CmdProcessor/Gen 4 Python Learning Project.md
+CmdProcessor/List Of Issues 4-19-26.txt
+CmdProcessor/Next steps.txt
+Gerber mods when using JLCPCB.txt
+Spectrum_Analyzer/Components/3D Drawings/
+Spectrum_Analyzer/Components/Bill Of Materials - V4.0 SA/
+Spectrum_Analyzer/Digikey - headers__receptacles__female_sockets.csv
+Spectrum_Analyzer/Schematics/BOM's/
+Spectrum_Analyzer/Schematics/RF_gerbers/
+Spectrum_Analyzer/Schematics/Schematics - Original Hand Drawn/
+Spectrum_Analyzer/Schematics/__pycache__/
+Spectrum_Analyzer/Schematics/control_gerbers/
+Spectrum_Analyzer/Schematics/controlvwi.net
+Spectrum_Analyzer/Schematics/power_gerbers/
+Spectrum_Analyzer/Schematics/pwrsupvwi.pcb.bak
+Spectrum_Analyzer/Schematics/pwrsupvwi.pcb.bak0
+Spectrum_Analyzer/Schematics/pwrsupvwi.pcb.bak1
+Spectrum_Analyzer/Schematics/pwrsupvwi.pcb.bak2
+Spectrum_Analyzer/Schematics/scratch_pad-page1.sch
+Spectrum_Analyzer/Schematics/scratch_pad.gsch2pcb
+Spectrum_Analyzer/Schematics/scratch_pad.net
+Spectrum_Analyzer/Schematics/scratch_pad.pcb
+Spectrum_Analyzer/Schematics/tools/
+Spectrum_Analyzer/Software/SRAM_TEST_1/
+Spectrum_Analyzer/Spectrum Analyzer Explanation of Operation.odt
+Spectrum_Analyzer/screen_captures/
